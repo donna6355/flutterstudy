@@ -13,3 +13,4 @@ class Detail extends StatelessWidget {
     );
   }
 }
+// this is for just test
