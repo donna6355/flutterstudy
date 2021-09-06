@@ -8,7 +8,19 @@ class Detail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Detailed Page')),
       body: Center(
-        child: Text('hello! greetings from details'),
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.all(20),
+              child: Image.asset('asset/issac.jpeg'),
+            ),
+            Text('hello! greetings from Issac:)',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                )),
+          ],
+        ),
       ),
     );
   }
