@@ -12,9 +12,33 @@ class Detail extends StatelessWidget {
           children: [
             Container(
               padding: EdgeInsets.all(20),
-              child: Image.asset('asset/issac.jpeg'),
+              child: GestureDetector(
+                onTap: () => showDialog(
+                    context: context,
+                    barrierDismissible: true,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Warning'),
+                        content: Text(
+                            'warning warning be careful! \nHe will bite you!'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('confirm'),
+                          ),
+                        ],
+                      );
+                    }),
+                child: Image.asset('asset/issac.jpeg'),
+              ),
             ),
-            Text('hello! greetings from Issac:)',
+            SizedBox(
+              height: 60,
+            ),
+            Text('Hello!\nGreetings from Issac:)',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,

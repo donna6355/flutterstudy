@@ -25,31 +25,25 @@ class Home extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            // CircularProgressIndicator(),
+            // LinearProgressIndicator()
             ElevatedButton(
-              onPressed: () => showDialog(
-                  context: context,
-                  barrierDismissible: true,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Warning'),
-                      content: Text('warning warning be careful!'),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text('confirm'),
-                        ),
-                      ],
-                    );
-                  }),
-              child: Text('press for alert'),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/detail');
+                // Navigator.pushNamed(context, '/detail'); //same syntax
+              },
+              child: Text('Greetings'),
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/detail');
+                Navigator.of(context)
+                    .pushNamed('/args', arguments: 'args test');
+                // Navigator.pushNamed(context, '/detail'); //same syntax
               },
-              child: Text('move next page'),
+              child: Text('move Args page'),
             ),
           ],
         ),

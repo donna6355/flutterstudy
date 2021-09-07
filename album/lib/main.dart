@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './home.dart';
 import './detail.dart';
+import './args.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => Home('Issac\'s Photo Album', 'Welcome'),
           '/detail': (context) => Detail('detail'),
+          '/args': (context) => Args(),
         });
   }
 }
