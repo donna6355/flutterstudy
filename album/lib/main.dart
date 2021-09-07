@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './home.dart';
 import './detail.dart';
 import './args.dart';
+import './photo.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => Home('Issac\'s Photo Album', 'Welcome'),
           '/detail': (context) => Detail('detail'),
           '/args': (context) => Args(),
+          '/list': (context) => Photo(),
         });
   }
 }

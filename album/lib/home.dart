@@ -39,11 +39,10 @@ class Home extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context)
-                    .pushNamed('/args', arguments: 'args test');
+                Navigator.of(context).pushNamed('/list');
                 // Navigator.pushNamed(context, '/detail'); //same syntax
               },
-              child: Text('move Args page'),
+              child: Text('move to List'),
             ),
           ],
         ),
