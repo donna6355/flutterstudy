@@ -6,10 +6,27 @@ class Args extends StatelessWidget {
     final routerArgs = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
-        title: Text(routerArgs),
+        title: Text('Full Screen'),
       ),
-      body: Center(
-        child: Text(routerArgs),
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Center(
+          child: Column(
+            children: [
+              Image.asset('asset/$routerArgs.png'),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Title: $routerArgs',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

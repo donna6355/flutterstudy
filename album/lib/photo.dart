@@ -1,7 +1,25 @@
 import 'package:flutter/material.dart';
 
 class Photo extends StatelessWidget {
-  static const List<String> titles = ['ontop', 'pretty', 'yawn', 'zzz'];
+  static const List<String> titles = [
+    'ontop',
+    'pretty',
+    'yawn',
+    'zzz',
+    'astonishing',
+    'babyzz',
+    'excited',
+    'firstday',
+    'handsome',
+    'hide',
+    'hunting',
+    'kitteninbed',
+    'kitty',
+    'side',
+    'sit',
+    'tunnel',
+    'zzzwithtongue'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +39,15 @@ class Photo extends StatelessWidget {
             itemCount: titles.length,
             itemBuilder: (BuildContext context, int idx) {
               return InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pushNamed(
+                    '/args',
+                    arguments: titles[idx],
+                  );
+                },
                 child: Container(
-                  color: Colors.blue,
-                  child: Text(
-                    titles[idx],
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+                    color: Colors.blue,
+                    child: Image.asset('asset/${titles[idx]}.png')),
               );
             },
           )),
