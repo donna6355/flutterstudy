@@ -21,7 +21,7 @@ class Products with ChangeNotifier {
     return [..._items];
   }
 
-  void addProduct(val) {
+  void addProduct(Product val) {
     _items.add(val);
     notifyListeners();
   }

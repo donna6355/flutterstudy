@@ -10,10 +10,14 @@ class InputPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void _submit() {
-      Provider.of<Products>(context).addProduct(Product(
+      Provider.of<Products>(
+        context,
+        listen: false,
+      ).addProduct(Product(
           contents: contentControl.text,
           id: 'abc999',
           title: titleControl.text));
+      Navigator.of(context).pushNamed('/');
     }
 
     return Scaffold(
@@ -34,7 +38,9 @@ class InputPage extends StatelessWidget {
               controller: contentControl,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                _submit();
+              },
               child: Text('Submit'),
             ),
           ],
