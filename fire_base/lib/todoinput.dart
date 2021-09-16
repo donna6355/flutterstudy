@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../provider/todoState.dart';
+import '../class/todo.dart';
 
 class Todoinput extends StatelessWidget {
   final taskControl = TextEditingController();
@@ -14,11 +17,14 @@ class Todoinput extends StatelessWidget {
             controller: taskControl,
             decoration: const InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              hintText: 'What you gotta to do?',
+              labelText: 'What you gotta to do?',
             ),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Provider.of<TodoState>(context, listen: false).addTodo(Todo(
+                  isDeleted: false, isDone: false, todo: taskControl.text));
+            },
             child: Text('Update'),
           ),
         ],
