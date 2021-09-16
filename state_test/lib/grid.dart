@@ -35,6 +35,7 @@ class Grid extends StatelessWidget {
     // );
 
     // better to use Consumer to get data and Provider is recommended for method only use.
+    // put Consumer as deeper as possible to avoid any unnecessary rebuild.
 
     return Consumer<Products>(builder: (context, products, child) {
       return Center(
