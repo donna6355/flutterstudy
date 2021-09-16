@@ -21,6 +21,8 @@ class Products with ChangeNotifier {
     return [..._items];
   }
 
+  // better to call http request here
+  // if you need to fetch data, call method by initState() or build() then the provider method will be called.
   void addProduct(Product val) {
     _items.add(val);
     notifyListeners();
