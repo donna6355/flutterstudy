@@ -1,25 +1,46 @@
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import '../class/todo.dart';
 
 class TodoState extends ChangeNotifier {
-  List<Todo> _todoList = [];
+  List<Todo> _todoList = [
+    Todo(
+      id: 'abcdefghijklmnop',
+      isDeleted: false,
+      isDone: false,
+      todo: 'Please enter your tasks!',
+    ),
+  ];
 
   List<Todo> get getList {
     return [..._todoList];
   }
 
   void fetchTodo() async {
-    var url = Uri.parse('https://example.com/whatsit/create');
+    var url = Uri.parse(
+        'https://flutterpractice-81d03-default-rtdb.asia-southeast1.firebasedatabase.app/todo.json');
     var response = await http.get(url);
-    print(response);
+    print(json.decode(response.body));
     notifyListeners();
   }
 
-  void addTodo(Todo val) {
-    // var url = Uri.parse('https://example.com/whatsit/create');
-    // var response = await http.post(url, body: {'name': 'doodle', 'color': 'blue'});
-    _todoList.add(val);
+  void addTodo(String val) async {
+    var url = Uri.parse(
+        'https://flutterpractice-81d03-default-rtdb.asia-southeast1.firebasedatabase.app/todo.json');
+    var response = await http.post(url,
+        body: json.encode({
+          'todo': val,
+          'isDeleted': false,
+          'isDone': false,
+        }));
+    final newTodo = Todo(
+      id: json.decode(response.body)['name'],
+      isDeleted: false,
+      isDone: false,
+      todo: val,
+    );
+    _todoList.add(newTodo);
     notifyListeners();
   }
 }

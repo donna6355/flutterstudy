@@ -24,4 +24,6 @@ class MyApp extends StatelessWidget {
 }
 
 // https://flutterpractice-81d03-default-rtdb.asia-southeast1.firebasedatabase.app/
+// url + folder name + json
+// 'https://flutterpractice-81d03-default-rtdb.asia-southeast1.firebasedatabase.app/todo.json'
 // firebase for flutter pratice
