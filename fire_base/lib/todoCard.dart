@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/todoState.dart';
 
 class TodoCard extends StatelessWidget {
+  final String task;
+  final bool isDone;
+  final bool isDeleted;
+  final String id;
+
+  TodoCard(this.task, this.isDone, this.isDeleted, this.id);
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -10,10 +20,17 @@ class TodoCard extends StatelessWidget {
           Expanded(
             child: GestureDetector(
               onTap: () {
-                print('tap');
+                Provider.of<TodoState>(context, listen: false).doneStatus(id);
               },
               child: Container(
-                child: Text('todo card here'),
+                child: Text(
+                  '$task $isDone',
+                  style: TextStyle(
+                    decoration: isDone
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
+                  ),
+                ),
                 padding: EdgeInsets.only(
                   left: 20,
                 ),
@@ -22,6 +39,7 @@ class TodoCard extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
+              Provider.of<TodoState>(context, listen: false).delete(id);
               print('delete');
             },
             icon: const Icon(Icons.delete_outline),

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../provider/todoState.dart';
 
 class Todoinput extends StatelessWidget {
-  final taskControl = TextEditingController();
+  final _taskControl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,7 +13,7 @@ class Todoinput extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           TextFormField(
-            controller: taskControl,
+            controller: _taskControl,
             decoration: const InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               labelText: 'What you gotta to do?',
@@ -22,7 +22,9 @@ class Todoinput extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               Provider.of<TodoState>(context, listen: false)
-                  .addTodo(taskControl.text);
+                  .addTodo(_taskControl.text);
+              _taskControl.clear();
+              // loose focus!
             },
             child: Text('Update'),
           ),

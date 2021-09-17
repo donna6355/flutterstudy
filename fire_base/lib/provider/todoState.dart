@@ -43,4 +43,16 @@ class TodoState extends ChangeNotifier {
     _todoList.add(newTodo);
     notifyListeners();
   }
+
+  void doneStatus(String givenId) {
+    print(givenId);
+    _todoList[0].isDone = true;
+    // need to fix
+    notifyListeners();
+  }
+
+  void delete(String givenId) {
+    _todoList.removeWhere((item) => item.id == givenId);
+    notifyListeners();
+  }
 }
