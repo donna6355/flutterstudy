@@ -16,7 +16,8 @@ class TodoCard extends StatelessWidget {
               Expanded(
                 child: GestureDetector(
                   onTap: () {
-                    Provider.of<Todo>(context, listen: false).toggleDone();
+                    Provider.of<Todo>(context, listen: false)
+                        .toggleDone(todo.id);
                   },
                   child: Container(
                     child: Text(
