@@ -1,4 +1,6 @@
-class Todo {
+import 'package:flutter/material.dart';
+
+class Todo extends ChangeNotifier {
   final String todo;
   bool isDone;
   bool isDeleted;
@@ -7,6 +9,11 @@ class Todo {
   Todo(
       {required this.id,
       required this.todo,
-      required this.isDone,
-      required this.isDeleted});
+      this.isDone = false,
+      this.isDeleted = false});
+
+  void toggleDone() {
+    isDone = !isDone;
+    notifyListeners();
+  }
 }

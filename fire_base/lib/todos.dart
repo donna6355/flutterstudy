@@ -19,9 +19,10 @@ class Todos extends StatelessWidget {
                 builder: (context, todoState, child) {
                   return ListView.builder(
                     itemBuilder: (context, idx) {
-                      final items = todoState.getList[idx];
-                      return TodoCard(
-                          items.todo, items.isDeleted, items.isDone, items.id);
+                      return ChangeNotifierProvider(
+                        create: (context) => todoState.getList[idx],
+                        child: TodoCard(),
+                      );
                     },
                     itemCount: todoState.getList.length,
                   );

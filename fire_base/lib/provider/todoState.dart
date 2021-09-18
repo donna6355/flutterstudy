@@ -36,18 +36,9 @@ class TodoState extends ChangeNotifier {
         }));
     final newTodo = Todo(
       id: json.decode(response.body)['name'],
-      isDeleted: false,
-      isDone: false,
       todo: val,
     );
     _todoList.add(newTodo);
-    notifyListeners();
-  }
-
-  void doneStatus(String givenId) {
-    print(givenId);
-    _todoList[0].isDone = true;
-    // need to fix
     notifyListeners();
   }
 
