@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/great_places.dart';
 import './input_img.dart';
+import 'dart:io';
 
 class AddPlace extends StatefulWidget {
   @override
@@ -8,6 +11,17 @@ class AddPlace extends StatefulWidget {
 
 class _AddPlaceState extends State<AddPlace> {
   final _titleCont = TextEditingController();
+  File? picSelected;
+  void selectedPic(File pickedFile) {
+    picSelected = pickedFile;
+    // no need to use setState as we dont need to rebuild this widget. just need this file to update global state together!
+  }
+
+  void _savePlace() {
+    Provider.of<GreatPlaces>(context, listen: false)
+        .addPlace(_titleCont.text, picSelected!);
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +43,14 @@ class _AddPlaceState extends State<AddPlace> {
                         controller: _titleCont,
                       ),
                       SizedBox(height: 10),
-                      InputImg(),
+                      InputImg(selectedPic),
                     ],
                   ),
                 ),
               ),
             ),
             ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: _savePlace,
                 icon: Icon(Icons.add),
                 label: Text('Add Place')),
           ],
