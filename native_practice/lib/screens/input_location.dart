@@ -8,6 +8,13 @@ class InputLocation extends StatefulWidget {
 
 class _InputLocationState extends State<InputLocation> {
   String? _previewImgUrl;
+  Future<void> _getCurrentLocation() async {
+    Location location = new Location();
+    final _locationData = await location.getLocation();
+    print(_locationData.latitude);
+    print(_locationData.longitude);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,6 +23,12 @@ class _InputLocationState extends State<InputLocation> {
           height: 170,
           width: double.infinity,
           alignment: Alignment.center,
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 1,
+              color: Colors.grey,
+            ),
+          ),
           child: _previewImgUrl == null
               ? Text(
                   'No Location Chosen',
@@ -28,9 +41,10 @@ class _InputLocationState extends State<InputLocation> {
                 ),
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton.icon(
-              onPressed: () {},
+              onPressed: _getCurrentLocation,
               icon: Icon(Icons.location_on),
               label: Text('Current Location'),
             ),
