@@ -1,6 +1,7 @@
 import 'package:location/location.dart';
 import 'package:flutter/material.dart';
 import '../helpers/location_helper.dart';
+import './map_screen.dart';
 
 class InputLocation extends StatefulWidget {
   @override
@@ -18,6 +19,17 @@ class _InputLocationState extends State<InputLocation> {
     setState(() {
       _previewImgUrl = staticMapUrl;
     });
+  }
+
+  void _selectOnMap() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (context) => MapScreen(
+          isSelected: true,
+        ),
+      ),
+    );
   }
 
   @override
@@ -54,7 +66,7 @@ class _InputLocationState extends State<InputLocation> {
               label: Text('Current Location'),
             ),
             TextButton.icon(
-              onPressed: () {},
+              onPressed: _selectOnMap,
               icon: Icon(Icons.map),
               label: Text('Select on Map'),
             ),
