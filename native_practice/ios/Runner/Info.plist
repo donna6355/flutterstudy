@@ -48,9 +48,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>io.flutter.embedded_views_preview</key>
-	<string>YES</string>
-	<key>Privacy - Location When In Use Usage Description</key>
-	<string>Location will be used</string>
+	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location will be used</string>
 </dict>
