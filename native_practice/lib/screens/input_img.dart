@@ -24,14 +24,15 @@ class _InputImgState extends State<InputImg> {
       source: ImageSource.camera,
       maxWidth: 600,
     );
+    if (image == null) return;
     setState(() {
-      _storedImg = File(image!.path);
+      _storedImg = File(image.path);
     });
 
     final appDir = await syspaths
         .getApplicationDocumentsDirectory(); //get the app directory
     final fileName =
-        path.basename(image!.path); //get the temp name of the picture
+        path.basename(image.path); //get the temp name of the picture
     final savedImg = await _storedImg?.copy(
         '${appDir.path}/$fileName'); //copy this img and save it in the directory with the name
     // Capture a photo
