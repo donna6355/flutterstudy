@@ -4,9 +4,9 @@ import './place.dart';
 import '../helpers/db_helper.dart';
 
 class GreatPlaces with ChangeNotifier {
-  List<dynamic> _items = [];
+  List<Place> _items = [];
 
-  List<dynamic> get items {
+  List<Place> get items {
     return [..._items];
   }
 
