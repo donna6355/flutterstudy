@@ -20,31 +20,33 @@ class PlaceList extends StatelessWidget {
       body: FutureBuilder(
         future: Provider.of<GreatPlaces>(context, listen: false)
             .fetchAndSetPlaces(),
-        builder: (context, snapshot) =>
-            snapshot.connectionState == ConnectionState.waiting
-                ? Center(child: CircularProgressIndicator())
-                : Consumer<GreatPlaces>(
-                    builder: (ctx, greatPlaces, child) =>
-                        greatPlaces.items.length <= 0
-                            ? Center(
-                                child: Text(
-                                'No Places Yet!',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 24,
-                                ),
-                              ))
-                            : ListView.builder(
-                                itemCount: greatPlaces.items.length,
-                                itemBuilder: (ctx, idx) => ListTile(
-                                  leading: CircleAvatar(
-                                    backgroundImage:
-                                        FileImage(greatPlaces.items[idx].image),
-                                  ),
-                                  title: Text(greatPlaces.items[idx].title),
-                                ),
+        builder: (context, snapshot) => snapshot.connectionState ==
+                ConnectionState.waiting
+            ? Center(child: CircularProgressIndicator())
+            : Consumer<GreatPlaces>(
+                builder: (ctx, greatPlaces, child) =>
+                    greatPlaces.items.length <= 0
+                        ? Center(
+                            child: Text(
+                            'No Places Yet!',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24,
+                            ),
+                          ))
+                        : ListView.builder(
+                            itemCount: greatPlaces.items.length,
+                            itemBuilder: (ctx, idx) => ListTile(
+                              leading: CircleAvatar(
+                                backgroundImage:
+                                    FileImage(greatPlaces.items[idx].image),
                               ),
-                  ),
+                              title: Text(greatPlaces.items[idx].title),
+                              subtitle:
+                                  Text(greatPlaces.items[idx].location.address),
+                            ),
+                          ),
+              ),
       ),
     );
   }
