@@ -44,6 +44,10 @@ class PlaceList extends StatelessWidget {
                               title: Text(greatPlaces.items[idx].title),
                               subtitle:
                                   Text(greatPlaces.items[idx].location.address),
+                              onTap: () {
+                                Navigator.of(context).pushNamed('/placedetail',
+                                    arguments: greatPlaces.items[idx].id);
+                              },
                             ),
                           ),
               ),
