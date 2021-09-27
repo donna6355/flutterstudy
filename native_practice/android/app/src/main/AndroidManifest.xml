@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.native_practice">
+    package="com.example.itshouldbeid">
+  <uses-permission android:name="android.permission.INTERNET"/> //if your app needs internet connection. plz copy n paste it from debug manifest.
    <application
-        android:label="native_practice"
+        android:label="Great Place"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyDlGjUkwzDes0HYlsKpgqtjHLawnEZ0c5s"/>

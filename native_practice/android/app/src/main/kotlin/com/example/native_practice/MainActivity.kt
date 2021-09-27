@@ -1,4 +1,4 @@
-package com.example.native_practice
+package com.example.itshouldbeid
 
 import io.flutter.embedding.android.FlutterActivity
 
