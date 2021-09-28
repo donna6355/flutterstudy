@@ -41,6 +41,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: ^0.9.2
+  flutter_native_splash: ^1.2.0
 
 flutter_icons:
   android: true
@@ -49,6 +50,11 @@ flutter_icons:
   adaptive_icon_backgound: "#191919"
   adaptive_icon_foregound: "dev_asset/places-adaptive.png"
 
+flutter_native_splash:
+  color: "#191919"
+  image: dev_asset/splash_icon.png
+  android: true
+  ios: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
