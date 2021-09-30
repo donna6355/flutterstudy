@@ -6,24 +6,31 @@ class Chat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (ctx, idx) => Container(
-          child: Text('works'),
-          padding: EdgeInsets.all(8),
-        ),
+      body: StreamBuilder<QuerySnapshot>( //need to explicit the type of <QuerySnapshot>, otherwise it will consider it as Object!
+        stream: FirebaseFirestore.instance
+            .collection('chats/GMT3iTRHX1R2awLkWmgy/messages')
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          final docs = snapshot.data!.docs;
+          return ListView.builder(
+            itemBuilder: (context, idx) {
+              return Container(
+                child: Text(docs[idx]['text']),
+                padding: EdgeInsets.all(8),
+              );
+            },
+            itemCount: docs.length,
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {
-          FirebaseFirestore.instance
-              .collection('chats/GMT3iTRHX1R2awLkWmgy/messages')
-              .snapshots()
-              .listen((data) {
-                data.docs.forEach((document) => print(document['text']));
-            // print(data.docs);
-          });
-        },
+        onPressed: () {},
       ),
     );
   }

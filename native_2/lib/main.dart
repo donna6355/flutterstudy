@@ -13,6 +13,11 @@ class MyApp extends StatelessWidget {
     return FutureBuilder(
       future: Firebase.initializeApp(),
       builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
         return MaterialApp(
           title: 'Flutter Chat',
           theme: ThemeData(
