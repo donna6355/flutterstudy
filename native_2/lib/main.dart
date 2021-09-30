@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './screens/chat.dart';
+import './screens/Login.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() {
@@ -21,9 +22,16 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Flutter Chat',
           theme: ThemeData(
-            primarySwatch: Colors.lightGreen,
+            primarySwatch: Colors.pink,
+            backgroundColor: Colors.pink,
+            accentColor: Colors.deepPurple,
+            accentColorBrightness: Brightness.dark,
+            buttonTheme: ButtonTheme.of(context).copyWith(
+              buttonColor: Colors.pink,
+              textTheme: ButtonTextTheme.primary,
+            ),
           ),
-          home: Chat(),
+          home: Login(),
         );
       },
     );
