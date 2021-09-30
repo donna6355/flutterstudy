@@ -34,7 +34,7 @@ class Chat extends StatelessWidget {
         onPressed: () {
           FirebaseFirestore.instance
               .collection('chats/GMT3iTRHX1R2awLkWmgy/messages')
-              .add({'text': 'this is added by floating button'});
+              .add({'text': 'this is added by floating button'}); 
         },
       ),
     );
