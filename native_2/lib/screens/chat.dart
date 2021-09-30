@@ -6,7 +6,8 @@ class Chat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<QuerySnapshot>( //need to explicit the type of <QuerySnapshot>, otherwise it will consider it as Object!
+      body: StreamBuilder<QuerySnapshot>(
+        //need to explicit the type of <QuerySnapshot>, otherwise it will consider it as Object!
         stream: FirebaseFirestore.instance
             .collection('chats/GMT3iTRHX1R2awLkWmgy/messages')
             .snapshots(),
@@ -30,7 +31,11 @@ class Chat extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          FirebaseFirestore.instance
+              .collection('chats/GMT3iTRHX1R2awLkWmgy/messages')
+              .add({'text': 'this is added by floating button'});
+        },
       ),
     );
   }
