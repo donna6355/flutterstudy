@@ -17,10 +17,11 @@ class Chat extends StatelessWidget {
         child: Icon(Icons.add),
         onPressed: () {
           FirebaseFirestore.instance
-              .collection('chats/NBwjL2lLwo1MTpiKrdNx/messages')
+              .collection('chats/GMT3iTRHX1R2awLkWmgy/messages')
               .snapshots()
               .listen((data) {
-            print(data);
+                data.docs.forEach((document) => print(document['text']));
+            // print(data.docs);
           });
         },
       ),
