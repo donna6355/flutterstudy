@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../widget/auth_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -12,6 +13,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  var _isLoading = false;
+
   void _submitAuthForm(
     String email,
     String password,
@@ -20,6 +23,9 @@ class _LoginState extends State<Login> {
   ) async {
     UserCredential authResult;
     try {
+      setState(() {
+        _isLoading = true;
+      });
       if (isLogin) {
         authResult = await _auth.signInWithEmailAndPassword(
           email: email,
@@ -30,19 +36,21 @@ class _LoginState extends State<Login> {
           email: email,
           password: password,
         );
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(authResult.user!.uid)
+            .set({'username': username, 'email': email});
       }
-    } on PlatformException catch (err) {
-      var message = 'An error occured, please check your credential';
-      if (err.message != null) {
-        message = err.message!;
-      }
+    } catch (err) {
+      var message = err.toString();
 
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(message),
         backgroundColor: Theme.of(context).errorColor,
       ));
-    } catch (err) {
-      print(err);
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
@@ -50,7 +58,10 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: AuthForm(_submitAuthForm),
+      body: AuthForm(
+        _submitAuthForm,
+        _isLoading,
+      ),
     );
   }
 }
