@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MsgBubble extends StatelessWidget {
   final String msg;
@@ -43,22 +42,11 @@ class MsgBubble extends StatelessWidget {
                 fromMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
             children: [
               if (!fromMe)
-                FutureBuilder<DocumentSnapshot>(
-                  future: FirebaseFirestore.instance
-                      .collection('users')
-                      .doc(userName)
-                      .get(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text('Loading...');
-                    }
-                    return Text(
-                      snapshot.data!['username'],
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    );
-                  },
+                Text(
+                  userName,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               Text(
                 msg,
