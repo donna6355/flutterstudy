@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../widget/message.dart';
 
 class Chat extends StatelessWidget {
   @override
@@ -38,28 +39,14 @@ class Chat extends StatelessWidget {
           ),
         ],
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        //need to explicit the type of <QuerySnapshot>, otherwise it will consider it as Object!
-        stream: FirebaseFirestore.instance
-            .collection('chats/GMT3iTRHX1R2awLkWmgy/messages')
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          final docs = snapshot.data!.docs;
-          return ListView.builder(
-            itemBuilder: (context, idx) {
-              return Container(
-                child: Text(docs[idx]['text']),
-                padding: EdgeInsets.all(8),
-              );
-            },
-            itemCount: docs.length,
-          );
-        },
+      body: Container(
+        child: Column(
+          children: [
+            Expanded(
+              child: Message(),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
