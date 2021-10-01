@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../widget/message.dart';
+import '../widget/new_message.dart';
 
 class Chat extends StatelessWidget {
   @override
@@ -45,16 +45,9 @@ class Chat extends StatelessWidget {
             Expanded(
               child: Message(),
             ),
+            NewMessage(),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          FirebaseFirestore.instance
-              .collection('chats/GMT3iTRHX1R2awLkWmgy/messages')
-              .add({'text': 'this is added by floating button'});
-        },
       ),
     );
   }
