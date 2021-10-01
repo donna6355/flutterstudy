@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import './screens/chat.dart';
-import './screens/Login.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:native_2/screens/login.dart';
+
+import './screens/chat.dart';
+import './screens/login.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,7 +34,15 @@ class MyApp extends StatelessWidget {
               textTheme: ButtonTextTheme.primary,
             ),
           ),
-          home: Login(),
+          home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Chat();
+              }
+              return Login();
+            },
+          ),
         );
       },
     );
