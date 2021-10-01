@@ -2,16 +2,29 @@ import 'package:flutter/material.dart';
 
 class MsgBubble extends StatelessWidget {
   final String msg;
-  MsgBubble(this.msg);
+  final bool fromMe;
+  final Key key;
+  MsgBubble(
+    this.msg,
+    this.fromMe,
+    this.key,
+  );
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment:
+          fromMe ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
         Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).accentColor,
-            borderRadius: BorderRadius.circular(12),
+            color: fromMe ? Colors.black12 : Theme.of(context).accentColor,
+            borderRadius: BorderRadius.only(
+              bottomLeft: fromMe ? Radius.circular(12) : Radius.circular(0),
+              bottomRight: fromMe ? Radius.circular(0) : Radius.circular(12),
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
           ),
           width: 140,
           padding: EdgeInsets.symmetric(
