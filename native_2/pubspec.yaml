@@ -34,6 +34,7 @@ dependencies:
   google_mobile_ads: ^0.13.5
   image_picker: ^0.8.4+1
   firebase_storage: ^10.0.4
+  firebase_messaging: ^10.0.8
 
 dev_dependencies:
   flutter_test:

@@ -20,7 +20,7 @@ class _LoginState extends State<Login> {
     String email,
     String password,
     String username,
-    File image,
+    File? image,
     bool isLogin,
   ) async {
     UserCredential authResult;
@@ -43,7 +43,7 @@ class _LoginState extends State<Login> {
             .child('user_image')
             .child(authResult.user!.uid + '.jpg');
 
-        await ref.putFile(image).whenComplete(() => null);
+        await ref.putFile(image!).whenComplete(() => null);
         final url = await ref.getDownloadURL();
 
         FirebaseFirestore.instance
