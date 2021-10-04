@@ -38,6 +38,7 @@ class Chat extends StatelessWidget {
         title: Text('Flutter Chat'),
         actions: [
           DropdownButton(
+            underline: Container(), //to removew slight underline
             icon: Icon(
               Icons.more_vert,
               color: Colors.white,
