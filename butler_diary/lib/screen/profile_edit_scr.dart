@@ -58,7 +58,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                         });
                       },
                     ),
-                    Text('수컷')
+                    Text('남자아이')
                   ],
                 ),
                 SizedBox(width: 20),
@@ -74,7 +74,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                         });
                       },
                     ),
-                    Text('암컷')
+                    Text('여자아이')
                   ],
                 ),
               ],
