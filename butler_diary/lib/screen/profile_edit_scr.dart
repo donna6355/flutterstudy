@@ -32,57 +32,100 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
     return Scaffold(
       appBar: AppBar(
         title: Text('프로필'),
+        elevation: 0,
       ),
       body: Container(
         padding: EdgeInsets.all(40),
         child: Column(
           children: [
-            TextField(
-              decoration: InputDecoration(
-                labelText: '이름',
-              ),
-            ),
             Row(
               children: [
-                Text('성별'),
-                SizedBox(width: 20),
+                Container(
+                  child: Text(
+                    '이름',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  width: 60,
+                ),
+                Container(
+                  width: 200,
+                  child: TextField(
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      hintText: 'ex) 김미르',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Row(
+              children: [
+                Container(
+                  width: 45,
+                  child: Text(
+                    '성별',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
                 Row(
                   children: [
-                    Radio(
-                      activeColor: Color(0xff454442),
-                      value: 1,
-                      groupValue: gender,
-                      onChanged: (value) {
-                        setState(() {
-                          gender = value as int;
-                        });
-                      },
+                    Transform.scale(
+                      scale: 0.7,
+                      child: Radio(
+                        activeColor: Color(0xff454442),
+                        value: 1,
+                        groupValue: gender,
+                        onChanged: (value) {
+                          setState(() {
+                            gender = value as int;
+                          });
+                        },
+                      ),
                     ),
                     Text('남자아이')
                   ],
                 ),
-                SizedBox(width: 20),
+                SizedBox(width: 15),
                 Row(
                   children: [
-                    Radio(
-                      activeColor: Color(0xff454442),
-                      value: 2,
-                      groupValue: gender,
-                      onChanged: (value) {
-                        setState(() {
-                          gender = value as int;
-                        });
-                      },
+                    Transform.scale(
+                      scale: 0.7,
+                      child: Radio(
+                        activeColor: Color(0xff454442),
+                        value: 2,
+                        groupValue: gender,
+                        onChanged: (value) {
+                          setState(() {
+                            gender = value as int;
+                          });
+                        },
+                      ),
                     ),
                     Text('여자아이')
                   ],
                 ),
               ],
             ),
+            SizedBox(height: 10),
             Row(
               children: [
-                Text('생일'),
-                SizedBox(width: 20),
+                Container(
+                  child: Text(
+                    '생일',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  width: 60,
+                ),
                 Text(birth == null
                     ? 'XXXX년 XX월 XX일'
                     : '${birth!.year}년 ${birth!.month}월 ${birth!.day}일'),
@@ -110,16 +153,51 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                 ),
               ],
             ),
-            TextField(
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: '몸무게 (kg)',
+            SizedBox(height: 10),
+            Row(
+              children: [
+                Container(
+                  child: Text(
+                    '몸무게',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  width: 60,
+                ),
+                Container(
+                  width: 80,
+                  child: TextField(
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintStyle: TextStyle(),
+                      hintText: 'ex) 5.1',
+                    ),
+                  ),
+                ),
+                Text('kg'),
+              ],
+            ),
+            SizedBox(height: 10),
+            Container(
+              width: double.infinity,
+              child: Text(
+                '기타',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
             TextField(
               decoration: InputDecoration(
-                labelText: '기타',
+                hintText: 'ex) 모월 모일 예방 접종 완료',
               ),
+            ),
+            Expanded(
+              child: Container(),
             ),
             ElevatedButton(
               onPressed: () {},

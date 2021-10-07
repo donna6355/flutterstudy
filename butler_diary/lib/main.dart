@@ -18,6 +18,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Butler's Diary",
       theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(
+              Color(0xff454442),
+            ),
+          ),
+        ),
         fontFamily: 'GamjaFlower',
         primaryColor: Color(0xffE5E4DB),
         scaffoldBackgroundColor: Color(0xffE5E4DB),
