@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
         textTheme: const TextTheme(
           bodyText2: TextStyle(
             color: Color(0xff454442),
+            fontSize: 16,
           ),
         ),
       ),

@@ -39,6 +39,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
         child: Column(
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   child: Text(
@@ -63,6 +64,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
             ),
             SizedBox(height: 10),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   width: 45,
@@ -115,6 +117,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
             ),
             SizedBox(height: 10),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   child: Text(
@@ -149,12 +152,16 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                       });
                     });
                   },
-                  icon: Icon(Icons.calendar_today_outlined),
+                  icon: Icon(
+                    Icons.calendar_today_outlined,
+                    color: Color(0xff454442),
+                  ),
                 ),
               ],
             ),
             SizedBox(height: 10),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   child: Text(
@@ -177,12 +184,18 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                     ),
                   ),
                 ),
-                Text('kg'),
+                Text(
+                  'kg',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
               ],
             ),
             SizedBox(height: 10),
             Container(
               width: double.infinity,
+              height: 20,
               child: Text(
                 '기타',
                 style: TextStyle(
@@ -193,7 +206,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
             ),
             TextField(
               decoration: InputDecoration(
-                hintText: 'ex) 모월 모일 예방 접종 완료',
+                hintText: 'ex) 빈 땅콩',
               ),
             ),
             Expanded(
