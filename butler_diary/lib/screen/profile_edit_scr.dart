@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import '../widget/drawer_profile.dart';
+import '../model/profile.dart';
 
 class ProfileEditScr extends StatefulWidget {
   @override
@@ -7,11 +9,23 @@ class ProfileEditScr extends StatefulWidget {
 }
 
 class _ProfileEditScrState extends State<ProfileEditScr> {
-  String name = '';
+  final _nameCont = TextEditingController();
+  final _remarksCont = TextEditingController();
+  final _weightCont = TextEditingController();
   DateTime? birth;
   int gender = -1;
-  double? weight;
-  String remarks = '';
+  late Box catBox;
+
+  @override
+  void initState() {
+    super.initState();
+    catBox = Hive.box('myCat');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   String ageCalc(DateTime birth) {
     DateTime now = DateTime.now();
@@ -26,6 +40,42 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
     }
 
     return years > 0 ? ' / $years년 $months개월' : ' / $months개월';
+  }
+
+  void _saveProfile() {
+    if (_nameCont.text.isEmpty) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('이름을 작성해 주세요!')));
+      return;
+    } else {
+      if (catBox.get(_nameCont.text) != null) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('도플갱어냥?? 이미 모시고 있는 주인님이다옹!')));
+        return;
+      }
+    }
+    if (gender == -1) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('성별을 선택해 주세요!')));
+      return;
+    }
+    if (birth == null) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('생일을 선택해 주세요!')));
+      return;
+    }
+    final Profile newCat = Profile(
+        name: _nameCont.text,
+        birth: birth!,
+        gender: gender,
+        photo: 'hey',
+        weight:
+            _weightCont.text.isEmpty ? null : double.parse(_weightCont.text),
+        remark: _remarksCont.text.isEmpty ? '' : _remarksCont.text);
+
+    print(newCat);
+
+    catBox.put(_nameCont.text, newCat);
   }
 
   @override
@@ -68,6 +118,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                 Container(
                   width: 200,
                   child: TextField(
+                    controller: _nameCont,
                     maxLength: 10,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
@@ -192,6 +243,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                 Container(
                   width: 80,
                   child: TextField(
+                    controller: _weightCont,
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
@@ -221,10 +273,11 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
               ),
             ),
             TextField(
+              controller: _remarksCont,
               maxLines: 2,
               maxLength: 100,
               decoration: InputDecoration(
-                hintText: 'ex) 빈 땅콩',
+                hintText: 'ex) 땅콩 털림',
                 counterText: '',
               ),
             ),
@@ -232,7 +285,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
               height: 40,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: _saveProfile,
               child: Text('저장하기'),
             ),
           ],
