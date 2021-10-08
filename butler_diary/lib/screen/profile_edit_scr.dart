@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widget/drawer_profile.dart';
 
 class ProfileEditScr extends StatefulWidget {
   @override
@@ -30,14 +31,27 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerProfile(),
       appBar: AppBar(
         title: Text('프로필'),
         elevation: 0,
       ),
       body: Container(
-        padding: EdgeInsets.all(40),
-        child: Column(
+        padding: EdgeInsets.fromLTRB(40, 40, 40, 0),
+        child: ListView(
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.grey,
+                  child: Text('img for cat'),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -54,9 +68,11 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                 Container(
                   width: 200,
                   child: TextField(
+                    maxLength: 10,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                       hintText: 'ex) 김미르',
+                      counterText: '',
                     ),
                   ),
                 ),
@@ -205,12 +221,15 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
               ),
             ),
             TextField(
+              maxLines: 2,
+              maxLength: 100,
               decoration: InputDecoration(
                 hintText: 'ex) 빈 땅콩',
+                counterText: '',
               ),
             ),
-            Expanded(
-              child: Container(),
+            SizedBox(
+              height: 40,
             ),
             ElevatedButton(
               onPressed: () {},

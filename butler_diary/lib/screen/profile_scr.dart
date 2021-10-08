@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import '../widget/drawer_profile.dart';
 
 class ProfileScr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerProfile(),
       appBar: AppBar(
         title: Text('프로필'),
       ),
