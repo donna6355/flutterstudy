@@ -31,6 +31,11 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            primary: Color(0xff454442),
+          ),
+        ),
         fontFamily: 'GamjaFlower',
         primaryColor: Color(0xffE5E4DB),
         scaffoldBackgroundColor: Color(0xffE5E4DB),

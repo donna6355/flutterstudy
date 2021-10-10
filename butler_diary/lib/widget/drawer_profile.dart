@@ -16,8 +16,19 @@ class DrawerProfile extends StatelessWidget {
                   return ListView.builder(
                     itemBuilder: (context, idx) {
                       final Profile profile = box.getAt(idx);
-                      return TextButton(
-                          onPressed: () {}, child: Text(profile.name));
+                      return Container(
+                        child: TextButton(
+                            onPressed: () {},
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                profile.name,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                ),
+                              ),
+                            )),
+                      );
                     },
                     itemCount: box.length,
                   );

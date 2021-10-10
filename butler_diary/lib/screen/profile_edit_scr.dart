@@ -73,10 +73,9 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
         weight:
             _weightCont.text.isEmpty ? null : double.parse(_weightCont.text),
         remark: _remarksCont.text.isEmpty ? '' : _remarksCont.text);
-
-    print(newCat);
-
     catBox.put(_nameCont.text, newCat);
+
+    Navigator.of(context).pushNamed('/');
   }
 
   @override
