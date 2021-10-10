@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import './screen/profile_edit_scr.dart';
+import './screen/living_room.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +41,10 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: ProfileEditScr(),
+      routes: {
+        '/': (ctx) => LivingRoom(),
+        '/profile_edit': (ctx) => ProfileEditScr(),
+      },
     );
   }
 }
