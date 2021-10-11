@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
-import '../widget/drawer_profile.dart';
 import '../model/profile.dart';
 
 class ProfileEditScr extends StatefulWidget {
@@ -75,13 +74,12 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
         remark: _remarksCont.text.isEmpty ? '' : _remarksCont.text);
     catBox.put(_nameCont.text, newCat);
 
-    Navigator.of(context).pushNamed('/');
+    Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: DrawerProfile(),
       appBar: AppBar(
         title: Text('프로필'),
         elevation: 0,
