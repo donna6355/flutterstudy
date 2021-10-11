@@ -3,7 +3,6 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../widget/drawer_profile.dart';
 import '../model/profile.dart';
-import './profile_edit_scr.dart';
 
 class LivingRoom extends StatelessWidget {
   @override
@@ -21,12 +20,7 @@ class LivingRoom extends StatelessWidget {
                 height: 40,
                 child: IconButton(
                   onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        fullscreenDialog: true,
-                        builder: (context) => ProfileEditScr(),
-                      ),
-                    );
+                    Navigator.of(context).pushNamed('/profile_edit');
                   },
                   icon: Icon(Icons.add),
                 ),

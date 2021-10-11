@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import './screen/profile_edit_scr.dart';
 import './screen/living_room.dart';
+import './screen/profile_scr.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,10 +47,28 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      routes: {
-        '/': (ctx) => LivingRoom(),
-        '/profile_edit': (ctx) => ProfileEditScr(),
+      onGenerateRoute: (RouteSettings settings) {
+        switch (settings.name) {
+          case "/":
+            return MaterialPageRoute(builder: (context) => LivingRoom());
+          case "/profile":
+            final args = settings.arguments as Profile;
+            return MaterialPageRoute(
+              builder: (context) => ProfileScr(args),
+              fullscreenDialog: true,
+            );
+          case "/profile_edit":
+            return MaterialPageRoute(
+              builder: (context) => ProfileEditScr(),
+              fullscreenDialog: true,
+            );
+        }
       },
+      // routes: {
+      // '/': (ctx) => LivingRoom(),
+      // '/profile_edit': (ctx) => ProfileEditScr(),
+      // '/profile': (ctx) => ProfileScr(),
+      // },
     );
   }
 }

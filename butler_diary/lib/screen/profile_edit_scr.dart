@@ -81,7 +81,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('프로필'),
+        title: Text('새 주인님 프로필'),
         elevation: 0,
       ),
       body: Container(

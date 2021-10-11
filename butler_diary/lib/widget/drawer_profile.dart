@@ -9,6 +9,21 @@ class DrawerProfile extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
+          Container(
+              margin: EdgeInsets.only(
+                top: 40,
+              ),
+              padding: EdgeInsets.only(
+                left: 10,
+              ),
+              width: double.infinity,
+              child: Text(
+                '주인님 프로필',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              )),
           Expanded(
             child: ValueListenableBuilder<Box>(
                 valueListenable: Hive.box('myCat').listenable(),
@@ -17,8 +32,16 @@ class DrawerProfile extends StatelessWidget {
                     itemBuilder: (context, idx) {
                       final Profile profile = box.getAt(idx);
                       return Container(
+                        margin: EdgeInsets.only(
+                          left: 20,
+                        ),
                         child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).popAndPushNamed(
+                                '/profile',
+                                arguments: profile,
+                              );
+                            },
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
