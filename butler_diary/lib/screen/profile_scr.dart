@@ -112,25 +112,32 @@ class ProfileScr extends StatelessWidget {
               ],
             ),
             SizedBox(height: 10),
-            if (profile.remark != null && profile.remark!.isNotEmpty)
-              Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    child: Text(
-                      '기타',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
+            Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  child: Text(
+                    '기타',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  child: Text(profile.remark!),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Color(0xff454442),
+                        width: 1.0,
                       ),
                     ),
                   ),
-                  Container(
-                    width: double.infinity,
-                    child: Text(profile.remark!),
-                  ),
-                ],
-              ),
+                ),
+              ],
+            ),
             // ElevatedButton(
             //   onPressed: () {},
             //   child: Text('수정하기'),

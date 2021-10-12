@@ -10,6 +10,7 @@ class LivingRoom extends StatelessWidget {
     return Scaffold(
       drawer: DrawerProfile(),
       appBar: AppBar(
+        elevation: 0,
         title: Text('집사 다이어리'),
         actions: [
           Column(
