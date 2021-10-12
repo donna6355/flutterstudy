@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import './screen/profile_edit_scr.dart';
 import './screen/living_room.dart';
+import './screen/diary_scr.dart';
 import './screen/profile_scr.dart';
 
 void main() async {
@@ -51,6 +52,11 @@ class MyApp extends StatelessWidget {
         switch (settings.name) {
           case "/":
             return MaterialPageRoute(builder: (context) => LivingRoom());
+          case "/diary":
+            final args = settings.arguments as String;
+            return MaterialPageRoute(
+              builder: (context) => DiaryScr(args),
+            );
           case "/profile":
             final args = settings.arguments as Profile;
             return MaterialPageRoute(

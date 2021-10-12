@@ -50,13 +50,21 @@ class LivingRoom extends StatelessWidget {
                   itemCount: box.length,
                   itemBuilder: (BuildContext ctx, idx) {
                     final Profile profile = box.getAt(idx);
-                    return Container(
-                      alignment: Alignment.center,
-                      child: Text(profile.name),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xff454442)),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                          '/diary',
+                          arguments: profile.name,
+                        );
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: Text(profile.name),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xff454442)),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
                         ),
                       ),
                     );
