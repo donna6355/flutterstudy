@@ -6,6 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import './screen/profile_edit_scr.dart';
 import './screen/living_room.dart';
 import './screen/diary_scr.dart';
+import './screen/diary_edit_scr.dart';
 import './screen/profile_scr.dart';
 
 void main() async {
@@ -56,6 +57,12 @@ class MyApp extends StatelessWidget {
             final args = settings.arguments as String;
             return MaterialPageRoute(
               builder: (context) => DiaryScr(args),
+            );
+          case "/diary_edit":
+            final args = settings.arguments as Map<String, dynamic>;
+            return MaterialPageRoute(
+              builder: (context) => DiaryEditScr(args),
+              fullscreenDialog: true,
             );
           case "/profile":
             final args = settings.arguments as Profile;
