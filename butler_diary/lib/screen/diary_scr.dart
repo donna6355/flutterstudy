@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widget/drawer_profile.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../model/diary.dart';
@@ -17,7 +16,6 @@ class DiaryScr extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         }
         return Scaffold(
-          drawer: DrawerProfile(),
           appBar: AppBar(
             elevation: 0,
             title: Text('$masterKey 다이어리'),

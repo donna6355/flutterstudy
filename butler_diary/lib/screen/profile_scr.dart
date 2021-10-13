@@ -27,7 +27,12 @@ class ProfileScr extends StatelessWidget {
         title: Text('프로필'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).popAndPushNamed(
+                '/diary',
+                arguments: profile.name,
+              );
+            },
             icon: Icon(Icons.calendar_today_outlined),
           ),
         ],
