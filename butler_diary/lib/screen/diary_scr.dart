@@ -53,7 +53,24 @@ class DiaryScr extends StatelessWidget {
           body: ValueListenableBuilder<Box>(
             valueListenable: Hive.box(masterKey).listenable(),
             builder: (context, box, widget) {
-              return Text('box');
+              return ListView.builder(
+                itemBuilder: (context, idx) {
+                  final Diary daily = box.getAt(idx);
+                  print(daily);
+                  return Container(
+                    margin: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1.0,
+                        color: Color(0xff454442),
+                      ),
+                    ),
+                    child: Text(daily.date),
+                  );
+                },
+                itemCount: box.length,
+              );
             },
           ),
         );

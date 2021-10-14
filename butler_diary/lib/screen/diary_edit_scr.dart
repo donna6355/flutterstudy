@@ -38,6 +38,38 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
   bool toilet = false;
   String note = '';
   List<String> photos = [];
+  late Box diaryBox;
+
+  void saveDiary() {
+    final Diary newDiary = Diary(
+      date: date,
+      dryFood: dryFood,
+      wetFood: wetFood,
+      water: water,
+      waterySnack: waterySnack,
+      drySnack: drySnack,
+      snack: snack,
+      pee: pee,
+      poo: poo,
+      hairBall: hairBall,
+      diarrhea: diarrhea,
+      vomit: vomit,
+      destroy: destroy,
+      vet: vet,
+      vaccine: vaccine,
+      pill: pill,
+      eyeDrop: eyeDrop,
+      hunting: hunting,
+      brushTeeth: brushTeeth,
+      brushFur: brushFur,
+      bath: bath,
+      toilet: toilet,
+      note: note,
+      photos: photos,
+    );
+    diaryBox.put(date, newDiary);
+    Navigator.of(context).pop();
+  }
 
   @override
   void initState() {
@@ -45,8 +77,9 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
     setState(() {
       date = widget.masterInfo['date'];
     });
-    final Box diaryBox = Hive.box(widget.masterInfo['master']);
+    diaryBox = Hive.box(widget.masterInfo['master']);
     final Diary? dailyData = diaryBox.get(widget.masterInfo['date']);
+    date = widget.masterInfo['date'];
     if (dailyData == null) {
       return;
     } else {
@@ -59,24 +92,13 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            '${widget.masterInfo['master']} 일기쓰기 - ${date.substring(0, 4)}년 ${date.substring(5, 7)}월 ${date.substring(8, 10)}일'),
+            '${date.substring(0, 4)}년 ${date.substring(5, 7)}월 ${date.substring(8, 10)}일 ${widget.masterInfo['master']} 일기'),
         elevation: 0,
       ),
       body: Container(
-        margin: EdgeInsets.fromLTRB(40, 20, 40, 0),
+        margin: EdgeInsets.fromLTRB(40, 20, 40, 20),
         child: ListView(
           children: [
-            // Row(
-            //   children: [
-            //     Container(
-            //       margin: EdgeInsets.only(bottom: 15),
-            //       child: Text(
-            //         '${date.substring(0, 4)}년 ${date.substring(5, 7)}월 ${date.substring(8, 10)}일',
-            //         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            //       ),
-            //     ),
-            //   ],
-            // ),
             Text(
               '사료',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -121,6 +143,10 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             MultipleChoice('으잉?', '알감자', '감자', '왕감자', pee),
+            ElevatedButton(
+              onPressed: saveDiary,
+              child: Text('저장하기'),
+            ),
           ],
         ),
       ),

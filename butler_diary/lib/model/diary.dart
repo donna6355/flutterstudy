@@ -5,77 +5,77 @@ part 'diary.g.dart';
 @HiveType(typeId: 1)
 class Diary extends HiveObject {
   @HiveField(0)
-  String? date;
+  String date;
   @HiveField(1)
-  double? dryFood;
+  double dryFood;
   @HiveField(2)
-  double? wetFood;
+  double wetFood;
   @HiveField(3)
-  double? water;
+  double water;
   @HiveField(4)
-  bool? waterySnack;
+  bool waterySnack;
   @HiveField(5)
-  bool? drySnack;
+  bool drySnack;
   @HiveField(6)
-  bool? snack;
+  bool snack;
   @HiveField(7)
-  double? pee;
+  double pee;
   @HiveField(8)
-  double? poo;
+  double poo;
   @HiveField(9)
-  bool? hairBall;
+  bool hairBall;
   @HiveField(10)
-  bool? diarrhea;
+  bool diarrhea;
   @HiveField(11)
-  bool? vomit;
+  bool vomit;
   @HiveField(12)
-  bool? destroy;
+  bool destroy;
   @HiveField(13)
-  bool? vet;
+  bool vet;
   @HiveField(14)
-  bool? vaccine;
+  bool vaccine;
   @HiveField(15)
-  bool? pill;
+  bool pill;
   @HiveField(16)
-  bool? eyeDrop;
+  bool eyeDrop;
   @HiveField(17)
-  bool? hunting;
+  bool hunting;
   @HiveField(18)
-  bool? brushTeeth;
+  bool brushTeeth;
   @HiveField(19)
-  bool? brushFur;
+  bool brushFur;
   @HiveField(20)
-  bool? bath;
+  bool bath;
   @HiveField(21)
-  bool? toilet;
+  bool toilet;
   @HiveField(22)
-  String? note;
+  String note;
   @HiveField(23)
-  List? photos;
+  List photos;
 
   Diary(
-      {this.date,
-      this.dryFood,
-      this.wetFood,
-      this.water,
-      this.waterySnack,
-      this.drySnack,
-      this.snack,
-      this.pee,
-      this.poo,
-      this.hairBall,
-      this.diarrhea,
-      this.vomit,
-      this.destroy,
-      this.vet,
-      this.vaccine,
-      this.pill,
-      this.eyeDrop,
-      this.hunting,
-      this.brushTeeth,
-      this.brushFur,
-      this.bath,
-      this.toilet,
-      this.note,
-      this.photos});
+      {required this.date,
+      required this.dryFood,
+      required this.wetFood,
+      required this.water,
+      required this.waterySnack,
+      required this.drySnack,
+      required this.snack,
+      required this.pee,
+      required this.poo,
+      required this.hairBall,
+      required this.diarrhea,
+      required this.vomit,
+      required this.destroy,
+      required this.vet,
+      required this.vaccine,
+      required this.pill,
+      required this.eyeDrop,
+      required this.hunting,
+      required this.brushTeeth,
+      required this.brushFur,
+      required this.bath,
+      required this.toilet,
+      required this.note,
+      required this.photos});
 }
