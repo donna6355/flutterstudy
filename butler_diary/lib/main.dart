@@ -13,12 +13,20 @@ import './screen/profile_scr.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await hiveBox();
+  runApp(MyApp());
+}
+
+Future<void> hiveBox() async {
   final appDocDir = await path_provider.getApplicationDocumentsDirectory();
   await Hive.initFlutter(appDocDir.path);
   Hive.registerAdapter(DiaryAdapter());
   Hive.registerAdapter(ProfileAdapter());
-  await Hive.openBox('myCat');
-  runApp(MyApp());
+  final myCatBox = await Hive.openBox('myCat');
+  final List catList = myCatBox.keys.toList();
+  catList.forEach((key) async {
+    await Hive.openBox(key);
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -80,11 +88,6 @@ class MyApp extends StatelessWidget {
             );
         }
       },
-      // routes: {
-      // '/': (ctx) => LivingRoom(),
-      // '/profile_edit': (ctx) => ProfileEditScr(),
-      // '/profile': (ctx) => ProfileScr(),
-      // },
     );
   }
 }
