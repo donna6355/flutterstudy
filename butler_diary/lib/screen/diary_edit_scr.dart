@@ -94,6 +94,32 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
         title: Text(
             '${date.substring(0, 4)}년 ${date.substring(5, 7)}월 ${date.substring(8, 10)}일 ${widget.masterInfo['master']} 일기'),
         elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+              showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(1900),
+                      lastDate: DateTime(DateTime.now().year + 1))
+                  .then((pickedDate) {
+                // Check if no date is selected
+                if (pickedDate == null) {
+                  return;
+                }
+                final Map<String, dynamic> args = {
+                  'master': widget.masterInfo['master'],
+                  'date': pickedDate.toString().substring(0, 10),
+                };
+                Navigator.of(context).popAndPushNamed(
+                  '/diary_edit',
+                  arguments: args,
+                );
+              });
+            },
+            icon: Icon(Icons.calendar_today_outlined),
+          ),
+        ],
       ),
       body: Container(
         margin: EdgeInsets.fromLTRB(40, 20, 40, 20),
