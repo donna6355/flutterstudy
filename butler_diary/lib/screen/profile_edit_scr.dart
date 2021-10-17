@@ -134,111 +134,121 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
               ],
             ),
             SizedBox(height: 10),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: 45,
-                  child: Text(
-                    '성별',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
+            GestureDetector(
+              onTap: () {
+                FocusScope.of(context).unfocus();
+              },
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 45,
+                    child: Text(
+                      '성별',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
-                ),
-                Row(
-                  children: [
-                    Transform.scale(
-                      scale: 0.7,
-                      child: Radio(
-                        activeColor: Color(0xff454442),
-                        value: 1,
-                        groupValue: gender,
-                        onChanged: (value) {
-                          setState(() {
-                            gender = value as int;
-                          });
-                        },
+                  Row(
+                    children: [
+                      Transform.scale(
+                        scale: 0.7,
+                        child: Radio(
+                          activeColor: Color(0xff454442),
+                          value: 1,
+                          groupValue: gender,
+                          onChanged: (value) {
+                            setState(() {
+                              gender = value as int;
+                            });
+                          },
+                        ),
                       ),
-                    ),
-                    Text('남자아이')
-                  ],
-                ),
-                SizedBox(width: 15),
-                Row(
-                  children: [
-                    Transform.scale(
-                      scale: 0.7,
-                      child: Radio(
-                        activeColor: Color(0xff454442),
-                        value: 2,
-                        groupValue: gender,
-                        onChanged: (value) {
-                          setState(() {
-                            gender = value as int;
-                          });
-                        },
+                      Text('남자아이')
+                    ],
+                  ),
+                  SizedBox(width: 15),
+                  Row(
+                    children: [
+                      Transform.scale(
+                        scale: 0.7,
+                        child: Radio(
+                          activeColor: Color(0xff454442),
+                          value: 2,
+                          groupValue: gender,
+                          onChanged: (value) {
+                            setState(() {
+                              gender = value as int;
+                            });
+                          },
+                        ),
                       ),
-                    ),
-                    Text('여자아이')
-                  ],
-                ),
-              ],
+                      Text('여자아이')
+                    ],
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 10),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  child: Text(
-                    '생일',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
+            GestureDetector(
+              onTap: () {
+                FocusScope.of(context).unfocus();
+              },
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    child: Text(
+                      '생일',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    width: 60,
+                  ),
+                  Text(birth == null
+                      ? 'XXXX년 XX월 XX일'
+                      : '${birth!.year}년 ${birth!.month}월 ${birth!.day}일'),
+                  if (birth != null) Text(ageCalc(birth!)),
+                  IconButton(
+                    onPressed: () {
+                      showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1900),
+                        lastDate: DateTime.now(),
+                        builder: (context, child) {
+                          return Theme(
+                            data: ThemeData.light().copyWith(
+                              colorScheme: ColorScheme.light().copyWith(
+                                primary: Color(0xff454442),
+                              ),
+                            ), // This will change to light theme.
+                            child: child!,
+                          );
+                        },
+                      ).then((pickedDate) {
+                        // Check if no date is selected
+                        if (pickedDate == null) {
+                          return;
+                        }
+
+                        setState(() {
+                          // using state so that the UI will be rerendered when date is picked
+                          birth = pickedDate;
+                        });
+                      });
+                    },
+                    icon: Icon(
+                      Icons.calendar_today_outlined,
+                      color: Color(0xff454442),
                     ),
                   ),
-                  width: 60,
-                ),
-                Text(birth == null
-                    ? 'XXXX년 XX월 XX일'
-                    : '${birth!.year}년 ${birth!.month}월 ${birth!.day}일'),
-                if (birth != null) Text(ageCalc(birth!)),
-                IconButton(
-                  onPressed: () {
-                    showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(1900),
-                      lastDate: DateTime.now(),
-                      builder: (context, child) {
-                        return Theme(
-                          data: ThemeData.light().copyWith(
-                            colorScheme: ColorScheme.light().copyWith(
-                              primary: Color(0xff454442),
-                            ),
-                          ), // This will change to light theme.
-                          child: child!,
-                        );
-                      },
-                    ).then((pickedDate) {
-                      // Check if no date is selected
-                      if (pickedDate == null) {
-                        return;
-                      }
-
-                      setState(() {
-                        // using state so that the UI will be rerendered when date is picked
-                        birth = pickedDate;
-                      });
-                    });
-                  },
-                  icon: Icon(
-                    Icons.calendar_today_outlined,
-                    color: Color(0xff454442),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(height: 10),
             Row(
@@ -298,9 +308,14 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
             SizedBox(
               height: 40,
             ),
-            ElevatedButton(
-              onPressed: _saveProfile,
-              child: Text('저장하기'),
+            GestureDetector(
+              onTap: () {
+                FocusScope.of(context).unfocus();
+              },
+              child: ElevatedButton(
+                onPressed: _saveProfile,
+                child: Text('저장하기'),
+              ),
             ),
           ],
         ),
