@@ -48,11 +48,17 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
           .showSnackBar(SnackBar(content: Text('이름을 작성해 주세요!')));
       return;
     } else {
-      if (catBox.get(_nameCont.text) != null) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('도플갱어냥?? 이미 모시고 있는 주인님이다옹!')));
-        return;
-      }
+      final List catList = catBox.values.toList();
+      bool needToStop = false;
+      catList.forEach((element) {
+        if (element.name == _nameCont.text) {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('도플갱어냥?? 이미 모시고 있는 주인님이다옹!')));
+          needToStop = true;
+          return;
+        }
+      });
+      if (needToStop) return;
     }
     if (gender == -1) {
       ScaffoldMessenger.of(context)
@@ -72,7 +78,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
         weight:
             _weightCont.text.isEmpty ? null : double.parse(_weightCont.text),
         remark: _remarksCont.text.isEmpty ? '' : _remarksCont.text);
-    catBox.put(_nameCont.text, newCat);
+    catBox.add(newCat);
 
     Navigator.of(context).pop();
   }

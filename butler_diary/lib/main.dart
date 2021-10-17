@@ -22,6 +22,7 @@ Future<void> hiveBox() async {
   await Hive.initFlutter(appDocDir.path);
   Hive.registerAdapter(DiaryAdapter());
   Hive.registerAdapter(ProfileAdapter());
+  await Hive.openBox('myCat');
 }
 
 class MyApp extends StatelessWidget {
