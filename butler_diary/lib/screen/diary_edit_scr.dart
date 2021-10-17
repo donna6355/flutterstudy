@@ -98,11 +98,21 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
           IconButton(
             onPressed: () {
               showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(1900),
-                      lastDate: DateTime(DateTime.now().year + 1))
-                  .then((pickedDate) {
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(1900),
+                lastDate: DateTime(DateTime.now().year + 1),
+                builder: (context, child) {
+                  return Theme(
+                    data: ThemeData.light().copyWith(
+                      colorScheme: ColorScheme.light().copyWith(
+                        primary: Color(0xff454442),
+                      ),
+                    ), // This will change to light theme.
+                    child: child!,
+                  );
+                },
+              ).then((pickedDate) {
                 // Check if no date is selected
                 if (pickedDate == null) {
                   return;
