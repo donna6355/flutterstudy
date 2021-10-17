@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
           case "/":
             return MaterialPageRoute(builder: (context) => LivingRoom());
           case "/diary":
-            final args = settings.arguments as String;
+            final args = settings.arguments as Profile;
             return MaterialPageRoute(
               builder: (context) => DiaryScr(args),
             );

@@ -77,7 +77,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
     setState(() {
       date = widget.masterInfo['date'];
     });
-    diaryBox = Hive.box(widget.masterInfo['master']);
+    diaryBox = Hive.box('diary_${widget.masterInfo['key']}');
     final Diary? dailyData = diaryBox.get(widget.masterInfo['date']);
     date = widget.masterInfo['date'];
     if (dailyData == null) {
@@ -119,6 +119,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                 }
                 final Map<String, dynamic> args = {
                   'master': widget.masterInfo['master'],
+                  'key': widget.masterInfo['key'],
                   'date': pickedDate.toString().substring(0, 10),
                 };
                 Navigator.of(context).popAndPushNamed(

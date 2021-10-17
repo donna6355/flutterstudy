@@ -54,7 +54,7 @@ class LivingRoom extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).pushNamed(
                           '/diary',
-                          arguments: profile.name,
+                          arguments: profile,
                         );
                       },
                       child: Container(

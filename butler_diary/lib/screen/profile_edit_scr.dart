@@ -73,7 +73,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
       return;
     }
     final Profile newCat = Profile(
-        id: uuid.v4(),
+        id: uuid.v1(),
         name: _nameCont.text,
         birth: birth!,
         gender: gender,
