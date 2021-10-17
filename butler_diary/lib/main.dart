@@ -22,11 +22,6 @@ Future<void> hiveBox() async {
   await Hive.initFlutter(appDocDir.path);
   Hive.registerAdapter(DiaryAdapter());
   Hive.registerAdapter(ProfileAdapter());
-  final myCatBox = await Hive.openBox('myCat');
-  final List catList = myCatBox.keys.toList();
-  catList.forEach((key) async {
-    await Hive.openBox(key);
-  });
 }
 
 class MyApp extends StatelessWidget {
