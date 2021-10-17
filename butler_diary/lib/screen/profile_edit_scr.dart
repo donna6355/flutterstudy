@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import '../model/profile.dart';
+import 'package:uuid/uuid.dart';
 
 class ProfileEditScr extends StatefulWidget {
   @override
@@ -15,6 +16,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
   DateTime? birth;
   int gender = -1;
   late Box catBox;
+  var uuid = Uuid();
 
   @override
   void initState() {
@@ -71,6 +73,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
       return;
     }
     final Profile newCat = Profile(
+        id: uuid.v4(),
         name: _nameCont.text,
         birth: birth!,
         gender: gender,
@@ -78,7 +81,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
         weight:
             _weightCont.text.isEmpty ? null : double.parse(_weightCont.text),
         remark: _remarksCont.text.isEmpty ? '' : _remarksCont.text);
-    catBox.add(newCat);
+    catBox.put(newCat.id, newCat);
 
     Navigator.of(context).pop();
   }

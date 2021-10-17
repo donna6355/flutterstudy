@@ -16,11 +16,14 @@ class Profile {
   double? weight;
   @HiveField(5)
   String? remark;
+  @HiveField(6)
+  String id;
 
   Profile({
     required this.name,
     required this.birth,
     required this.gender,
+    required this.id,
     this.photo,
     this.weight,
     this.remark,

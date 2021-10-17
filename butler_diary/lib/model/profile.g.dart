@@ -20,6 +20,7 @@ class ProfileAdapter extends TypeAdapter<Profile> {
       name: fields[0] as String,
       birth: fields[1] as DateTime,
       gender: fields[2] as int,
+      id: fields[6] as String,
       photo: fields[3] as String?,
       weight: fields[4] as double?,
       remark: fields[5] as String?,
@@ -29,7 +30,7 @@ class ProfileAdapter extends TypeAdapter<Profile> {
   @override
   void write(BinaryWriter writer, Profile obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class ProfileAdapter extends TypeAdapter<Profile> {
       ..writeByte(4)
       ..write(obj.weight)
       ..writeByte(5)
-      ..write(obj.remark);
+      ..write(obj.remark)
+      ..writeByte(6)
+      ..write(obj.id);
   }
 
   @override
