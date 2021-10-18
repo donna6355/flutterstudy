@@ -108,6 +108,30 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
     });
   }
 
+  void doubleSetState(String name, double value) {
+    setState(() {
+      switch (name) {
+        case '습식 실타냥':
+          wetFood = value;
+          break;
+        case '건식 실타냥':
+          dryFood = value;
+          break;
+        case '물은 실타냥':
+          water = value;
+          break;
+        case '변비냥':
+          poo = value;
+          break;
+        case '으잉?':
+          pee = value;
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,14 +185,17 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
               '사료',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            MultipleChoice('습식 실타냥', '습식 쪼오금', '습식 적당히', '습식 왕창!', wetFood),
-            MultipleChoice('건식 실타냥', '건식 쪼오금', '건식 적당히', '건식 왕창!', dryFood),
+            MultipleChoice('습식 실타냥', '습식 쪼오금', '습식 적당히', '습식 왕창!', wetFood,
+                doubleSetState),
+            MultipleChoice('건식 실타냥', '건식 쪼오금', '건식 적당히', '건식 왕창!', dryFood,
+                doubleSetState),
             SizedBox(height: 30),
             Text(
               '물',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            MultipleChoice('물은 실타냥', '사알짝 할짝', '하알짝 할짝', '물먹는 하마', water),
+            MultipleChoice(
+                '물은 실타냥', '사알짝 할짝', '하알짝 할짝', '물먹는 하마', water, doubleSetState),
             SizedBox(height: 30),
             Text(
               '간식',
@@ -194,13 +221,13 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
               '맛동산',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            MultipleChoice('변비냥', '반토막', '한토막', '한움큼', poo),
+            MultipleChoice('변비냥', '반토막', '한토막', '한움큼', poo, doubleSetState),
             SizedBox(height: 30),
             Text(
               '감자',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            MultipleChoice('으잉?', '알감자', '감자', '왕감자', pee),
+            MultipleChoice('으잉?', '알감자', '감자', '왕감자', pee, doubleSetState),
             ElevatedButton(
               onPressed: saveDiary,
               child: Text('저장하기'),
