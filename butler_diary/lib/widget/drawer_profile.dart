@@ -26,7 +26,7 @@ class DrawerProfile extends StatelessWidget {
               )),
           Expanded(
             child: ValueListenableBuilder<Box>(
-                valueListenable: Hive.box('myCat').listenable(),
+                valueListenable: Hive.box('myCats').listenable(),
                 builder: (context, box, widget) {
                   return ListView.builder(
                     itemBuilder: (context, idx) {

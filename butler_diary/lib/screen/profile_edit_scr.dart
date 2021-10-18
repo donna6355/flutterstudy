@@ -21,7 +21,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
   @override
   void initState() {
     super.initState();
-    catBox = Hive.box('myCat');
+    catBox = Hive.box('myCats');
   }
 
   @override

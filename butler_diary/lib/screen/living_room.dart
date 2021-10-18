@@ -39,7 +39,7 @@ class LivingRoom extends StatelessWidget {
       body: Container(
         margin: EdgeInsets.all(20),
         child: ValueListenableBuilder<Box>(
-            valueListenable: Hive.box('myCat').listenable(),
+            valueListenable: Hive.box('myCats').listenable(),
             builder: (context, box, widget) {
               return GridView.builder(
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(

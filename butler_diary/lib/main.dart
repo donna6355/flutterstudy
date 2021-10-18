@@ -13,16 +13,12 @@ import './screen/profile_scr.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await hiveBox();
-  runApp(MyApp());
-}
-
-Future<void> hiveBox() async {
   final appDocDir = await path_provider.getApplicationDocumentsDirectory();
   await Hive.initFlutter(appDocDir.path);
   Hive.registerAdapter(DiaryAdapter());
   Hive.registerAdapter(ProfileAdapter());
-  await Hive.openBox('myCat');
+  await Hive.openBox('myCats');
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
