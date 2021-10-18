@@ -87,6 +87,27 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
     }
   }
 
+  void togglesetState(String name) {
+    setState(() {
+      switch (name) {
+        case '츄르':
+          waterySnack = !waterySnack;
+          break;
+        case '트릿':
+          drySnack = !drySnack;
+          break;
+        case '통살':
+          snack = !snack;
+          break;
+        case '기타':
+          waterySnack = !waterySnack;
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,10 +182,10 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ToggleChoice('츄르', waterySnack),
-                  ToggleChoice('트릿', drySnack),
-                  ToggleChoice('통살', snack),
-                  ToggleChoice('기타', false),
+                  ToggleChoice('츄르', waterySnack, togglesetState),
+                  ToggleChoice('트릿', drySnack, togglesetState),
+                  ToggleChoice('통살', snack, togglesetState),
+                  ToggleChoice('기타', false, togglesetState),
                 ],
               ),
             ),
