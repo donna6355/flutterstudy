@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../model/diary.dart';
 import '../model/profile.dart';
+import '../widget/diary_card.dart';
 
 class DiaryScr extends StatelessWidget {
   final Profile masterInfo;
@@ -61,17 +62,7 @@ class DiaryScr extends StatelessWidget {
                 itemBuilder: (context, idx) {
                   final Diary daily = box.getAt(idx);
                   print(daily);
-                  return Container(
-                    margin: EdgeInsets.all(20),
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 1.0,
-                        color: Color(0xff454442),
-                      ),
-                    ),
-                    child: Text(daily.date),
-                  );
+                  return DiaryCard(daily, masterInfo.id, masterInfo.name);
                 },
                 itemCount: box.length,
               );
