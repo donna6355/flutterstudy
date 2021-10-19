@@ -56,6 +56,8 @@ class DiaryScr extends StatelessWidget {
             valueListenable: Hive.box('diary_${masterInfo.id}').listenable(),
             builder: (context, box, widget) {
               return ListView.builder(
+                reverse: true,
+                shrinkWrap: true,
                 itemBuilder: (context, idx) {
                   final Diary daily = box.getAt(idx);
                   print(daily);
