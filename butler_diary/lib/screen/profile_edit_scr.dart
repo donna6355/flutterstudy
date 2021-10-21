@@ -223,6 +223,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                         initialDate: DateTime.now(),
                         firstDate: DateTime(1900),
                         lastDate: DateTime.now(),
+                        initialDatePickerMode: DatePickerMode.year,
                         builder: (context, child) {
                           return Theme(
                             data: ThemeData.light().copyWith(
