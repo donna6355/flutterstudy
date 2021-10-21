@@ -202,149 +202,157 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
           ),
         ],
       ),
-      body: Container(
-        margin: EdgeInsets.fromLTRB(40, 20, 40, 20),
-        child: ListView(
-          children: [
-            Text(
-              '사료',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            MultipleChoice('습식 실타냥', '습식 쪼오금', '습식 적당히', '습식 왕창!', wetFood,
-                doubleSetState),
-            MultipleChoice('건식 실타냥', '건식 쪼오금', '건식 적당히', '건식 왕창!', dryFood,
-                doubleSetState),
-            SizedBox(height: 30),
-            Text(
-              '물',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            MultipleChoice(
-                '물은 실타냥', '사알짝 할짝', '하알짝 할짝', '물먹는 하마', water, doubleSetState),
-            SizedBox(height: 30),
-            Text(
-              '간식',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 15.0,
-                bottom: 10,
+      floatingActionButton: ElevatedButton(
+        onPressed: saveDiary,
+        child: Text('저장하기'),
+      ),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Container(
+          margin: EdgeInsets.fromLTRB(40, 20, 40, 0),
+          child: ListView(
+            children: [
+              Text(
+                '주인님 식사',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ToggleChoice('츄르', waterySnack, togglesetState),
-                  ToggleChoice('트릿', drySnack, togglesetState),
-                  ToggleChoice('통살', snack, togglesetState),
-                  ToggleChoice('기타', false, togglesetState),
-                ],
+              MultipleChoice('습식 실타냥', '습식 쪼오금', '습식 적당히', '습식 왕창!', wetFood,
+                  doubleSetState),
+              MultipleChoice('건식 실타냥', '건식 쪼오금', '건식 적당히', '건식 왕창!', dryFood,
+                  doubleSetState),
+              SizedBox(height: 30),
+              Text(
+                '주인님 물',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
-            ),
-            SizedBox(height: 30),
-            Text(
-              '맛동산',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            MultipleChoice('변비냥', '반토막', '한토막', '한움큼', poo, doubleSetState),
-            SizedBox(height: 30),
-            Text(
-              '감자',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            MultipleChoice('으잉?', '알감자', '감자', '왕감자', pee, doubleSetState),
-            SizedBox(height: 30),
-            Text(
-              '큰일이냥?',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 15.0,
-                bottom: 10,
+              MultipleChoice('물은 실타냥', '사알짝 할짝', '하알짝 할짝', '물먹는 하마', water,
+                  doubleSetState),
+              SizedBox(height: 30),
+              Text(
+                '주인님 간식',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ToggleChoice('헤어볼', hairBall, togglesetState),
-                  ToggleChoice('설사', diarrhea, togglesetState),
-                  ToggleChoice('토켁켁', vomit, togglesetState),
-                  ToggleChoice('파괴왕', destroy, togglesetState),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 15.0,
+                  bottom: 10,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ToggleChoice('츄르', waterySnack, togglesetState),
+                    ToggleChoice('트릿', drySnack, togglesetState),
+                    ToggleChoice('통살', snack, togglesetState),
+                    ToggleChoice('기타', false, togglesetState),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 30),
-            Text(
-              '아야아야',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 15.0,
-                bottom: 10,
+              SizedBox(height: 30),
+              Text(
+                '향기로운 맛동산',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ToggleChoice('수의사쌤', vet, togglesetState),
-                  ToggleChoice('예방접종', vaccine, togglesetState),
-                  ToggleChoice('약', pill, togglesetState),
-                  ToggleChoice('안약', eyeDrop, togglesetState),
-                ],
+              MultipleChoice('변비냥', '반토막', '한토막', '한움큼', poo, doubleSetState),
+              SizedBox(height: 30),
+              Text(
+                '따끈따끈 감자',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
-            ),
-            SizedBox(height: 30),
-            Text(
-              '미모냥이 되자',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 15.0,
-                bottom: 10,
+              MultipleChoice('으잉?', '알감자', '감자', '왕감자', pee, doubleSetState),
+              SizedBox(height: 30),
+              Text(
+                '집사야 관심 가져달라옹!',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ToggleChoice('사냥놀이', hunting, togglesetState),
-                  ToggleChoice('치카', brushTeeth, togglesetState),
-                  ToggleChoice('빗질', brushFur, togglesetState),
-                  ToggleChoice('목욕', bath, togglesetState),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 15.0,
+                  bottom: 10,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ToggleChoice('헤어볼', hairBall, togglesetState),
+                    ToggleChoice('설사', diarrhea, togglesetState),
+                    ToggleChoice('토켁켁', vomit, togglesetState),
+                    ToggleChoice('파괴왕', destroy, togglesetState),
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 15.0,
-                bottom: 10,
+              SizedBox(height: 30),
+              Text(
+                '나 아픈거냐옹?',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ToggleChoice('전체갈이', toilet, togglesetState),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 15.0,
+                  bottom: 10,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ToggleChoice('수의사쌤', vet, togglesetState),
+                    ToggleChoice('예방접종', vaccine, togglesetState),
+                    ToggleChoice('약', pill, togglesetState),
+                    ToggleChoice('안약', eyeDrop, togglesetState),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 30),
-            Text(
-              '눈물의 집사 일기',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'ex) 또 충전기 씹어드심ㅠ 물그릇 엎고 물놀이 함ㅠ',
+              SizedBox(height: 30),
+              Text(
+                '건강하고 아름다운 주인님 관리',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              '증거 사진',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            ElevatedButton(
-              onPressed: saveDiary,
-              child: Text('저장하기'),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 15.0,
+                  bottom: 10,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ToggleChoice('사냥놀이', hunting, togglesetState),
+                    ToggleChoice('치카', brushTeeth, togglesetState),
+                    ToggleChoice('빗질', brushFur, togglesetState),
+                    ToggleChoice('목욕', bath, togglesetState),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 15.0,
+                  bottom: 10,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ToggleChoice('전체갈이', toilet, togglesetState),
+                  ],
+                ),
+              ),
+              SizedBox(height: 30),
+              Text(
+                '눈물의 집사 일기',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  hintText: 'ex) 또 충전기 씹어드심ㅠ 물그릇 엎고 물놀이 함ㅠ',
+                ),
+              ),
+              SizedBox(height: 30),
+              Text(
+                '증거 사진',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+            ],
+          ),
         ),
       ),
     );

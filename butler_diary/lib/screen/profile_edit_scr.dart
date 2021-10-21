@@ -93,55 +93,55 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
         title: Text('새 주인님 프로필'),
         elevation: 0,
       ),
-      body: Container(
-        padding: EdgeInsets.fromLTRB(40, 40, 40, 0),
-        child: ListView(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 100,
-                  height: 100,
-                  color: Colors.grey,
-                  child: Text('img for cat'),
-                ),
-              ],
-            ),
-            SizedBox(height: 10),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  child: Text(
-                    '이름',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Container(
+          padding: EdgeInsets.fromLTRB(40, 40, 40, 0),
+          child: ListView(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 100,
+                    height: 100,
+                    color: Colors.grey,
+                    child: Text('img for cat'),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    child: Text(
+                      '이름',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    width: 60,
+                  ),
+                  Container(
+                    width: 200,
+                    child: TextField(
+                      controller: _nameCont,
+                      maxLength: 10,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        hintText: 'ex) 김미르',
+                        counterText: '',
+                      ),
                     ),
                   ),
-                  width: 60,
-                ),
-                Container(
-                  width: 200,
-                  child: TextField(
-                    controller: _nameCont,
-                    maxLength: 10,
-                    textAlign: TextAlign.center,
-                    decoration: InputDecoration(
-                      hintText: 'ex) 김미르',
-                      counterText: '',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 10),
-            GestureDetector(
-              onTap: () {
-                FocusScope.of(context).unfocus();
-              },
-              child: Row(
+                ],
+              ),
+              SizedBox(height: 10),
+              Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
@@ -193,13 +193,8 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                   ),
                 ],
               ),
-            ),
-            SizedBox(height: 10),
-            GestureDetector(
-              onTap: () {
-                FocusScope.of(context).unfocus();
-              },
-              child: Row(
+              SizedBox(height: 10),
+              Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
@@ -253,75 +248,70 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                   ),
                 ],
               ),
-            ),
-            SizedBox(height: 10),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  child: Text(
-                    '몸무게',
+              SizedBox(height: 10),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    child: Text(
+                      '몸무게',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    width: 60,
+                  ),
+                  Container(
+                    width: 80,
+                    child: TextField(
+                      controller: _weightCont,
+                      textAlign: TextAlign.center,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        hintStyle: TextStyle(),
+                        hintText: 'ex) 5.1',
+                      ),
+                    ),
+                  ),
+                  Text(
+                    'kg',
                     style: TextStyle(
                       fontSize: 18,
-                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                  width: 60,
-                ),
-                Container(
-                  width: 80,
-                  child: TextField(
-                    controller: _weightCont,
-                    textAlign: TextAlign.center,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      hintStyle: TextStyle(),
-                      hintText: 'ex) 5.1',
-                    ),
-                  ),
-                ),
-                Text(
-                  'kg',
+                ],
+              ),
+              SizedBox(height: 10),
+              Container(
+                width: double.infinity,
+                height: 20,
+                child: Text(
+                  '기타',
                   style: TextStyle(
                     fontSize: 18,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-              ],
-            ),
-            SizedBox(height: 10),
-            Container(
-              width: double.infinity,
-              height: 20,
-              child: Text(
-                '기타',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
+              ),
+              TextField(
+                controller: _remarksCont,
+                maxLines: 2,
+                maxLength: 100,
+                decoration: InputDecoration(
+                  hintText: 'ex) 땅콩 털림',
+                  counterText: '',
                 ),
               ),
-            ),
-            TextField(
-              controller: _remarksCont,
-              maxLines: 2,
-              maxLength: 100,
-              decoration: InputDecoration(
-                hintText: 'ex) 땅콩 털림',
-                counterText: '',
+              SizedBox(
+                height: 40,
               ),
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            GestureDetector(
-              onTap: () {
-                FocusScope.of(context).unfocus();
-              },
-              child: ElevatedButton(
+              ElevatedButton(
                 onPressed: _saveProfile,
                 child: Text('저장하기'),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
