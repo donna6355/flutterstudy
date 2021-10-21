@@ -37,7 +37,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
   bool bath = false;
   bool toilet = false;
   String note = '';
-  List<String> photos = [];
+  List<dynamic> photos = [];
   late Box diaryBox;
 
   void saveDiary() {
@@ -83,6 +83,31 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
     if (dailyData == null) {
       return;
     } else {
+      setState(() {
+        dryFood = dailyData.dryFood;
+        wetFood = dailyData.wetFood;
+        water = dailyData.water;
+        waterySnack = dailyData.waterySnack;
+        drySnack = dailyData.drySnack;
+        snack = dailyData.snack;
+        pee = dailyData.pee;
+        poo = dailyData.poo;
+        hairBall = dailyData.hairBall;
+        diarrhea = dailyData.diarrhea;
+        vomit = dailyData.vomit;
+        destroy = dailyData.destroy;
+        vet = dailyData.vet;
+        vaccine = dailyData.vaccine;
+        pill = dailyData.pill;
+        eyeDrop = dailyData.eyeDrop;
+        hunting = dailyData.hunting;
+        brushTeeth = dailyData.brushTeeth;
+        brushFur = dailyData.brushFur;
+        bath = dailyData.bath;
+        toilet = dailyData.toilet;
+        note = dailyData.note;
+        photos = dailyData.photos;
+      });
       //connect data to local state;
     }
   }
