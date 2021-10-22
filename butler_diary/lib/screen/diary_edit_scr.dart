@@ -14,6 +14,7 @@ class DiaryEditScr extends StatefulWidget {
 }
 
 class _DiaryEditScrState extends State<DiaryEditScr> {
+  final _note = TextEditingController();
   String date = '';
   double dryFood = -1;
   double wetFood = -1;
@@ -64,7 +65,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
       brushFur: brushFur,
       bath: bath,
       toilet: toilet,
-      note: note,
+      note: _note.text,
       photos: photos,
     );
     diaryBox.put(date, newDiary);
@@ -106,6 +107,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
         bath = dailyData.bath;
         toilet = dailyData.toilet;
         note = dailyData.note;
+        _note.text = dailyData.note.isNotEmpty ? dailyData.note : '';
         photos = dailyData.photos;
       });
       //connect data to local state;
@@ -339,6 +341,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
               TextField(
+                controller: _note,
                 decoration: InputDecoration(
                   hintText: 'ex) 또 충전기 씹어드심ㅠ 물그릇 엎고 물놀이 함ㅠ',
                 ),
