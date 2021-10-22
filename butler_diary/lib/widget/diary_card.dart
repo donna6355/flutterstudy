@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 import '../model/diary.dart';
 import './multi_diary_icon.dart';
 import './bool_diary_icon.dart';
@@ -89,9 +90,19 @@ class DiaryCard extends StatelessWidget {
             if (dailyData.photos.length > 0)
               Container(
                 width: double.infinity,
-                child: Wrap(
-                  children: [
-                    Text('photos'),
+                child: Row(
+                  children: <Widget>[
+                    for (var path in dailyData.photos)
+                      Container(
+                        width: 80,
+                        height: 50,
+                        margin: EdgeInsets.only(right: 10),
+                        child: Image.file(
+                          File(path),
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                        ),
+                      )
                   ],
                 ),
               ),
