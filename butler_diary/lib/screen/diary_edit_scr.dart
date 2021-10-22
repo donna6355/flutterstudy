@@ -5,6 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../model/diary.dart';
 import '../widget/multiple_choice.dart';
 import '../widget/toggle_choice.dart';
+import '../widget/input_img.dart';
 
 class DiaryEditScr extends StatefulWidget {
   final Map<String, dynamic> masterInfo;
@@ -201,6 +202,12 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
     });
   }
 
+  void addPic(newImg) {
+    setState(() {
+      photos.add(newImg.path);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -393,6 +400,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                 '증거 사진',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
+              InputImg(addPic),
               SizedBox(
                 height: 40,
               ),
