@@ -123,11 +123,50 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
         case '트릿':
           drySnack = !drySnack;
           break;
-        case '통살':
+        case '캔':
           snack = !snack;
           break;
-        case '기타':
-          waterySnack = !waterySnack;
+        // case '기타':
+        // waterySnack = !waterySnack;
+        // break;
+        case '헤어볼':
+          hairBall = !hairBall;
+          break;
+        case '설사':
+          diarrhea = !diarrhea;
+          break;
+        case '토켁켁':
+          vomit = !vomit;
+          break;
+        case '파괴왕':
+          destroy = !destroy;
+          break;
+        case '동물병원':
+          vet = !vet;
+          break;
+        case '예방접종':
+          vaccine = !vaccine;
+          break;
+        case '약':
+          pill = !pill;
+          break;
+        case '안약':
+          eyeDrop = !eyeDrop;
+          break;
+        case '사냥놀이':
+          hunting = !hunting;
+          break;
+        case '치카':
+          brushTeeth = !brushTeeth;
+          break;
+        case '빗질':
+          brushFur = !brushFur;
+          break;
+        case '목욕':
+          bath = !bath;
+          break;
+        case '전체갈이':
+          toilet = !toilet;
           break;
         default:
           break;
@@ -246,7 +285,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                   children: [
                     ToggleChoice('츄르', waterySnack, togglesetState),
                     ToggleChoice('트릿', drySnack, togglesetState),
-                    ToggleChoice('통살', snack, togglesetState),
+                    ToggleChoice('캔', snack, togglesetState),
                     ToggleChoice('기타', false, togglesetState),
                   ],
                 ),
@@ -296,7 +335,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ToggleChoice('수의사쌤', vet, togglesetState),
+                    ToggleChoice('동물병원', vet, togglesetState),
                     ToggleChoice('예방접종', vaccine, togglesetState),
                     ToggleChoice('약', pill, togglesetState),
                     ToggleChoice('안약', eyeDrop, togglesetState),
