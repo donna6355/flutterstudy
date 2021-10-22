@@ -84,11 +84,13 @@ class DiaryCard extends StatelessWidget {
               ),
             ),
             Container(
+              margin: EdgeInsets.only(top: 15),
               width: double.infinity,
               child: dailyData.note.isNotEmpty ? Text(dailyData.note) : null,
             ),
             if (dailyData.photos.length > 0)
               Container(
+                margin: EdgeInsets.only(top: 25),
                 width: double.infinity,
                 child: Row(
                   children: <Widget>[
@@ -97,10 +99,13 @@ class DiaryCard extends StatelessWidget {
                         width: 80,
                         height: 50,
                         margin: EdgeInsets.only(right: 10),
-                        child: Image.file(
-                          File(path),
-                          fit: BoxFit.cover,
-                          width: double.infinity,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.file(
+                            File(path),
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                          ),
                         ),
                       )
                   ],

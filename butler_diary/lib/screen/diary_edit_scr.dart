@@ -409,11 +409,14 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                     for (var path in photos)
                       Container(
                         margin: EdgeInsets.only(bottom: 10),
-                        height: 170,
-                        child: Image.file(
-                          File(path),
-                          fit: BoxFit.cover,
-                          width: double.infinity,
+                        height: 200,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15.0),
+                          child: Image.file(
+                            File(path),
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                          ),
                         ),
                       )
                   ],
