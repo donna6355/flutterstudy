@@ -24,7 +24,7 @@ class DiaryCard extends StatelessWidget {
       },
       child: Container(
         margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
-        padding: EdgeInsets.all(5),
+        padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           border: Border.all(
             width: 1.0,
@@ -34,9 +34,13 @@ class DiaryCard extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              child: Text(dailyData.date),
+              child: Text(
+                '☼ ${dailyData.date}',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               width: double.infinity,
             ),
+            SizedBox(height: 10),
             Container(
               width: double.infinity,
               child: Wrap(
@@ -69,11 +73,22 @@ class DiaryCard extends StatelessWidget {
                   if (dailyData.brushFur) Text('brushFur'),
                   if (dailyData.bath) Text('bath'),
                   if (dailyData.toilet) Text('toilet'),
-                  if (dailyData.note.isNotEmpty) Text(dailyData.note),
-                  if (dailyData.photos.length > 0) Text('photos'),
                 ],
               ),
             ),
+            Container(
+              width: double.infinity,
+              child: dailyData.note.isNotEmpty ? Text(dailyData.note) : null,
+            ),
+            if (dailyData.photos.length > 0)
+              Container(
+                width: double.infinity,
+                child: Wrap(
+                  children: [
+                    Text('photos'),
+                  ],
+                ),
+              ),
           ],
         ),
       ),
