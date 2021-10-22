@@ -1,5 +1,6 @@
 import 'package:butler_diary/widget/toggle_choice.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../model/diary.dart';
@@ -397,10 +398,26 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
               ),
               SizedBox(height: 30),
               Text(
-                '증거 사진',
+                '증거 사진 ${photos.length > 0 ? "(${photos.length})" : ""}',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
               InputImg(addPic),
+              if (photos.length > 0)
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    for (var path in photos)
+                      Container(
+                        margin: EdgeInsets.only(bottom: 10),
+                        height: 170,
+                        child: Image.file(
+                          File(path),
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                        ),
+                      )
+                  ],
+                ),
               SizedBox(
                 height: 40,
               ),
