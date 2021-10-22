@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../model/diary.dart';
 import './multi_diary_icon.dart';
+import './bool_diary_icon.dart';
 
 class DiaryCard extends StatelessWidget {
   final Diary dailyData;
@@ -55,28 +56,29 @@ class DiaryCard extends StatelessWidget {
                   if (dailyData.water != -1)
                     MultiDiaryIcon(dailyData.water, 'tbd', '물은 실타냥', '사알짝 할짝',
                         '하알짝 할짝', '물먹는 하마'),
-                  if (dailyData.waterySnack) Text('츄르'),
-                  if (dailyData.drySnack) Text('트릿'),
-                  if (dailyData.snack) Text('캔'),
+                  if (dailyData.waterySnack) BoolDiaryIcon('츄르'),
+                  if (dailyData.drySnack) BoolDiaryIcon('트릿'),
+                  if (dailyData.snack) BoolDiaryIcon('캔'),
+                  if (dailyData.otherSnack) BoolDiaryIcon('기타'),
                   if (dailyData.poo != -1)
                     MultiDiaryIcon(
                         dailyData.poo, 'tbd', '변비냥', '반토막', '한토막', '한움큼'),
                   if (dailyData.pee != -1)
                     MultiDiaryIcon(
                         dailyData.pee, 'tbd', '으잉?', '알감자', '감자', '왕감자'),
-                  if (dailyData.hairBall) Text('헤어볼'),
-                  if (dailyData.diarrhea) Text('설사'),
-                  if (dailyData.vomit) Text('토켁켁'),
-                  if (dailyData.destroy) Text('파괴왕'),
-                  if (dailyData.vet) Text('동물병원'),
-                  if (dailyData.vaccine) Text('예방접종'),
-                  if (dailyData.pill) Text('약'),
-                  if (dailyData.eyeDrop) Text('안약'),
-                  if (dailyData.hunting) Text('사냥놀이'),
-                  if (dailyData.brushTeeth) Text('치카'),
-                  if (dailyData.brushFur) Text('빗질'),
-                  if (dailyData.bath) Text('목욕'),
-                  if (dailyData.toilet) Text('전체갈이'),
+                  if (dailyData.hairBall) BoolDiaryIcon('헤어볼'),
+                  if (dailyData.diarrhea) BoolDiaryIcon('설사'),
+                  if (dailyData.vomit) BoolDiaryIcon('토켁켁'),
+                  if (dailyData.destroy) BoolDiaryIcon('파괴왕'),
+                  if (dailyData.vet) BoolDiaryIcon('동물병원'),
+                  if (dailyData.vaccine) BoolDiaryIcon('예방접종'),
+                  if (dailyData.pill) BoolDiaryIcon('약'),
+                  if (dailyData.eyeDrop) BoolDiaryIcon('안약'),
+                  if (dailyData.hunting) BoolDiaryIcon('사냥놀이'),
+                  if (dailyData.brushTeeth) BoolDiaryIcon('치카'),
+                  if (dailyData.brushFur) BoolDiaryIcon('빗질'),
+                  if (dailyData.bath) BoolDiaryIcon('목욕'),
+                  if (dailyData.toilet) BoolDiaryIcon('전체갈이'),
                 ],
               ),
             ),

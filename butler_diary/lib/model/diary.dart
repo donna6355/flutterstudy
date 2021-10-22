@@ -52,6 +52,8 @@ class Diary extends HiveObject {
   String note;
   @HiveField(23)
   List photos;
+  @HiveField(24)
+  bool otherSnack;
 
   Diary(
       {required this.date,
@@ -60,6 +62,7 @@ class Diary extends HiveObject {
       required this.water,
       required this.waterySnack,
       required this.drySnack,
+      required this.otherSnack,
       required this.snack,
       required this.pee,
       required this.poo,

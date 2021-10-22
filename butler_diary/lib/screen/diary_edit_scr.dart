@@ -22,6 +22,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
   bool waterySnack = false;
   bool drySnack = false;
   bool snack = false;
+  bool otherSnack = false;
   double pee = -1;
   double poo = -1;
   bool hairBall = false;
@@ -49,6 +50,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
       water: water,
       waterySnack: waterySnack,
       drySnack: drySnack,
+      otherSnack: otherSnack,
       snack: snack,
       pee: pee,
       poo: poo,
@@ -90,6 +92,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
         water = dailyData.water;
         waterySnack = dailyData.waterySnack;
         drySnack = dailyData.drySnack;
+        otherSnack = dailyData.otherSnack;
         snack = dailyData.snack;
         pee = dailyData.pee;
         poo = dailyData.poo;
@@ -126,9 +129,9 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
         case '캔':
           snack = !snack;
           break;
-        // case '기타':
-        // waterySnack = !waterySnack;
-        // break;
+        case '기타':
+          otherSnack = !otherSnack;
+          break;
         case '헤어볼':
           hairBall = !hairBall;
           break;
@@ -286,7 +289,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                     ToggleChoice('츄르', waterySnack, togglesetState),
                     ToggleChoice('트릿', drySnack, togglesetState),
                     ToggleChoice('캔', snack, togglesetState),
-                    ToggleChoice('기타', false, togglesetState),
+                    ToggleChoice('기타', otherSnack, togglesetState),
                   ],
                 ),
               ),
