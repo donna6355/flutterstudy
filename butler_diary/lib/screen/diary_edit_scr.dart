@@ -46,36 +46,36 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
   bool hasChanged = false;
 
   void saveDiary() {
-    if (hasChanged) {
-      final Diary newDiary = Diary(
-        date: date,
-        dryFood: dryFood,
-        wetFood: wetFood,
-        water: water,
-        waterySnack: waterySnack,
-        drySnack: drySnack,
-        otherSnack: otherSnack,
-        snack: snack,
-        pee: pee,
-        poo: poo,
-        hairBall: hairBall,
-        diarrhea: diarrhea,
-        vomit: vomit,
-        destroy: destroy,
-        vet: vet,
-        vaccine: vaccine,
-        pill: pill,
-        eyeDrop: eyeDrop,
-        hunting: hunting,
-        brushTeeth: brushTeeth,
-        brushFur: brushFur,
-        bath: bath,
-        toilet: toilet,
-        note: _note.text,
-        photos: photos,
-      );
-      diaryBox.put(date, newDiary);
-    }
+    if (!hasChanged) return;
+    final Diary newDiary = Diary(
+      date: date,
+      dryFood: dryFood,
+      wetFood: wetFood,
+      water: water,
+      waterySnack: waterySnack,
+      drySnack: drySnack,
+      otherSnack: otherSnack,
+      snack: snack,
+      pee: pee,
+      poo: poo,
+      hairBall: hairBall,
+      diarrhea: diarrhea,
+      vomit: vomit,
+      destroy: destroy,
+      vet: vet,
+      vaccine: vaccine,
+      pill: pill,
+      eyeDrop: eyeDrop,
+      hunting: hunting,
+      brushTeeth: brushTeeth,
+      brushFur: brushFur,
+      bath: bath,
+      toilet: toilet,
+      note: _note.text,
+      photos: photos,
+    );
+    diaryBox.put(date, newDiary);
+
     Navigator.of(context).pop();
   }
 
@@ -298,9 +298,12 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
           ),
         ],
       ),
-      floatingActionButton: ElevatedButton(
-        onPressed: saveDiary,
-        child: Text('저장하기'),
+      floatingActionButton: Opacity(
+        opacity: hasChanged ? 1.0 : 0.5,
+        child: ElevatedButton(
+          onPressed: saveDiary,
+          child: Text('저장하기'),
+        ),
       ),
       body: GestureDetector(
         onTap: () {
@@ -435,6 +438,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
               TextField(
+                onChanged: togglesetState,
                 controller: _note,
                 decoration: InputDecoration(
                   hintText: 'ex) 또 충전기 씹어드심ㅠ 물그릇 엎고 물놀이 함ㅠ',
