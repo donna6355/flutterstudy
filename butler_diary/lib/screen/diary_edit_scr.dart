@@ -43,36 +43,39 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
   String note = '';
   List<dynamic> photos = [];
   late Box diaryBox;
+  bool hasChanged = false;
 
   void saveDiary() {
-    final Diary newDiary = Diary(
-      date: date,
-      dryFood: dryFood,
-      wetFood: wetFood,
-      water: water,
-      waterySnack: waterySnack,
-      drySnack: drySnack,
-      otherSnack: otherSnack,
-      snack: snack,
-      pee: pee,
-      poo: poo,
-      hairBall: hairBall,
-      diarrhea: diarrhea,
-      vomit: vomit,
-      destroy: destroy,
-      vet: vet,
-      vaccine: vaccine,
-      pill: pill,
-      eyeDrop: eyeDrop,
-      hunting: hunting,
-      brushTeeth: brushTeeth,
-      brushFur: brushFur,
-      bath: bath,
-      toilet: toilet,
-      note: _note.text,
-      photos: photos,
-    );
-    diaryBox.put(date, newDiary);
+    if (hasChanged) {
+      final Diary newDiary = Diary(
+        date: date,
+        dryFood: dryFood,
+        wetFood: wetFood,
+        water: water,
+        waterySnack: waterySnack,
+        drySnack: drySnack,
+        otherSnack: otherSnack,
+        snack: snack,
+        pee: pee,
+        poo: poo,
+        hairBall: hairBall,
+        diarrhea: diarrhea,
+        vomit: vomit,
+        destroy: destroy,
+        vet: vet,
+        vaccine: vaccine,
+        pill: pill,
+        eyeDrop: eyeDrop,
+        hunting: hunting,
+        brushTeeth: brushTeeth,
+        brushFur: brushFur,
+        bath: bath,
+        toilet: toilet,
+        note: _note.text,
+        photos: photos,
+      );
+      diaryBox.put(date, newDiary);
+    }
     Navigator.of(context).pop();
   }
 
@@ -120,6 +123,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
   }
 
   void togglesetState(String name) {
+    hasChanged = true;
     setState(() {
       switch (name) {
         case '츄르':
@@ -180,6 +184,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
   }
 
   void doubleSetState(String name, double value) {
+    hasChanged = true;
     setState(() {
       switch (name) {
         case '습식 실타냥':
@@ -204,9 +209,40 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
   }
 
   void addPic(newImg) {
+    hasChanged = true;
     setState(() {
       photos.add(newImg.path);
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    date = '';
+    dryFood = -1;
+    wetFood = -1;
+    water = -1;
+    waterySnack = false;
+    drySnack = false;
+    snack = false;
+    otherSnack = false;
+    pee = -1;
+    poo = -1;
+    hairBall = false;
+    diarrhea = false;
+    vomit = false;
+    destroy = false;
+    vet = false;
+    vaccine = false;
+    pill = false;
+    eyeDrop = false;
+    hunting = false;
+    brushTeeth = false;
+    brushFur = false;
+    bath = false;
+    toilet = false;
+    note = '';
+    photos = [];
   }
 
   @override
@@ -422,7 +458,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                   ],
                 ),
               SizedBox(
-                height: 40,
+                height: 50,
               ),
             ],
           ),
