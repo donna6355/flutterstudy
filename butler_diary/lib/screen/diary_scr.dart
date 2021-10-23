@@ -61,7 +61,6 @@ class DiaryScr extends StatelessWidget {
                 shrinkWrap: true,
                 itemBuilder: (context, idx) {
                   final Diary daily = box.getAt(idx);
-                  print(daily);
                   return DiaryCard(daily, masterInfo.id, masterInfo.name);
                 },
                 itemCount: box.length,

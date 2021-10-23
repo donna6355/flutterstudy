@@ -116,9 +116,10 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
         toilet = dailyData.toilet;
         note = dailyData.note;
         _note.text = dailyData.note.isNotEmpty ? dailyData.note : '';
-        photos = dailyData.photos;
+        if (dailyData.photos.length > 0) {
+          dailyData.photos.forEach((path) => {photos.add(path)});
+        }
       });
-      //connect data to local state;
     }
   }
 
