@@ -216,6 +216,13 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
     });
   }
 
+  void _removePhoto(path) {
+    hasChanged = true;
+    setState(() {
+      photos.removeWhere((el) => el == path);
+    });
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -444,17 +451,39 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     for (var path in photos)
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        height: 200,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15.0),
-                          child: Image.file(
-                            File(path),
-                            fit: BoxFit.cover,
-                            width: double.infinity,
+                      Stack(
+                        alignment: AlignmentDirectional.topEnd,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(bottom: 10),
+                            height: 200,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child: Image.file(
+                                File(path),
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                              ),
+                            ),
                           ),
-                        ),
+                          Stack(
+                            alignment: AlignmentDirectional.center,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 14,
+                              ),
+                              IconButton(
+                                color: Color(0xff454442),
+                                iconSize: 26,
+                                onPressed: () {
+                                  _removePhoto(path);
+                                },
+                                icon: Icon(Icons.cancel),
+                              ),
+                            ],
+                          ),
+                        ],
                       )
                   ],
                 ),
