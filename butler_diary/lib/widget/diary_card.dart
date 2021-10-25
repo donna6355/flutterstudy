@@ -28,6 +28,9 @@ class DiaryCard extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+          ),
           border: Border.all(
             width: 1.0,
             color: Color(0xff454442),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../widget/drawer_profile.dart';
+import '../widget/profile_card.dart';
 import '../model/profile.dart';
 
 class LivingRoom extends StatelessWidget {
@@ -47,26 +48,7 @@ class LivingRoom extends StatelessWidget {
                         itemCount: box.length,
                         itemBuilder: (BuildContext ctx, idx) {
                           final Profile profile = box.getAt(idx);
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                '/diary',
-                                arguments: profile,
-                              );
-                            },
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
-                              height: 200,
-                              alignment: Alignment.center,
-                              child: Text(profile.name),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xff454442)),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
-                              ),
-                            ),
-                          );
+                          return ProfileCard(profile);
                         });
                   }),
             ),
