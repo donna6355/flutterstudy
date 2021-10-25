@@ -37,39 +37,47 @@ class LivingRoom extends StatelessWidget {
         ],
       ),
       body: Container(
-        margin: EdgeInsets.all(20),
-        child: ValueListenableBuilder<Box>(
-            valueListenable: Hive.box('myCats').listenable(),
-            builder: (context, box, widget) {
-              return GridView.builder(
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 200,
-                      childAspectRatio: 3 / 2,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20),
-                  itemCount: box.length,
-                  itemBuilder: (BuildContext ctx, idx) {
-                    final Profile profile = box.getAt(idx);
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushNamed(
-                          '/diary',
-                          arguments: profile,
-                        );
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text(profile.name),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xff454442)),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                      ),
-                    );
-                  });
-            }),
+        child: Column(
+          children: [
+            Expanded(
+              child: ValueListenableBuilder<Box>(
+                  valueListenable: Hive.box('myCats').listenable(),
+                  builder: (context, box, widget) {
+                    return ListView.builder(
+                        itemCount: box.length,
+                        itemBuilder: (BuildContext ctx, idx) {
+                          final Profile profile = box.getAt(idx);
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushNamed(
+                                '/diary',
+                                arguments: profile,
+                              );
+                            },
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
+                              height: 200,
+                              alignment: Alignment.center,
+                              child: Text(profile.name),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Color(0xff454442)),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                            ),
+                          );
+                        });
+                  }),
+            ),
+            Container(
+              color: Colors.grey[600],
+              child: Text('banner pos'),
+              width: double.infinity,
+              height: 40,
+            )
+          ],
+        ),
       ),
     );
   }
