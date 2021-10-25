@@ -38,6 +38,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
   bool hunting = false;
   bool brushTeeth = false;
   bool brushFur = false;
+  bool clawCut = false;
   bool bath = false;
   bool toilet = false;
   String note = '';
@@ -69,6 +70,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
       hunting: hunting,
       brushTeeth: brushTeeth,
       brushFur: brushFur,
+      clawCut: clawCut,
       bath: bath,
       toilet: toilet,
       note: _note.text,
@@ -112,6 +114,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
         hunting = dailyData.hunting;
         brushTeeth = dailyData.brushTeeth;
         brushFur = dailyData.brushFur;
+        clawCut = dailyData.clawCut;
         bath = dailyData.bath;
         toilet = dailyData.toilet;
         note = dailyData.note;
@@ -174,6 +177,9 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
           break;
         case '목욕':
           bath = !bath;
+          break;
+        case '발톱깎기':
+          clawCut = !clawCut;
           break;
         case '전체갈이':
           toilet = !toilet;
@@ -413,10 +419,10 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ToggleChoice('사냥놀이', hunting, togglesetState),
                     ToggleChoice('치카', brushTeeth, togglesetState),
                     ToggleChoice('빗질', brushFur, togglesetState),
                     ToggleChoice('목욕', bath, togglesetState),
+                    ToggleChoice('발톱깎기', clawCut, togglesetState),
                   ],
                 ),
               ),
@@ -428,6 +434,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    ToggleChoice('사냥놀이', hunting, togglesetState),
                     ToggleChoice('전체갈이', toilet, togglesetState),
                   ],
                 ),
@@ -441,7 +448,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                 onChanged: togglesetState,
                 controller: _note,
                 decoration: InputDecoration(
-                  hintText: 'ex) 또 충전기 씹어드심ㅠ 물그릇 엎고 물놀이 함ㅠ',
+                  hintText: 'ex) 충전기 씹어드심ㅠ',
                 ),
               ),
               SizedBox(height: 30),

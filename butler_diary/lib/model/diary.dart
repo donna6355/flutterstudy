@@ -2,6 +2,7 @@ import 'package:hive/hive.dart';
 
 part 'diary.g.dart';
 
+// flutter pub run build_runner build
 @HiveType(typeId: 1)
 class Diary extends HiveObject {
   @HiveField(0)
@@ -54,6 +55,8 @@ class Diary extends HiveObject {
   List photos;
   @HiveField(24)
   bool otherSnack;
+  @HiveField(25)
+  bool clawCut;
 
   Diary(
       {required this.date,
@@ -77,6 +80,7 @@ class Diary extends HiveObject {
       required this.hunting,
       required this.brushTeeth,
       required this.brushFur,
+      required this.clawCut,
       required this.bath,
       required this.toilet,
       required this.note,
