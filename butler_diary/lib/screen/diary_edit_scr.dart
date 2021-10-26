@@ -127,8 +127,8 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
   }
 
   void togglesetState(String name) {
-    hasChanged = true;
     setState(() {
+      hasChanged = true;
       switch (name) {
         case '츄르':
           waterySnack = !waterySnack;
@@ -216,15 +216,15 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
   }
 
   void addPic(newImg) {
-    hasChanged = true;
     setState(() {
+      hasChanged = true;
       photos.add(newImg.path);
     });
   }
 
   void _removePhoto(path) {
-    hasChanged = true;
     setState(() {
+      hasChanged = true;
       photos.removeWhere((el) => el == path);
     });
   }
