@@ -104,6 +104,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
             children: [
               Center(
                 child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
                   child: Container(
                     width: 100,
                     height: 100,
@@ -111,7 +112,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                   ),
                 ),
               ),
-              SizedBox(height: 5),
+              SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -242,7 +243,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

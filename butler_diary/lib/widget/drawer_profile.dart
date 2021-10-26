@@ -18,7 +18,7 @@ class DrawerProfile extends StatelessWidget {
               ),
               width: double.infinity,
               child: Text(
-                '주인님 프로필',
+                '주인님 프로필 수정하기',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,

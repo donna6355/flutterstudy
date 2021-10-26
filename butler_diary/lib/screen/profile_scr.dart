@@ -75,6 +75,7 @@ class _ProfileScrState extends State<ProfileScr> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text('프로필'),
         actions: [
           IconButton(
@@ -98,6 +99,7 @@ class _ProfileScrState extends State<ProfileScr> {
             children: [
               Center(
                 child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
                   child: Container(
                     width: 100,
                     height: 100,
@@ -105,7 +107,7 @@ class _ProfileScrState extends State<ProfileScr> {
                   ),
                 ),
               ),
-              SizedBox(height: 5),
+              SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -241,7 +243,7 @@ class _ProfileScrState extends State<ProfileScr> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
               Row(
                 children: [
                   Container(
@@ -257,7 +259,7 @@ class _ProfileScrState extends State<ProfileScr> {
                   Text(widget.profile.name),
                 ],
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 15),
               Row(
                 children: [
                   Container(
@@ -274,7 +276,7 @@ class _ProfileScrState extends State<ProfileScr> {
                       '${widget.profile.birth.year}년 ${widget.profile.birth.month}월 ${widget.profile.birth.day}일${ageCalc(widget.profile.birth)}'),
                 ],
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 15),
               Row(
                 children: [
                   Container(
