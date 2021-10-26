@@ -14,21 +14,23 @@ class _ProfileScrState extends State<ProfileScr> {
   final _weightCont = TextEditingController();
   final _remarksCont = TextEditingController();
   late Box catBox;
+  String charPhoto = 'basic';
 
   var hasChanged = false;
   @override
   void initState() {
     super.initState();
-    if (widget.profile.weight != null) {
-      setState(() {
+    setState(() {
+      if (widget.profile.photo != null) {
+        charPhoto = widget.profile.photo!;
+      }
+      if (widget.profile.weight != null) {
         _weightCont.text = '${widget.profile.weight}';
-      });
-    }
-    if (widget.profile.remark != '') {
-      setState(() {
-        _remarksCont.text = '${widget.profile.remark}';
-      });
-    }
+      }
+      if (widget.profile.remark != '') {
+        _remarksCont.text = widget.profile.remark!;
+      }
+    });
     catBox = Hive.box('myCats');
   }
 
@@ -45,7 +47,7 @@ class _ProfileScrState extends State<ProfileScr> {
         name: widget.profile.name,
         birth: widget.profile.birth,
         gender: widget.profile.gender,
-        photo: 'hey',
+        photo: charPhoto,
         weight:
             _weightCont.text.isEmpty ? null : double.parse(_weightCont.text),
         remark: _remarksCont.text.isEmpty ? '' : _remarksCont.text);
@@ -91,16 +93,153 @@ class _ProfileScrState extends State<ProfileScr> {
           FocusScope.of(context).unfocus();
         },
         child: Container(
-          margin: EdgeInsets.all(40),
+          padding: EdgeInsets.fromLTRB(40, 10, 40, 0),
           child: ListView(
             children: [
               Center(
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  color: Colors.grey,
-                  child: Text('img for cat'),
+                child: ClipRRect(
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    child: Image.asset('asset/img/$charPhoto.jpeg'),
+                  ),
                 ),
+              ),
+              SizedBox(height: 5),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 50,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: charPhoto == 'basic' ? Color(0xff454442) : null,
+                    ),
+                    child: Center(
+                      child: TextButton(
+                        onPressed: () {
+                          setState(() {
+                            hasChanged = true;
+                            charPhoto = 'basic';
+                          });
+                        },
+                        child: Text(
+                          '기본냥',
+                          style: charPhoto == 'basic'
+                              ? TextStyle(
+                                  color: Colors.white,
+                                )
+                              : null,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 50,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: charPhoto == 'elegant' ? Color(0xff454442) : null,
+                    ),
+                    child: Center(
+                      child: TextButton(
+                        onPressed: () {
+                          setState(() {
+                            hasChanged = true;
+                            charPhoto = 'elegant';
+                          });
+                        },
+                        child: Text(
+                          '우아냥',
+                          style: charPhoto == 'elegant'
+                              ? TextStyle(
+                                  color: Colors.white,
+                                )
+                              : null,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 50,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: charPhoto == 'dynamic' ? Color(0xff454442) : null,
+                    ),
+                    child: Center(
+                      child: TextButton(
+                        onPressed: () {
+                          setState(() {
+                            hasChanged = true;
+                            charPhoto = 'dynamic';
+                          });
+                        },
+                        child: Text(
+                          '활발냥',
+                          style: charPhoto == 'dynamic'
+                              ? TextStyle(
+                                  color: Colors.white,
+                                )
+                              : null,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 50,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: charPhoto == 'sleepy' ? Color(0xff454442) : null,
+                    ),
+                    child: Center(
+                      child: TextButton(
+                        onPressed: () {
+                          setState(() {
+                            hasChanged = true;
+                            charPhoto = 'sleepy';
+                          });
+                        },
+                        child: Text(
+                          '쿨쿨냥',
+                          style: charPhoto == 'sleepy'
+                              ? TextStyle(
+                                  color: Colors.white,
+                                )
+                              : null,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 50,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: charPhoto == 'weird' ? Color(0xff454442) : null,
+                    ),
+                    child: Center(
+                      child: TextButton(
+                        onPressed: () {
+                          setState(() {
+                            hasChanged = true;
+                            charPhoto = 'weird';
+                          });
+                        },
+                        child: Text(
+                          '이상냥',
+                          style: charPhoto == 'weird'
+                              ? TextStyle(
+                                  color: Colors.white,
+                                )
+                              : null,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(height: 10),
               Row(
@@ -216,62 +355,12 @@ class _ProfileScrState extends State<ProfileScr> {
                 height: 40,
               ),
               Opacity(
-                opacity: hasChanged ? 1.0 : 0.2,
+                opacity: hasChanged ? 1.0 : 0.5,
                 child: ElevatedButton(
                   onPressed: _saveProfile,
                   child: Text('저장하기'),
                 ),
               ),
-
-              // SizedBox(height: 10),
-              // Row(
-              //   children: [
-              //     Container(
-              //       child: Text(
-              //         '몸무게',
-              //         style: TextStyle(
-              //           fontSize: 18,
-              //           fontWeight: FontWeight.w500,
-              //         ),
-              //       ),
-              //       width: 60,
-              //     ),
-              //     Text(profile.weight == null
-              //         ? '몰라용;;'
-              //         : '${profile.weight.toString()} kg'),
-              //   ],
-              // ),
-              // SizedBox(height: 10),
-              // Column(
-              //   children: [
-              //     Container(
-              //       width: double.infinity,
-              //       child: Text(
-              //         '기타',
-              //         style: TextStyle(
-              //           fontSize: 18,
-              //           fontWeight: FontWeight.w500,
-              //         ),
-              //       ),
-              //     ),
-              //     Container(
-              //       width: double.infinity,
-              //       child: Text(profile.remark!),
-              //       decoration: BoxDecoration(
-              //         border: Border(
-              //           bottom: BorderSide(
-              //             color: Color(0xff454442),
-              //             width: 1.0,
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-              // ElevatedButton(
-              //   onPressed: () {},
-              //   child: Text('수정하기'),
-              // ),
             ],
           ),
         ),

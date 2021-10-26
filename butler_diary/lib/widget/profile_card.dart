@@ -37,7 +37,7 @@ class ProfileCard extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.only(right: 20),
-              child: Center(child: Image.asset('asset/img/back.jpeg')),
+              child: Center(child: Image.asset('asset/img/basic.jpeg')),
               width: MediaQuery.of(context).size.width / 2,
             ),
             Column(

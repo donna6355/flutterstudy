@@ -15,6 +15,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
   final _weightCont = TextEditingController();
   DateTime? birth;
   int gender = -1;
+  String charPhoto = 'basic';
   late Box catBox;
   var uuid = Uuid();
 
@@ -77,7 +78,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
         name: _nameCont.text,
         birth: birth!,
         gender: gender,
-        photo: 'hey',
+        photo: charPhoto,
         weight:
             _weightCont.text.isEmpty ? null : double.parse(_weightCont.text),
         remark: _remarksCont.text.isEmpty ? '' : _remarksCont.text);
@@ -98,17 +99,146 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
           FocusScope.of(context).unfocus();
         },
         child: Container(
-          padding: EdgeInsets.fromLTRB(40, 40, 40, 0),
+          padding: EdgeInsets.fromLTRB(40, 10, 40, 0),
           child: ListView(
             children: [
+              Center(
+                child: ClipRRect(
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    child: Image.asset('asset/img/$charPhoto.jpeg'),
+                  ),
+                ),
+              ),
+              SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: 100,
-                    height: 100,
-                    color: Colors.grey,
-                    child: Text('img for cat'),
+                    width: 50,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: charPhoto == 'basic' ? Color(0xff454442) : null,
+                    ),
+                    child: Center(
+                      child: TextButton(
+                        onPressed: () {
+                          setState(() {
+                            charPhoto = 'basic';
+                          });
+                        },
+                        child: Text(
+                          '기본냥',
+                          style: charPhoto == 'basic'
+                              ? TextStyle(
+                                  color: Colors.white,
+                                )
+                              : null,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 50,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: charPhoto == 'elegant' ? Color(0xff454442) : null,
+                    ),
+                    child: Center(
+                      child: TextButton(
+                        onPressed: () {
+                          setState(() {
+                            charPhoto = 'elegant';
+                          });
+                        },
+                        child: Text(
+                          '우아냥',
+                          style: charPhoto == 'elegant'
+                              ? TextStyle(
+                                  color: Colors.white,
+                                )
+                              : null,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 50,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: charPhoto == 'dynamic' ? Color(0xff454442) : null,
+                    ),
+                    child: Center(
+                      child: TextButton(
+                        onPressed: () {
+                          setState(() {
+                            charPhoto = 'dynamic';
+                          });
+                        },
+                        child: Text(
+                          '활발냥',
+                          style: charPhoto == 'dynamic'
+                              ? TextStyle(
+                                  color: Colors.white,
+                                )
+                              : null,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 50,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: charPhoto == 'sleepy' ? Color(0xff454442) : null,
+                    ),
+                    child: Center(
+                      child: TextButton(
+                        onPressed: () {
+                          setState(() {
+                            charPhoto = 'sleepy';
+                          });
+                        },
+                        child: Text(
+                          '쿨쿨냥',
+                          style: charPhoto == 'sleepy'
+                              ? TextStyle(
+                                  color: Colors.white,
+                                )
+                              : null,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 50,
+                    height: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: charPhoto == 'weird' ? Color(0xff454442) : null,
+                    ),
+                    child: Center(
+                      child: TextButton(
+                        onPressed: () {
+                          setState(() {
+                            charPhoto = 'weird';
+                          });
+                        },
+                        child: Text(
+                          '이상냥',
+                          style: charPhoto == 'weird'
+                              ? TextStyle(
+                                  color: Colors.white,
+                                )
+                              : null,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
