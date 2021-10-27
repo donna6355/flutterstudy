@@ -38,7 +38,7 @@ class ProfileCard extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(right: 20),
               child:
-                  Center(child: Image.asset('asset/img/${profile.photo}.jpeg')),
+                  Center(child: Image.asset('asset/img/${profile.photo}1.png')),
               width: MediaQuery.of(context).size.width / 2,
             ),
             Column(
@@ -67,6 +67,7 @@ class ProfileCard extends StatelessWidget {
           ],
         ),
         decoration: BoxDecoration(
+          color: Colors.white,
           border: Border.all(color: Color(0xff454442)),
           borderRadius: BorderRadius.all(
             Radius.circular(10),
