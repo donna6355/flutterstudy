@@ -262,7 +262,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                     width: 200,
                     child: TextField(
                       controller: _nameCont,
-                      maxLength: 10,
+                      maxLength: 6,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
                         hintText: 'ex) 김미르',

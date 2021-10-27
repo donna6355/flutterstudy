@@ -42,11 +42,11 @@ class ProfileCard extends StatelessWidget {
                   child: Image.asset(
                       'asset/img/${profile.photo}${new Random().nextInt(4)}.png')),
               width: MediaQuery.of(context).size.width / 2,
-              decoration: BoxDecoration(
-                border: Border(
-                  right: BorderSide(width: 1.0, color: Color(0xffa0a099)),
-                ),
-              ),
+              // decoration: BoxDecoration(
+              //   border: Border(
+              //     right: BorderSide(width: 1.0, color: Color(0xffa0a099)),
+              //   ),
+              // ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

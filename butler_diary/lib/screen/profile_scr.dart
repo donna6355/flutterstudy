@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import '../model/profile.dart';
+import './living_room.dart';
 
 class ProfileScr extends StatefulWidget {
   final Profile profile;
@@ -54,6 +55,48 @@ class _ProfileScrState extends State<ProfileScr> {
     catBox.put(newCat.id, newCat);
 
     Navigator.of(context).pop();
+  }
+
+  Future<void> _removeProfile() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('${widget.profile.name} 프로필 지우기'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('프로필을 삭제한다옹!'),
+                Text('지워진 데이터는 복구가 불가능하다옹!'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('취소'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('확인'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Hive.deleteBoxFromDisk('diary_${widget.profile.id}');
+                catBox.delete(widget.profile.id);
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute<void>(
+                      builder: (BuildContext context) => LivingRoom()),
+                  ModalRoute.withName('/'),
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   String ageCalc(DateTime birth) {
@@ -357,12 +400,29 @@ class _ProfileScrState extends State<ProfileScr> {
               SizedBox(
                 height: 40,
               ),
-              Opacity(
-                opacity: hasChanged ? 1.0 : 0.5,
-                child: ElevatedButton(
-                  onPressed: _saveProfile,
-                  child: Text('저장하기'),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(right: 15),
+                    child: Opacity(
+                      opacity: 0.5,
+                      child: ElevatedButton(
+                        onPressed: _removeProfile,
+                        child: Text('삭제하기'),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Opacity(
+                      opacity: hasChanged ? 1.0 : 0.5,
+                      child: ElevatedButton(
+                        onPressed: _saveProfile,
+                        child: Text('저장하기'),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

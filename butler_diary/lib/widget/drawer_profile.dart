@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../model/profile.dart';
+import '../screen/living_room.dart';
 
 class DrawerProfile extends StatelessWidget {
   @override
@@ -31,26 +32,84 @@ class DrawerProfile extends StatelessWidget {
                   return ListView.builder(
                     itemBuilder: (context, idx) {
                       final Profile profile = box.getAt(idx);
+
+                      Future<void> _removeProfile() async {
+                        return showDialog<void>(
+                          context: context,
+                          barrierDismissible: false, // user must tap button!
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('${profile.name} 프로필 지우기'),
+                              content: SingleChildScrollView(
+                                child: ListBody(
+                                  children: const <Widget>[
+                                    Text('프로필을 삭제한다옹!'),
+                                    Text('지워진 데이터는 복구가 불가능하다옹!'),
+                                  ],
+                                ),
+                              ),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: const Text('취소'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                                TextButton(
+                                  child: const Text('확인'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                    Hive.deleteBoxFromDisk(
+                                        'diary_${profile.id}');
+                                    box.delete(profile.id);
+                                    Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute<void>(
+                                          builder: (BuildContext context) =>
+                                              LivingRoom()),
+                                      ModalRoute.withName('/'),
+                                    );
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
+
                       return Container(
                         margin: EdgeInsets.only(
                           left: 20,
                         ),
-                        child: TextButton(
-                            onPressed: () {
-                              Navigator.of(context).popAndPushNamed(
-                                '/profile',
-                                arguments: profile,
-                              );
-                            },
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                profile.name,
-                                style: TextStyle(
-                                  fontSize: 18,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).popAndPushNamed(
+                                  '/profile',
+                                  arguments: profile,
+                                );
+                              },
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  profile.name,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
                                 ),
                               ),
-                            )),
+                            ),
+                            IconButton(
+                              onPressed: _removeProfile,
+                              icon: Icon(
+                                Icons.cancel,
+                                size: 15,
+                              ),
+                            )
+                          ],
+                        ),
                       );
                     },
                     itemCount: box.length,
