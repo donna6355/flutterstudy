@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../model/profile.dart';
+import 'dart:math';
 
 class ProfileCard extends StatelessWidget {
   final Profile profile;
@@ -37,9 +38,15 @@ class ProfileCard extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.only(right: 20),
-              child:
-                  Center(child: Image.asset('asset/img/${profile.photo}1.png')),
+              child: Center(
+                  child: Image.asset(
+                      'asset/img/${profile.photo}${new Random().nextInt(4)}.png')),
               width: MediaQuery.of(context).size.width / 2,
+              decoration: BoxDecoration(
+                border: Border(
+                  right: BorderSide(width: 1.0, color: Color(0xffa0a099)),
+                ),
+              ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -101,9 +101,10 @@ class _ProfileScrState extends State<ProfileScr> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: Container(
+                    color: Colors.white,
                     width: 100,
                     height: 100,
-                    child: Image.asset('asset/img/$charPhoto.jpeg'),
+                    child: Image.asset('asset/img/${charPhoto}1.png'),
                   ),
                 ),
               ),
