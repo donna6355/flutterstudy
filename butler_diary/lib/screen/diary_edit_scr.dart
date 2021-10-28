@@ -200,7 +200,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
         case '건식 실타냥':
           dryFood = value;
           break;
-        case '물은 실타냥':
+        case '물 실타냥':
           water = value;
           break;
         case '변비냥':
@@ -332,8 +332,8 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                 '주인님 물',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
-              MultipleChoice('물은 실타냥', '사알짝 할짝', '하알짝 할짝', '물먹는 하마', water,
-                  doubleSetState),
+              MultipleChoice(
+                  '물 실타냥', '사알짝 할짝', '하알짝 할짝', '물먹는 하마', water, doubleSetState),
               SizedBox(height: 30),
               Text(
                 '주인님 간식',

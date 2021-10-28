@@ -20,7 +20,7 @@ class MultipleChoice extends StatelessWidget {
       case '건식 실타냥':
         fileName = 'dryf';
         break;
-      case '물은 실타냥':
+      case '물 실타냥':
         fileName = 'water';
         break;
       case '변비냥':
@@ -50,17 +50,14 @@ class MultipleChoice extends StatelessWidget {
             onTap: () => valueState(choice1, 0.0),
             child: Column(
               children: [
-                Opacity(
-                  opacity: choiceVal == 0 ? 1 : 0.6,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                    ),
-                    width: 54,
-                    height: 54,
-                    child: Image.asset(_findImgName(0)),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
                   ),
+                  width: 54,
+                  height: 54,
+                  child: Image.asset(_findImgName(0)),
                 ),
                 // Icon(
                 //   Icons.add,
@@ -81,17 +78,14 @@ class MultipleChoice extends StatelessWidget {
             onTap: () => valueState(choice1, 1.0),
             child: Column(
               children: [
-                Opacity(
-                  opacity: choiceVal == 1 ? 1 : 0.6,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                    ),
-                    width: 54,
-                    height: 54,
-                    child: Image.asset(_findImgName(1)),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
                   ),
+                  width: 54,
+                  height: 54,
+                  child: Image.asset(_findImgName(1)),
                 ),
                 // Icon(
                 //   Icons.add,
@@ -112,18 +106,16 @@ class MultipleChoice extends StatelessWidget {
             onTap: () => valueState(choice1, 2.0),
             child: Column(
               children: [
-                Opacity(
-                  opacity: choiceVal == 2 ? 1 : 0.6,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                    ),
-                    width: 54,
-                    height: 54,
-                    child: Image.asset(_findImgName(2)),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
                   ),
-                ), // Icon(
+                  width: 54,
+                  height: 54,
+                  child: Image.asset(_findImgName(2)),
+                ),
+                // Icon(
                 //   Icons.add,
                 //   color: choiceVal == 2 ? Color(0xff454442) : Color(0xffB7B6AF),
                 // ),
@@ -142,17 +134,14 @@ class MultipleChoice extends StatelessWidget {
             onTap: () => valueState(choice1, 3.0),
             child: Column(
               children: [
-                Opacity(
-                  opacity: choiceVal == 3 ? 1 : 0.6,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                    ),
-                    width: 54,
-                    height: 54,
-                    child: Image.asset(_findImgName(3)),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
                   ),
+                  width: 54,
+                  height: 54,
+                  child: Image.asset(_findImgName(3)),
                 ),
                 // Icon(
                 //   Icons.add,
