@@ -11,15 +11,50 @@ class MultiDiaryIcon extends StatelessWidget {
   MultiDiaryIcon(this.value, this.keyword, this.label1, this.label2,
       this.label3, this.label4);
 
+  String _findImgName() {
+    String fileName = '';
+
+    switch (label1) {
+      case '습식 실타냥':
+        fileName = 'wetf';
+        break;
+      case '건식 실타냥':
+        fileName = 'dryf';
+        break;
+      case '물 실타냥':
+        fileName = 'water';
+        break;
+      case '변비냥':
+        fileName = 'poo';
+        break;
+      case '으잉?':
+        fileName = 'pee';
+        break;
+      default:
+        break;
+    }
+
+    return 'asset/icon/$fileName${value.toInt()}.png';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 60,
-      height: 50,
+      height: 70,
       margin: EdgeInsets.only(right: 5),
       child: Column(
         children: [
-          Icon(Icons.add),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+            ),
+            width: 54,
+            height: 54,
+            child: Image.asset(_findImgName()),
+          ),
+          // Icon(Icons.add),
           if (value == 0)
             Text(
               label1,
