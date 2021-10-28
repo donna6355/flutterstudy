@@ -106,6 +106,7 @@ class DrawerProfile extends StatelessWidget {
                               icon: Icon(
                                 Icons.cancel,
                                 size: 15,
+                                color: Color(0xff454442),
                               ),
                             )
                           ],
