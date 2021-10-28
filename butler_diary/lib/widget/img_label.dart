@@ -4,12 +4,12 @@ class ImgLabel extends StatelessWidget {
   final String label;
   final String choice;
   final double choiceVal;
-  final double idx;
+  final int idx;
   ImgLabel(this.label, this.choice, this.choiceVal, this.idx);
 
   @override
   Widget build(BuildContext context) {
-    String _findImgName(int num) {
+    String _findImgName() {
       String fileName = '';
 
       switch (label) {
@@ -32,7 +32,7 @@ class ImgLabel extends StatelessWidget {
           break;
       }
 
-      return 'asset/icon/$fileName$num.png';
+      return 'asset/icon/$fileName$idx.png';
     }
 
     return Container(
@@ -52,7 +52,7 @@ class ImgLabel extends StatelessWidget {
             ),
             width: 54,
             height: 54,
-            child: Image.asset(_findImgName(1)),
+            child: Image.asset(_findImgName()),
           ),
           // Icon(
           //   Icons.add,
