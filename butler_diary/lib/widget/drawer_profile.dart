@@ -22,7 +22,7 @@ class DrawerProfile extends StatelessWidget {
                 '주인님 프로필 수정하기',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  fontSize: 20,
                 ),
               )),
           Expanded(
@@ -91,12 +91,13 @@ class DrawerProfile extends StatelessWidget {
                                   arguments: profile,
                                 );
                               },
-                              child: Align(
-                                alignment: Alignment.centerLeft,
+                              child: Container(
+                                width: 80,
                                 child: Text(
                                   profile.name,
+                                  textAlign: TextAlign.start,
                                   style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 20,
                                   ),
                                 ),
                               ),
