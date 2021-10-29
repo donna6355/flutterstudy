@@ -44,6 +44,27 @@ class LivingRoom extends StatelessWidget {
               child: ValueListenableBuilder<Box>(
                   valueListenable: Hive.box('myCats').listenable(),
                   builder: (context, box, widget) {
+                    if (box.length == 0)
+                      return Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                            ),
+                            margin: EdgeInsets.fromLTRB(50, 70, 50, 20),
+                            child: Image.asset('asset/img/box1.png'),
+                          ),
+                          Text('너 오늘부터 내 집사다옹!'),
+                          SizedBox(height: 20),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pushNamed('/profile_edit');
+                            },
+                            child: Text('주인님 프로필 작성하기'),
+                          )
+                        ],
+                      );
                     return ListView.builder(
                         itemCount: box.length,
                         itemBuilder: (BuildContext ctx, idx) {

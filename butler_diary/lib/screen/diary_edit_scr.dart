@@ -436,8 +436,8 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                   children: [
                     ToggleChoice('사냥놀이', hunting, togglesetState),
                     ToggleChoice('전체갈이', toilet, togglesetState),
-                    SizedBox(width: 56),
-                    SizedBox(width: 56),
+                    SizedBox(width: 67),
+                    SizedBox(width: 67),
                   ],
                 ),
               ),
