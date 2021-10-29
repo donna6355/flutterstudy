@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import './screen/profile_edit_scr.dart';
 import './screen/living_room.dart';
@@ -20,6 +21,7 @@ void main() async {
   Hive.registerAdapter(DiaryAdapter());
   Hive.registerAdapter(ProfileAdapter());
   await Hive.openBox('myCats');
+  MobileAds.instance.initialize();
   runApp(MyApp());
 }
 
