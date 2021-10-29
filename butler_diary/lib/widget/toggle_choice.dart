@@ -17,7 +17,7 @@ class ToggleChoice extends StatelessWidget {
       case '트릿':
         fileName = 'treat';
         break;
-      case '캔':
+      case '습식':
         fileName = 'can';
         break;
       case '기타':
@@ -57,7 +57,7 @@ class ToggleChoice extends StatelessWidget {
         fileName = 'fur';
         break;
       case '목욕':
-        fileName = ' bath';
+        fileName = 'bath';
         break;
       case '발톱깎기':
         fileName = 'claw';
@@ -77,20 +77,27 @@ class ToggleChoice extends StatelessWidget {
     return GestureDetector(
       onTap: () => toggleState(choice),
       child: Container(
+        padding: EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          border: choiceVal
+              ? Border.all(color: Color(0xff454442), width: 1)
+              : Border.all(color: Color(0xffE5E4DB), width: 1),
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Column(children: [
-          Icon(
-            Icons.add,
-            color: choiceVal ? Color(0xff454442) : Color(0xffB7B6AF),
-          ),
-          // Container(
-          //   decoration: BoxDecoration(
-          //     borderRadius: BorderRadius.circular(10),
-          //     color: Colors.white,
-          //   ),
-          //   width: 54,
-          //   height: 54,
-          //   child: Image.asset(_findImgName()),
+          // Icon(
+          //   Icons.add,
+          //   color: choiceVal ? Color(0xff454442) : Color(0xffB7B6AF),
           // ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+            ),
+            width: 54,
+            height: 54,
+            child: Image.asset(_findImgName()),
+          ),
           Text(
             choice,
             style: TextStyle(

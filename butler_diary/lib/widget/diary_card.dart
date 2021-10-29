@@ -63,7 +63,7 @@ class DiaryCard extends StatelessWidget {
                         '하알짝 할짝', '물먹는 하마'),
                   if (dailyData.waterySnack) BoolDiaryIcon('츄르'),
                   if (dailyData.drySnack) BoolDiaryIcon('트릿'),
-                  if (dailyData.snack) BoolDiaryIcon('캔'),
+                  if (dailyData.snack) BoolDiaryIcon('습식'),
                   if (dailyData.otherSnack) BoolDiaryIcon('기타'),
                   if (dailyData.poo != -1)
                     MultiDiaryIcon(

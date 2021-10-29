@@ -136,7 +136,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
         case '트릿':
           drySnack = !drySnack;
           break;
-        case '캔':
+        case '습식':
           snack = !snack;
           break;
         case '기타':
@@ -316,7 +316,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
           FocusScope.of(context).unfocus();
         },
         child: Container(
-          margin: EdgeInsets.fromLTRB(40, 20, 40, 0),
+          margin: EdgeInsets.symmetric(horizontal: 40),
           child: ListView(
             children: [
               Text(
@@ -349,7 +349,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                   children: [
                     ToggleChoice('츄르', waterySnack, togglesetState),
                     ToggleChoice('트릿', drySnack, togglesetState),
-                    ToggleChoice('캔', snack, togglesetState),
+                    ToggleChoice('습식', snack, togglesetState),
                     ToggleChoice('기타', otherSnack, togglesetState),
                   ],
                 ),
@@ -436,6 +436,8 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                   children: [
                     ToggleChoice('사냥놀이', hunting, togglesetState),
                     ToggleChoice('전체갈이', toilet, togglesetState),
+                    SizedBox(width: 56),
+                    SizedBox(width: 56),
                   ],
                 ),
               ),
