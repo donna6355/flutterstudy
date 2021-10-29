@@ -42,7 +42,10 @@ class MultiDiaryIcon extends StatelessWidget {
     return Container(
       width: 60,
       height: 70,
-      margin: EdgeInsets.only(right: 5),
+      margin: EdgeInsets.only(
+        right: 5,
+        bottom: 5,
+      ),
       child: Column(
         children: [
           Container(
