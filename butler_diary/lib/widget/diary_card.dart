@@ -25,13 +25,11 @@ class DiaryCard extends StatelessWidget {
         );
       },
       child: Container(
-        margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
+        margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          // color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-          ),
+          // color: Colors.amber,
+          borderRadius: BorderRadius.circular(20),
           border: Border.all(
             width: 1.0,
             color: Color(0xff454442),
@@ -41,7 +39,7 @@ class DiaryCard extends StatelessWidget {
           children: [
             Container(
               child: Text(
-                '☼ ${dailyData.date}',
+                '☼ ${dailyData.date.substring(0, 4)}년 ${dailyData.date.substring(5, 7)}월 ${dailyData.date.substring(8, 10)}일 ',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               width: double.infinity,
@@ -88,11 +86,12 @@ class DiaryCard extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(top: 15),
-              width: double.infinity,
-              child: dailyData.note.isNotEmpty ? Text(dailyData.note) : null,
-            ),
+            if (dailyData.note.isNotEmpty)
+              Container(
+                margin: EdgeInsets.only(top: 15),
+                width: double.infinity,
+                child: dailyData.note.isNotEmpty ? Text(dailyData.note) : null,
+              ),
             if (dailyData.photos.length > 0)
               Container(
                 margin: EdgeInsets.only(top: 25),
