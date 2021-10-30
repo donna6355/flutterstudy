@@ -15,7 +15,7 @@ class MultiDiaryIcon extends StatelessWidget {
 
     switch (label1) {
       case '뭘보냥':
-        fileName = 'wetf';
+        fileName = 'feel';
         break;
       case '습식 실타냥':
         fileName = 'wetf';

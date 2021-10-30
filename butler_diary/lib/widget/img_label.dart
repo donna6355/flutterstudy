@@ -14,7 +14,7 @@ class ImgLabel extends StatelessWidget {
 
       switch (label) {
         case '뭘보냥':
-          fileName = 'wetf';
+          fileName = 'feel';
           break;
         case '습식 실타냥':
           fileName = 'wetf';
