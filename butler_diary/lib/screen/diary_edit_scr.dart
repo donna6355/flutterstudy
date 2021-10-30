@@ -471,6 +471,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
               InputImg(addPic),
+              SizedBox(height: 10),
               if (photos.length > 0)
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -513,7 +514,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                   ],
                 ),
               SizedBox(
-                height: 50,
+                height: 60,
               ),
             ],
           ),

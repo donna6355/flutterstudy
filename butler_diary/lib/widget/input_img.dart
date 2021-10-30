@@ -43,6 +43,9 @@ class _InputImgState extends State<InputImg> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           TextButton.icon(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.white),
+            ),
             icon: Icon(Icons.photo_library_outlined),
             onPressed: () {
               _getPic(1);
@@ -50,6 +53,9 @@ class _InputImgState extends State<InputImg> {
             label: Text('사진 가져오기'),
           ),
           TextButton.icon(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.white),
+            ),
             icon: Icon(Icons.photo_camera),
             onPressed: () {
               _getPic(2);
