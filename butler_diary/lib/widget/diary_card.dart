@@ -88,13 +88,12 @@ class DiaryCard extends StatelessWidget {
             ),
             if (dailyData.note.isNotEmpty)
               Container(
-                margin: EdgeInsets.only(top: 15),
+                margin: EdgeInsets.only(bottom: 10),
                 width: double.infinity,
                 child: dailyData.note.isNotEmpty ? Text(dailyData.note) : null,
               ),
             if (dailyData.photos.length > 0)
               Container(
-                margin: EdgeInsets.only(top: 25),
                 width: double.infinity,
                 child: Row(
                   children: <Widget>[
