@@ -21,37 +21,6 @@ class DiaryScr extends StatelessWidget {
           appBar: AppBar(
             elevation: 0,
             title: Text('${masterInfo.name} 다이어리'),
-            actions: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 40,
-                    height: 40,
-                    child: IconButton(
-                      onPressed: () {
-                        final Map<String, dynamic> args = {
-                          'master': masterInfo.name,
-                          'key': masterInfo.id,
-                          'date': DateTime.now().toString().substring(0, 10),
-                        };
-                        Navigator.of(context).pushNamed(
-                          '/diary_edit',
-                          arguments: args,
-                        );
-                      },
-                      icon: Icon(Icons.add),
-                    ),
-                  ),
-                  Text(
-                    '일기쓰기',
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
-              ),
-            ],
           ),
           body: ValueListenableBuilder<Box>(
             valueListenable: Hive.box('diary_${masterInfo.id}').listenable(),
@@ -66,6 +35,22 @@ class DiaryScr extends StatelessWidget {
                 itemCount: box.length,
               );
             },
+          ),
+          floatingActionButton: ElevatedButton(
+            onPressed: () {
+              final Map<String, dynamic> args = {
+                'master': masterInfo.name,
+                'key': masterInfo.id,
+                'date': DateTime.now().toString().substring(0, 10),
+              };
+              Navigator.of(context).pushNamed(
+                '/diary_edit',
+                arguments: args,
+              );
+            },
+            child: Text(
+              '일기 쓰기',
+            ),
           ),
         );
       },
