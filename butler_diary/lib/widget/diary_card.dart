@@ -88,10 +88,11 @@ class DiaryCard extends StatelessWidget {
             ),
             if (dailyData.note.isNotEmpty)
               Container(
-                margin: EdgeInsets.only(bottom: 10),
                 width: double.infinity,
                 child: dailyData.note.isNotEmpty ? Text(dailyData.note) : null,
               ),
+            if (dailyData.note.isNotEmpty && dailyData.photos.length > 0)
+              SizedBox(height: 10),
             if (dailyData.photos.length > 0)
               Container(
                 width: double.infinity,
