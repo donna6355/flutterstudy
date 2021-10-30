@@ -6,15 +6,17 @@ class MultiDiaryIcon extends StatelessWidget {
   final String label2;
   final String label3;
   final String label4;
-  final String keyword;
 
-  MultiDiaryIcon(this.value, this.keyword, this.label1, this.label2,
-      this.label3, this.label4);
+  MultiDiaryIcon(
+      this.value, this.label1, this.label2, this.label3, this.label4);
 
   String _findImgName() {
     String fileName = '';
 
     switch (label1) {
+      case '뭘보냥':
+        fileName = 'wetf';
+        break;
       case '습식 실타냥':
         fileName = 'wetf';
         break;

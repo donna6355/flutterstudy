@@ -18,6 +18,7 @@ class DiaryAdapter extends TypeAdapter<Diary> {
     };
     return Diary(
       date: fields[0] as String,
+      feel: fields[26] as double,
       dryFood: fields[1] as double,
       wetFood: fields[2] as double,
       water: fields[3] as double,
@@ -49,7 +50,7 @@ class DiaryAdapter extends TypeAdapter<Diary> {
   @override
   void write(BinaryWriter writer, Diary obj) {
     writer
-      ..writeByte(26)
+      ..writeByte(27)
       ..writeByte(0)
       ..write(obj.date)
       ..writeByte(1)
@@ -101,7 +102,9 @@ class DiaryAdapter extends TypeAdapter<Diary> {
       ..writeByte(24)
       ..write(obj.otherSnack)
       ..writeByte(25)
-      ..write(obj.clawCut);
+      ..write(obj.clawCut)
+      ..writeByte(26)
+      ..write(obj.feel);
   }
 
   @override

@@ -70,6 +70,7 @@ class LivingRoom extends StatelessWidget {
               child: ValueListenableBuilder<Box>(
                   valueListenable: Hive.box('myCats').listenable(),
                   builder: (context, box, widget) {
+                    // final List keys = box.keys.toList();
                     if (box.length == 0)
                       return Column(
                         children: [
@@ -99,12 +100,6 @@ class LivingRoom extends StatelessWidget {
                         });
                   }),
             ),
-            // Container(
-            //   color: Colors.grey[600],
-            //   child: Text('banner pos'),
-            //   width: double.infinity,
-            //   height: 40,
-            // )
             FutureBuilder(
               future: myBanner.load(),
               builder: (context, snapshot) {

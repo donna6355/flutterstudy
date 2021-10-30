@@ -57,9 +57,12 @@ class Diary extends HiveObject {
   bool otherSnack;
   @HiveField(25)
   bool clawCut;
+  @HiveField(26)
+  double feel;
 
   Diary(
       {required this.date,
+      required this.feel,
       required this.dryFood,
       required this.wetFood,
       required this.water,

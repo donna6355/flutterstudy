@@ -52,25 +52,25 @@ class DiaryCard extends StatelessWidget {
               child: Wrap(
                 alignment: WrapAlignment.start,
                 children: [
+                  if (dailyData.feel != -1)
+                    MultiDiaryIcon(dailyData.feel, '뭘보냥', '나쁘냥', '구냥', '죠타냥'),
                   if (dailyData.dryFood != -1)
-                    MultiDiaryIcon(dailyData.dryFood, 'tbd', '습식 실타냥', '습식 쪼오금',
+                    MultiDiaryIcon(dailyData.dryFood, '습식 실타냥', '습식 쪼오금',
                         '습식 적당히', '습식 왕창!'),
                   if (dailyData.wetFood != -1)
-                    MultiDiaryIcon(dailyData.wetFood, 'tbd', '건식 실타냥', '건식 쪼오금',
+                    MultiDiaryIcon(dailyData.wetFood, '건식 실타냥', '건식 쪼오금',
                         '건식 적당히', '건식 왕창!'),
                   if (dailyData.water != -1)
-                    MultiDiaryIcon(dailyData.water, 'tbd', '물 실타냥', '사알짝 할짝',
-                        '하알짝 할짝', '물먹는 하마'),
+                    MultiDiaryIcon(
+                        dailyData.water, '물 실타냥', '사알짝 할짝', '하알짝 할짝', '물먹는 하마'),
                   if (dailyData.waterySnack) BoolDiaryIcon('츄르'),
                   if (dailyData.drySnack) BoolDiaryIcon('트릿'),
                   if (dailyData.snack) BoolDiaryIcon('습식'),
                   if (dailyData.otherSnack) BoolDiaryIcon('기타'),
                   if (dailyData.poo != -1)
-                    MultiDiaryIcon(
-                        dailyData.poo, 'tbd', '변비냥', '반토막', '한토막', '한움큼'),
+                    MultiDiaryIcon(dailyData.poo, '변비냥', '반토막', '한토막', '한움큼'),
                   if (dailyData.pee != -1)
-                    MultiDiaryIcon(
-                        dailyData.pee, 'tbd', '으잉?', '알감자', '감자', '왕감자'),
+                    MultiDiaryIcon(dailyData.pee, '으잉?', '알감자', '감자', '왕감자'),
                   if (dailyData.hairBall) BoolDiaryIcon('헤어볼'),
                   if (dailyData.diarrhea) BoolDiaryIcon('설사'),
                   if (dailyData.vomit) BoolDiaryIcon('토켁켁'),

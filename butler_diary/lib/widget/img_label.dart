@@ -13,6 +13,9 @@ class ImgLabel extends StatelessWidget {
       String fileName = '';
 
       switch (label) {
+        case '뭘보냥':
+          fileName = 'wetf';
+          break;
         case '습식 실타냥':
           fileName = 'wetf';
           break;

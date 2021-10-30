@@ -18,6 +18,7 @@ class DiaryEditScr extends StatefulWidget {
 class _DiaryEditScrState extends State<DiaryEditScr> {
   final _note = TextEditingController();
   String date = '';
+  double feel = -1;
   double dryFood = -1;
   double wetFood = -1;
   double water = -1;
@@ -50,6 +51,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
     if (!hasChanged) return;
     final Diary newDiary = Diary(
       date: date,
+      feel: feel,
       dryFood: dryFood,
       wetFood: wetFood,
       water: water,
@@ -94,6 +96,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
       return;
     } else {
       setState(() {
+        feel = dailyData.feel;
         dryFood = dailyData.dryFood;
         wetFood = dailyData.wetFood;
         water = dailyData.water;
@@ -194,6 +197,9 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
     hasChanged = true;
     setState(() {
       switch (name) {
+        case '뭘보냥':
+          feel = value;
+          break;
         case '습식 실타냥':
           wetFood = value;
           break;
@@ -319,6 +325,12 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
           margin: EdgeInsets.symmetric(horizontal: 40),
           child: ListView(
             children: [
+              Text(
+                '주인님 컨디션',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
+              MultipleChoice('뭘보냥', '나쁘냥', '구냥', '죠타냥', feel, doubleSetState),
+              SizedBox(height: 30),
               Text(
                 '주인님 식사',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
