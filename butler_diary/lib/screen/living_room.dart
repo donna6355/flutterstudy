@@ -80,9 +80,12 @@ class LivingRoom extends StatelessWidget {
                               color: Colors.white,
                             ),
                             margin: EdgeInsets.fromLTRB(50, 70, 50, 20),
-                            child: Image.asset('asset/img/box1.png'),
+                            child: Image.asset('asset/img/pickme.png'),
                           ),
-                          Text('너 오늘부터 내 집사다옹!'),
+                          Text(
+                            '너 오늘부터 내 집사해라옹!',
+                            style: TextStyle(fontSize: 22),
+                          ),
                           SizedBox(height: 20),
                           ElevatedButton(
                             onPressed: () {

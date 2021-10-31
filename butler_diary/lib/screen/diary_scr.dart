@@ -25,6 +25,23 @@ class DiaryScr extends StatelessWidget {
           body: ValueListenableBuilder<Box>(
             valueListenable: Hive.box('diary_${masterInfo.id}').listenable(),
             builder: (context, box, widget) {
+              if (box.length == 0)
+                return Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                      ),
+                      margin: EdgeInsets.fromLTRB(50, 70, 50, 40),
+                      child: Image.asset('asset/img/ontop.png'),
+                    ),
+                    Text(
+                      '매일매일 이 몸을 잘 관찰하고 기록해라옹!',
+                      style: TextStyle(fontSize: 22),
+                    ),
+                  ],
+                );
               return ListView.builder(
                 reverse: true,
                 shrinkWrap: true,

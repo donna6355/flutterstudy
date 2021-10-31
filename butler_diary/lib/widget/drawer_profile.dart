@@ -29,6 +29,14 @@ class DrawerProfile extends StatelessWidget {
             child: ValueListenableBuilder<Box>(
                 valueListenable: Hive.box('myCats').listenable(),
                 builder: (context, box, widget) {
+                  if (box.length == 0)
+                    return Column(
+                      children: [
+                        Image.asset('asset/img/drawer.png'), // need to change
+                        Text('나만 고양이 없어....'),
+                        Text('주인님이 입양이 시급합니다.'),
+                      ],
+                    );
                   return ListView.builder(
                     itemBuilder: (context, idx) {
                       final Profile profile = box.getAt(idx);
