@@ -40,7 +40,7 @@ class ProfileCard extends StatelessWidget {
               margin: EdgeInsets.only(right: 20),
               child: Center(
                   child: Image.asset(
-                      'asset/img/${profile.photo}${new Random().nextInt(4)}.png')),
+                      'asset/img/${profile.photo}${new Random().nextInt(5)}.png')),
               width: MediaQuery.of(context).size.width / 2,
               // decoration: BoxDecoration(
               //   border: Border(
