@@ -118,12 +118,16 @@ class DrawerProfile extends StatelessWidget {
                   );
                 }),
           ),
+          // TextButton(
+          //   onPressed: () {},
+          //   child: Text('이용 안내'),
+          // ),
           TextButton(
-            onPressed: () {},
-            child: Text('이용 안내'),
-          ),
-          TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(
+                '/message',
+              );
+            },
             child: Text('개발자 메시지'),
           ),
         ],

@@ -12,6 +12,7 @@ import './screen/living_room.dart';
 import './screen/diary_scr.dart';
 import './screen/diary_edit_scr.dart';
 import './screen/profile_scr.dart';
+import './screen/message.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,6 +61,11 @@ class MyApp extends StatelessWidget {
         switch (settings.name) {
           case "/":
             return MaterialPageRoute(builder: (context) => LivingRoom());
+          case "/message":
+            return MaterialPageRoute(
+              builder: (context) => Message(),
+              fullscreenDialog: true,
+            );
           case "/diary":
             final args = settings.arguments as Profile;
             return MaterialPageRoute(
