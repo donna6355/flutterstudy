@@ -345,6 +345,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                   if (birth != null) Text(ageCalc(birth!)),
                   IconButton(
                     onPressed: () {
+                      //https://medium.com/flutter-community/a-deep-dive-into-datepicker-in-flutter-37e84f7d8d6c
                       showDatePicker(
                         context: context,
                         helpText: '주인님 생일 선택',

@@ -31,13 +31,13 @@ class DiaryScr extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.white,
+                        // color: Colors.white,
                       ),
                       margin: EdgeInsets.fromLTRB(50, 70, 50, 40),
                       child: Image.asset('asset/img/ontop.png'),
                     ),
                     Text(
-                      '매일매일 이 몸을 잘 관찰하고 기록해라옹!',
+                      '이 몸을 관찰하고 기록해라옹!',
                       style: TextStyle(fontSize: 22),
                     ),
                   ],

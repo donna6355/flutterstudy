@@ -77,7 +77,7 @@ class LivingRoom extends StatelessWidget {
                           Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
+                              // color: Colors.white,
                             ),
                             margin: EdgeInsets.fromLTRB(50, 70, 50, 20),
                             child: Image.asset('asset/img/pickme.png'),
