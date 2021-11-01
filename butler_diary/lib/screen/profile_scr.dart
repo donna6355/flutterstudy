@@ -156,7 +156,7 @@ class _ProfileScrState extends State<ProfileScr> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: 50,
+                    width: 55,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -182,7 +182,7 @@ class _ProfileScrState extends State<ProfileScr> {
                     ),
                   ),
                   Container(
-                    width: 50,
+                    width: 55,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -208,7 +208,7 @@ class _ProfileScrState extends State<ProfileScr> {
                     ),
                   ),
                   Container(
-                    width: 50,
+                    width: 55,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -234,7 +234,7 @@ class _ProfileScrState extends State<ProfileScr> {
                     ),
                   ),
                   Container(
-                    width: 50,
+                    width: 55,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -260,7 +260,7 @@ class _ProfileScrState extends State<ProfileScr> {
                     ),
                   ),
                   Container(
-                    width: 50,
+                    width: 55,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),

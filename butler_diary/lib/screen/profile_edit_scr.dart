@@ -118,7 +118,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: 50,
+                    width: 55,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -143,7 +143,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                     ),
                   ),
                   Container(
-                    width: 50,
+                    width: 55,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -168,7 +168,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                     ),
                   ),
                   Container(
-                    width: 50,
+                    width: 55,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -193,7 +193,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                     ),
                   ),
                   Container(
-                    width: 50,
+                    width: 55,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -218,7 +218,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                     ),
                   ),
                   Container(
-                    width: 50,
+                    width: 55,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -347,6 +347,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                     onPressed: () {
                       showDatePicker(
                         context: context,
+                        helpText: '주인님 생일 선택',
                         initialDate: DateTime.now(),
                         firstDate: DateTime(1900),
                         lastDate: DateTime.now(),
