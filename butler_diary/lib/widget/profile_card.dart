@@ -32,6 +32,7 @@ class ProfileCard extends StatelessWidget {
       },
       child: Container(
         margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
+        padding: EdgeInsets.all(5),
         height: 200,
         alignment: Alignment.center,
         child: Row(
@@ -48,28 +49,39 @@ class ProfileCard extends StatelessWidget {
               //   ),
               // ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 20),
-                Text(
-                  profile.name,
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 10),
+                  Text(
+                    profile.name,
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                SizedBox(height: 20),
-                Text(profile.gender == 1 ? '남자아이' : '여자아이'),
-                SizedBox(height: 5),
-                Text(
-                    '${profile.birth.year}년 ${profile.birth.month}월 ${profile.birth.day}일'),
-                Text(
-                  ageCalc(profile.birth),
-                ),
-                SizedBox(height: 5),
-                if (profile.weight != null) Text('${profile.weight}kg'),
-              ],
+                  SizedBox(height: 10),
+                  Text(profile.gender == 1 ? '남자아이' : '여자아이'),
+                  SizedBox(height: 5),
+                  Text(
+                      '${profile.birth.year}년 ${profile.birth.month}월 ${profile.birth.day}일'),
+                  Text(
+                    ageCalc(profile.birth),
+                  ),
+                  SizedBox(height: 5),
+                  if (profile.weight != null) Text('${profile.weight}kg'),
+                  SizedBox(height: 5),
+                  if (profile.remark != null)
+                    Text(
+                      profile.remark!,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
+                    ),
+                ],
+              ),
             )
           ],
         ),
