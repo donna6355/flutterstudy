@@ -34,7 +34,7 @@ class DiaryScr extends StatelessWidget {
                         // color: Colors.white,
                       ),
                       margin: EdgeInsets.fromLTRB(50, 70, 50, 40),
-                      child: Image.asset('asset/img/ontop.png'),
+                      child: Image.asset('asset/img/adorable.png'),
                     ),
                     Text(
                       '이 몸을 관찰하고 기록해라옹!',
