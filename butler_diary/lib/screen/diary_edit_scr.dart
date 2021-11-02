@@ -273,7 +273,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
             '${date.substring(0, 4)}년 ${date.substring(5, 7)}월 ${date.substring(8, 10)}일 ${widget.masterInfo['master']} 일기'),
         elevation: 0,
         actions: [
-          IconButton(
+          TextButton(
             onPressed: () {
               showDatePicker(
                 context: context,
@@ -306,7 +306,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                 );
               });
             },
-            icon: Icon(Icons.calendar_today_outlined),
+            child: Text('다른날짜'),
           ),
         ],
       ),

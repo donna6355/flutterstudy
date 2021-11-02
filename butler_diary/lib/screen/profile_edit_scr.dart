@@ -295,13 +295,22 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                           value: 1,
                           groupValue: gender,
                           onChanged: (value) {
+                            FocusScope.of(context).unfocus();
                             setState(() {
                               gender = value as int;
                             });
                           },
                         ),
                       ),
-                      Text('남자아이')
+                      GestureDetector(
+                        onTap: () {
+                          FocusScope.of(context).unfocus();
+                          setState(() {
+                            gender = 1;
+                          });
+                        },
+                        child: Text('남자아이'),
+                      ),
                     ],
                   ),
                   SizedBox(width: 15),
@@ -314,13 +323,22 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                           value: 2,
                           groupValue: gender,
                           onChanged: (value) {
+                            FocusScope.of(context).unfocus();
                             setState(() {
                               gender = value as int;
                             });
                           },
                         ),
                       ),
-                      Text('여자아이')
+                      GestureDetector(
+                        onTap: () {
+                          FocusScope.of(context).unfocus();
+                          setState(() {
+                            gender = 2;
+                          });
+                        },
+                        child: Text('여자아이'),
+                      ),
                     ],
                   ),
                 ],
@@ -345,6 +363,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                   if (birth != null) Text(ageCalc(birth!)),
                   IconButton(
                     onPressed: () {
+                      FocusScope.of(context).unfocus();
                       //https://medium.com/flutter-community/a-deep-dive-into-datepicker-in-flutter-37e84f7d8d6c
                       showDatePicker(
                         context: context,

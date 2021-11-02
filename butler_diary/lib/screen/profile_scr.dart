@@ -119,16 +119,16 @@ class _ProfileScrState extends State<ProfileScr> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('프로필'),
+        title: Text('${widget.profile.name} 프로필'),
         actions: [
-          IconButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).popAndPushNamed(
                 '/diary',
                 arguments: widget.profile,
               );
             },
-            icon: Icon(Icons.calendar_today_outlined),
+            child: Text('다이어리'),
           ),
         ],
       ),
