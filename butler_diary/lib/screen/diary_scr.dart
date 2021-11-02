@@ -21,6 +21,17 @@ class DiaryScr extends StatelessWidget {
           appBar: AppBar(
             elevation: 0,
             title: Text('${masterInfo.name} 다이어리'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).popAndPushNamed(
+                    '/profile',
+                    arguments: masterInfo,
+                  );
+                },
+                child: Text('프로필'),
+              ),
+            ],
           ),
           body: ValueListenableBuilder<Box>(
             valueListenable: Hive.box('diary_${masterInfo.id}').listenable(),

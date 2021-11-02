@@ -40,26 +40,11 @@ class LivingRoom extends StatelessWidget {
         elevation: 0,
         title: Text('집사 다이어리'),
         actions: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 40,
-                height: 40,
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('/profile_edit');
-                  },
-                  icon: Icon(Icons.add),
-                ),
-              ),
-              Text(
-                '냥줍',
-                style: TextStyle(
-                  fontSize: 12,
-                ),
-              ),
-            ],
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed('/profile_edit');
+            },
+            child: Text('냥줍'),
           ),
         ],
       ),
