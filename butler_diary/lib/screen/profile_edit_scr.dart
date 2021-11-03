@@ -375,6 +375,28 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                         builder: (context, child) {
                           return Theme(
                             data: ThemeData.light().copyWith(
+                              textTheme: const TextTheme(
+                                headline4: TextStyle(
+                                  //datepicker 11월 3일 (수)
+                                  fontSize: 24,
+                                  fontFamily: 'GamjaFlower',
+                                ),
+                                subtitle2: TextStyle(
+                                  //datepicker 2021년 11월
+                                  fontFamily: 'GamjaFlower',
+                                ),
+                                caption: TextStyle(
+                                  //datepicker whole calendar
+                                  fontFamily: 'GamjaFlower',
+                                ),
+                                button: TextStyle(
+                                  //datepicker button
+                                  fontFamily: 'GamjaFlower',
+                                ),
+                                overline: TextStyle(
+                                  fontFamily: 'GamjaFlower',
+                                ),
+                              ),
                               colorScheme: ColorScheme.light().copyWith(
                                 primary: Color(0xff454442),
                               ),
