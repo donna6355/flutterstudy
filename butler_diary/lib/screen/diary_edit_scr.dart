@@ -278,7 +278,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
               showDatePicker(
                 context: context,
                 initialDate: DateTime.now(),
-                firstDate: DateTime(1900),
+                firstDate: DateTime(2000),
                 lastDate: DateTime(DateTime.now().year + 1),
                 builder: (context, child) {
                   return Theme(
@@ -303,6 +303,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                         ),
                         overline: TextStyle(
                           fontFamily: 'GamjaFlower',
+                          fontSize: 16,
                         ),
                       ),
                       colorScheme: ColorScheme.light().copyWith(

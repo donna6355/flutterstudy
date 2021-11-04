@@ -395,6 +395,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                                 ),
                                 overline: TextStyle(
                                   fontFamily: 'GamjaFlower',
+                                  fontSize: 16,
                                 ),
                               ),
                               colorScheme: ColorScheme.light().copyWith(

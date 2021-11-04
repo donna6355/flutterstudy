@@ -4,6 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../model/diary.dart';
 import '../model/profile.dart';
 import '../widget/diary_card.dart';
+import '../widget/calendar.dart';
 
 class DiaryScr extends StatelessWidget {
   final Profile masterInfo;
@@ -39,17 +40,14 @@ class DiaryScr extends StatelessWidget {
               if (box.length == 0)
                 return Column(
                   children: [
+                    Calendar(),
                     Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        // color: Colors.white,
-                      ),
-                      margin: EdgeInsets.fromLTRB(50, 70, 50, 40),
+                      width: 200,
                       child: Image.asset('asset/img/adorable.png'),
                     ),
                     Text(
                       '이 몸을 관찰하고 기록해라옹!',
-                      style: TextStyle(fontSize: 22),
+                      style: TextStyle(fontSize: 18),
                     ),
                   ],
                 );
