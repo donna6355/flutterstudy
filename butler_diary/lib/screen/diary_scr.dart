@@ -36,29 +36,31 @@ class DiaryScr extends StatelessWidget {
           ),
           body: ValueListenableBuilder<Box>(
             valueListenable: Hive.box('diary_${masterInfo.id}').listenable(),
-            builder: (context, box, widget) {
-              if (box.length == 0)
-                return Column(
-                  children: [
-                    Calendar(),
+            builder: (context, box, child) {
+              return Column(
+                children: [
+                  Calendar(),
+                  if (box.length == 0)
                     Container(
                       width: 200,
                       child: Image.asset('asset/img/adorable.png'),
                     ),
+                  if (box.length == 0)
                     Text(
                       '이 몸을 관찰하고 기록해라옹!',
                       style: TextStyle(fontSize: 18),
                     ),
-                  ],
-                );
-              return ListView.builder(
-                reverse: true,
-                shrinkWrap: true,
-                itemBuilder: (context, idx) {
-                  final Diary daily = box.getAt(idx);
-                  return DiaryCard(daily, masterInfo.id, masterInfo.name);
-                },
-                itemCount: box.length,
+                  if (box.length > 0)
+                    ListView.builder(
+                      reverse: true,
+                      shrinkWrap: true,
+                      itemBuilder: (context, idx) {
+                        final Diary daily = box.getAt(idx);
+                        return DiaryCard(daily, masterInfo.id, masterInfo.name);
+                      },
+                      itemCount: box.length,
+                    ),
+                ],
               );
             },
           ),

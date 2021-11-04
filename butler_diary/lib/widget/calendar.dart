@@ -52,6 +52,9 @@ class _CalendarState extends State<Calendar> {
           fontWeight: FontWeight.bold,
         ),
       ),
+      // eventLoader: (day) {
+      //   return _getEventsForDay(day);
+      // },
       headerStyle: HeaderStyle(
         titleCentered: true,
         formatButtonVisible: false,
