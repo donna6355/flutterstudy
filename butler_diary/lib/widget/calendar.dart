@@ -23,6 +23,13 @@ class _CalendarState extends State<Calendar> {
     return _events[day.toString().substring(0, 10)] ?? [];
   }
 
+  bool _checkDate(DateTime date) {
+    if (date == _selected) return true;
+    if (date.toString().substring(0, 10) ==
+        _selected.toString().substring(0, 10)) return true;
+    return false;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -74,6 +81,20 @@ class _CalendarState extends State<Calendar> {
           headerStyle: HeaderStyle(
             titleCentered: true,
             formatButtonVisible: false,
+          ),
+          calendarBuilders: CalendarBuilders(
+            markerBuilder: (context, date, events) {
+              if (events.isNotEmpty)
+                return _checkDate(date)
+                    ? Opacity(
+                        opacity: 0.5,
+                        child: Image.asset('asset/icon/graydone.png'),
+                      )
+                    : Opacity(
+                        opacity: 0.5,
+                        child: Image.asset('asset/icon/done.png'),
+                      );
+            },
           ),
         ),
         TextButton(

@@ -37,7 +37,7 @@ class DiaryScr extends StatelessWidget {
           body: ValueListenableBuilder<Box>(
             valueListenable: Hive.box('diary_${masterInfo.id}').listenable(),
             builder: (context, box, child) {
-              final List writtenStringDates = box.keys.toList();
+              List writtenStringDates = box.keys.toList();
               Map<String, List<Diary>> writtenDate = {};
               writtenStringDates
                   .forEach((key) => writtenDate[key] = [box.get(key)]);
