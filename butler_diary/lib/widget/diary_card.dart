@@ -100,8 +100,8 @@ class DiaryCard extends StatelessWidget {
                   children: <Widget>[
                     for (var path in dailyData.photos)
                       Container(
-                        width: 80,
-                        height: 50,
+                        width: 54,
+                        height: 54,
                         margin: EdgeInsets.only(right: 10),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),

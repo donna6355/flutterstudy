@@ -511,7 +511,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                               child: Image.file(
                                 File(path),
                                 fit: BoxFit.cover,
-                                width: double.infinity,
+                                width: 200,
                               ),
                             ),
                           ),
