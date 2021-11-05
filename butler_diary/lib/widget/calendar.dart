@@ -58,6 +58,7 @@ class _CalendarState extends State<Calendar> {
           // eventLoader: (day) {
           //   return _getEventsForDay(day);
           // },
+          daysOfWeekHeight: 20,
           headerStyle: HeaderStyle(
             titleCentered: true,
             formatButtonVisible: false,
