@@ -43,7 +43,7 @@ class MultiDiaryIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 60,
-      height: 70,
+      height: 75,
       margin: EdgeInsets.only(
         right: 5,
         bottom: 5,
@@ -64,28 +64,28 @@ class MultiDiaryIcon extends StatelessWidget {
             Text(
               label1,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 13,
               ),
             ),
           if (value == 1)
             Text(
               label2,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 13,
               ),
             ),
           if (value == 2)
             Text(
               label3,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 13,
               ),
             ),
           if (value == 3)
             Text(
               label4,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 13,
               ),
             ),
         ],

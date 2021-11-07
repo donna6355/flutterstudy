@@ -64,7 +64,7 @@ class ImgLabel extends StatelessWidget {
           Text(
             choice,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 13,
               color: choiceVal == idx ? Color(0xff454442) : Color(0xff73726e),
             ),
           ),

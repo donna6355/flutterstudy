@@ -75,7 +75,7 @@ class BoolDiaryIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 60,
-      height: 70,
+      height: 75,
       margin: EdgeInsets.only(
         right: 5,
         bottom: 5,
@@ -95,7 +95,7 @@ class BoolDiaryIcon extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 13,
             ),
           )
         ],
