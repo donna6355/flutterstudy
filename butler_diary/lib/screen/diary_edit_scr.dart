@@ -481,11 +481,17 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                 '눈물의 집사 일기',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
+              SizedBox(height: 5),
               TextField(
+                cursorColor: Color(0xff454442),
                 onChanged: togglesetState,
                 controller: _note,
+                maxLines: 3,
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
                   hintText: 'ex) 충전기 씹어드심ㅠ',
+                  border: InputBorder.none,
                 ),
               ),
               SizedBox(height: 30),
