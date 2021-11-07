@@ -3,7 +3,6 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../model/diary.dart';
 import '../model/profile.dart';
-import '../widget/diary_card.dart';
 import '../widget/calendar.dart';
 
 class DiaryScr extends StatelessWidget {

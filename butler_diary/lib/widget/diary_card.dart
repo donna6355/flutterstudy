@@ -66,11 +66,11 @@ class DiaryCard extends StatelessWidget {
                     children: [
                       Text('드신것'),
                       SizedBox(width: 5),
-                      if (dailyData.dryFood != -1)
-                        MultiDiaryIcon(dailyData.dryFood, '습식 실타냥', '습식 쪼오금',
-                            '습식 적당히', '습식 왕창!'),
                       if (dailyData.wetFood != -1)
-                        MultiDiaryIcon(dailyData.wetFood, '건식 실타냥', '건식 쪼오금',
+                        MultiDiaryIcon(dailyData.wetFood, '습식 실타냥', '습식 쪼오금',
+                            '습식 적당히', '습식 왕창!'),
+                      if (dailyData.dryFood != -1)
+                        MultiDiaryIcon(dailyData.dryFood, '건식 실타냥', '건식 쪼오금',
                             '건식 적당히', '건식 왕창!'),
                       if (dailyData.water != -1)
                         MultiDiaryIcon(dailyData.water, '물 실타냥', '사알짝 할짝',

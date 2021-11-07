@@ -7,6 +7,9 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/my-selected-date.dart';
 
 import './screen/profile_edit_scr.dart';
 import './screen/living_room.dart';
@@ -30,104 +33,76 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Butler's Diary",
-      theme: ThemeData(
-        snackBarTheme: SnackBarThemeData(
-          contentTextStyle: TextStyle(fontFamily: "GamjaFlower"),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(
-              Color(0xff454442),
+    return ChangeNotifierProvider(
+      create: (_) => MySelectedDate(),
+      child: MaterialApp(
+        title: "Butler's Diary",
+        theme: ThemeData(
+          snackBarTheme: SnackBarThemeData(
+            contentTextStyle: TextStyle(fontFamily: "GamjaFlower"),
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                Color(0xff454442),
+              ),
+            ),
+          ),
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              primary: Color(0xff454442),
+            ),
+          ),
+          fontFamily: 'GamjaFlower',
+          primaryColor: Color(0xffE5E4DB),
+          scaffoldBackgroundColor: Color(0xffE5E4DB),
+          textTheme: const TextTheme(
+            bodyText2: TextStyle(
+              color: Color(0xff454442),
+              fontSize: 16,
             ),
           ),
         ),
-        textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
-            primary: Color(0xff454442),
-          ),
-        ),
-        fontFamily: 'GamjaFlower',
-        primaryColor: Color(0xffE5E4DB),
-        scaffoldBackgroundColor: Color(0xffE5E4DB),
-        textTheme: const TextTheme(
-          bodyText2: TextStyle(
-            color: Color(0xff454442),
-            fontSize: 16,
-          ),
-        ),
-      ),
-      onGenerateRoute: (RouteSettings settings) {
-        switch (settings.name) {
-          case "/":
-            return MaterialPageRoute(builder: (context) => LivingRoom());
-          case "/message":
-            return MaterialPageRoute(
-              builder: (context) => Message(),
-              fullscreenDialog: true,
-            );
-          case "/diary":
-            final args = settings.arguments as Profile;
-            return MaterialPageRoute(
-              builder: (context) => DiaryScr(args),
-            );
-          case "/diary_edit":
-            final args = settings.arguments as Map<String, dynamic>;
-            return MaterialPageRoute(
-              builder: (context) => DiaryEditScr(args),
-              fullscreenDialog: true,
-            );
-          case "/profile":
-            final args = settings.arguments as Profile;
-            return MaterialPageRoute(
-              builder: (context) => ProfileScr(args),
-              fullscreenDialog: true,
-            );
-          case "/profile_edit":
-            return MaterialPageRoute(
-              builder: (context) => ProfileEditScr(),
-              fullscreenDialog: true,
-            );
-        }
-      },
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [
-        const Locale('ko', 'KR'),
-      ],
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Text(
-          '집사 다이어리',
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            Text('냥님1'),
-            Text('냥님2'),
-            Text('냥님3'),
-            Text('이용 안내'),
-            Text('개발자 메시지'),
-          ],
-        ),
-      ),
-      body: Center(
-        child: Text('Text'),
+        onGenerateRoute: (RouteSettings settings) {
+          switch (settings.name) {
+            case "/":
+              return MaterialPageRoute(builder: (context) => LivingRoom());
+            case "/message":
+              return MaterialPageRoute(
+                builder: (context) => Message(),
+                fullscreenDialog: true,
+              );
+            case "/diary":
+              final args = settings.arguments as Profile;
+              return MaterialPageRoute(
+                builder: (context) => DiaryScr(args),
+              );
+            case "/diary_edit":
+              final args = settings.arguments as Map<String, dynamic>;
+              return MaterialPageRoute(
+                builder: (context) => DiaryEditScr(args),
+                fullscreenDialog: true,
+              );
+            case "/profile":
+              final args = settings.arguments as Profile;
+              return MaterialPageRoute(
+                builder: (context) => ProfileScr(args),
+                fullscreenDialog: true,
+              );
+            case "/profile_edit":
+              return MaterialPageRoute(
+                builder: (context) => ProfileEditScr(),
+                fullscreenDialog: true,
+              );
+          }
+        },
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: [
+          const Locale('ko', 'KR'),
+        ],
       ),
     );
   }
