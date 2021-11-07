@@ -261,12 +261,17 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                   Container(
                     width: 200,
                     child: TextField(
+                      cursorColor: Color(0xff454442),
                       controller: _nameCont,
                       maxLength: 6,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
                         hintText: 'ex) 김미르',
                         counterText: '',
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Color(0xff454442), width: 2.0),
+                        ),
                       ),
                     ),
                   ),
@@ -441,12 +446,17 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                   Container(
                     width: 80,
                     child: TextField(
+                      cursorColor: Color(0xff454442),
                       controller: _weightCont,
                       textAlign: TextAlign.center,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         hintStyle: TextStyle(),
                         hintText: 'ex) 5.1',
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Color(0xff454442), width: 2.0),
+                        ),
                       ),
                     ),
                   ),
@@ -471,12 +481,17 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                 ),
               ),
               TextField(
+                cursorColor: Color(0xff454442),
                 controller: _remarksCont,
                 maxLines: 2,
                 maxLength: 100,
                 decoration: InputDecoration(
                   hintText: 'ex) 땅콩 털림',
                   counterText: '',
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color(0xff454442), width: 2.0),
+                  ),
                 ),
               ),
               SizedBox(

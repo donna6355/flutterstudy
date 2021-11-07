@@ -353,6 +353,7 @@ class _ProfileScrState extends State<ProfileScr> {
                   Container(
                     width: 80,
                     child: TextField(
+                      cursorColor: Color(0xff454442),
                       onChanged: (_) {
                         _hasChanged();
                       },
@@ -362,6 +363,10 @@ class _ProfileScrState extends State<ProfileScr> {
                       decoration: InputDecoration(
                         hintStyle: TextStyle(),
                         hintText: 'ex) 5.1',
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Color(0xff454442), width: 2.0),
+                        ),
                       ),
                     ),
                   ),
@@ -386,6 +391,7 @@ class _ProfileScrState extends State<ProfileScr> {
                 ),
               ),
               TextField(
+                cursorColor: Color(0xff454442),
                 onChanged: (_) {
                   _hasChanged();
                 },
@@ -395,6 +401,10 @@ class _ProfileScrState extends State<ProfileScr> {
                 decoration: InputDecoration(
                   hintText: 'ex) 땅콩 털림',
                   counterText: '',
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color(0xff454442), width: 2.0),
+                  ),
                 ),
               ),
               SizedBox(
