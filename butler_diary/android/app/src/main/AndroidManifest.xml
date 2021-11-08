@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.butler_diary">
+    package="com.donna6355.butler_diary">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="butler_diary"
+        android:label="집사다이어리"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
