@@ -24,6 +24,11 @@ class MySelectedDate extends ChangeNotifier {
     notifyListeners();
   }
 
+  void resetFormat() {
+    _calendarFormat = CalendarFormat.week;
+    notifyListeners();
+  }
+
   void updateFormat() {
     if (_calendarFormat == CalendarFormat.week)
       _calendarFormat = CalendarFormat.month;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../model/profile.dart';
 import 'dart:math';
+import 'package:provider/provider.dart';
+import '../provider/my-selected-date.dart';
 
 class ProfileCard extends StatelessWidget {
   final Profile profile;
@@ -25,10 +27,16 @@ class ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        Provider.of<MySelectedDate>(context, listen: false).updateSelectedDate(
+          DateTime.now(),
+          DateTime.now(),
+        );
+        Provider.of<MySelectedDate>(context, listen: false).resetFormat();
         Navigator.of(context).pushNamed(
           '/diary',
           arguments: profile,
         );
+        // gotta reset provider in now and week
       },
       child: Container(
         margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
