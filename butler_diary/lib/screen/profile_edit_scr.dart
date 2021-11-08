@@ -101,6 +101,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
         child: Container(
           padding: EdgeInsets.fromLTRB(40, 10, 40, 0),
           child: ListView(
+            physics: BouncingScrollPhysics(),
             children: [
               Center(
                 child: ClipRRect(

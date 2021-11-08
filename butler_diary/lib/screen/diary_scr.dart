@@ -41,6 +41,7 @@ class DiaryScr extends StatelessWidget {
               writtenStringDates
                   .forEach((key) => writtenDate[key] = [box.get(key)]);
               return ListView(
+                physics: BouncingScrollPhysics(),
                 children: [
                   Calendar(writtenDate, masterInfo.id, masterInfo.name),
                 ],

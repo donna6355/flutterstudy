@@ -43,6 +43,7 @@ class DrawerProfile extends StatelessWidget {
                       ],
                     );
                   return ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     itemBuilder: (context, idx) {
                       final Profile profile = box.getAt(idx);
 

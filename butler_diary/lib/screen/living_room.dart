@@ -81,6 +81,7 @@ class LivingRoom extends StatelessWidget {
                         ],
                       );
                     return ListView.builder(
+                        physics: BouncingScrollPhysics(),
                         itemCount: box.length,
                         itemBuilder: (BuildContext ctx, idx) {
                           final Profile profile = box.getAt(idx);

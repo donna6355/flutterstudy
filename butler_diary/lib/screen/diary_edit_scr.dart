@@ -347,6 +347,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 40),
           child: ListView(
+            physics: BouncingScrollPhysics(),
             children: [
               Text(
                 '주인님 컨디션',
