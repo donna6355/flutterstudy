@@ -2,7 +2,7 @@
     package="com.donna6355.butler_diary">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="집사다이어리"
+        android:label="집사 일기"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
