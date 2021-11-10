@@ -45,6 +45,12 @@ dev_dependencies:
   hive_generator: ^1.1.1
   build_runner:
   flutter_launcher_icons: ^0.9.2
+  flutter_native_splash: ^1.2.3
+
+flutter_native_splash:
+  android: true
+  color: "#E5E4DB"
+  image: "asset/dev_icon/splash.png"
 
 flutter_icons:
   android: true
