@@ -175,7 +175,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: 55,
+                    width: 57,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -200,7 +200,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                     ),
                   ),
                   Container(
-                    width: 55,
+                    width: 57,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -225,7 +225,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                     ),
                   ),
                   Container(
-                    width: 55,
+                    width: 57,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -250,7 +250,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                     ),
                   ),
                   Container(
-                    width: 55,
+                    width: 57,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -275,7 +275,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                     ),
                   ),
                   Container(
-                    width: 55,
+                    width: 57,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -315,8 +315,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                     ),
                     width: 60,
                   ),
-                  Container(
-                    width: 200,
+                  Expanded(
                     child: TextField(
                       cursorColor: Color(0xff454442),
                       controller: _nameCont,
