@@ -65,6 +65,7 @@ class _ProfileScrState extends State<ProfileScr> {
         return AlertDialog(
           title: Text('${widget.profile.name} 프로필 지우기'),
           content: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: ListBody(
               children: const <Widget>[
                 Text('프로필을 삭제한다옹!'),

@@ -31,6 +31,7 @@ class DrawerProfile extends StatelessWidget {
                 builder: (context, box, widget) {
                   if (box.length == 0)
                     return SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
                       child: Column(
                         children: [
                           Container(

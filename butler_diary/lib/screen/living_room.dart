@@ -58,6 +58,7 @@ class LivingRoom extends StatelessWidget {
                     // final List keys = box.keys.toList();
                     if (box.length == 0)
                       return SingleChildScrollView(
+                        physics: BouncingScrollPhysics(),
                         child: Column(
                           children: [
                             Container(
