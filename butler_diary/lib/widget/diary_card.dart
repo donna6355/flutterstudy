@@ -22,12 +22,21 @@ class DiaryCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                child: Text(
-                  '☼ ${dailyData.date.substring(0, 4)}년 ${dailyData.date.substring(5, 7)}월 ${dailyData.date.substring(8, 10)}일 ',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                  ),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'asset/icon/done.png',
+                      width: 35,
+                      height: 35,
+                    ),
+                    Text(
+                      '${dailyData.date.substring(0, 4)}년 ${dailyData.date.substring(5, 7)}월 ${dailyData.date.substring(8, 10)}일 ',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               TextButton(
