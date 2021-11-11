@@ -95,7 +95,10 @@ class ProfileCard extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           color: Colors.white,
-          border: Border.all(color: Color(0xff454442)),
+          border: Border.all(
+            color: Color(0xff454442),
+            width: 0.5,
+          ),
           borderRadius: BorderRadius.all(
             Radius.circular(10),
           ),
