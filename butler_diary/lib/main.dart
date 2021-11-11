@@ -107,3 +107,8 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+// to run dart devtools
+// flutter run --observatory-port=9200
+// http://127.0.0.1:9200/owzPdcFa1uk=/
