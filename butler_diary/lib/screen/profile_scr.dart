@@ -301,7 +301,12 @@ class _ProfileScrState extends State<ProfileScr> {
                     ),
                     width: 60,
                   ),
-                  Text(widget.profile.name),
+                  Text(
+                    widget.profile.name,
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
                 ],
               ),
               SizedBox(height: 15),
@@ -318,7 +323,11 @@ class _ProfileScrState extends State<ProfileScr> {
                     width: 60,
                   ),
                   Text(
-                      '${widget.profile.birth.year}년 ${widget.profile.birth.month}월 ${widget.profile.birth.day}일${ageCalc(widget.profile.birth)}'),
+                    '${widget.profile.birth.year}년 ${widget.profile.birth.month}월 ${widget.profile.birth.day}일${ageCalc(widget.profile.birth)}',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
                 ],
               ),
               SizedBox(height: 15),
@@ -334,7 +343,12 @@ class _ProfileScrState extends State<ProfileScr> {
                     ),
                     width: 60,
                   ),
-                  Text(widget.profile.gender == 1 ? '남자아이' : '여자아이'),
+                  Text(
+                    widget.profile.gender == 1 ? '남자아이' : '여자아이',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
                 ],
               ),
               SizedBox(height: 10),
