@@ -45,6 +45,62 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
     return years > 0 ? ' / $years년 $months개월' : ' / $months개월';
   }
 
+  void showCalendar() {
+    FocusScope.of(context).unfocus();
+    //https://medium.com/flutter-community/a-deep-dive-into-datepicker-in-flutter-37e84f7d8d6c
+    showDatePicker(
+      context: context,
+      helpText: '주인님 생일 선택',
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+      initialDatePickerMode: DatePickerMode.year,
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            textTheme: const TextTheme(
+              headline4: TextStyle(
+                //datepicker 11월 3일 (수)
+                fontSize: 24,
+                fontFamily: 'GamjaFlower',
+              ),
+              subtitle2: TextStyle(
+                //datepicker 2021년 11월
+                fontFamily: 'GamjaFlower',
+              ),
+              caption: TextStyle(
+                //datepicker whole calendar
+                fontFamily: 'GamjaFlower',
+              ),
+              button: TextStyle(
+                //datepicker button
+                fontFamily: 'GamjaFlower',
+              ),
+              overline: TextStyle(
+                fontFamily: 'GamjaFlower',
+                fontSize: 16,
+              ),
+            ),
+            colorScheme: ColorScheme.light().copyWith(
+              primary: Color(0xff454442),
+            ),
+          ), // This will change to light theme.
+          child: child!,
+        );
+      },
+    ).then((pickedDate) {
+      // Check if no date is selected
+      if (pickedDate == null) {
+        return;
+      }
+
+      setState(() {
+        // using state so that the UI will be rerendered when date is picked
+        birth = pickedDate;
+      });
+    });
+  }
+
   void _saveProfile() {
     if (_nameCont.text.isEmpty) {
       ScaffoldMessenger.of(context)
@@ -363,66 +419,15 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                     ),
                     width: 60,
                   ),
-                  Text(birth == null
-                      ? 'XXXX년 XX월 XX일'
-                      : '${birth!.year}년 ${birth!.month}월 ${birth!.day}일'),
+                  GestureDetector(
+                    onTap: showCalendar,
+                    child: Text(birth == null
+                        ? 'XXXX년 XX월 XX일'
+                        : '${birth!.year}년 ${birth!.month}월 ${birth!.day}일'),
+                  ),
                   if (birth != null) Text(ageCalc(birth!)),
                   IconButton(
-                    onPressed: () {
-                      FocusScope.of(context).unfocus();
-                      //https://medium.com/flutter-community/a-deep-dive-into-datepicker-in-flutter-37e84f7d8d6c
-                      showDatePicker(
-                        context: context,
-                        helpText: '주인님 생일 선택',
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(1900),
-                        lastDate: DateTime.now(),
-                        initialDatePickerMode: DatePickerMode.year,
-                        builder: (context, child) {
-                          return Theme(
-                            data: ThemeData.light().copyWith(
-                              textTheme: const TextTheme(
-                                headline4: TextStyle(
-                                  //datepicker 11월 3일 (수)
-                                  fontSize: 24,
-                                  fontFamily: 'GamjaFlower',
-                                ),
-                                subtitle2: TextStyle(
-                                  //datepicker 2021년 11월
-                                  fontFamily: 'GamjaFlower',
-                                ),
-                                caption: TextStyle(
-                                  //datepicker whole calendar
-                                  fontFamily: 'GamjaFlower',
-                                ),
-                                button: TextStyle(
-                                  //datepicker button
-                                  fontFamily: 'GamjaFlower',
-                                ),
-                                overline: TextStyle(
-                                  fontFamily: 'GamjaFlower',
-                                  fontSize: 16,
-                                ),
-                              ),
-                              colorScheme: ColorScheme.light().copyWith(
-                                primary: Color(0xff454442),
-                              ),
-                            ), // This will change to light theme.
-                            child: child!,
-                          );
-                        },
-                      ).then((pickedDate) {
-                        // Check if no date is selected
-                        if (pickedDate == null) {
-                          return;
-                        }
-
-                        setState(() {
-                          // using state so that the UI will be rerendered when date is picked
-                          birth = pickedDate;
-                        });
-                      });
-                    },
+                    onPressed: showCalendar,
                     icon: Icon(
                       Icons.calendar_today_outlined,
                       color: Color(0xff454442),
