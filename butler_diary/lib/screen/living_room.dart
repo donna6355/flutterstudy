@@ -9,7 +9,7 @@ import '../model/profile.dart';
 
 class LivingRoom extends StatelessWidget {
   final BannerAd myBanner = BannerAd(
-    adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+    adUnitId: 'ca-app-pub-5356942048071979/5909864936',
     size: AdSize.banner,
     request: AdRequest(),
     listener: BannerAdListener(),
@@ -38,7 +38,7 @@ class LivingRoom extends StatelessWidget {
       drawer: DrawerProfile(),
       appBar: AppBar(
         elevation: 0,
-        title: Text('집사 다이어리'),
+        title: Text('집사 일기'),
         actions: [
           TextButton(
             onPressed: () {

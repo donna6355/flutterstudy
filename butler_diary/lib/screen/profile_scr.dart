@@ -128,7 +128,7 @@ class _ProfileScrState extends State<ProfileScr> {
                 arguments: widget.profile,
               );
             },
-            child: Text('다이어리'),
+            child: Text('일기'),
           ),
         ],
       ),

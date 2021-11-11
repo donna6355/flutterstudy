@@ -20,7 +20,7 @@ class DiaryScr extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             elevation: 0,
-            title: Text('${masterInfo.name} 다이어리'),
+            title: Text('${masterInfo.name} 일기'),
             actions: [
               TextButton(
                 onPressed: () {
