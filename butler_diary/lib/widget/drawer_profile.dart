@@ -30,17 +30,19 @@ class DrawerProfile extends StatelessWidget {
                 valueListenable: Hive.box('myCats').listenable(),
                 builder: (context, box, widget) {
                   if (box.length == 0)
-                    return Column(
-                      children: [
-                        Container(
-                            margin: EdgeInsets.symmetric(vertical: 20),
-                            width: 150,
-                            height: 150,
-                            child: Image.asset(
-                                'asset/img/drawer.png')), // need to change
-                        Text('나만 고양이 없어....'),
-                        Text('주인님이 입양이 시급합니다.'),
-                      ],
+                    return SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Container(
+                              margin: EdgeInsets.symmetric(vertical: 20),
+                              width: 150,
+                              height: 150,
+                              child: Image.asset(
+                                  'asset/img/drawer.png')), // need to change
+                          Text('나만 고양이 없어....'),
+                          Text('주인님이 입양이 시급합니다.'),
+                        ],
+                      ),
                     );
                   return ListView.builder(
                     physics: BouncingScrollPhysics(),
