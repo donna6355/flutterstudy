@@ -49,11 +49,17 @@ class ProfileCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(right: 20),
                     child: Center(
                         child: Image.asset(
                             'asset/img/${profile.photo}${new Random().nextInt(5)}.png')),
                     height: 180,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          width: 0.1,
+                        ),
+                      ),
+                    ),
                   ),
                   SizedBox(height: 10),
                   Text(
