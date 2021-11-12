@@ -36,17 +36,21 @@ class _BackgroundState extends State<Background> {
     return Positioned(
       right: 25,
       bottom: 0,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Container(
-            width: 120,
-            height: 120,
-            child: Image.asset('asset/img/face${new Random().nextInt(4)}.png'),
-            margin: EdgeInsets.only(bottom: 10),
-          ),
-          Text('${commonSense[new Random().nextInt(21)]}'),
-        ],
+      child: Opacity(
+        opacity: 0.7,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(
+              width: 120,
+              height: 120,
+              child:
+                  Image.asset('asset/img/face${new Random().nextInt(4)}.png'),
+              margin: EdgeInsets.only(bottom: 10),
+            ),
+            Text('${commonSense[new Random().nextInt(21)]}'),
+          ],
+        ),
       ),
     );
   }

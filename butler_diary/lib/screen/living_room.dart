@@ -93,7 +93,10 @@ class LivingRoom extends StatelessWidget {
                             itemCount: box.length,
                             itemBuilder: (BuildContext ctx, idx) {
                               final Profile profile = box.getAt(idx);
-                              return ProfileCard(profile);
+                              return ProfileCard(
+                                profile,
+                                box.length < 2 ? true : false,
+                              );
                             }),
                       ],
                     );
