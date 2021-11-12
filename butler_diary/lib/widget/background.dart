@@ -35,7 +35,7 @@ class _BackgroundState extends State<Background> {
   Widget build(BuildContext context) {
     return Positioned(
       right: 25,
-      bottom: 0,
+      bottom: 10,
       child: Opacity(
         opacity: 0.7,
         child: Column(

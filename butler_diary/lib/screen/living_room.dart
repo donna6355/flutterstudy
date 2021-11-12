@@ -114,6 +114,12 @@ class LivingRoom extends StatelessWidget {
                   child: adWidget,
                   width: myBanner.size.width.toDouble(),
                   height: myBanner.size.height.toDouble(),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("asset/img/darkad.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 );
                 return adContainer;
               },
