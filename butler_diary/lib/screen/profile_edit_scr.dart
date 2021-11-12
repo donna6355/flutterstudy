@@ -307,7 +307,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                 children: [
                   Container(
                     child: Text(
-                      '* 이름',
+                      '이름',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
@@ -340,7 +340,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                   Container(
                     width: 45,
                     child: Text(
-                      '* 성별',
+                      '성별',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
@@ -410,7 +410,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                 children: [
                   Container(
                     child: Text(
-                      '* 생일',
+                      '생일',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
@@ -434,22 +434,22 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
-              // SizedBox(height: 30),
-              // Container(
-              //   padding: EdgeInsets.only(bottom: 5),
-              //   decoration: BoxDecoration(
-              //     border: Border(
-              //       bottom: BorderSide(
-              //         width: 0.1,
-              //       ),
-              //     ),
-              //   ),
-              //   child: Text(
-              //     '선택 항목',
-              //     style: TextStyle(fontSize: 14),
-              //   ),
-              // ),
+              // SizedBox(height: 10),
+              SizedBox(height: 30),
+              Container(
+                padding: EdgeInsets.only(bottom: 5),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 0.1,
+                    ),
+                  ),
+                ),
+                child: Text(
+                  '선택 항목',
+                  style: TextStyle(fontSize: 14),
+                ),
+              ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -516,11 +516,6 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
               ),
               SizedBox(
                 height: 40,
-              ),
-              Text(
-                '* 필수 항목을 작성해주세요.',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14),
               ),
               ElevatedButton(
                 onPressed: _saveProfile,
