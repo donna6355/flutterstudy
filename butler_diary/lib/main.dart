@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => MySelectedDate(),
       child: MaterialApp(
-        title: "Butler's Diary",
+        title: "집사 일기",
         theme: ThemeData(
           snackBarTheme: SnackBarThemeData(
             contentTextStyle: TextStyle(fontFamily: "GamjaFlower"),
