@@ -5,6 +5,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../widget/drawer_profile.dart';
 import '../widget/profile_card.dart';
+import '../widget/background.dart';
 import '../model/profile.dart';
 
 class LivingRoom extends StatelessWidget {
@@ -84,13 +85,18 @@ class LivingRoom extends StatelessWidget {
                           ],
                         ),
                       );
-                    return ListView.builder(
-                        physics: BouncingScrollPhysics(),
-                        itemCount: box.length,
-                        itemBuilder: (BuildContext ctx, idx) {
-                          final Profile profile = box.getAt(idx);
-                          return ProfileCard(profile);
-                        });
+                    return Stack(
+                      children: [
+                        Background(),
+                        ListView.builder(
+                            physics: BouncingScrollPhysics(),
+                            itemCount: box.length,
+                            itemBuilder: (BuildContext ctx, idx) {
+                              final Profile profile = box.getAt(idx);
+                              return ProfileCard(profile);
+                            }),
+                      ],
+                    );
                   }),
             ),
             FutureBuilder(
