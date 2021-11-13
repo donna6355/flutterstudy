@@ -145,6 +145,8 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
 
   @override
   Widget build(BuildContext context) {
+    final _isPhone = MediaQuery.of(context).size.shortestSide < 550;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('새 주인님 프로필'),
@@ -164,8 +166,8 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                   borderRadius: BorderRadius.circular(20),
                   child: Container(
                     color: Colors.white,
-                    width: 100,
-                    height: 100,
+                    width: _isPhone ? 100 : 160,
+                    height: _isPhone ? 100 : 160,
                     child: Image.asset('asset/img/${charPhoto}1.png'),
                   ),
                 ),
@@ -313,7 +315,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    width: 60,
+                    width: _isPhone ? 60 : 80,
                   ),
                   Expanded(
                     child: TextField(
@@ -338,7 +340,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    width: 45,
+                    width: _isPhone ? 45 : 65,
                     child: Text(
                       '* 성별',
                       style: TextStyle(
@@ -416,7 +418,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    width: 60,
+                    width: _isPhone ? 60 : 80,
                   ),
                   GestureDetector(
                     onTap: showCalendar,
@@ -435,21 +437,6 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                 ],
               ),
               SizedBox(height: 10),
-              // SizedBox(height: 30),
-              // Container(
-              //   padding: EdgeInsets.only(bottom: 5),
-              //   decoration: BoxDecoration(
-              //     border: Border(
-              //       bottom: BorderSide(
-              //         width: 0.1,
-              //       ),
-              //     ),
-              //   ),
-              //   child: Text(
-              //     '선택 항목',
-              //     style: TextStyle(fontSize: 14),
-              //   ),
-              // ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -461,7 +448,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    width: 60,
+                    width: _isPhone ? 60 : 80,
                   ),
                   Container(
                     width: 80,

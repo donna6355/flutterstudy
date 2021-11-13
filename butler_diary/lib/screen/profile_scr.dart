@@ -117,6 +117,8 @@ class _ProfileScrState extends State<ProfileScr> {
 
   @override
   Widget build(BuildContext context) {
+    final _isPhone = MediaQuery.of(context).size.shortestSide < 550;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -147,8 +149,8 @@ class _ProfileScrState extends State<ProfileScr> {
                   borderRadius: BorderRadius.circular(20),
                   child: Container(
                     color: Colors.white,
-                    width: 100,
-                    height: 100,
+                    width: _isPhone ? 100 : 160,
+                    height: _isPhone ? 100 : 160,
                     child: Image.asset('asset/img/${charPhoto}1.png'),
                   ),
                 ),
@@ -158,7 +160,7 @@ class _ProfileScrState extends State<ProfileScr> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: 55,
+                    width: 57,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -184,7 +186,7 @@ class _ProfileScrState extends State<ProfileScr> {
                     ),
                   ),
                   Container(
-                    width: 55,
+                    width: 57,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -210,7 +212,7 @@ class _ProfileScrState extends State<ProfileScr> {
                     ),
                   ),
                   Container(
-                    width: 55,
+                    width: 57,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -236,7 +238,7 @@ class _ProfileScrState extends State<ProfileScr> {
                     ),
                   ),
                   Container(
-                    width: 55,
+                    width: 57,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -262,7 +264,7 @@ class _ProfileScrState extends State<ProfileScr> {
                     ),
                   ),
                   Container(
-                    width: 55,
+                    width: 57,
                     height: 35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -300,7 +302,7 @@ class _ProfileScrState extends State<ProfileScr> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    width: 60,
+                    width: _isPhone ? 60 : 80,
                   ),
                   Text(
                     widget.profile.name,
@@ -321,7 +323,7 @@ class _ProfileScrState extends State<ProfileScr> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    width: 60,
+                    width: _isPhone ? 60 : 80,
                   ),
                   Text(
                     '${widget.profile.birth.year}년 ${widget.profile.birth.month}월 ${widget.profile.birth.day}일${ageCalc(widget.profile.birth)}',
@@ -342,7 +344,7 @@ class _ProfileScrState extends State<ProfileScr> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    width: 60,
+                    width: _isPhone ? 60 : 80,
                   ),
                   Text(
                     widget.profile.gender == 1 ? '남자아이' : '여자아이',
@@ -364,7 +366,7 @@ class _ProfileScrState extends State<ProfileScr> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    width: 60,
+                    width: _isPhone ? 60 : 80,
                   ),
                   Container(
                     width: 80,

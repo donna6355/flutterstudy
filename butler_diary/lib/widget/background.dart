@@ -43,6 +43,8 @@ class _BackgroundState extends State<Background> {
 
   @override
   Widget build(BuildContext context) {
+    final _isPhone = MediaQuery.of(context).size.shortestSide < 550;
+
     return Positioned(
       right: 25,
       bottom: 10,
@@ -52,8 +54,8 @@ class _BackgroundState extends State<Background> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Container(
-              width: 120,
-              height: 120,
+              width: _isPhone ? 120 : 160,
+              height: _isPhone ? 120 : 160,
               child:
                   Image.asset('asset/img/face${new Random().nextInt(8)}.png'),
               margin: EdgeInsets.only(bottom: 10),
