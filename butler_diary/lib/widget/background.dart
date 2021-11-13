@@ -12,7 +12,7 @@ class _BackgroundState extends State<Background> {
     "나는 단맛을 느끼지 못한다옹!",
     "내 체온은 38.5도이다옹!",
     "나는 좁은 곳에서 안정감을 느낀다옹!",
-    "나는 엄청난 근시이다옹!",
+    "나는 엄청난 근시다옹!",
     "나는 뛰어난 동체시력을 가지고 있다옹!",
     "방묘창, 방묘문은 기본이다옹!",
     "나도 높은데서 떨어지면 다친다옹!",
@@ -29,6 +29,16 @@ class _BackgroundState extends State<Background> {
     "나는 일년 내내 털을 뿜는다옹!",
     "알맞은 사료와 신선한 물을 준비해 줘야한다옹!",
     "나는 스트레스에 매우 민감하다옹!",
+    "나는 영역동물이라 낯선 곳이 싫다옹!",
+    "나도 광견병 주사를 맞아야 된다옹!",
+    "나도 정기적으로 건강검진을 해야한다옹!",
+    "나도 어릴때 이갈이를 한다옹!",
+    "초콜릿은 위험하다옹!",
+    "나의 애창곡은 골골송이다옹!",
+    "나는 귤, 오렌지같은 시트러스 향이 실타옹!",
+    "숨숨집과 스크래처는 많을 수록 좋다옹!",
+    "나는 1살이 되면 으른이다옹!",
+    "나의 평균 수명은 15~20년이다옹!",
   ];
 
   @override
@@ -45,10 +55,10 @@ class _BackgroundState extends State<Background> {
               width: 120,
               height: 120,
               child:
-                  Image.asset('asset/img/face${new Random().nextInt(4)}.png'),
+                  Image.asset('asset/img/face${new Random().nextInt(8)}.png'),
               margin: EdgeInsets.only(bottom: 10),
             ),
-            Text('${commonSense[new Random().nextInt(21)]}'),
+            Text('${commonSense[new Random().nextInt(commonSense.length)]}'),
           ],
         ),
       ),
