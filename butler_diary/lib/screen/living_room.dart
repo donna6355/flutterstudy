@@ -39,13 +39,13 @@ class LivingRoom extends StatelessWidget {
       drawer: DrawerProfile(),
       appBar: AppBar(
         elevation: 0,
-        title: Text('집사 일기'),
+        title: const Text('집사 일기'),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.of(context).pushNamed('/profile_edit');
             },
-            child: Text('냥줍'),
+            child: const Text('냥줍'),
           ),
         ],
       ),

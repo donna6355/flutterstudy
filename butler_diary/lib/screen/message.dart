@@ -6,13 +6,13 @@ class Message extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('개발자 메시지'),
+        title: const Text('개발자 메시지'),
       ),
       body: Stack(
         children: [
           Container(
             padding: EdgeInsets.fromLTRB(40, 10, 40, 150),
-            child: Text(
+            child: const Text(
               '''
 어플 기획의 아이디어를 주신 김미르님께 
 다양한 포즈를 취해주신 김미르님께 

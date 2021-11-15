@@ -83,7 +83,7 @@ class DiaryCard extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('컨디션'),
+                          const Text('컨디션'),
                           SizedBox(width: 5),
                           MultiDiaryIcon(
                               dailyData.feel, '뭘보냥', '나쁘냥', '구냥', '죠타냥'),
@@ -109,7 +109,7 @@ class DiaryCard extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('드신것'),
+                          const Text('드신것'),
                           SizedBox(width: 5),
                           if (dailyData.wetFood != -1)
                             MultiDiaryIcon(dailyData.wetFood, '습식 실타냥',
@@ -159,7 +159,7 @@ class DiaryCard extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('싸신것'),
+                          const Text('싸신것'),
                           SizedBox(width: 5),
                           if (dailyData.poo != -1)
                             MultiDiaryIcon(
@@ -190,7 +190,7 @@ class DiaryCard extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('주의!!'),
+                          const Text('주의!!'),
                           SizedBox(width: 6),
                           if (dailyData.hairBall) BoolDiaryIcon('헤어볼'),
                           if (dailyData.diarrhea) BoolDiaryIcon('설사'),
@@ -219,7 +219,7 @@ class DiaryCard extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('아프냥'),
+                          const Text('아프냥'),
                           SizedBox(width: 5),
                           if (dailyData.vet) BoolDiaryIcon('동물병원'),
                           if (dailyData.vaccine) BoolDiaryIcon('예방접종'),
@@ -248,7 +248,7 @@ class DiaryCard extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('이쁘냥'),
+                          const Text('이쁘냥'),
                           SizedBox(width: 5),
                           if (dailyData.brushTeeth) BoolDiaryIcon('치카'),
                           if (dailyData.brushFur) BoolDiaryIcon('빗질'),
@@ -274,7 +274,7 @@ class DiaryCard extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('건강냥'),
+                          const Text('건강냥'),
                           SizedBox(width: 5),
                           if (dailyData.hunting) BoolDiaryIcon('사냥놀이'),
                           if (dailyData.toilet) BoolDiaryIcon('전체갈이'),
@@ -315,7 +315,7 @@ class DiaryCard extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('증거물'),
+                  const Text('증거물'),
                   SizedBox(width: 8),
                   for (var path in dailyData.photos)
                     Container(

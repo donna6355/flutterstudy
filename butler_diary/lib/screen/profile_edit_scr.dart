@@ -149,7 +149,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('새 주인님 프로필'),
+        title: const Text('새 주인님 프로필'),
         elevation: 0,
       ),
       body: GestureDetector(
@@ -308,7 +308,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    child: Text(
+                    child: const Text(
                       '* 이름',
                       style: TextStyle(
                         fontSize: 18,
@@ -341,7 +341,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                 children: [
                   Container(
                     width: _isPhone ? 45 : 65,
-                    child: Text(
+                    child: const Text(
                       '* 성별',
                       style: TextStyle(
                         fontSize: 18,
@@ -372,7 +372,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                             gender = 1;
                           });
                         },
-                        child: Text('남자아이'),
+                        child: const Text('남자아이'),
                       ),
                     ],
                   ),
@@ -400,7 +400,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                             gender = 2;
                           });
                         },
-                        child: Text('여자아이'),
+                        child: const Text('여자아이'),
                       ),
                     ],
                   ),
@@ -411,7 +411,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    child: Text(
+                    child: const Text(
                       '* 생일',
                       style: TextStyle(
                         fontSize: 18,
@@ -441,7 +441,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    child: Text(
+                    child: const Text(
                       '몸무게',
                       style: TextStyle(
                         fontSize: 18,
@@ -467,7 +467,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
                       ),
                     ),
                   ),
-                  Text(
+                  const Text(
                     'kg',
                     style: TextStyle(
                       fontSize: 18,
@@ -479,7 +479,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
               Container(
                 width: double.infinity,
                 height: 20,
-                child: Text(
+                child: const Text(
                   '기타',
                   style: TextStyle(
                     fontSize: 18,
@@ -504,7 +504,7 @@ class _ProfileEditScrState extends State<ProfileEditScr> {
               SizedBox(
                 height: 40,
               ),
-              Text(
+              const Text(
                 '* 필수 항목을 작성해주세요.',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 14),

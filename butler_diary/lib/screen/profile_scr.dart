@@ -131,7 +131,7 @@ class _ProfileScrState extends State<ProfileScr> {
                 arguments: widget.profile,
               );
             },
-            child: Text('일기'),
+            child: const Text('일기'),
           ),
         ],
       ),
@@ -295,7 +295,7 @@ class _ProfileScrState extends State<ProfileScr> {
               Row(
                 children: [
                   Container(
-                    child: Text(
+                    child: const Text(
                       '이름',
                       style: TextStyle(
                         fontSize: 18,
@@ -316,7 +316,7 @@ class _ProfileScrState extends State<ProfileScr> {
               Row(
                 children: [
                   Container(
-                    child: Text(
+                    child: const Text(
                       '생일',
                       style: TextStyle(
                         fontSize: 18,
@@ -337,7 +337,7 @@ class _ProfileScrState extends State<ProfileScr> {
               Row(
                 children: [
                   Container(
-                    child: Text(
+                    child: const Text(
                       '성별',
                       style: TextStyle(
                         fontSize: 18,
@@ -359,7 +359,7 @@ class _ProfileScrState extends State<ProfileScr> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    child: Text(
+                    child: const Text(
                       '몸무게',
                       style: TextStyle(
                         fontSize: 18,
@@ -388,7 +388,7 @@ class _ProfileScrState extends State<ProfileScr> {
                       ),
                     ),
                   ),
-                  Text(
+                  const Text(
                     'kg',
                     style: TextStyle(
                       fontSize: 18,
@@ -400,7 +400,7 @@ class _ProfileScrState extends State<ProfileScr> {
               Container(
                 width: double.infinity,
                 height: 20,
-                child: Text(
+                child: const Text(
                   '기타',
                   style: TextStyle(
                     fontSize: 18,

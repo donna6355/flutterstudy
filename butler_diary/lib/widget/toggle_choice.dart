@@ -85,10 +85,6 @@ class ToggleChoice extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(children: [
-          // Icon(
-          //   Icons.add,
-          //   color: choiceVal ? Color(0xff454442) : Color(0xffB7B6AF),
-          // ),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),

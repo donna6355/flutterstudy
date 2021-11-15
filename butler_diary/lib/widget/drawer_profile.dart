@@ -18,7 +18,7 @@ class DrawerProfile extends StatelessWidget {
                 left: 10,
               ),
               width: double.infinity,
-              child: Text(
+              child: const Text(
                 '주인님 프로필 수정하기',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -60,8 +60,8 @@ class DrawerProfile extends StatelessWidget {
                               content: SingleChildScrollView(
                                 child: ListBody(
                                   children: const <Widget>[
-                                    Text('프로필을 삭제한다옹!'),
-                                    Text('지워진 데이터는 복구가 불가능하다옹!'),
+                                    const Text('프로필을 삭제한다옹!'),
+                                    const Text('지워진 데이터는 복구가 불가능하다옹!'),
                                   ],
                                 ),
                               ),
@@ -145,7 +145,7 @@ class DrawerProfile extends StatelessWidget {
                 '/message',
               );
             },
-            child: Text('개발자 메시지'),
+            child: const Text('개발자 메시지'),
           ),
         ],
       ),

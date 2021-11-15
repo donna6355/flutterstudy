@@ -50,7 +50,7 @@ class _InputImgState extends State<InputImg> {
             onPressed: () {
               _getPic(1);
             },
-            label: Text('사진 가져오기'),
+            label: const Text('사진 가져오기'),
           ),
           TextButton.icon(
             style: ButtonStyle(
@@ -60,7 +60,7 @@ class _InputImgState extends State<InputImg> {
             onPressed: () {
               _getPic(2);
             },
-            label: Text('사진 찍기'),
+            label: const Text('사진 찍기'),
           ),
         ],
       ),

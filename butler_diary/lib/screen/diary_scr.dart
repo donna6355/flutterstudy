@@ -29,7 +29,7 @@ class DiaryScr extends StatelessWidget {
                     arguments: masterInfo,
                   );
                 },
-                child: Text('프로필'),
+                child: const Text('프로필'),
               ),
             ],
           ),
