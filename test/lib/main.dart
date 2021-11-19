@@ -96,7 +96,10 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               'You have pushed the button this many times:',
-              style: GoogleFonts.lato(),
+              style: GoogleFonts.lato(
+                textStyle: TextStyle(
+                    color: Colors.blue, letterSpacing: .5, fontSize: 20),
+              ),
             ),
             Text(
               '$_counter',
@@ -113,3 +116,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+// to resolve ios error
+// #1 Install ffi in project directory
+// sudo arch -x86_64 gem install ffi
+
+// #2 Re-install dependencies in ios directory
+// cd ios
+// arch -x86_64 pod install
