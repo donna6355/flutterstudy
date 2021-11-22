@@ -1,12 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 
 class Message extends StatelessWidget {
+  void _sendEmail(context) async {
+    final Email email = Email(
+      body: '자유롭게 개발자에게 하고 싶은 말을 적어주면 된다옹:)',
+      subject: '[집사 일기] 개발자에게',
+      recipients: ['donnajun1214@gmail.com'],
+      attachmentPaths: [],
+      isHTML: false,
+    );
+    try {
+      await FlutterEmailSender.send(email);
+    } catch (err) {
+      showDialog<void>(
+          context: context,
+          barrierDismissible: true, // user must tap button!
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('메일 보내기 실패'),
+              content: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: ListBody(
+                  children: const <Widget>[
+                    Text('기본 메일 앱을 사용할 수 없어 바로 문의를 전송하기 어려운 상황이다옹!'),
+                    Text('아래 이메일로 연락주면 친절하게 답변해 주겠다옹!'),
+                    SizedBox(height: 15),
+                    Text('donnajun1214@gmail.com'),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  child: const Text('확인'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         title: const Text('개발자 메시지'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              _sendEmail(context);
+            },
+            child: const Text('메일 보내기'),
+          ),
+        ],
       ),
       body: Stack(
         children: [
