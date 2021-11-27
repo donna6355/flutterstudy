@@ -81,7 +81,7 @@ class LivingRoom extends StatelessWidget {
                                     .pushNamed('/profile_edit');
                               },
                               child: Text('주인님 프로필 작성하기'),
-                            )
+                            ),
                           ],
                         ),
                       );

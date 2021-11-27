@@ -7,6 +7,7 @@ import '../model/diary.dart';
 import '../widget/multiple_choice.dart';
 import '../widget/toggle_choice.dart';
 import '../widget/input_img.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class DiaryEditScr extends StatefulWidget {
   final Map<String, dynamic> masterInfo;
@@ -47,8 +48,48 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
   late Box diaryBox;
   bool hasChanged = false;
 
+  final _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+  Future _showNotification() async {
+    String title = '';
+    if (vet) title += ' 동물병원';
+    if (vaccine) title += ' 예방접종';
+    if (pill) title += ' 약';
+    if (eyeDrop) title += ' 안약';
+    if (bath) title += ' 목욕';
+    if (toilet) title += ' 화장실 전체갈이';
+
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'your channel id',
+      'your channel name',
+      channelDescription: 'your channel description',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+
+// show notification right away
+    await _flutterLocalNotificationsPlugin.show(
+      0,
+      '${widget.masterInfo['master']}$title',
+      '왥옹 윩얅웅 읽앇',
+      platformChannelSpecifics,
+      payload: '${widget.masterInfo['master']}',
+    );
+  }
+
+  bool _checkNotiAvail() {
+    if (DateTime.now().isBefore(DateTime.parse(date)))
+      return vet || vaccine || pill || eyeDrop || bath || toilet ? true : false;
+    else
+      return false;
+  }
+
   void saveDiary() {
     if (!hasChanged) return;
+    if (_checkNotiAvail()) _showNotification();
     final Diary newDiary = Diary(
       date: date,
       feel: feel,

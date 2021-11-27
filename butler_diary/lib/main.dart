@@ -21,7 +21,7 @@ import './screen/dev_message.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await noti();
+  // await noti();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   final appDocDir = await path_provider.getApplicationDocumentsDirectory();
   await Hive.initFlutter(appDocDir.path);
@@ -32,7 +32,7 @@ void main() async {
   runApp(MyApp());
 }
 
-Future<void> noti() async {
+Future<void> noti(context) async {
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
@@ -43,14 +43,15 @@ Future<void> noti() async {
 
   await flutterLocalNotificationsPlugin.initialize(initializationSettings,
       onSelectNotification: (String? payload) async {
-    print(payload);
-    print('noti tabbed');
+    Navigator.pushNamed(context, '/');
   });
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    noti(context);
+
     return ChangeNotifierProvider(
       create: (_) => MySelectedDate(),
       child: MaterialApp(
