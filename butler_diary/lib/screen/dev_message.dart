@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 
-class Message extends StatelessWidget {
+class DevMessage extends StatelessWidget {
   void _sendEmail(context) async {
     final Email email = Email(
       body: '자유롭게 개발자에게 하고 싶은 말을 적어주면 된다옹:)',

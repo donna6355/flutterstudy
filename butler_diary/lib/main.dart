@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../provider/my-selected-date.dart';
 
@@ -16,10 +17,11 @@ import './screen/living_room.dart';
 import './screen/diary_scr.dart';
 import './screen/diary_edit_scr.dart';
 import './screen/profile_scr.dart';
-import './screen/message.dart';
+import './screen/dev_message.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await noti();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   final appDocDir = await path_provider.getApplicationDocumentsDirectory();
   await Hive.initFlutter(appDocDir.path);
@@ -28,6 +30,22 @@ void main() async {
   await Hive.openBox('myCats');
   MobileAds.instance.initialize();
   runApp(MyApp());
+}
+
+Future<void> noti() async {
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+// initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings('@mipmap/ic_launcher');
+  final InitializationSettings initializationSettings =
+      InitializationSettings(android: initializationSettingsAndroid);
+
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+      onSelectNotification: (String? payload) async {
+    print(payload);
+    print('noti tabbed');
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -69,7 +87,7 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (context) => LivingRoom());
             case "/message":
               return MaterialPageRoute(
-                builder: (context) => Message(),
+                builder: (context) => DevMessage(),
                 fullscreenDialog: true,
               );
             case "/diary":
