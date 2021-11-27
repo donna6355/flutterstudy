@@ -8,6 +8,8 @@ import '../widget/multiple_choice.dart';
 import '../widget/toggle_choice.dart';
 import '../widget/input_img.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class DiaryEditScr extends StatefulWidget {
   final Map<String, dynamic> masterInfo;
@@ -50,7 +52,38 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
 
   final _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
-  Future _showNotification() async {
+// // show notification right away
+//   Future _showNotification() async {
+//     String title = '';
+//     if (vet) title += ' 동물병원';
+//     if (vaccine) title += ' 예방접종';
+//     if (pill) title += ' 약';
+//     if (eyeDrop) title += ' 안약';
+//     if (bath) title += ' 목욕';
+//     if (toilet) title += ' 화장실 전체갈이';
+
+//     const AndroidNotificationDetails androidPlatformChannelSpecifics =
+//         AndroidNotificationDetails(
+//       'your channel id',
+//       'your channel name',
+//       channelDescription: 'your channel description',
+//       importance: Importance.max,
+//       priority: Priority.high,
+//     );
+//     const NotificationDetails platformChannelSpecifics =
+//         NotificationDetails(android: androidPlatformChannelSpecifics);
+
+//     await _flutterLocalNotificationsPlugin.show(
+//       0,
+//       '${widget.masterInfo['master']}$title',
+//       '왥옹 윩얅웅 읽앇',
+//       platformChannelSpecifics,
+//       payload: '${widget.masterInfo['master']}',
+//     );
+//   }
+
+  Future _setNotification() async {
+    int notiId = int.parse(date.replaceAll('-', ''));
     String title = '';
     if (vet) title += ' 동물병원';
     if (vaccine) title += ' 예방접종';
@@ -58,25 +91,23 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
     if (eyeDrop) title += ' 안약';
     if (bath) title += ' 목욕';
     if (toilet) title += ' 화장실 전체갈이';
+    final remaining = DateTime.parse(date).difference(DateTime.now()).inSeconds;
 
-    const AndroidNotificationDetails androidPlatformChannelSpecifics =
-        AndroidNotificationDetails(
-      'your channel id',
-      'your channel name',
-      channelDescription: 'your channel description',
-      importance: Importance.max,
-      priority: Priority.high,
-    );
-    const NotificationDetails platformChannelSpecifics =
-        NotificationDetails(android: androidPlatformChannelSpecifics);
-
-// show notification right away
-    await _flutterLocalNotificationsPlugin.show(
-      0,
+    await _flutterLocalNotificationsPlugin.zonedSchedule(
+      notiId,
       '${widget.masterInfo['master']}$title',
       '왥옹 윩얅웅 읽앇',
-      platformChannelSpecifics,
-      payload: '${widget.masterInfo['master']}',
+      tz.TZDateTime.now(tz.local).add(Duration(seconds: remaining)),
+      const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'your channel id',
+          'your channel name',
+          channelDescription: 'your channel description',
+        ),
+      ),
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 
@@ -89,7 +120,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
 
   void saveDiary() {
     if (!hasChanged) return;
-    if (_checkNotiAvail()) _showNotification();
+    if (_checkNotiAvail()) _setNotification();
     final Diary newDiary = Diary(
       date: date,
       feel: feel,
@@ -127,6 +158,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
   @override
   void initState() {
     super.initState();
+    tz.initializeTimeZones();
     setState(() {
       date = widget.masterInfo['date'];
     });
