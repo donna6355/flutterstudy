@@ -96,7 +96,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
     await _flutterLocalNotificationsPlugin.zonedSchedule(
       notiId,
       '${widget.masterInfo['master']}$title',
-      '왥옹 윩얅웅 읽앇',
+      '왥옹 윩 얅웅 읽앇',
       tz.TZDateTime.now(tz.local).add(Duration(seconds: remaining)),
       const NotificationDetails(
         android: AndroidNotificationDetails(
