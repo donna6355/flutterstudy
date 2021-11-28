@@ -100,10 +100,8 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
       tz.TZDateTime.now(tz.local).add(Duration(seconds: remaining)),
       const NotificationDetails(
         android: AndroidNotificationDetails(
-          'your channel id',
-          'your channel name',
-          channelDescription: 'your channel description',
-        ),
+            'your channel id', 'your channel name',
+            channelDescription: 'your channel description', icon: 'app_icon'),
       ),
       androidAllowWhileIdle: true,
       uiLocalNotificationDateInterpretation:
