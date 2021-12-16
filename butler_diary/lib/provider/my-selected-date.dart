@@ -18,6 +18,18 @@ class MySelectedDate extends ChangeNotifier {
     return _calendarFormat;
   }
 
+  void moveToPrevDate() {
+    _selectedDate = _selectedDate.subtract(Duration(days: 1));
+    _focusedDate = _focusedDate.subtract(Duration(days: 1));
+    notifyListeners();
+  }
+
+  void moveToNextDate() {
+    _selectedDate = _selectedDate.add(Duration(days: 1));
+    _focusedDate = _focusedDate.add(Duration(days: 1));
+    notifyListeners();
+  }
+
   void updateSelectedDate(DateTime focused, DateTime selected) {
     _selectedDate = selected;
     _focusedDate = focused;

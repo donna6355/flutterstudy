@@ -90,36 +90,52 @@ class Calendar extends StatelessWidget {
               '${_calendarFormat == CalendarFormat.week ? '월간' : '주간'} 달력보기'),
         ),
         if (_getEventsForDay(_selected).isEmpty)
-          Container(
-            width: double.infinity,
-            child: Column(
-              children: [
-                Container(
-                  width: 150,
-                  child: Image.asset('asset/img/adorable.png'),
-                ),
-                Text(
-                  '이 몸을 관찰하고 기록해라옹!',
-                  style: TextStyle(fontSize: 18),
-                ),
-                SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    final Map<String, dynamic> args = {
-                      'master': masterName,
-                      'key': masterId,
-                      'date': _selected.toString().substring(0, 10),
-                    };
-                    Navigator.of(context).pushNamed(
-                      '/diary_edit',
-                      arguments: args,
-                    );
-                  },
-                  child: Text(
-                    '일기 쓰기',
+          GestureDetector(
+            onHorizontalDragUpdate: (details) {
+              //this calls too many times gotta fix
+              print(details.primaryDelta);
+              if (details.primaryDelta! > 0) {
+                print('go to prev');
+                Provider.of<MySelectedDate>(context, listen: false)
+                    .moveToPrevDate();
+              } else {
+                Provider.of<MySelectedDate>(context, listen: false)
+                    .moveToNextDate();
+                print('go to next');
+              }
+            },
+            child: Container(
+              width: double.infinity,
+              color: Colors.amber,
+              child: Column(
+                children: [
+                  Container(
+                    width: 150,
+                    child: Image.asset('asset/img/adorable.png'),
                   ),
-                ),
-              ],
+                  Text(
+                    '이 몸을 관찰하고 기록해라옹!',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      final Map<String, dynamic> args = {
+                        'master': masterName,
+                        'key': masterId,
+                        'date': _selected.toString().substring(0, 10),
+                      };
+                      Navigator.of(context).pushNamed(
+                        '/diary_edit',
+                        arguments: args,
+                      );
+                    },
+                    child: Text(
+                      '일기 쓰기',
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         if (_getEventsForDay(_selected).isNotEmpty)
