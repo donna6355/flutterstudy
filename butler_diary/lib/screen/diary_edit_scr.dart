@@ -118,6 +118,36 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
 
   void saveDiary() {
     if (!hasChanged) return;
+    if (feel == -1 &&
+        dryFood == -1 &&
+        wetFood == -1 &&
+        water == -1 &&
+        waterySnack == false &&
+        drySnack == false &&
+        snack == false &&
+        otherSnack == false &&
+        pee == -1 &&
+        poo == -1 &&
+        hairBall == false &&
+        diarrhea == false &&
+        vomit == false &&
+        destroy == false &&
+        vet == false &&
+        vaccine == false &&
+        pill == false &&
+        eyeDrop == false &&
+        hunting == false &&
+        brushTeeth == false &&
+        brushFur == false &&
+        clawCut == false &&
+        bath == false &&
+        toilet == false &&
+        note == '' &&
+        photos.length == 0) {
+      diaryBox.delete(date);
+      Navigator.of(context).pop();
+      return;
+    }
     if (_checkNotiAvail()) _setNotification();
     final Diary newDiary = Diary(
       date: date,
