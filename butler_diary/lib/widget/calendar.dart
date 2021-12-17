@@ -91,17 +91,16 @@ class Calendar extends StatelessWidget {
         ),
         if (_getEventsForDay(_selected).isEmpty)
           GestureDetector(
-            onHorizontalDragUpdate: (details) {
-              //this calls too many times gotta fix
-              print(details.primaryDelta);
-              if (details.primaryDelta! > 0) {
-                print('go to prev');
+            onHorizontalDragEnd: (details) {
+              // print(details.primaryVelocity);
+              if (details.primaryVelocity! > 0) {
+                // print('go to prev');
                 Provider.of<MySelectedDate>(context, listen: false)
                     .moveToPrevDate();
-              } else {
+              } else if (details.primaryVelocity! < 0) {
                 Provider.of<MySelectedDate>(context, listen: false)
                     .moveToNextDate();
-                print('go to next');
+                // print('go to next');
               }
             },
             child: Container(
