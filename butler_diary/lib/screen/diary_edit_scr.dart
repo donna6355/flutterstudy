@@ -97,7 +97,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
       notiId,
       '${widget.masterInfo['master']}$title',
       '왥옹 윩 얅웅 읽앇',
-      tz.TZDateTime.now(tz.local).add(Duration(seconds: remaining)),
+      tz.TZDateTime.now(tz.local).add(Duration(seconds: 20)),
       const NotificationDetails(
         android: AndroidNotificationDetails(
             'your channel id', 'your channel name',
@@ -116,7 +116,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
       return false;
   }
 
-  void saveDiary() {
+  void saveDiary() async {
     if (!hasChanged) return;
     if (feel == -1 &&
         dryFood == -1 &&
@@ -145,6 +145,8 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
         note == '' &&
         photos.length == 0) {
       diaryBox.delete(date);
+      int notiId = int.parse(date.replaceAll('-', ''));
+      await _flutterLocalNotificationsPlugin.cancel(notiId);
       Navigator.of(context).pop();
       return;
     }
