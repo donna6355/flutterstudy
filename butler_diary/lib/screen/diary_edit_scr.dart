@@ -97,7 +97,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
       notiId,
       '${widget.masterInfo['master']}$title',
       '왥옹 윩 얅웅 읽앇',
-      tz.TZDateTime.now(tz.local).add(Duration(seconds: 20)),
+      tz.TZDateTime.now(tz.local).add(Duration(seconds: remaining)),
       const NotificationDetails(
         android: AndroidNotificationDetails(
             'your channel id', 'your channel name',

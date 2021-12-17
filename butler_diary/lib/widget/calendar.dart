@@ -90,22 +90,19 @@ class Calendar extends StatelessWidget {
               '${_calendarFormat == CalendarFormat.week ? '월간' : '주간'} 달력보기'),
         ),
         if (_getEventsForDay(_selected).isEmpty)
-          GestureDetector(
-            onHorizontalDragEnd: (details) {
-              // print(details.primaryVelocity);
-              if (details.primaryVelocity! > 0) {
-                // print('go to prev');
-                Provider.of<MySelectedDate>(context, listen: false)
-                    .moveToPrevDate();
-              } else if (details.primaryVelocity! < 0) {
+          Dismissible(
+            key: UniqueKey(),
+            confirmDismiss: (direction) {
+              if (direction == DismissDirection.endToStart)
                 Provider.of<MySelectedDate>(context, listen: false)
                     .moveToNextDate();
-                // print('go to next');
-              }
+              else if (direction == DismissDirection.startToEnd)
+                Provider.of<MySelectedDate>(context, listen: false)
+                    .moveToPrevDate();
+              return Future.value(false);
             },
             child: Container(
               width: double.infinity,
-              color: Colors.amber,
               child: Column(
                 children: [
                   Container(
@@ -138,7 +135,19 @@ class Calendar extends StatelessWidget {
             ),
           ),
         if (_getEventsForDay(_selected).isNotEmpty)
-          DiaryCard(_getEventsForDay(_selected)[0], masterId, masterName)
+          Dismissible(
+              key: UniqueKey(),
+              confirmDismiss: (direction) {
+                if (direction == DismissDirection.endToStart)
+                  Provider.of<MySelectedDate>(context, listen: false)
+                      .moveToNextDate();
+                else if (direction == DismissDirection.startToEnd)
+                  Provider.of<MySelectedDate>(context, listen: false)
+                      .moveToPrevDate();
+                return Future.value(false);
+              },
+              child: DiaryCard(
+                  _getEventsForDay(_selected)[0], masterId, masterName))
       ],
     );
   }
