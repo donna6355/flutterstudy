@@ -53,3 +53,7 @@ class DiaryScr extends StatelessWidget {
     );
   }
 }
+
+
+////Instead of ListView or SingleChildScrollView put CustomScrollVIew to use Expanded or spacer
+///it doesnt work...
