@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import './controller/getxControl.dart';
 import './pages/first.dart';
 import './pages/second.dart';
 import './pages/third.dart';
@@ -27,16 +28,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      home: const Home(),
+      home: Home(),
     );
   }
 }
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    final Controller controller = Get.put(Controller());
+    // final reactiveCont = Get.put(ReactiveCont());
+
     return Scaffold(
       body: Center(
         child: ListView(
@@ -89,7 +91,36 @@ class Home extends StatelessWidget {
                 Get.snackbar('title', 'snackbar msg from top');
               },
               title: const Text('snackbar'),
-            )
+            ),
+            ListTile(
+              onTap: () {
+                controller.increment();
+              },
+              title: GetBuilder<Controller>(
+                // init: Controller(), // no need if controller called above with Get.put();
+                builder: (_) {
+                  return Text('State Update Num : ${_.num}');
+                },
+              ),
+            ),
+            ListTile(
+              onTap: () {
+                Get.find<ReactiveCont>().count1++;
+              },
+              title: GetX<ReactiveCont>(
+                init: ReactiveCont(),
+                builder: (_) {
+                  return Text('obs count1 : ${_.count1.value}');
+                },
+              ),
+            ),
+            ListTile(onTap: () {
+              Get.find<ReactiveCont>().count2++;
+            }, title: Obx(() {
+              //obx to only return the value of its variable;
+              return Text(
+                  'Obx count2 : ${Get.find<ReactiveCont>().count2.value}');
+            }))
           ],
         ),
       ),
