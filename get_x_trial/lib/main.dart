@@ -116,13 +116,33 @@ class Home extends StatelessWidget {
                 },
               ),
             ),
-            ListTile(onTap: () {
-              Get.find<ReactiveCont>().count2++;
-            }, title: Obx(() {
-              //obx to only return the value of its variable;
-              return Text(
-                  'Obx count2 : ${Get.find<ReactiveCont>().count2.value}');
-            }))
+            ListTile(
+              onTap: () {
+                Get.find<ReactiveCont>().count2++;
+              },
+              title: Obx(
+                () {
+                  //obx to only return the value of its variable;
+                  return Text(
+                      'Obx count2 : ${Get.find<ReactiveCont>().count2.value}');
+                },
+              ),
+            ),
+            ListTile(
+              title: Obx(() {
+                return Text('sum : ${Get.find<ReactiveCont>().sum}');
+              }),
+            ),
+            ListTile(
+              onTap: () {
+                Get.find<ReactiveCont>().change(id: 2, name: 'Hello');
+              },
+              title: Obx(() {
+                // value only for primitive. list n map dont need value;
+                return Text(
+                    'custom class USER : ${Get.find<ReactiveCont>().user.value.id}/${Get.find<ReactiveCont>().user.value.name}');
+              }),
+            ),
           ],
         ),
       ),
