@@ -23,11 +23,12 @@ class ReactiveCont extends GetxController {
   // observable takes more memory
   RxInt count1 = 0.obs;
   var count2 = 0.obs;
+  var mode = 'original'.obs;
   var user = User(id: 1, name: 'Isaac').obs;
   var sample = [1, 2, 3, 4, 5, 6, 7, 8].obs;
 
   get reverse => sample.reversed.toList();
-
+  get even => sample.where((i) => i % 2 == 0).toList();
   get sum => count1.value + count2.value;
 
   change({required int id, required String name}) {

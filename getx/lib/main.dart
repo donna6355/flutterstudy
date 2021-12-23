@@ -39,7 +39,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Controller controller = Get.put(Controller());
-    // final reactiveCont = Get.put(ReactiveCont());
+    final reactiveCont = Get.put(ReactiveCont());
 
     return Scaffold(
       body: Center(
@@ -147,15 +147,43 @@ class Home extends StatelessWidget {
               title: Text('try list'),
             ),
             ListTile(
-              title: Obx(() {
-                return Text('original : ${Get.find<ReactiveCont>().sample}');
-              }),
+              onTap: () {
+                Get.find<ReactiveCont>().mode.value =
+                    Get.find<ReactiveCont>().mode.value == 'original'
+                        ? 'reverse'
+                        : 'original';
+              },
+              title: const Text('change list mode'),
             ),
             ListTile(
               title: Obx(() {
-                return Text('reverse : ${Get.find<ReactiveCont>().reverse}');
+                return Text(
+                    'Selected Mode : ${Get.find<ReactiveCont>().mode.value}');
               }),
             ),
+            Container(
+              width: double.infinity,
+              color: reactiveCont.mode.value == 'original'
+                  ? Colors.amber
+                  : Colors.blue,
+              height: 50,
+            ),
+            ListTile(
+              title: Obx(() {
+                return Text(
+                    '${Get.find<ReactiveCont>().mode.value} : ${Get.find<ReactiveCont>().mode.value == 'original' ? Get.find<ReactiveCont>().sample : Get.find<ReactiveCont>().reverse}');
+              }),
+            ),
+            // ListTile(
+            //   title: Obx(() {
+            //     return Text('reverse : ${Get.find<ReactiveCont>().reverse}');
+            //   }),
+            // ),
+            // ListTile(
+            //   title: Obx(() {
+            //     return Text('even : ${Get.find<ReactiveCont>().even}');
+            //   }),
+            // ),
           ],
         ),
       ),
