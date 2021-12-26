@@ -57,6 +57,17 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: "집사 일기",
         theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            color: Color(0xffE5E4DB),
+            iconTheme: IconThemeData(
+              color: Color(0xff454442),
+            ),
+            titleTextStyle: TextStyle(
+              color: Color(0xff454442),
+              fontFamily: "GamjaFlower",
+              fontSize: 20,
+            ),
+          ),
           snackBarTheme: SnackBarThemeData(
             contentTextStyle: TextStyle(fontFamily: "GamjaFlower"),
           ),
