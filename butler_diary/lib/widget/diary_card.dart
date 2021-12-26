@@ -13,6 +13,9 @@ class DiaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: BoxConstraints(
+        minHeight: 400,
+      ),
       margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
       padding: EdgeInsets.all(10),
       child: Column(

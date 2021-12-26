@@ -102,6 +102,9 @@ class Calendar extends StatelessWidget {
               return Future.value(false);
             },
             child: Container(
+              constraints: BoxConstraints(
+                minHeight: 400,
+              ),
               width: double.infinity,
               child: Column(
                 children: [
