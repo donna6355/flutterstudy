@@ -36,10 +36,13 @@ class Calendar extends StatelessWidget {
         TableCalendar(
           eventLoader: _getEventsForDay,
           firstDay: DateTime(2000),
-          lastDay: DateTime(DateTime.now().year + 2),
+          lastDay: DateTime(DateTime.now().year + 1, DateTime.now().month,
+              DateTime.now().day),
           focusedDay: _focused,
           locale: 'ko_KR',
           selectedDayPredicate: (day) {
+            print(DateTime(DateTime.now().year + 1, DateTime.now().month,
+                DateTime.now().day));
             return isSameDay(_selected, day);
           },
           onDaySelected: (selectedDay, focusedDay) {
