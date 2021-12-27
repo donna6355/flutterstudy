@@ -36,7 +36,7 @@ class Calendar extends StatelessWidget {
         TableCalendar(
           eventLoader: _getEventsForDay,
           firstDay: DateTime(2000),
-          lastDay: DateTime(DateTime.now().year + 1),
+          lastDay: DateTime(DateTime.now().year + 2),
           focusedDay: _focused,
           locale: 'ko_KR',
           selectedDayPredicate: (day) {
