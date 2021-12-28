@@ -143,4 +143,6 @@ class MyApp extends StatelessWidget {
 // flutter run --observatory-port=9200
 // http://127.0.0.1:9200/owzPdcFa1uk=/
 
-// flutter v_2.2.3 
+// flutter v_2.2.3 when it made
+// currently flutter v_2.5.3
+// ThemeData changed as some features deprecated
