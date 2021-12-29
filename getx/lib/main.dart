@@ -177,6 +177,28 @@ class Home extends StatelessWidget {
                     '${Get.find<ReactiveCont>().mode.value} : ${Get.find<ReactiveCont>().mode.value == 'original' ? Get.find<ReactiveCont>().sample : Get.find<ReactiveCont>().reverse}');
               }),
             ),
+            Container(
+              width: double.infinity,
+              color: Colors.green,
+              height: 50,
+            ),
+            const ListTile(
+              title: Text('getX Storage from here'),
+            ),
+            ListTile(
+                title: const Text('click to Write'),
+                onTap: () {
+                  box.write('try', 'GetX Write Test');
+                }),
+            box.read('try') == null
+                ? const ListTile(
+                    title: Text('nothing yet'),
+                  )
+                : ListTile(
+                    title: Text(
+                      box.read('try'),
+                    ),
+                  )
             // ListTile(
             //   title: Obx(() {
             //     return Text('reverse : ${Get.find<ReactiveCont>().reverse}');
