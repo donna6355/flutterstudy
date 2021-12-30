@@ -108,6 +108,19 @@ class Home extends StatelessWidget {
                 },
               ),
             ),
+            GetBuilder<Controller>(
+              builder: (_) {
+                return _.num % 2 == 0
+                    ? Container(
+                        color: Colors.amber,
+                        height: 20,
+                      )
+                    : Container(
+                        color: Colors.blue,
+                        height: 20,
+                      );
+              },
+            ),
             ListTile(
               onTap: () {
                 Get.find<ReactiveCont>().count1++;
