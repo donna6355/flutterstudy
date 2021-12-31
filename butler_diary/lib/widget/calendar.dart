@@ -41,8 +41,6 @@ class Calendar extends StatelessWidget {
           focusedDay: _focused,
           locale: 'ko_KR',
           selectedDayPredicate: (day) {
-            print(DateTime(DateTime.now().year + 1, DateTime.now().month,
-                DateTime.now().day));
             return isSameDay(_selected, day);
           },
           onDaySelected: (selectedDay, focusedDay) {

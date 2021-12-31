@@ -385,7 +385,8 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                 initialDate: Provider.of<MySelectedDate>(context, listen: false)
                     .getSelectedDate,
                 firstDate: DateTime(2000),
-                lastDate: DateTime(DateTime.now().year + 1),
+                lastDate: DateTime(DateTime.now().year + 1,
+                    DateTime.now().month, DateTime.now().day),
                 builder: (context, child) {
                   return Theme(
                     data: ThemeData.light().copyWith(
