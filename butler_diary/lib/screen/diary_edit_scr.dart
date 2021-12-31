@@ -10,6 +10,8 @@ import '../widget/input_img.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import '../provider/my-selected-date.dart';
+import 'package:provider/provider.dart';
 
 class DiaryEditScr extends StatefulWidget {
   final Map<String, dynamic> masterInfo;
@@ -380,7 +382,8 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
             onPressed: () {
               showDatePicker(
                 context: context,
-                initialDate: DateTime.now(),
+                initialDate: Provider.of<MySelectedDate>(context, listen: false)
+                    .getSelectedDate,
                 firstDate: DateTime(2000),
                 lastDate: DateTime(DateTime.now().year + 1),
                 builder: (context, child) {
@@ -421,6 +424,8 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
                 if (pickedDate == null) {
                   return;
                 }
+                Provider.of<MySelectedDate>(context, listen: false)
+                    .updateSelectedDate(pickedDate, pickedDate);
                 final Map<String, dynamic> args = {
                   'master': widget.masterInfo['master'],
                   'key': widget.masterInfo['key'],
