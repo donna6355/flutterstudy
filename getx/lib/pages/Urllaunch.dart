@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Urllaunch extends StatelessWidget {
-  void _launchURL() async {
-    const url = 'https://flutter.io';
+  void _launchUrl() async {
+    //weird....
+    const url = 'https://pub.dev/';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -19,7 +20,7 @@ class Urllaunch extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            _launchURL;
+            _launchUrl();
           },
           child: Text('go to flutter.dev'),
         ),
