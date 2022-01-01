@@ -7,6 +7,7 @@ import './controller/getxControl.dart';
 import './pages/first.dart';
 import './pages/second.dart';
 import './pages/third.dart';
+import './pages/Urllaunch.dart';
 
 void main() async {
   await GetStorage.init();
@@ -24,6 +25,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/third/:greeting',
           page: () => Third(),
+        ),
+        GetPage(
+          name: '/urllaunch',
+          page: () => Urllaunch(),
         )
       ],
       title: 'Flutter Demo',
@@ -48,6 +53,14 @@ class Home extends StatelessWidget {
       body: Center(
         child: ListView(
           children: [
+            ListTile(
+              onTap: () {
+                // Navigator.of(context).push
+                // Get.to(First());
+                Get.toNamed('/urllaunch');
+              },
+              title: const Text('url launch'),
+            ),
             ListTile(
               onTap: () {
                 // Navigator.of(context).push
