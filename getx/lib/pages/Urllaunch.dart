@@ -9,7 +9,11 @@ class Urllaunch extends StatelessWidget {
     //weird....
     String url = str.isEmpty ? 'https://pub.dev/' : str.trim();
     if (await canLaunch(url)) {
-      await launch(url);
+      await launch(
+        url,
+        forceSafariVC: false, // to open this link not in webview
+        forceWebView: false,
+      );
     } else {
       throw 'Could not launch $url';
     }
