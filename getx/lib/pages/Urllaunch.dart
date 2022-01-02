@@ -33,24 +33,36 @@ class Urllaunch extends StatelessWidget {
 
   List<Widget> _stringToText() {
     const String string =
-        'Happy New Year\n Seasons Greeting\n https://www.youtube.com/watch?v=hXgMMo8p1ig';
+        'Happy New Year\n Seasons Greeting\n 유튜브 : https://www.youtube.com/watch?v=hXgMMo8p1ig';
     // List<dynamic> result = string.split('\n');
 
     List<String> result = string.split('\n');
     List<Widget> widgets = [];
     for (final str in result) {
       if (str.contains('http')) {
+        int idx = str.indexOf('http');
+        String str1 = str.substring(0, idx);
+        String str2 = str.substring(idx);
         widgets.add(
-          GestureDetector(
-            onTap: () {
-              _launchUrl(str);
-            },
-            child: Text(
-              str.trim(),
-              style: TextStyle(
-                color: Colors.amber,
+          Row(
+            children: [
+              Text(str1),
+              Flexible(
+                //need flexible for row to know it shrinkable!
+                child: GestureDetector(
+                  onTap: () {
+                    _launchUrl(str2);
+                  },
+                  child: Text(
+                    str2.trim(),
+                    style: TextStyle(
+                      color: Colors.amber,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         );
       } else {
@@ -87,9 +99,13 @@ class Urllaunch extends StatelessWidget {
               },
               child: Text('go to third'),
             ),
-            Column(
-              children: _stringToText(),
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Container(
+              color: Colors.blueGrey,
+              width: 200,
+              child: Column(
+                children: _stringToText(),
+                crossAxisAlignment: CrossAxisAlignment.start,
+              ),
             )
           ],
         ),
