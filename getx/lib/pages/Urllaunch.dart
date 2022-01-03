@@ -33,7 +33,7 @@ class Urllaunch extends StatelessWidget {
 
   List<Widget> _stringToText() {
     const String string =
-        'Happy New Year\n Seasons Greeting\n 유튜브 : https://www.youtube.com/watch?v=hXgMMo8p1ig';
+        'Happy New Year\n Seasons Greeting\n 유튜브 : https://www.youtube.com/watch?v=hXgMMo8p1ig\nhttps://www.youtube.com/watch?v=UPd156gXanU';
     // List<dynamic> result = string.split('\n');
 
     List<String> result = string.split('\n');
