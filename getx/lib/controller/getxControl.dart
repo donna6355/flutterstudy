@@ -27,6 +27,31 @@ class ReactiveCont extends GetxController {
   var user = User(id: 1, name: 'Isaac').obs;
   var sample = [1, 2, 3, 4, 5, 6, 7, 8].obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+    //every time
+    ever(count1, (_) {
+      print('ever ever');
+    });
+
+    //one time only
+    once(count1, (_) {
+      print('once');
+    });
+
+    //delayed
+    debounce(
+      count1,
+      (_) {
+        print('debounce');
+      },
+      time: const Duration(
+        seconds: 10,
+      ),
+    );
+  }
+
   get reverse => sample.reversed.toList();
   get even => sample.where((i) => i % 2 == 0).toList();
   get sum => count1.value + count2.value;
