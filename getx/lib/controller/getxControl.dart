@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, unused_import
+// ignore_for_file: file_names, unused_import, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -53,6 +53,9 @@ class ReactiveCont extends GetxController {
   }
 
   get reverse => sample.reversed.toList();
+  // get reverse => sample
+  //   ..reversed
+  //   ..toList(); //weird doesnt work casecade operator;;
   get even => sample.where((i) => i % 2 == 0).toList();
   get sum => count1.value + count2.value;
 
