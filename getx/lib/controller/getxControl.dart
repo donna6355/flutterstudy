@@ -55,7 +55,7 @@ class ReactiveCont extends GetxController {
   get reverse => sample.reversed.toList();
   // get reverse => sample
   //   ..reversed
-  //   ..toList(); //weird doesnt work casecade operator;;
+  //   ..toList(); //weird doesnt work cascade operator;;
   get even => sample.where((i) => i % 2 == 0).toList();
   get sum => count1.value + count2.value;
 
