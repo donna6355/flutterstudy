@@ -25,7 +25,7 @@ class ReactiveCont extends GetxController {
   var count2 = 0.obs;
   var mode = 'original'.obs;
   var user = User(id: 1, name: 'Isaac').obs;
-  var sample = [1, 2, 3, 4, 5, 6, 7, 8].obs;
+  var sample = [2, 4, 5, 3, 57, 5, 8, 3, 9, 1, 0].obs;
 
   @override
   void onInit() {
@@ -53,11 +53,25 @@ class ReactiveCont extends GetxController {
   }
 
   get reverse => sample.reversed.toList();
-  // get reverse => sample
-  //   ..reversed
-  //   ..toList(); //weird doesnt work cascade operator;;
+  get double => sample.map((element) => element * 2).toList();
+
+  // get shuffle => sample.shuffle();
   get even => sample.where((i) => i % 2 == 0).toList();
   get sum => count1.value + count2.value;
+
+  sort() {
+    sample.sort();
+  }
+
+  sortDescend() {
+    sample.sort((b, a) => a.compareTo(b));
+    //return 1,0,-1 according to comparison;
+    //ascending (a,b) descending (b,a)
+  }
+
+  shuffle() {
+    sample.shuffle();
+  }
 
   change({required int id, required String name}) {
     //to change custom class obs

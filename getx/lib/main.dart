@@ -203,6 +203,29 @@ class Home extends StatelessWidget {
                     '${Get.find<ReactiveCont>().mode.value} : ${Get.find<ReactiveCont>().mode.value == 'original' ? Get.find<ReactiveCont>().sample : Get.find<ReactiveCont>().reverse}');
               }),
             ),
+            ListTile(
+              title: Obx(() {
+                return Text('double : ${Get.find<ReactiveCont>().double}');
+              }),
+            ),
+            ListTile(
+              onTap: () {
+                Get.find<ReactiveCont>().sort();
+              },
+              title: const Text('sort ascending'),
+            ),
+            ListTile(
+              onTap: () {
+                Get.find<ReactiveCont>().sortDescend();
+              },
+              title: const Text('sort descending'),
+            ),
+            ListTile(
+              onTap: () {
+                Get.find<ReactiveCont>().shuffle();
+              },
+              title: const Text('shuffle'),
+            ),
             Container(
               width: double.infinity,
               color: Colors.green,
