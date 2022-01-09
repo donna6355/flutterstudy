@@ -67,7 +67,7 @@ class Home extends StatelessWidget {
                 // Get.to(First());
                 Get.to(First(), arguments: 'I am sendin this');
               },
-              title: const Text('first'),
+              title: const Text('PageView'),
             ),
             ListTile(
               onTap: () {
