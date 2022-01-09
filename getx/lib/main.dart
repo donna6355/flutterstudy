@@ -72,14 +72,14 @@ class Home extends StatelessWidget {
             ListTile(
               onTap: () {
                 // Navigator.of(context).pushReplacement
-                Get.off(
+                Get.to(
                   Second(),
                   transition: Transition.fadeIn,
                 );
                 // Navigator.of(context).pushAndRemoveUntil
                 // Get.offAll(Third());
               },
-              title: const Text('second'),
+              title: const Text('Animation Page'),
             ),
             ListTile(
               onTap: () {

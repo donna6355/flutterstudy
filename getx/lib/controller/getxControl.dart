@@ -5,9 +5,17 @@ import 'package:get/get.dart';
 
 class Controller extends GetxController {
   int num = 0;
+  double aniWidth = 100;
+  double aniHeight = 100;
 
   increment() {
     num++;
+    update();
+  }
+
+  activateAni() {
+    aniWidth == 300 ? aniWidth = 100 : aniWidth = 300;
+    aniHeight == 300 ? aniHeight = 100 : aniHeight = 300;
     update();
   }
 }
