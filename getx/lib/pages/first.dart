@@ -12,7 +12,7 @@ class First extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-        physics: const NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(), //to block swipe
         controller: _pgCtrl,
         children: [
           SizedBox.expand(
@@ -27,6 +27,7 @@ class First extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
+                        //tap go to next page while swipe is blocked;
                         _pgCtrl.nextPage(
                             duration: const Duration(milliseconds: 400),
                             curve: Curves.easeIn);
