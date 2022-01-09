@@ -106,6 +106,47 @@ class Home extends StatelessWidget {
             ),
             ListTile(
               onTap: () {
+                Get.dialog(
+                  Container(
+                    margin: const EdgeInsets.all(50),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    width: double.infinity,
+                    child: Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        Column(
+                          children: [
+                            const Text('custom dialog'),
+                            Text('sample 1'),
+                            Text('sample 2'),
+                            Text('sample 3'),
+                            Text('sample 4'),
+                            Text('sample 5'),
+                          ],
+                        ),
+                        Positioned(
+                          right: -10,
+                          child: TextButton.icon(
+                            label: Text(''),
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.close,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+              title: const Text('custom dialog'),
+            ),
+            ListTile(
+              onTap: () {
                 Get.snackbar('title', 'snackbar msg from top');
               },
               title: const Text('snackbar'),
