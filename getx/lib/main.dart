@@ -8,6 +8,7 @@ import './pages/first.dart';
 import './pages/second.dart';
 import './pages/third.dart';
 import './pages/Urllaunch.dart';
+import './pages/infinite.dart';
 
 void main() async {
   await GetStorage.init();
@@ -25,6 +26,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/third/:greeting',
           page: () => Third(),
+        ),
+        GetPage(
+          name: '/infinite',
+          page: () => Infinite(),
         ),
         GetPage(
           name: '/urllaunch',
@@ -68,6 +73,12 @@ class Home extends StatelessWidget {
                 Get.to(First(), arguments: 'I am sendin this');
               },
               title: const Text('PageView'),
+            ),
+            ListTile(
+              onTap: () {
+                Get.toNamed('/infinite');
+              },
+              title: const Text('infinite scroll'),
             ),
             ListTile(
               onTap: () {
