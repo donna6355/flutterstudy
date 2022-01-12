@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:convert' show utf8;
 
 class Infinite extends StatefulWidget {
   @override
@@ -44,6 +45,16 @@ class _InfiniteState extends State<Infinite> {
     _scrollctrl.dispose(); //DO NOT forget to dispose scroll controller!!
   }
 
+  int strToHex() {
+    var res = [0xff];
+    String str = '무료구독';
+
+    var encoded = utf8.encode(str).join('a').substring(0, 6);
+    print(encoded);
+    print(res.join(encoded));
+    return int.parse(res.join(encoded));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +69,12 @@ class _InfiniteState extends State<Infinite> {
                   controller: _scrollctrl,
                   itemBuilder: (ctx, idx) {
                     return ListTile(
-                      title: Text(items[idx]),
+                      title: Text(
+                        items[idx],
+                        // style: TextStyle(
+                        //   color: Color(strToHex()),
+                        // ),
+                      ),
                     );
                   },
                   separatorBuilder: (ctx, idx) {
