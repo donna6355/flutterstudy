@@ -2,8 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:string_to_hex/string_to_hex.dart';
 
 class First extends StatelessWidget {
+  // final _string = StringToHex.toHexString('hey');
+  final generatedColor =
+      Color(StringToHex.toColor(StringToHex.toHexString('ㅁ이라ㅓ')));
+  // final myNiceColor = StringToHex.toColor(_string);
   final PageController _pgCtrl = PageController(
     initialPage: 0,
     keepPage: false,
@@ -21,9 +26,13 @@ class First extends StatelessWidget {
               child: Center(
                 child: Column(
                   children: [
+                    SizedBox(height: 200),
                     Text(
                       'Page index : ${Get.arguments}1',
-                      style: const TextStyle(fontSize: 20),
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: generatedColor,
+                      ),
                     ),
                     ElevatedButton(
                       onPressed: () {
