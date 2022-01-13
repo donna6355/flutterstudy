@@ -9,39 +9,54 @@ class Second extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 100,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                controller.activateAni();
-              },
-              child: const Text('Activate'),
-            ),
-            GetBuilder<Controller>(
-              builder: (_) {
-                return AnimatedContainer(
-                  color: Colors.blueGrey,
-                  duration: const Duration(milliseconds: 400),
-                  width: controller.aniWidth,
-                  height: controller.aniHeight,
-                  child: const Center(
-                    child: Text(
-                      'Animation',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(
+            //listview will expand children in width. gotta wrap it in UnconstrainedBox
+            children: [
+              const SizedBox(
+                height: 100,
+              ),
+              TextField(
+                decoration: InputDecoration(hintText: 'here'),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              UnconstrainedBox(
+                child: ElevatedButton(
+                  onPressed: () {
+                    controller.activateAni();
+                  },
+                  child: const Text('Activate'),
+                ),
+              ),
+              GetBuilder<Controller>(
+                builder: (_) {
+                  return UnconstrainedBox(
+                    child: AnimatedContainer(
+                      color: Colors.blueGrey,
+                      duration: const Duration(milliseconds: 400),
+                      width: controller.aniWidth,
+                      height: controller.aniHeight,
+                      child: const Center(
+                        child: Text(
+                          'Animation',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
-            ),
-          ],
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
