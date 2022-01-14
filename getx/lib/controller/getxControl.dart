@@ -8,6 +8,33 @@ class Controller extends GetxController {
   double aniWidth = 100;
   double aniHeight = 100;
 
+  final ScrollController scrollctrl = ScrollController();
+  List<String> items = [];
+  bool loading = false;
+  bool allLoaded = false;
+
+  void addScrollListner() {
+    scrollctrl.addListener(() {
+      if (scrollctrl.position.pixels >= scrollctrl.position.maxScrollExtent &&
+          !loading) mockfecth();
+    });
+  }
+
+  Future<void> mockfecth() async {
+    if (allLoaded) return;
+
+    loading = true;
+
+    await Future.delayed(const Duration(seconds: 2));
+    List<String> newData = items.length >= 60
+        ? []
+        : List.generate(20, (index) => 'List Item ${index + items.length}');
+    if (newData.isNotEmpty) items.addAll(newData);
+
+    loading = false;
+    allLoaded = newData.isEmpty;
+  }
+
   increment() {
     num++;
     update();

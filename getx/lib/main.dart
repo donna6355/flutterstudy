@@ -9,6 +9,7 @@ import './pages/second.dart';
 import './pages/third.dart';
 import './pages/Urllaunch.dart';
 import './pages/infinite.dart';
+import './pages/infiniteCtrl.dart';
 
 void main() async {
   await GetStorage.init();
@@ -34,6 +35,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/urllaunch',
           page: () => Urllaunch(),
+        ),
+        GetPage(
+          name: '/infiniteCtrl',
+          page: () => InfiniteCtrl(),
         )
       ],
       title: 'Flutter Demo',
@@ -79,6 +84,14 @@ class Home extends StatelessWidget {
                 Get.toNamed('/infinite');
               },
               title: const Text('infinite scroll'),
+            ),
+            ListTile(
+              onTap: () {
+                controller.addScrollListner();
+                controller.mockfecth();
+                Get.toNamed('/infiniteCtrl');
+              },
+              title: const Text('FAILED infinite Controll scroll'),
             ),
             ListTile(
               onTap: () {
