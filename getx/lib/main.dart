@@ -10,6 +10,7 @@ import './pages/third.dart';
 import './pages/Urllaunch.dart';
 import './pages/infinite.dart';
 import './pages/infiniteCtrl.dart';
+import './pages/webView.dart';
 
 void main() async {
   await GetStorage.init();
@@ -35,6 +36,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/urllaunch',
           page: () => Urllaunch(),
+        ),
+        GetPage(
+          name: '/webView',
+          page: () => WebView(),
         ),
         GetPage(
           name: '/infiniteCtrl',
@@ -67,6 +72,14 @@ class Home extends StatelessWidget {
               onTap: () {
                 // Navigator.of(context).push
                 // Get.to(First());
+                Get.toNamed('/webView');
+              },
+              title: const Text('WebView'),
+            ),
+            ListTile(
+              onTap: () {
+                // Navigator.of(context).push
+                // Get.to(First());
                 Get.toNamed('/urllaunch');
               },
               title: const Text('url launch'),
@@ -91,7 +104,7 @@ class Home extends StatelessWidget {
                 controller.mockfecth();
                 Get.toNamed('/infiniteCtrl');
               },
-              title: const Text('FAILED infinite Controll scroll'),
+              title: const Text('FAILED infinite Control scroll'),
             ),
             ListTile(
               onTap: () {
@@ -155,7 +168,9 @@ class Home extends StatelessWidget {
                           right: -10,
                           child: TextButton.icon(
                             label: Text(''),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
                             icon: const Icon(
                               Icons.close,
                               color: Colors.black,
