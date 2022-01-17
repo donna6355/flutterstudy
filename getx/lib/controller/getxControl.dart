@@ -7,6 +7,7 @@ class Controller extends GetxController {
   int num = 0;
   double aniWidth = 100;
   double aniHeight = 100;
+  bool overlayLoading = false;
 
   final ScrollController scrollctrl = ScrollController();
   List<String> items = [];
@@ -18,6 +19,17 @@ class Controller extends GetxController {
       if (scrollctrl.position.pixels >= scrollctrl.position.maxScrollExtent &&
           !loading) mockfecth();
     });
+  }
+
+  Future<void> updateOverlayLoader() async {
+    overlayLoading = true;
+    update();
+    await Future.delayed(
+      const Duration(seconds: 5),
+    );
+
+    overlayLoading = false;
+    update();
   }
 
   Future<void> mockfecth() async {

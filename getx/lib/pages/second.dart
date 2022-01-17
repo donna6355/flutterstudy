@@ -36,22 +36,58 @@ class Second extends StatelessWidget {
               ),
               GetBuilder<Controller>(
                 builder: (_) {
-                  return UnconstrainedBox(
-                    child: AnimatedContainer(
-                      color: Colors.blueGrey,
-                      duration: const Duration(milliseconds: 400),
-                      width: controller.aniWidth,
-                      height: controller.aniHeight,
-                      child: const Center(
-                        child: Text(
-                          'Animation',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                  return Column(
+                    children: [
+                      UnconstrainedBox(
+                        child: AnimatedContainer(
+                          color: Colors.blueGrey,
+                          duration: const Duration(milliseconds: 400),
+                          width: controller.aniWidth,
+                          height: controller.aniHeight,
+                          child: const Center(
+                            child: Text(
+                              'Animation',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
+                      TextButton(
+                        onPressed: () {
+                          controller.updateOverlayLoader();
+                        },
+                        child: Text('start Overlay Loader'),
+                      ),
+                      Stack(
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            height: 400,
+                            color: Colors.black12,
+                            child: Text('this is for overlay loader'),
+                          ),
+                          if (controller.overlayLoading)
+                            Positioned(
+                              left: 0,
+                              top: 0,
+                              bottom: 0,
+                              right: 0,
+                              child: Container(
+                                color: Colors.black.withOpacity(0.6),
+                                child: const Center(
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.teal),
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ],
                   );
                 },
               ),
