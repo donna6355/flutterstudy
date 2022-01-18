@@ -7,7 +7,17 @@ class Layout extends StatefulWidget {
 
 class _LayoutState extends State<Layout> {
   double height = 0;
-  // bool layoutVisible = false;
+  bool layoutVisible = false;
+  GlobalKey _redBoxKey = GlobalKey();
+
+  _getSize(GlobalKey key) {
+    if (key.currentContext != null) {
+      final RenderBox renderBox =
+          key.currentContext!.findRenderObject() as RenderBox;
+      Size size = renderBox.size;
+      return size.height;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +29,8 @@ class _LayoutState extends State<Layout> {
           ElevatedButton(
               onPressed: () {
                 setState(() {
-                  // layoutVisible = !layoutVisible;
-                  height = height == 200 ? 0 : 200;
+                  layoutVisible = !layoutVisible;
+                  height = _getSize(_redBoxKey);
                 });
               },
               child: const Text('test')),
@@ -28,8 +38,28 @@ class _LayoutState extends State<Layout> {
             duration: const Duration(milliseconds: 600),
             height: height,
             color: Colors.teal,
-            child: Text('hmmmm'),
+            child: Container(
+              key: _redBoxKey,
+              height: 400,
+              width: 40,
+              color: Colors.red,
+            ),
           )
+          // if (layoutVisible)
+          //   LayoutBuilder(
+          //     builder: (BuildContext context, BoxConstraints constraints) {
+          //       // setState(() {
+          //       //   height = constraints.maxHeight;
+          //       // });
+          //       return AnimatedContainer(
+          //         duration: const Duration(milliseconds: 600),
+          //         height: height,
+          //         child: Text(
+          //           constraints.maxHeight.toString(),
+          //         ),
+          //       );
+          //     },
+          //   ),
         ],
       ),
     );
