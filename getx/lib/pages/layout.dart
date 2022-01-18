@@ -10,14 +10,14 @@ class _LayoutState extends State<Layout> {
   bool layoutVisible = false;
   GlobalKey _redBoxKey = GlobalKey();
 
-  _getSize(GlobalKey key) {
-    if (key.currentContext != null) {
-      final RenderBox renderBox =
-          key.currentContext!.findRenderObject() as RenderBox;
-      Size size = renderBox.size;
-      return size.height;
-    }
-  }
+  // _getSize(GlobalKey key) {
+  //   if (key.currentContext != null) {
+  //     final RenderBox renderBox =
+  //         key.currentContext!.findRenderObject() as RenderBox;
+  //     Size size = renderBox.size;
+  //     return size.height;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,8 @@ class _LayoutState extends State<Layout> {
               onPressed: () {
                 setState(() {
                   layoutVisible = !layoutVisible;
-                  height = _getSize(_redBoxKey);
+                  // height = _getSize(_redBoxKey);
+                  height = 300;
                 });
               },
               child: const Text('test')),
@@ -40,7 +41,8 @@ class _LayoutState extends State<Layout> {
             color: Colors.teal,
             child: Container(
               key: _redBoxKey,
-              height: 400,
+              height:
+                  400, // this height is ignored and AnimatedContainer's height is superior.
               width: 40,
               color: Colors.red,
             ),
