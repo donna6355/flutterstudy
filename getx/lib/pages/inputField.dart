@@ -14,36 +14,34 @@ class InputField extends StatefulWidget {
 class _InputFieldState extends State<InputField> {
   String sample = '';
   // final textCtrl = TextEditingController();
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      sample = '';
-    });
-  }
+  final ctrl = Get.put(Controller());
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        children: [
-          TextField(
-            onChanged: (val) {
-              print(val);
-              setState(() {
-                sample = val;
-              });
-            },
-            // controller: textCtrl,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // print(textCtrl.text);
-            },
-            child: const Text('submit'),
-          ),
-        ],
-      ),
-    );
+        child: GetBuilder<Controller>(
+      init: Controller(),
+      builder: (_) {
+        return Column(
+          children: [
+            TextField(
+              onChanged: (val) {
+                print(val);
+                setState(() {
+                  sample = val;
+                });
+              },
+              // controller: textCtrl,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _.updateInputText(sample);
+              },
+              child: const Text('submit'),
+            ),
+          ],
+        );
+      },
+    ));
   }
 }

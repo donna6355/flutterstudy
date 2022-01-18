@@ -1,8 +1,10 @@
 // ignore_for_file: file_names, unused_import, use_key_in_widget_constructors, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:getx/pages/inputField.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:get/get.dart';
+import './inputField.dart';
 
 class Urllaunch extends StatelessWidget {
   void _launchUrl(String str) async {
@@ -81,6 +83,7 @@ class Urllaunch extends StatelessWidget {
             SizedBox(
               height: 200,
             ),
+            InputField(),
             ElevatedButton(
               onPressed: () {
                 _launchUrl('');

@@ -8,11 +8,17 @@ class Controller extends GetxController {
   double aniWidth = 100;
   double aniHeight = 100;
   bool overlayLoading = false;
+  String inputText = '';
 
   final ScrollController scrollctrl = ScrollController();
   List<String> items = [];
   bool loading = false;
   bool allLoaded = false;
+
+  void updateInputText(String text) {
+    inputText = text;
+    update();
+  }
 
   void addScrollListner() {
     scrollctrl.addListener(() {
