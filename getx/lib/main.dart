@@ -11,6 +11,7 @@ import './pages/Urllaunch.dart';
 import './pages/infinite.dart';
 import './pages/infiniteCtrl.dart';
 import './pages/webView.dart';
+import './pages/inputField.dart';
 
 void main() async {
   await GetStorage.init();
@@ -68,6 +69,7 @@ class Home extends StatelessWidget {
       body: Center(
         child: ListView(
           children: [
+            InputField(),
             ListTile(
               onTap: () {
                 // Navigator.of(context).push
