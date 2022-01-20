@@ -38,6 +38,7 @@ dependencies:
   get_storage: ^2.0.3
   url_launcher: ^6.0.17
   string_to_hex: ^0.2.2
+  webview_flutter: ^3.0.0
 
 dev_dependencies:
   flutter_test:

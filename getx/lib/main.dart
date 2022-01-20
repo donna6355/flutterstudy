@@ -11,6 +11,7 @@ import './pages/Urllaunch.dart';
 import './pages/infinite.dart';
 import './pages/infiniteCtrl.dart';
 import './pages/webView.dart';
+import './pages/webViewPkg.dart';
 import './pages/layout.dart';
 import 'dart:io';
 
@@ -79,7 +80,9 @@ class Home extends StatelessWidget {
         child: ListView(
           children: [
             ListTile(
-              onTap: () {},
+              onTap: () {
+                Get.to(WebViewPkg());
+              },
               title: Text('loca_lang: $defaultLocale / os: $os'),
             ),
             ListTile(
