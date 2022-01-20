@@ -12,6 +12,7 @@ import './pages/infinite.dart';
 import './pages/infiniteCtrl.dart';
 import './pages/webView.dart';
 import './pages/layout.dart';
+import 'dart:io';
 
 void main() async {
   await GetStorage.init();
@@ -63,7 +64,11 @@ class MyApp extends StatelessWidget {
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
   final box = GetStorage();
+  //how to get system lang preference. import dart:io
+  final String defaultLocale =
+      Platform.localeName; // Returns locale string in the form 'en_US'
 
+  final String os = Platform.operatingSystem;
   @override
   Widget build(BuildContext context) {
     final Controller controller = Get.put(Controller());
@@ -73,6 +78,10 @@ class Home extends StatelessWidget {
       body: Center(
         child: ListView(
           children: [
+            ListTile(
+              onTap: () {},
+              title: Text('loca_lang: $defaultLocale / os: $os'),
+            ),
             ListTile(
               onTap: () {
                 Get.toNamed('/layout');
