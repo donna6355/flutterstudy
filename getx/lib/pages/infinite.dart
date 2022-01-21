@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:convert' show utf8;
+import 'dart:math' as math;
 
 class Infinite extends StatefulWidget {
   @override
@@ -45,14 +46,16 @@ class _InfiniteState extends State<Infinite> {
     _scrollctrl.dispose(); //DO NOT forget to dispose scroll controller!!
   }
 
-  int strToHex() {
-    var res = [0xff];
-    String str = '무료구독';
-
-    var encoded = utf8.encode(str).join('a').substring(0, 6);
-    print(encoded);
-    print(res.join(encoded));
-    return int.parse(res.join(encoded));
+  Color strToColor(String str) {
+    int hash = 0;
+    for (var i = 0; i < str.length; i++) {
+      hash = str.codeUnitAt(i) + ((hash << 5) - hash);
+    }
+    String color = (((math.sin(hash) * 10000) % 1) * 16777216)
+        .abs()
+        .floor()
+        .toRadixString(16);
+    return Color(int.parse("0xff$color"));
   }
 
   @override
@@ -71,9 +74,9 @@ class _InfiniteState extends State<Infinite> {
                     return ListTile(
                       title: Text(
                         items[idx],
-                        // style: TextStyle(
-                        //   color: Color(strToHex()),
-                        // ),
+                        style: TextStyle(
+                          color: strToColor(items[idx]),
+                        ),
                       ),
                     );
                   },
