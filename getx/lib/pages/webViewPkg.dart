@@ -29,9 +29,22 @@ class _WebViewPkgState extends State<WebViewPkg> {
       appBar: AppBar(
         title: Text('WebViewPkg'),
       ),
-      body: const Center(
+      body: Container(
+        margin: EdgeInsets.all(50),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.teal,
+            width: 3,
+          ),
+        ),
+        width: 300,
+        height: 300,
         child: WebView(
+          onWebViewCreated: (WebViewController webViewController) {
+            _controller.complete(webViewController);
+          },
           initialUrl: 'https://flutter.dev',
+          javascriptMode: JavascriptMode.unrestricted,
         ),
       ),
     );
