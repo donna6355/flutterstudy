@@ -1,6 +1,5 @@
 // ignore_for_file: use_key_in_widget_constructors, unused_element, file_names
 
-import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -12,8 +11,7 @@ class WebViewPkg extends StatefulWidget {
 }
 
 class _WebViewPkgState extends State<WebViewPkg> {
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
+  WebViewController? _controller;
 
   @override
   void initState() {
@@ -26,6 +24,22 @@ class _WebViewPkgState extends State<WebViewPkg> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Row(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              _controller!.loadUrl("https://www.naver.com/");
+            },
+            child: Text('move to Naver'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              _controller!.loadUrl('https://www.tving.com/en');
+            },
+            child: Text('move to Tving'),
+          ),
+        ],
+      ),
       appBar: AppBar(
         title: Text('WebViewPkg'),
       ),
@@ -41,10 +55,18 @@ class _WebViewPkgState extends State<WebViewPkg> {
         height: 300,
         child: WebView(
           onWebViewCreated: (WebViewController webViewController) {
-            _controller.complete(webViewController);
+            _controller = webViewController;
           },
           initialUrl: 'https://flutter.dev',
           javascriptMode: JavascriptMode.unrestricted,
+          navigationDelegate: (NavigationRequest request) {
+            if (request.url.contains('naver.com')) {
+              // do not navigate
+              return NavigationDecision.prevent;
+            }
+
+            return NavigationDecision.navigate;
+          },
         ),
       ),
     );
