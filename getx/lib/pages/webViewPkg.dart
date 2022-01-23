@@ -12,6 +12,7 @@ class WebViewPkg extends StatefulWidget {
 
 class _WebViewPkgState extends State<WebViewPkg> {
   WebViewController? _controller;
+  int stage = 0; //default 0, success 1, fail 2;
 
   @override
   void initState() {
@@ -26,18 +27,20 @@ class _WebViewPkgState extends State<WebViewPkg> {
     return Scaffold(
       floatingActionButton: Row(
         children: [
-          ElevatedButton(
-            onPressed: () {
-              _controller!.loadUrl("https://www.naver.com/");
-            },
-            child: Text('move to Naver'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              _controller!.loadUrl('https://www.tving.com/en');
-            },
-            child: Text('move to Tving'),
-          ),
+          if (stage == 0)
+            ElevatedButton(
+              onPressed: () {
+                _controller!.loadUrl("https://www.naver.com/");
+              },
+              child: Text('move to Naver'),
+            ),
+          if (stage == 0)
+            ElevatedButton(
+              onPressed: () {
+                _controller!.loadUrl('https://www.tving.com/en');
+              },
+              child: Text('move to Tving'),
+            ),
         ],
       ),
       appBar: AppBar(
@@ -53,21 +56,29 @@ class _WebViewPkgState extends State<WebViewPkg> {
         ),
         width: 300,
         height: 300,
-        child: WebView(
-          onWebViewCreated: (WebViewController webViewController) {
-            _controller = webViewController;
-          },
-          initialUrl: 'https://flutter.dev',
-          javascriptMode: JavascriptMode.unrestricted,
-          navigationDelegate: (NavigationRequest request) {
-            if (request.url.contains('naver.com')) {
-              // do not navigate
-              return NavigationDecision.prevent;
-            }
+        child: stage == 0
+            ? WebView(
+                onWebViewCreated: (WebViewController webViewController) {
+                  _controller = webViewController;
+                },
+                initialUrl: 'https://flutter.dev',
+                javascriptMode: JavascriptMode.unrestricted,
+                navigationDelegate: (NavigationRequest request) {
+                  if (request.url.contains('naver.com')) {
+                    // do not navigate
+                    setState(() {
+                      stage = 1;
+                    });
+                    return NavigationDecision.prevent;
+                  }
 
-            return NavigationDecision.navigate;
-          },
-        ),
+                  return NavigationDecision.navigate;
+                },
+              )
+            : Container(
+                color: Colors.amber,
+                child: Text('reach to Naver'),
+              ),
       ),
     );
   }
