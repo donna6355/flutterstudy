@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,6 +38,48 @@ class Second extends StatelessWidget {
                 builder: (_) {
                   return Column(
                     children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(
+                              right: 5,
+                              left: 5,
+                              bottom: 15,
+                            ),
+                            child: Text('width 100'),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  width: 3,
+                                  color: controller.aniWidth == 100
+                                      ? Colors.orange
+                                      : Color(0x00000000),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(
+                              right: 5,
+                              left: 5,
+                              bottom: 15,
+                            ),
+                            child: Text('300'),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  width: 3,
+                                  color: controller.aniWidth == 300
+                                      ? Colors.orange
+                                      : Color(0x00000000),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
                       UnconstrainedBox(
                         child: AnimatedContainer(
                           color: Colors.blueGrey,
