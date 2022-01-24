@@ -6,6 +6,7 @@ import '../controller/getxControl.dart';
 
 class Second extends StatelessWidget {
   final Controller controller = Get.put(Controller());
+  final _widgetKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +42,16 @@ class Second extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          Text('hello', key: _widgetKey),
+                          // This getter will only return a valid result after the layout phase is complete.
+                          // It is therefore not valid to call this from a build method.
+                          // It should only be called from paint callbacks or interaction event handlers (e.g. gesture callbacks).
+                          // Text(_widgetKey.currentContext.size!.width.toString()),
                           Container(
                             padding: EdgeInsets.only(
                               right: 5,
                               left: 5,
-                              bottom: 15,
+                              bottom: 10,
                             ),
                             child: Text('width 100'),
                             decoration: BoxDecoration(
@@ -63,7 +69,7 @@ class Second extends StatelessWidget {
                             padding: EdgeInsets.only(
                               right: 5,
                               left: 5,
-                              bottom: 15,
+                              bottom: 10,
                             ),
                             child: Text('300'),
                             decoration: BoxDecoration(
