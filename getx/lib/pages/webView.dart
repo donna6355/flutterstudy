@@ -14,7 +14,7 @@ class WebView extends StatelessWidget {
         forceWebView: true,
         enableJavaScript: true,
       );
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(const Duration(seconds: 1));
 
       await closeWebView();
     } else {

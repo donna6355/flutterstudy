@@ -32,22 +32,22 @@ class _WebViewPkgState extends State<WebViewPkg> {
               onPressed: () {
                 _controller!.loadUrl("https://www.naver.com/");
               },
-              child: Text('move to Naver'),
+              child: const Text('move to Naver'),
             ),
           if (stage == 0)
             ElevatedButton(
               onPressed: () {
                 _controller!.loadUrl('https://www.tving.com/en');
               },
-              child: Text('move to Tving'),
+              child: const Text('move to Tving'),
             ),
         ],
       ),
       appBar: AppBar(
-        title: Text('WebViewPkg'),
+        title: const Text('WebViewPkg'),
       ),
       body: Container(
-        margin: EdgeInsets.all(50),
+        margin: const EdgeInsets.all(50),
         decoration: BoxDecoration(
           border: Border.all(
             color: Colors.teal,
@@ -77,7 +77,7 @@ class _WebViewPkgState extends State<WebViewPkg> {
               )
             : Container(
                 color: Colors.amber,
-                child: Text('reach to Naver'),
+                child: const Text('reach to Naver'),
               ),
       ),
     );

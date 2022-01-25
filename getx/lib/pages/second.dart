@@ -53,7 +53,7 @@ class Second extends StatelessWidget {
                               left: 5,
                               bottom: 10,
                             ),
-                            child: Text('width 100'),
+                            child: const Text('width 100'),
                             decoration: BoxDecoration(
                               border: Border(
                                 bottom: BorderSide(
@@ -71,7 +71,7 @@ class Second extends StatelessWidget {
                               left: 5,
                               bottom: 10,
                             ),
-                            child: Text('300'),
+                            child: const Text('300'),
                             decoration: BoxDecoration(
                               border: Border(
                                 bottom: BorderSide(
@@ -115,7 +115,7 @@ class Second extends StatelessWidget {
                             width: double.infinity,
                             height: 400,
                             color: Colors.black12,
-                            child: Text('this is for overlay loader'),
+                            child: const Text('this is for overlay loader'),
                           ),
                           if (controller.overlayLoading)
                             Positioned(

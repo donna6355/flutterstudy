@@ -26,7 +26,7 @@ class First extends StatelessWidget {
               child: Center(
                 child: Column(
                   children: [
-                    SizedBox(height: 200),
+                    const SizedBox(height: 200),
                     Text(
                       'Page index : ${Get.arguments}1',
                       style: TextStyle(
@@ -65,7 +65,7 @@ class First extends StatelessWidget {
               child: Center(
                 child: Text(
                   'Page index : ${Get.arguments}3',
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                 ),
               ),
             ),

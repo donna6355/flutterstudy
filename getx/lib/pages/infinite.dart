@@ -81,7 +81,7 @@ class _InfiniteState extends State<Infinite> {
                     );
                   },
                   separatorBuilder: (ctx, idx) {
-                    return Divider(height: 1);
+                    return const Divider(height: 1);
                   },
                   itemCount: items.length),
               if (loading)

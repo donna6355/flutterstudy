@@ -88,19 +88,19 @@ class Urllaunch extends StatelessWidget {
               onPressed: () {
                 _launchUrl('');
               },
-              child: Text('go to flutter.dev'),
+              child: const Text('go to flutter.dev'),
             ),
             ElevatedButton(
               onPressed: () {
                 _stringToText();
               },
-              child: Text('str to widget'),
+              child: const Text('str to widget'),
             ),
             ElevatedButton(
               onPressed: () {
                 Get.toNamed('/third/HappyNewYear?date=Jan1');
               },
-              child: Text('go to third'),
+              child: const Text('go to third'),
             ),
             Container(
               color: Colors.blueGrey,
