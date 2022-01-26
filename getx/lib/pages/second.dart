@@ -11,7 +11,10 @@ class Second extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+        // FocusScope.of(context).unfocus(); //same function
+      },
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(8.0),
