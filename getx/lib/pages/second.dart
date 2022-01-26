@@ -149,3 +149,32 @@ class Second extends StatelessWidget {
     );
   }
 }
+
+class TabTest extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 2,
+      child: Column(
+        children: [
+          TabBar(
+            tabs: <Widget>[
+              Tab(icon: Icon(Icons.tag_faces), text: '메뉴1'),
+              Tab(icon: Icon(Icons.add_circle_sharp), text: '메뉴2'),
+            ],
+          ),
+          Expanded(
+            child: TabBarView(children: <Widget>[
+              Container(
+                color: Colors.yellow,
+              ),
+              Container(
+                color: Colors.orange,
+              ),
+            ]),
+          ),
+        ],
+      ),
+    );
+  }
+}
