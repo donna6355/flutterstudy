@@ -13,6 +13,7 @@ import './pages/infiniteCtrl.dart';
 import './pages/webView.dart';
 import './pages/webViewPkg.dart';
 import './pages/layout.dart';
+import 'pages/tabTest.dart';
 import 'dart:io';
 
 void main() async {
@@ -79,6 +80,12 @@ class Home extends StatelessWidget {
       body: Center(
         child: ListView(
           children: [
+            ListTile(
+              onTap: () {
+                Get.to(TabTest());
+              },
+              title: Text('Tab Test'),
+            ),
             ListTile(
               onTap: () {
                 Get.to(WebViewPkg());
