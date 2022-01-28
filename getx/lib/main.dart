@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
+import 'dart:io';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -14,7 +17,7 @@ import './pages/webView.dart';
 import './pages/webViewPkg.dart';
 import './pages/layout.dart';
 import 'pages/tabTest.dart';
-import 'dart:io';
+import 'pages/stepperTest.dart';
 
 void main() async {
   await GetStorage.init();
@@ -80,6 +83,12 @@ class Home extends StatelessWidget {
       body: Center(
         child: ListView(
           children: [
+            ListTile(
+              onTap: () {
+                Get.to(StepperTest());
+              },
+              title: Text('Stepper test'),
+            ),
             ListTile(
               onTap: () {
                 Get.to(TabTest());
