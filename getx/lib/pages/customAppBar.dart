@@ -30,10 +30,27 @@ class _CustomAppBarState extends State<CustomAppBar> {
             delegate: SliverChildListDelegate([
               Text(
                 'ISSAC',
+                textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 600,
+                  fontSize: 80,
+                  color: Colors.black26,
                 ),
               ),
+              Divider(
+                thickness: 1,
+                color: Colors.teal,
+              ),
+              ExpansionTile(
+                title: Text('see more'),
+                children: [
+                  ListTile(title: Text('tile 1')),
+                  ListTile(title: Text('tile 2')),
+                  ListTile(title: Text('tile 3')),
+                  ListTile(title: Text('tile 4')),
+                  ListTile(title: Text('tile 5')),
+                  ListTile(title: Text('tile 6')),
+                ],
+              )
             ]),
           )
         ],
