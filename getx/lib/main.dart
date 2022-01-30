@@ -18,6 +18,7 @@ import './pages/webViewPkg.dart';
 import './pages/layout.dart';
 import 'pages/tabTest.dart';
 import 'pages/stepperTest.dart';
+import 'pages/customAppBar.dart';
 
 void main() async {
   await GetStorage.init();
@@ -83,6 +84,12 @@ class Home extends StatelessWidget {
       body: Center(
         child: ListView(
           children: [
+            ListTile(
+              onTap: () {
+                Get.to(CustomAppBar());
+              },
+              title: Text('Sliver AppBar'),
+            ),
             ListTile(
               onTap: () {
                 Get.to(StepperTest());
