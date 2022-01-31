@@ -386,3 +386,14 @@ class Home extends StatelessWidget {
     );
   }
 }
+
+
+//flutter create . 
+////flutter config --enable-web 
+/////flutter run -d chrome 
+/////checklayout 
+/////check library's web support 
+/////check navigation 
+/////scrollbar, mouse,keyboard interaction check 
+/////rendering mode : html, canvaskit **default : auto;
+//flutter build web
