@@ -33,6 +33,16 @@ class _InfiniteState extends State<Infinite> {
   @override
   void initState() {
     super.initState();
+
+    // initState is overlapped during build method n thats the reason why this error occurs;
+    // fluttererror (setstate() or markneedsbuild() called during build. this getbuilder<searchcontroller> widget cannot be marked as needing to build because the framework is already in the process of building widgets. a widget can be marked as needing to be built during the build phase only if one of its ancestors is currently building. this exception is allowed because the framework builds parent widgets before children, which means a dirty descendant will always be built. otherwise, the framework might not visit this widget during this build phase. the widget on which setstate() or markneedsbuild() was called was: getbuilder<searchcontroller> the widget which was currently being built when the offending call was made was: builder
+    // Future.delayed(Duration.zero,(){});
+
+    //you are not allowed to add async modifier to initState
+    // Future.delayed(Duration.zero,() async {
+    //       //your async 'await' codes goes here
+    // });
+
     mockfecth();
     _scrollctrl.addListener(() {
       if (_scrollctrl.position.pixels >= _scrollctrl.position.maxScrollExtent &&
