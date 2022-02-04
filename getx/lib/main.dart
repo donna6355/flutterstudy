@@ -19,6 +19,7 @@ import './pages/layout.dart';
 import 'pages/tabTest.dart';
 import 'pages/stepperTest.dart';
 import 'pages/customAppBar.dart';
+import './controller/myRouteObserver.dart';
 
 void main() async {
   await GetStorage.init();
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      navigatorObservers: [MyRouteObserver()],
       getPages: [
         GetPage(
           name: '/third/:greeting',
