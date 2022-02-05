@@ -50,7 +50,14 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   ListTile(title: Text('tile 5')),
                   ListTile(title: Text('tile 6')),
                 ],
-              )
+              ),
+              Tooltip(
+                message: 'hello',
+                child: Icon(
+                  Icons.smart_toy,
+                  size: 100,
+                ),
+              ),
             ]),
           )
         ],
