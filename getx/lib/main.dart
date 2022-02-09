@@ -399,3 +399,8 @@ class Home extends StatelessWidget {
 /////scrollbar, mouse,keyboard interaction check 
 /////rendering mode : html, canvaskit **default : auto;
 //flutter build web
+
+
+//mediaQuery caviet
+//when keyboard appears mediaQuery value changes n rebuild the whole widget!
+//use layoutBuilder or double.infinity etc to avoid repainting widget with media query!
