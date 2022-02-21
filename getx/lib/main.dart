@@ -394,6 +394,7 @@ class Home extends StatelessWidget {
   }
 
   Future<bool> showExitPopup(context) async {
+    // https://flutteragency.com/how-to-programmatically-exist-the-app-in-flutter/
     // 1. Navigator.of(context).pop(true)
     // 2. SystemNavigator.pop() // 앱 종료 import 'package:flutter/services.dart';
     // 3. exit(0) //강제종료
@@ -414,7 +415,8 @@ class Home extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {
                             print('yes selected');
-                            SystemNavigator.pop();
+                            Navigator.of(context).pop(true);
+                            // SystemNavigator.pop();
                             // exit(0);
                           },
                           child: Text("Yes"),
