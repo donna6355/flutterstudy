@@ -26,7 +26,7 @@ class _InputFieldState extends State<InputField> {
           children: [
             TextField(
               onChanged: (val) {
-                print(val);
+                // print(val);
                 setState(() {
                   sample = val;
                 });

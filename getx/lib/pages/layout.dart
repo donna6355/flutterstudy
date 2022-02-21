@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Layout extends StatefulWidget {
+  const Layout({Key? key}) : super(key: key);
+
   @override
   _LayoutState createState() => _LayoutState();
 }
@@ -8,7 +10,7 @@ class Layout extends StatefulWidget {
 class _LayoutState extends State<Layout> {
   double height = 0;
   bool layoutVisible = false;
-  GlobalKey _redBoxKey = GlobalKey();
+  final GlobalKey _redBoxKey = GlobalKey();
 
   // _getSize(GlobalKey key) {
   //   if (key.currentContext != null) {

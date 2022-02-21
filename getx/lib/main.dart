@@ -199,8 +199,8 @@ class Home extends StatelessWidget {
                       alignment: Alignment.topRight,
                       children: [
                         Column(
-                          children: [
-                            const Text('custom dialog'),
+                          children: const [
+                            Text('custom dialog'),
                             Text('sample 1'),
                             Text('sample 2'),
                             Text('sample 3'),

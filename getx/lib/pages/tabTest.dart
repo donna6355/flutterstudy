@@ -11,9 +11,9 @@ class TabTest extends StatelessWidget {
         length: 2,
         child: Column(
           children: [
-            Align(
+            const Align(
               alignment: Alignment.centerLeft,
-              child: const TabBar(
+              child: TabBar(
                 indicator: UnderlineTabIndicator(
                   borderSide: BorderSide(
                     width: 4,

@@ -42,7 +42,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
               ),
               ExpansionTile(
                 title: Text('see more'),
-                children: [
+                children: const [
                   ListTile(title: Text('tile 1')),
                   ListTile(title: Text('tile 2')),
                   ListTile(title: Text('tile 3')),

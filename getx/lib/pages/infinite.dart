@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'dart:convert' show utf8;
+// import 'dart:convert' show utf8;
 import 'dart:math' as math;
 
 class Infinite extends StatefulWidget {
+  const Infinite({Key? key}) : super(key: key);
+
   @override
   State<Infinite> createState() => _InfiniteState();
 }
