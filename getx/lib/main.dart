@@ -91,6 +91,15 @@ class Home extends StatelessWidget {
             children: [
               ListTile(
                 onTap: () {
+                  Clipboard.setData(
+                    ClipboardData(text: 'Greetings from Flutter App'),
+                  );
+                  // it may not work properly in android simulator!
+                },
+                title: Text('copy to clipboard'),
+              ),
+              ListTile(
+                onTap: () {
                   Get.to(CustomAppBar());
                 },
                 title: Text('Sliver AppBar'),
