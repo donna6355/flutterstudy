@@ -95,6 +95,12 @@ class Home extends StatelessWidget {
                     ClipboardData(text: 'Greetings from Flutter App'),
                   );
                   // it may not work properly in android simulator!
+                  Get.snackbar(
+                    'GetX',
+                    'Greeting copied to clipboarad',
+                    backgroundColor: Colors.black87,
+                    colorText: Colors.white,
+                  );
                 },
                 title: Text('copy to clipboard'),
               ),
