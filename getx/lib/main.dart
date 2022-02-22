@@ -463,3 +463,6 @@ class Home extends StatelessWidget {
 //when keyboard appears mediaQuery value changes n rebuild the whole widget!
 //use layoutBuilder or double.infinity etc to avoid repainting widget with media query!
 
+
+// Solution Turns out if the hardware keyboard is connected, it will suppress the software keyboard. 
+// cmd + shift + k disconnects the hardware keyboard or cmd + k toggles the software keyboard.
