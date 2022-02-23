@@ -481,3 +481,6 @@ class Home extends StatelessWidget {
 
 // Solution Turns out if the hardware keyboard is connected, it will suppress the software keyboard. 
 // cmd + shift + k disconnects the hardware keyboard or cmd + k toggles the software keyboard.
+
+// https://stackoverflow.com/questions/7852566/error-error-installing-ffi-error-failed-to-build-gem-native-extension
+// error installing ffi
