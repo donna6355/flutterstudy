@@ -32,9 +32,13 @@ class TabTest extends StatelessWidget {
               child: TabBarView(children: <Widget>[
                 Container(
                   color: Colors.yellow,
+                  child: Text('Greetings from S.Korea'),
                 ),
                 Container(
                   color: Colors.orange,
+                  child: FittedBox(
+                    child: Text('Greetings from S.Korea'),
+                  ),
                 ),
               ]),
             ),
