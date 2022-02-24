@@ -2,7 +2,21 @@
 
 import 'package:flutter/material.dart';
 
-class TabTest extends StatelessWidget {
+class TabTest extends StatefulWidget {
+  @override
+  State<TabTest> createState() => _TabTestState();
+}
+
+class _TabTestState extends State<TabTest> with SingleTickerProviderStateMixin {
+  AnimationController? _myAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _myAnimation = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 600));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +46,27 @@ class TabTest extends StatelessWidget {
               child: TabBarView(children: <Widget>[
                 Container(
                   color: Colors.yellow,
-                  child: Text('Greetings from S.Korea'),
+                  child: Column(
+                    children: [
+                      Text('Greetings from S.Korea'),
+                      Center(
+                        child: InkWell(
+                          onTap: () {
+                            if (_myAnimation!.isCompleted)
+                              _myAnimation!.reverse();
+                            else
+                              _myAnimation!.forward();
+                          },
+                          child: AnimatedIcon(
+                            size: 50,
+                            color: Colors.teal,
+                            icon: AnimatedIcons.pause_play,
+                            progress: _myAnimation!,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Container(
                   color: Colors.orange,
