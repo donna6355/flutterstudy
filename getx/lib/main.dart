@@ -20,6 +20,7 @@ import './pages/layout.dart';
 import 'pages/tabTest.dart';
 import 'pages/stepperTest.dart';
 import 'pages/customAppBar.dart';
+import 'pages/heroTrial.dart';
 import './controller/myRouteObserver.dart';
 
 void main() async {
@@ -89,6 +90,27 @@ class Home extends StatelessWidget {
         body: Center(
           child: ListView(
             children: [
+              ListTile(
+                onTap: () {
+                  Get.to(HeroTrial());
+                },
+                title: Row(
+                  children: [
+                    Hero(
+                      tag: 'trial',
+                      child: ClipOval(
+                        child: Image.asset(
+                          'img/issac.jpeg',
+                          width: 50,
+                          height: 50,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Text('Hero trial!'),
+                  ],
+                ),
+              ),
               ListTile(
                 onTap: () {
                   Clipboard.setData(
