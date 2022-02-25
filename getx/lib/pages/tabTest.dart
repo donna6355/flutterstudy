@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TabTest extends StatefulWidget {
@@ -9,6 +10,7 @@ class TabTest extends StatefulWidget {
 
 class _TabTestState extends State<TabTest> with SingleTickerProviderStateMixin {
   AnimationController? _myAnimation;
+  bool _switch = false;
 
   @override
   void initState() {
@@ -48,14 +50,15 @@ class _TabTestState extends State<TabTest> with SingleTickerProviderStateMixin {
                   color: Colors.yellow,
                   child: Column(
                     children: [
-                      Text('Greetings from S.Korea'),
+                      const Text('Greetings from S.Korea'),
                       Center(
                         child: InkWell(
                           onTap: () {
-                            if (_myAnimation!.isCompleted)
+                            if (_myAnimation!.isCompleted) {
                               _myAnimation!.reverse();
-                            else
+                            } else {
                               _myAnimation!.forward();
+                            }
                           },
                           child: AnimatedIcon(
                             size: 50,
@@ -70,8 +73,41 @@ class _TabTestState extends State<TabTest> with SingleTickerProviderStateMixin {
                 ),
                 Container(
                   color: Colors.orange,
-                  child: FittedBox(
-                    child: Text('Greetings from S.Korea'),
+                  child: Column(
+                    children: [
+                      FittedBox(
+                        child: Text('Greetings from S.Korea'),
+                      ),
+                      Transform.scale(
+                        scale: 0.7,
+                        child: CupertinoSwitch(
+                          activeColor: Colors.red,
+                          value: _switch,
+                          onChanged: (val) {
+                            setState(() {
+                              _switch = val;
+                            });
+                          },
+                        ),
+                      ),
+                      //better to use transform.scale to adjust the size of cupertino switch
+                      // Container(
+                      //   width: 70,
+                      //   height: 20,
+                      //   color: Colors.white,
+                      //   child: FittedBox(
+                      //     child: CupertinoSwitch(
+                      //       activeColor: Colors.red,
+                      //       value: _switch,
+                      //       onChanged: (val) {
+                      //         setState(() {
+                      //           _switch = val;
+                      //         });
+                      //       },
+                      //     ),
+                      //   ),
+                      // ),
+                    ],
                   ),
                 ),
               ]),
