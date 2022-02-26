@@ -75,9 +75,11 @@ class _TabTestState extends State<TabTest> with SingleTickerProviderStateMixin {
                   color: Colors.orange,
                   child: Column(
                     children: [
-                      FittedBox(
+                      const FittedBox(
                         child: Text('Greetings from S.Korea'),
                       ),
+                      const Spacer(), //default one
+                      const Flexible(child: Text('hmm flexible')),
                       Transform.scale(
                         scale: 0.7,
                         child: CupertinoSwitch(
