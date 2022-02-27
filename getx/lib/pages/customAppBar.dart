@@ -36,6 +36,102 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   color: Colors.black26,
                 ),
               ),
+              Text(
+                'ISSAC',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 80,
+                  color: Colors.black26,
+                ),
+              ),
+              Text(
+                'ISSAC',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 80,
+                  color: Colors.black26,
+                ),
+              ),
+              Text(
+                'ISSAC',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 80,
+                  color: Colors.black26,
+                ),
+              ),
+              Text(
+                'ISSAC',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 80,
+                  color: Colors.black26,
+                ),
+              ),
+              Text(
+                'ISSAC',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 80,
+                  color: Colors.black26,
+                ),
+              ),
+              Text(
+                'ISSAC',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 80,
+                  color: Colors.black26,
+                ),
+              ),
+              Text(
+                'ISSAC',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 80,
+                  color: Colors.black26,
+                ),
+              ),
+              Text(
+                'ISSAC',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 80,
+                  color: Colors.black26,
+                ),
+              ),
+              Text(
+                'ISSAC',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 80,
+                  color: Colors.black26,
+                ),
+              ),
+              Text(
+                'ISSAC',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 80,
+                  color: Colors.black26,
+                ),
+              ),
+              Text(
+                'ISSAC',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 80,
+                  color: Colors.black26,
+                ),
+              ),
+              Text(
+                'ISSAC',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 80,
+                  color: Colors.black26,
+                ),
+              ),
               Divider(
                 thickness: 1,
                 color: Colors.teal,
