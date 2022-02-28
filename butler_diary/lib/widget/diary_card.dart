@@ -321,16 +321,37 @@ class DiaryCard extends StatelessWidget {
                   const Text('증거물'),
                   SizedBox(width: 8),
                   for (var path in dailyData.photos)
-                    Container(
-                      width: 54,
-                      height: 54,
-                      margin: EdgeInsets.only(right: 10),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.file(
-                          File(path),
-                          fit: BoxFit.cover,
-                          width: double.infinity,
+                    GestureDetector(
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (ctx) {
+                              return Dialog(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  child: Image.file(
+                                    File(path),
+                                    fit: BoxFit.cover,
+                                    width: 250,
+                                  ),
+                                ),
+                              );
+                            });
+                      },
+                      child: Container(
+                        width: 54,
+                        height: 54,
+                        margin: EdgeInsets.only(right: 10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.file(
+                            File(path),
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                          ),
                         ),
                       ),
                     )
