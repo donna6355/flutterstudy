@@ -439,7 +439,7 @@ class Home extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            content: Container(
+            content: SizedBox(
               height: 90,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -451,7 +451,7 @@ class Home extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
-                            print('yes selected');
+                            // print('yes selected');
                             Navigator.of(context).pop(true);
                             // SystemNavigator.pop();
                             // exit(0);
@@ -465,7 +465,7 @@ class Home extends StatelessWidget {
                       Expanded(
                           child: ElevatedButton(
                         onPressed: () {
-                          print('no selected');
+                          // print('no selected');
                           Navigator.of(context).pop();
                         },
                         child:

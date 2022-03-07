@@ -99,7 +99,7 @@ class _InfiniteState extends State<Infinite> {
               if (loading)
                 Positioned(
                     bottom: 16,
-                    child: Container(
+                    child: SizedBox(
                       width: constraints.maxWidth,
                       child: const Center(
                         child: CircularProgressIndicator(),
