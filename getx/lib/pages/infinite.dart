@@ -80,22 +80,24 @@ class _InfiniteState extends State<Infinite> {
         if (items.isNotEmpty) {
           return Stack(
             children: [
-              ListView.separated(
-                  controller: _scrollctrl,
-                  itemBuilder: (ctx, idx) {
-                    return ListTile(
-                      title: Text(
-                        items[idx],
-                        style: TextStyle(
-                          color: strToColor(items[idx]),
+              Scrollbar(
+                child: ListView.separated(
+                    controller: _scrollctrl,
+                    itemBuilder: (ctx, idx) {
+                      return ListTile(
+                        title: Text(
+                          items[idx],
+                          style: TextStyle(
+                            color: strToColor(items[idx]),
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                  separatorBuilder: (ctx, idx) {
-                    return const Divider(height: 1);
-                  },
-                  itemCount: items.length),
+                      );
+                    },
+                    separatorBuilder: (ctx, idx) {
+                      return const Divider(height: 1);
+                    },
+                    itemCount: items.length),
+              ),
               if (loading)
                 Positioned(
                     bottom: 16,
