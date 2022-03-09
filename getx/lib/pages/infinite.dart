@@ -35,6 +35,9 @@ class _InfiniteState extends State<Infinite> {
   @override
   void initState() {
     super.initState();
+    _scrollctrl.addListener(() {
+      print('offset = ${_scrollctrl.offset}');
+    });
 
     // initState is overlapped during build method n thats the reason why this error occurs;
     // fluttererror (setstate() or markneedsbuild() called during build. this getbuilder<searchcontroller> widget cannot be marked as needing to build because the framework is already in the process of building widgets. a widget can be marked as needing to be built during the build phase only if one of its ancestors is currently building. this exception is allowed because the framework builds parent widgets before children, which means a dirty descendant will always be built. otherwise, the framework might not visit this widget during this build phase. the widget on which setstate() or markneedsbuild() was called was: getbuilder<searchcontroller> the widget which was currently being built when the offending call was made was: builder
@@ -56,6 +59,11 @@ class _InfiniteState extends State<Infinite> {
   void dispose() {
     super.dispose();
     _scrollctrl.dispose(); //DO NOT forget to dispose scroll controller!!
+  }
+
+  void _scrollToTop() {
+    _scrollctrl.animateTo(0,
+        duration: const Duration(milliseconds: 400), curve: Curves.bounceInOut);
   }
 
   Color strToColor(String str) {
@@ -115,6 +123,10 @@ class _InfiniteState extends State<Infinite> {
           );
         }
       }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _scrollToTop,
+        child: const Icon(Icons.arrow_upward),
+      ),
     );
   }
 }
