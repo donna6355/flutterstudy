@@ -519,3 +519,6 @@ class Home extends StatelessWidget {
 // Error launching application on Donna’s iPhone.
 // generally bundle identifier is not unique. change it to something else.
 // https://karzin.tistory.com/208
+
+// Settings > General > Device Management > select the profile to trust
+// https://developer.apple.com/forums/thread/660288
