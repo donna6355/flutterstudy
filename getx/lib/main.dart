@@ -509,3 +509,13 @@ class Home extends StatelessWidget {
 
 // https://stackoverflow.com/questions/7852566/error-error-installing-ffi-error-failed-to-build-gem-native-extension
 // error installing ffi
+
+// Could not build the precompiled application for the device.
+
+// It appears that your application still contains the default signing identifier.
+// Try replacing 'com.example' with your signing id in Xcode:
+//   open ios/Runner.xcworkspace
+
+// Error launching application on Donna’s iPhone.
+// generally bundle identifier is not unique. change it to something else.
+// https://karzin.tistory.com/208
