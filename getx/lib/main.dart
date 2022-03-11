@@ -522,3 +522,6 @@ class Home extends StatelessWidget {
 
 // Settings > General > Device Management > select the profile to trust
 // https://developer.apple.com/forums/thread/660288
+
+// flutter code convention
+// https://medium.com/nonstopio/flutter-best-practices-c3db1c3cd694
