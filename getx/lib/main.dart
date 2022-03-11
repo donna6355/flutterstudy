@@ -87,6 +87,12 @@ class Home extends StatelessWidget {
     return WillPopScope(
       onWillPop: () => showExitPopup(context),
       child: Scaffold(
+        endDrawer: Drawer(
+          child: Center(
+            child: Text("This is Isaac's Home"),
+          ),
+        ),
+        endDrawerEnableOpenDragGesture: true, //false to disable
         body: Center(
           child: Scrollbar(
             isAlwaysShown: true,
