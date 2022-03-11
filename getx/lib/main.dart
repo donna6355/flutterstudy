@@ -92,7 +92,11 @@ class Home extends StatelessWidget {
             child: Text("This is Isaac's Home"),
           ),
         ),
-        endDrawerEnableOpenDragGesture: true, //false to disable
+        endDrawerEnableOpenDragGesture: true,
+        drawer: Drawer(
+          child: Center(child: Text('FROM LEFT')),
+        ),
+        drawerEnableOpenDragGesture: false, //false to disable
         body: Center(
           child: Scrollbar(
             isAlwaysShown: true,
