@@ -41,3 +41,7 @@ class WebView extends StatelessWidget {
     ));
   }
 }
+
+
+// "Error with Permissions-Policy header: Unrecognized feature: 'interest-cohort'.", source:  (0)
+// https://web.dev/floc/#do-websites-have-to-participate-and-share-information
