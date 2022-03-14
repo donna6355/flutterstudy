@@ -21,6 +21,7 @@ import 'pages/tabTest.dart';
 import 'pages/stepperTest.dart';
 import 'pages/customAppBar.dart';
 import 'pages/heroTrial.dart';
+import 'pages/subList.dart';
 import './controller/myRouteObserver.dart';
 
 void main() async {
@@ -102,6 +103,13 @@ class Home extends StatelessWidget {
             isAlwaysShown: true,
             child: ListView(
               children: [
+                ListTile(
+                  onTap: () {
+                    Get.to(SubList());
+                  },
+                  title: Text('SubList Trial!'),
+                ),
+
                 ListTile(
                   onTap: () {
                     Get.to(HeroTrial());
