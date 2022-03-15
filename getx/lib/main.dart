@@ -22,6 +22,7 @@ import 'pages/stepperTest.dart';
 import 'pages/customAppBar.dart';
 import 'pages/heroTrial.dart';
 import 'pages/subList.dart';
+import 'pages/customSwitch.dart';
 import './controller/myRouteObserver.dart';
 
 void main() async {
@@ -106,6 +107,9 @@ class Home extends StatelessWidget {
               thumbVisibility: true,
               child: ListView(
                 children: [
+                  ListTile(
+                    title: CustomSwitch(),
+                  ),
                   ListTile(
                     onTap: () {
                       Get.to(SubList());
