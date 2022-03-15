@@ -79,6 +79,9 @@ class Home extends StatelessWidget {
   //how to get system lang preference. import dart:io
   final String defaultLocale =
       Platform.localeName; // Returns locale string in the form 'en_US'
+  final GlobalKey _animateTo = GlobalKey();
+  final GlobalKey _moveTo = GlobalKey();
+  final ScrollController _scrollCtrl = ScrollController();
 
   final String os = Platform.operatingSystem;
   @override
@@ -89,6 +92,25 @@ class Home extends StatelessWidget {
     return WillPopScope(
       onWillPop: () => showExitPopup(context),
       child: Scaffold(
+        floatingActionButton: IconButton(
+          icon: Icon(Icons.arrow_circle_up_outlined),
+          onPressed: () {
+            // opt.1 jump to this position
+            // Scrollable.ensureVisible(_moveTo.currentContext!);
+
+            //opt.2 as Listview print only visible part, Global key may be null!!!
+            final RenderBox _box =
+                _animateTo.currentContext?.findRenderObject() as RenderBox;
+            Offset _position = _box.localToGlobal(Offset.zero);
+            double y = _position.dy;
+
+            _scrollCtrl.animateTo(
+              y,
+              duration: Duration(seconds: 1),
+              curve: Curves.fastOutSlowIn,
+            );
+          },
+        ),
         endDrawer: Drawer(
           child: Center(
             child: Text("This is Isaac's Home"),
@@ -106,6 +128,7 @@ class Home extends StatelessWidget {
               // isAlwaysShown: true, //deprecated
               thumbVisibility: true,
               child: ListView(
+                controller: _scrollCtrl,
                 children: [
                   ListTile(
                     title: CustomSwitch(),
@@ -198,6 +221,7 @@ class Home extends StatelessWidget {
                     title: const Text('url launch'),
                   ),
                   ListTile(
+                    key: _animateTo,
                     onTap: () {
                       Get.to(First(), arguments: 'I am sendin this');
                     },
@@ -210,6 +234,7 @@ class Home extends StatelessWidget {
                     title: const Text('infinite scroll'),
                   ),
                   ListTile(
+                    key: _moveTo,
                     onTap: () {
                       controller.addScrollListner();
                       controller.mockfecth();
@@ -514,24 +539,21 @@ class Home extends StatelessWidget {
   }
 }
 
-
-//flutter create . 
-////flutter config --enable-web 
-/////flutter run -d chrome 
-/////checklayout 
-/////check library's web support 
-/////check navigation 
-/////scrollbar, mouse,keyboard interaction check 
+//flutter create .
+////flutter config --enable-web
+/////flutter run -d chrome
+/////checklayout
+/////check library's web support
+/////check navigation
+/////scrollbar, mouse,keyboard interaction check
 /////rendering mode : html, canvaskit **default : auto;
 //flutter build web
-
 
 //mediaQuery caviet
 //when keyboard appears mediaQuery value changes n rebuild the whole widget!
 //use layoutBuilder or double.infinity etc to avoid repainting widget with media query!
 
-
-// Solution Turns out if the hardware keyboard is connected, it will suppress the software keyboard. 
+// Solution Turns out if the hardware keyboard is connected, it will suppress the software keyboard.
 // cmd + shift + k disconnects the hardware keyboard or cmd + k toggles the software keyboard.
 
 // https://stackoverflow.com/questions/7852566/error-error-installing-ffi-error-failed-to-build-gem-native-extension
