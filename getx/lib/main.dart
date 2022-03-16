@@ -68,7 +68,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      home: Home(),
+      //wrap home with safearea in material app
+      home: SafeArea(child: Home()),
     );
   }
 }
