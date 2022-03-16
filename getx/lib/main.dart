@@ -112,14 +112,18 @@ class Home extends StatelessWidget {
             );
           },
         ),
-        endDrawer: Drawer(
-          child: Center(
-            child: Text("This is Isaac's Home"),
+        endDrawer: SafeArea(
+          child: Drawer(
+            child: Center(
+              child: Text("This is Isaac's Home"),
+            ),
           ),
         ),
         endDrawerEnableOpenDragGesture: true,
-        drawer: Drawer(
-          child: Center(child: Text('FROM LEFT')),
+        drawer: SafeArea(
+          child: Drawer(
+            child: Center(child: Text('FROM LEFT')),
+          ),
         ),
         drawerEnableOpenDragGesture: false, //false to disable
         //generally wrap a body of scaffold
