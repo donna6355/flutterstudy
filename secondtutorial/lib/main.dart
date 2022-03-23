@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -29,7 +30,7 @@ class MyHomePage extends StatelessWidget {
         slivers: [
           const SliverAppBar(
             backgroundColor: Colors.amber,
-            title: Text('Kindacode.com'),
+            title: Text('This Appbar is not visible'),
             expandedHeight: 30,
             collapsedHeight: 150,
           ),
