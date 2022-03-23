@@ -63,3 +63,10 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+
+
+// There's almost no difference.
+// ListView is a SliverList. Same with GridView, which is a SliverGrid.
+// They are doing exactly the same thing. The only difference between them is that SliverList is a sliver, not a widget. Which means it's used inside a ScrollView, usually CustomScrollView.
+// ListView is nothing else but a biding of SliverList to transform it into a Widget to make it usable alongside other widgets such as Row/Container.
+
