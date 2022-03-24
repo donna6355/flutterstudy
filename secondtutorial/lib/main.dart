@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/sliver': (_) => const SliverTutorial(),
+        '/imgpicker': (_) => const ImgPickerTutorial(),
       },
     );
   }
@@ -40,6 +41,10 @@ class MyHomePage extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, '/sliver'),
             title: const Text('Sliver Tutorial'),
           ),
+          ListTile(
+            onTap: () => Navigator.pushNamed(context, '/imgpicker'),
+            title: const Text('img picker tutorial'),
+          )
         ],
       ),
     );
