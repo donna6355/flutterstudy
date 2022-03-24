@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './views/views.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +17,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const SafeArea(child: MyHomePage()),
+      initialRoute: '/',
+      routes: {
+        '/sliver': (_) => const SliverTutorial(),
+      },
     );
   }
 }
@@ -26,37 +31,14 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          const SliverAppBar(
-            backgroundColor: Colors.amber,
-            title: Text('This Appbar is not visible'),
-            expandedHeight: 30,
-            collapsedHeight: 150,
-          ),
-          const SliverAppBar(
-            backgroundColor: Colors.green,
-            title: Text('Have a nice day'),
-            floating: true,
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Card(
-                  margin: const EdgeInsets.all(15),
-                  child: Container(
-                    color: Colors.blue[100 * (index % 9 + 1)],
-                    height: 80,
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Item ${index + 1}",
-                      style: const TextStyle(fontSize: 30),
-                    ),
-                  ),
-                );
-              },
-              childCount: 100,
-            ),
+      appBar: AppBar(
+        title: const Text('Second Tutorial'),
+      ),
+      body: ListView(
+        children: [
+          ListTile(
+            onTap: () => Navigator.pushNamed(context, '/sliver'),
+            title: const Text('Sliver Tutorial'),
           ),
         ],
       ),
