@@ -58,3 +58,8 @@ class MyHomePage extends StatelessWidget {
 // ListView is nothing else but a biding of SliverList to transform it into a Widget to make it usable alongside other widgets such as Row/Container.
 
 // flutter build apk --release --target-platform=android-arm64
+
+// how to add googleservice info plist!!
+// I'll also show this later in a lecture but in case you try running the app on an iOS simulator or device and you're getting an error right now, make sure you add "GoogleServices-Info.plist" to the iOS project by:
+// 1) Opening XCode and opening the iOS folder as a project there
+// 2) Adding the "GoogleServices-Info.plist" file via "Add Files" (right click on "Runner" in the left bar and choose "Add Files to 'Runner'") => Select the "GoogleServices-Info.plist" file
