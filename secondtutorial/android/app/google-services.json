@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "449905146200",
+    "project_id": "second-tutorial-43334",
+    "storage_bucket": "second-tutorial-43334.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449905146200:android:b58df95855e84940f44d2d",
+        "android_client_info": {
+          "package_name": "com.donna6355.secondtutorial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449905146200-ndvp6ogp080phb9qkfc4tf0rdvts4a79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0anXDTF3_oSa83MJvFGSvQoWnAwYj9Cs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449905146200-ndvp6ogp080phb9qkfc4tf0rdvts4a79.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "449905146200-ocha6imeaqnaurk220ogl2k3k7e137v6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.donna6355.secondtutorial"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
