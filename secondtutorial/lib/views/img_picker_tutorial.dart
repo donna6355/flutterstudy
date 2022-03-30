@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import '../model/user.dart';
 
 class ImgPickerTutorial extends StatefulWidget {
   const ImgPickerTutorial({Key? key}) : super(key: key);
@@ -44,6 +45,14 @@ class _ImgPickerTutorialState extends State<ImgPickerTutorial> {
             },
             child: const Text('pick me!'),
           ),
+          const SizedBox(
+            height: 20,
+          ),
+          TextButton(
+              onPressed: () async {
+                UserManager().setUser = User(id: 'Isaac', nickname: 'Isaac');
+              },
+              child: const Text('set user'))
         ],
       ),
     );
