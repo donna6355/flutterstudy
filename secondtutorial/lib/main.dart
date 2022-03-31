@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './views/views.dart';
+import 'package:new_version/new_version.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,27 +33,71 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Second Tutorial'),
-      ),
-      body: ListView(
-        children: [
-          ListTile(
-            onTap: () => Navigator.pushNamed(context, '/sliver'),
-            title: const Text('Sliver Tutorial'),
+    return FutureBuilder(
+      builder: (ctx, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          const CircularProgressIndicator();
+        }
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Second Tutorial'),
           ),
-          ListTile(
-            onTap: () => Navigator.pushNamed(context, '/imgpicker'),
-            title: const Text('img picker tutorial'),
+          body: ListView(
+            children: [
+              ListTile(
+                onTap: () => Navigator.pushNamed(context, '/sliver'),
+                title: const Text('Sliver Tutorial'),
+              ),
+              ListTile(
+                onTap: () => Navigator.pushNamed(context, '/imgpicker'),
+                title: const Text('img picker tutorial'),
+              ),
+              ListTile(
+                onTap: () => Navigator.pushNamed(context, '/imgcarousel'),
+                title: const Text('img carousel tutorial'),
+              ),
+            ],
           ),
-          ListTile(
-            onTap: () => Navigator.pushNamed(context, '/imgcarousel'),
-            title: const Text('img carousel tutorial'),
-          ),
-        ],
-      ),
+        );
+      },
+      future: _fetch1(context),
     );
+  }
+
+  Future<void> _fetch1(BuildContext context) async {
+    final newVersion = NewVersion(
+      iOSId: 'com.google.Vespa',
+      androidId: 'com.google.android.apps.cloudconsole',
+    );
+
+    bool simpleBehavior = 2 > 0;
+
+    if (simpleBehavior) {
+      basicStatusCheck(newVersion, context);
+    } else {
+      await advancedStatusCheck(newVersion, context);
+    }
+  }
+
+  basicStatusCheck(NewVersion newVersion, BuildContext context) {
+    newVersion.showAlertIfNecessary(context: context);
+  }
+
+  advancedStatusCheck(NewVersion newVersion, BuildContext context) async {
+    final status = await newVersion.getVersionStatus();
+    if (status != null) {
+      debugPrint(status.releaseNotes);
+      debugPrint(status.appStoreLink);
+      debugPrint(status.localVersion);
+      debugPrint(status.storeVersion);
+      debugPrint(status.canUpdate.toString());
+      newVersion.showUpdateDialog(
+        context: context,
+        versionStatus: status,
+        dialogTitle: 'Custom Title',
+        dialogText: 'Custom Text',
+      );
+    }
   }
 }
 
