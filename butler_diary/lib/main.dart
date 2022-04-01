@@ -146,3 +146,6 @@ class MyApp extends StatelessWidget {
 // flutter v_2.2.3 when it made
 // currently flutter v_2.5.3
 // ThemeData changed as some features deprecated
+
+//flutter pub update
+//after flutter update you gotta do this to update dependeicies if out of date
