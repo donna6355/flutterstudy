@@ -118,3 +118,6 @@ class MyHomePage extends StatelessWidget {
 // damn cocoapod error
 
 //TODO try git extensions
+
+//android storage space running out 
+//wipe data in vdm or go to "show advanced setting " and modify memory/storage
