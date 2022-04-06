@@ -39,29 +39,32 @@ class MyHomePage extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           const CircularProgressIndicator();
         }
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Second Tutorial'),
-          ),
-          body: ListView(
-            children: [
-              ListTile(
-                onTap: () => Navigator.pushNamed(context, '/sliver'),
-                title: const Text('Sliver Tutorial'),
-              ),
-              ListTile(
-                onTap: () => Navigator.pushNamed(context, '/imgpicker'),
-                title: const Text('img picker tutorial'),
-              ),
-              ListTile(
-                onTap: () => Navigator.pushNamed(context, '/imgcarousel'),
-                title: const Text('img carousel tutorial'),
-              ),
-              ListTile(
-                onTap: () => Navigator.pushNamed(context, '/interactive'),
-                title: const Text('interactive view tutorial'),
-              ),
-            ],
+        return SafeArea(
+          child: Scaffold(
+            appBar: AppBar(
+              title: const Text('Second Tutorial'),
+            ),
+            body: ListView(
+              children: [
+                ListTile(
+                  onTap: () => Navigator.pushNamed(context, '/sliver'),
+                  title: const Text('Sliver Tutorial'),
+                ),
+                ListTile(
+                  onTap: () => Navigator.pushNamed(context, '/imgpicker'),
+                  title: const Text('img picker tutorial'),
+                ),
+                ListTile(
+                  onTap: () => Navigator.pushNamed(context, '/imgcarousel'),
+                  title: const Text('img carousel tutorial'),
+                ),
+                ListTile(
+                  onTap: () => Navigator.pushNamed(context, '/interactive'),
+                  title: const Text('interactive view tutorial'),
+                ),
+              ],
+            ),
+            bottomNavigationBar: BottomNav(),
           ),
         );
       },
@@ -106,7 +109,38 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
+class BottomNav extends StatefulWidget {
+  const BottomNav({Key? key}) : super(key: key);
 
+  @override
+  State<BottomNav> createState() => _BottomNavState();
+}
+
+class _BottomNavState extends State<BottomNav> {
+  int _bottomNavIdx = 0;
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      backgroundColor: Colors.black26,
+      selectedItemColor: Colors.amber,
+      unselectedItemColor: Colors.white,
+      currentIndex: _bottomNavIdx,
+      onTap: (int _idx) {
+        setState(() {
+          _bottomNavIdx = _idx;
+        });
+      },
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.face),
+          label: 'Pics',
+        ),
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.list), label: 'MyInfo'),
+      ],
+    );
+  }
+}
 // There's almost no difference.
 // ListView is a SliverList. Same with GridView, which is a SliverGrid.
 // They are doing exactly the same thing. The only difference between them is that SliverList is a sliver, not a widget. Which means it's used inside a ScrollView, usually CustomScrollView.

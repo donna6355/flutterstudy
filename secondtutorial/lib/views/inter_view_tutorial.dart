@@ -6,7 +6,7 @@ class InterViewTutorial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Interactive Viewer')),
+      appBar: AppBar(title: const Text('Interactive Viewer')),
       body: Column(
         children: [
           const Text(

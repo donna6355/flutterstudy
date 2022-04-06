@@ -14,7 +14,7 @@ class UserManager {
 
   set setUser(User newUser) {
     _user = newUser;
-    print(_user.id);
+    // print(_user.id);
   }
 }
 
