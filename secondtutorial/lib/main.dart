@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/sliver': (_) => const SliverTutorial(),
         '/imgpicker': (_) => const ImgPickerTutorial(),
         '/imgcarousel': (_) => const ImgCarouselTutorial(),
+        '/interactive': (_) => const InterViewTutorial(),
       },
     );
   }
@@ -55,6 +56,10 @@ class MyHomePage extends StatelessWidget {
               ListTile(
                 onTap: () => Navigator.pushNamed(context, '/imgcarousel'),
                 title: const Text('img carousel tutorial'),
+              ),
+              ListTile(
+                onTap: () => Navigator.pushNamed(context, '/interactive'),
+                title: const Text('interactive view tutorial'),
               ),
             ],
           ),
