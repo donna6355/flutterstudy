@@ -44,3 +44,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+//how to set xcode configuration for flavors!
+//https://medium.com/@animeshjain/build-flavors-in-flutter-android-and-ios-with-different-firebase-projects-per-flavor-27c5c5dac10b
