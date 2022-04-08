@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import './flavors.dart';
 
 void main() {
+  Config.appFlavor = Flavor.prod;
   runApp(const MyApp());
 }
 
@@ -38,7 +40,14 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: Center(
-          child: Text('This is for PROD vscode test'),
+          child: Text(
+            'This is ${Config.title}',
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.green,
+            ),
+          ),
         ),
       ),
     );
