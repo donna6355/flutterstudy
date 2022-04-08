@@ -67,7 +67,7 @@ android {
             applicationId "dev.donna6355.flavor" //different app Id available 
             resValue "string", "app_name", "FLAVOR DEV" //different app name available
             // applicationIdSuffix ".dev" //add this string to origin app id
-            // versionNameSuffix "-dev" //add this string to app name
+            // versionNameSuffix "-dev" //add this string to appversion name
         }
         prod {
             dimension "flavor-type"
