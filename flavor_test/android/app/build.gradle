@@ -75,6 +75,10 @@ android {
             resValue "string", "app_name", "FLAVOR PROD"
         }
     }
+    
+    lintOptions {
+        checkReleaseBuilds false
+    }
 }
 
 flutter {
