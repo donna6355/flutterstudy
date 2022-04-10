@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:flavor_test/helpers/localization.dart';
 import './flavors.dart';
 
 void main() {
@@ -12,8 +14,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
+      translations: Localization(),
+      locale: Get.deviceLocale,
+      fallbackLocale: const Locale('en'),
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
@@ -40,13 +45,26 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: Center(
-          child: Text(
-            'This is ${Config.title}',
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.green,
-            ),
+          child: Column(
+            children: [
+              Text(
+                'This is ${Config.title}',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                ),
+              ),
+              Text('GREETING'.tr),
+              TextButton(
+                onPressed: () {
+                  Get.locale == Locale('en')
+                      ? Get.updateLocale(Locale('ko'))
+                      : Get.updateLocale(Locale('en'));
+                },
+                child: Text('LANGUAGE'.tr),
+              ),
+            ],
           ),
         ),
       ),
