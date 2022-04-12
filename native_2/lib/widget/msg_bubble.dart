@@ -24,7 +24,9 @@ class MsgBubble extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: fromMe ? Colors.black12 : Theme.of(context).accentColor,
+                color: fromMe
+                    ? Colors.black12
+                    : Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.only(
                   bottomLeft: fromMe ? Radius.circular(12) : Radius.circular(0),
                   bottomRight:

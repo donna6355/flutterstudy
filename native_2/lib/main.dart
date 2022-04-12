@@ -29,14 +29,13 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Flutter Chat',
           theme: ThemeData(
-            primarySwatch: Colors.amber,
             backgroundColor: Colors.amber,
-            accentColor: Colors.lightGreen,
-            accentColorBrightness: Brightness.dark,
             buttonTheme: ButtonTheme.of(context).copyWith(
               buttonColor: Colors.lightGreen,
               textTheme: ButtonTextTheme.primary,
             ),
+            colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.amber)
+                .copyWith(secondary: Colors.lightGreen),
           ),
           home: StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
