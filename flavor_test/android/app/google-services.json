@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "200456183457",
+    "project_id": "butler-s-diary",
+    "storage_bucket": "butler-s-diary.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200456183457:android:9534b4b1490b91c4351ae0",
+        "android_client_info": {
+          "package_name": "com.example.flavor_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "200456183457-vt0nr6pks201li6taesdc5hjlbfjb9n4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRWFnqKYRvxl4IFzF8K2Jzbm4yzyJ58HM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "200456183457-vt0nr6pks201li6taesdc5hjlbfjb9n4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
