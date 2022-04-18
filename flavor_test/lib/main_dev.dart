@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flavor_test/helpers/localization.dart';
 import './flavors.dart';
+import 'package:flavor_test/screens/webview_page.dart';
 
 void main() {
   Config.appFlavor = Flavor.dev;
@@ -58,12 +59,17 @@ class _MyHomePageState extends State<MyHomePage> {
               Text('GREETING'.tr),
               TextButton(
                 onPressed: () {
-                  Get.deviceLocale == Locale('en')
-                      ? Get.updateLocale(Locale('ko'))
-                      : Get.updateLocale(Locale('en'));
+                  Get.deviceLocale == const Locale('en')
+                      ? Get.updateLocale(const Locale('ko'))
+                      : Get.updateLocale(const Locale('en'));
                 },
                 child: Text('LANGUAGE'.tr),
               ),
+              TextButton(
+                  onPressed: () {
+                    Get.to(WebviewPage());
+                  },
+                  child: const Text('to InappView')),
             ],
           ),
         ),

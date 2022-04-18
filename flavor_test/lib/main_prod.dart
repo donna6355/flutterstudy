@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:flavor_test/helpers/localization.dart';
 import './flavors.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:flavor_test/screens/webview_page.dart';
 
 void main() {
   Config.appFlavor = Flavor.prod;
@@ -50,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
     OneSignal.shared
         .promptUserForPushNotificationPermission(fallbackToSettings: true)
         .then((accepted) {
-      print("Accepted permission: $accepted");
+      // print("Accepted permission: $accepted");
     });
   }
 
@@ -75,12 +76,17 @@ class _MyHomePageState extends State<MyHomePage> {
               Text('GREETING'.tr),
               TextButton(
                 onPressed: () {
-                  Get.locale == Locale('en')
-                      ? Get.updateLocale(Locale('ko'))
-                      : Get.updateLocale(Locale('en'));
+                  Get.locale == const Locale('en')
+                      ? Get.updateLocale(const Locale('ko'))
+                      : Get.updateLocale(const Locale('en'));
                 },
                 child: Text('LANGUAGE'.tr),
               ),
+              TextButton(
+                  onPressed: () {
+                    Get.to(WebviewPage());
+                  },
+                  child: const Text('to InappView')),
             ],
           ),
         ),
