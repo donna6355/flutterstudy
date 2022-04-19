@@ -20,8 +20,12 @@ class _WebviewPageState extends State<WebviewPage> {
           initialUrlRequest:
               URLRequest(url: Uri.parse("https://inappwebview.dev/")),
           initialOptions: InAppWebViewGroupOptions(
-              crossPlatform: InAppWebViewOptions(),
+              crossPlatform: InAppWebViewOptions(
+                javaScriptCanOpenWindowsAutomatically: true,
+                javaScriptEnabled: true,
+              ),
               android: AndroidInAppWebViewOptions(
+                supportMultipleWindows: true,
                 useHybridComposition: true,
               ),
               ios: IOSInAppWebViewOptions(
@@ -29,6 +33,27 @@ class _WebviewPageState extends State<WebviewPage> {
               )),
           onWebViewCreated: (controller) {
             _webViewController = controller;
+          },
+          onCreateWindow: (controller, createWindowReq) async {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  content: InAppWebView(
+                    windowId: createWindowReq.windowId,
+                    initialOptions: InAppWebViewGroupOptions(
+                      crossPlatform: InAppWebViewOptions(
+                        userAgent: 'Chrome/81.0.0.0 Mobile',
+                      ),
+                    ),
+                    onWebViewCreated: (InAppWebViewController controller) {
+                      _webViewPopupController = controller;
+                    },
+                  ),
+                );
+              },
+            );
+            return true;
           },
         ),
       ),
