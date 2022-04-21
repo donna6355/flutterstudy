@@ -14,12 +14,18 @@ class _HomeState extends State<Home> {
   var _result;
 
   _httpGet(String url) async {
-    var response = await http.get(Uri.parse(url));
-    Map<String, dynamic> data = jsonDecode(response.body);
-    setState(() {
-      _result = data['culturalEventInfo']['row'];
-      _loading = false;
-    });
+    var response;
+    try {
+      response = await http.get(Uri.parse(url)).timeout(Duration(seconds: 5));
+      Map<String, dynamic> data = jsonDecode(response.body);
+      setState(() {
+        _result = data['culturalEventInfo']['row'];
+        _loading = false;
+      });
+    } catch (e) {
+      response = e;
+      print(response);
+    }
     print(_result);
   }
 
