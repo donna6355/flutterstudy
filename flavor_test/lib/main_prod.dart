@@ -22,6 +22,19 @@ class MyApp extends StatelessWidget {
       translations: Localization(),
       locale: Get.deviceLocale,
       fallbackLocale: const Locale('en'),
+      builder: (ctx, child) {
+        return Stack(
+          children: [
+            child!,
+            Positioned(
+              child: Container(
+                color: Colors.amber,
+                child: Text("Hello"),
+              ),
+            ),
+          ],
+        );
+      },
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
