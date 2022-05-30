@@ -8,9 +8,35 @@ class WebviewPage extends StatefulWidget {
   State<WebviewPage> createState() => _WebviewPageState();
 }
 
-class _WebviewPageState extends State<WebviewPage> {
+class _WebviewPageState extends State<WebviewPage> with WidgetsBindingObserver {
   InAppWebViewController? _webViewController;
   InAppWebViewController? _webViewPopupController;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance!.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.resumed) {
+      print('app resumed');
+    } else if (state == AppLifecycleState.inactive) {
+      print('app inactive');
+    } else if (state == AppLifecycleState.paused) {
+      print('app paused');
+    } else if (state == AppLifecycleState.detached) {
+      print('app detached');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
