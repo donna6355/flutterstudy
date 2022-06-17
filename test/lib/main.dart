@@ -124,3 +124,5 @@ class _MyHomePageState extends State<MyHomePage> {
 // #2 Re-install dependencies in ios directory
 // cd ios
 // arch -x86_64 pod install
+
+// this is for git auth test
