@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
@@ -11,11 +13,26 @@ class WebviewPage extends StatefulWidget {
 class _WebviewPageState extends State<WebviewPage> with WidgetsBindingObserver {
   InAppWebViewController? _webViewController;
   InAppWebViewController? _webViewPopupController;
+  late PullToRefreshController _pullToRefreshController;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addObserver(this);
+
+    _pullToRefreshController = PullToRefreshController(
+      options: PullToRefreshOptions(
+        color: Colors.amber,
+      ),
+      onRefresh: () async {
+        if (Platform.isAndroid) {
+          _webViewController?.reload();
+        } else if (Platform.isIOS) {
+          _webViewController?.loadUrl(
+              urlRequest: URLRequest(url: await _webViewController?.getUrl()));
+        }
+      },
+    );
   }
 
   @override
@@ -43,6 +60,18 @@ class _WebviewPageState extends State<WebviewPage> with WidgetsBindingObserver {
     return Scaffold(
       body: SafeArea(
         child: InAppWebView(
+          pullToRefreshController: _pullToRefreshController,
+          onLoadStop: (controller, url) async {
+            _pullToRefreshController.endRefreshing();
+          },
+          onLoadError: (controller, url, code, message) {
+            _pullToRefreshController.endRefreshing();
+          },
+          onProgressChanged: (controller, progress) {
+            if (progress == 100) {
+              _pullToRefreshController.endRefreshing();
+            }
+          },
           initialUrlRequest:
               URLRequest(url: Uri.parse("https://inappwebview.dev/")),
           initialOptions: InAppWebViewGroupOptions(
