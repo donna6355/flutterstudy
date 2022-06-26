@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import './screens/kakao_map_screen.dart';
 
 void main() {
   KakaoSdk.init(nativeAppKey: '${YOUR_NATIVE_APP_KEY}');
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const KakaoMapScreen(),
     );
   }
 }

@@ -3,7 +3,8 @@
    <application
         android:label="isaac"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true">
         <activity android:name="com.kakao.sdk.flutter.AuthCodeCustomTabsActivity">
             <intent-filter android:label="flutter_web_auth">
                 <action android:name="android.intent.action.VIEW" />
