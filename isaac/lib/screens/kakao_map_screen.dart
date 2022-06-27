@@ -17,10 +17,8 @@ class KakaoMapScreen extends StatelessWidget {
               kakaoMapKey: kakaoMapKey,
               lat: 33.450701,
               lng: 126.570667,
-              showMapTypeControl: true,
-              showZoomControl: true,
-              markerImageURL:
-                  'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png',
+              showMapTypeControl: false,
+              showZoomControl: false,
               onTapMarker: (message) {
                 //event callback when the marker is tapped
               }),
