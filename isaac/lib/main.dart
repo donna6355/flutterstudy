@@ -74,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
       try {
         await UserApi.instance.loginWithKakaoTalk();
         print('카카오톡으로 로그인 성공');
+        Provider.of<UserState>(context, listen: false).updateName('kakao');
       } catch (error) {
         print('카카오톡으로 로그인 실패 $error');
 
