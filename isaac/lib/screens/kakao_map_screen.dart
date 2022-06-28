@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:isaac/providers/user_state.dart';
+import 'package:provider/provider.dart';
 import 'package:kakaomap_webview/kakaomap_webview.dart';
 
 const String kakaoMapKey = '${YOUR_JAVASCRIPT_KEY}';
@@ -9,7 +11,9 @@ class KakaoMapScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('KAKAO MAP')),
+        appBar: AppBar(title: Consumer<UserState>(builder: (_, user, child) {
+          return Text(user.userName);
+        })),
         body: Center(
           child: KakaoMapView(
               width: 400,
