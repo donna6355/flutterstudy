@@ -293,6 +293,7 @@ class _DiaryEditScrState extends State<DiaryEditScr> {
           toilet = !toilet;
           break;
         default:
+          note = _note.text;
           break;
       }
     });
