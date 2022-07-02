@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flavor_test/helpers/localization.dart';
 import './flavors.dart';
+import './screens/drag_drop.dart';
+import './screens/re_order_able.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:flavor_test/screens/webview_page.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
@@ -22,23 +24,23 @@ class MyApp extends StatelessWidget {
       translations: Localization(),
       locale: Get.deviceLocale,
       fallbackLocale: const Locale('en'),
-      builder: (ctx, child) {
-        return Stack(
-          children: [
-            child!,
-            Positioned(
-              child: Container(
-                color: Colors.amber,
-                child: Text("Hello"),
-              ),
-            ),
-          ],
-        );
-      },
+      // builder: (ctx, child) {
+      //   return Stack(
+      //     children: [
+      //       child!,
+      //       Positioned(
+      //         child: Container(
+      //           color: Colors.amber,
+      //           child: Text("Hello"),
+      //         ),
+      //       ),
+      //     ],
+      //   );
+      // },
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Flutter Flavor Tutorial'),
+      home: ReOrderAble(),
     );
   }
 }
