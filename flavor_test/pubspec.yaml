@@ -37,6 +37,7 @@ dependencies:
   onesignal_flutter: ^3.0.0
   flutter_inappwebview: ^5.4.0
   tutorial_coach_mark: ^1.2.2
+  fl_chart: ^0.55.0
 
 dev_dependencies:
   flutter_test:

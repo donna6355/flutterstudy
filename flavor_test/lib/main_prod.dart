@@ -4,6 +4,7 @@ import 'package:flavor_test/helpers/localization.dart';
 import './flavors.dart';
 import './screens/drag_drop.dart';
 import './screens/re_order_able.dart';
+import './screens/chart_page.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:flavor_test/screens/webview_page.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: ReOrderAble(),
+      home: BarChartSample1(),
     );
   }
 }
