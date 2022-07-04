@@ -1,3 +1,4 @@
+import 'package:flavor_test/screens/line_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flavor_test/helpers/localization.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: BarChartSample1(),
+      home: LineChartScreen(),
     );
   }
 }
