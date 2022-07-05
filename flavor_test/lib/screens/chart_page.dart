@@ -4,15 +4,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class BarChartSample1 extends StatefulWidget {
-  final List<Color> availableColors = const [
-    Colors.purpleAccent,
-    Colors.yellow,
-    Colors.lightBlue,
-    Colors.orange,
-    Colors.pink,
-    Colors.redAccent,
-  ];
-
   const BarChartSample1({Key? key}) : super(key: key);
 
   @override
@@ -30,7 +21,7 @@ class BarChartSample1State extends State<BarChartSample1> {
     return AspectRatio(
       aspectRatio: 1,
       child: Card(
-        color: const Color(0xff81e5cd),
+        color: Colors.white54,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: BarChart(
@@ -45,8 +36,8 @@ class BarChartSample1State extends State<BarChartSample1> {
     int x,
     double y, {
     bool isTouched = false,
-    Color barColor = Colors.white,
-    double width = 22,
+    Color barColor = Colors.black,
+    double width = 20,
     List<int> showTooltips = const [],
   }) {
     return BarChartGroupData(
@@ -56,13 +47,10 @@ class BarChartSample1State extends State<BarChartSample1> {
           toY: isTouched ? y + 1 : y,
           color: isTouched ? Colors.yellow : barColor,
           width: width,
-          borderSide: isTouched
-              ? BorderSide(color: Colors.yellow, width: 1)
-              : const BorderSide(color: Colors.white, width: 0),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
             toY: 20,
-            color: barBackgroundColor,
+            color: Colors.white70,
           ),
         ),
       ],
@@ -93,67 +81,68 @@ class BarChartSample1State extends State<BarChartSample1> {
 
   BarChartData mainBarData() {
     return BarChartData(
-      barTouchData: BarTouchData(
-        touchTooltipData: BarTouchTooltipData(
-            tooltipBgColor: Colors.blueGrey,
-            getTooltipItem: (group, groupIndex, rod, rodIndex) {
-              String weekDay;
-              switch (group.x.toInt()) {
-                case 0:
-                  weekDay = 'Monday';
-                  break;
-                case 1:
-                  weekDay = 'Tuesday';
-                  break;
-                case 2:
-                  weekDay = 'Wednesday';
-                  break;
-                case 3:
-                  weekDay = 'Thursday';
-                  break;
-                case 4:
-                  weekDay = 'Friday';
-                  break;
-                case 5:
-                  weekDay = 'Saturday';
-                  break;
-                case 6:
-                  weekDay = 'Sunday';
-                  break;
-                default:
-                  throw Error();
-              }
-              return BarTooltipItem(
-                weekDay + '\n',
-                const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: (rod.toY - 1).toString(),
-                    style: const TextStyle(
-                      color: Colors.yellow,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              );
-            }),
-        touchCallback: (FlTouchEvent event, barTouchResponse) {
-          setState(() {
-            if (!event.isInterestedForInteractions ||
-                barTouchResponse == null ||
-                barTouchResponse.spot == null) {
-              touchedIndex = -1;
-              return;
-            }
-            touchedIndex = barTouchResponse.spot!.touchedBarGroupIndex;
-          });
-        },
-      ),
+      //touch animation from here! optional!
+      // barTouchData: BarTouchData(
+      //   touchTooltipData: BarTouchTooltipData(
+      //       tooltipBgColor: Colors.blueGrey,
+      //       getTooltipItem: (group, groupIndex, rod, rodIndex) {
+      //         String weekDay;
+      //         switch (group.x.toInt()) {
+      //           case 0:
+      //             weekDay = 'Monday';
+      //             break;
+      //           case 1:
+      //             weekDay = 'Tuesday';
+      //             break;
+      //           case 2:
+      //             weekDay = 'Wednesday';
+      //             break;
+      //           case 3:
+      //             weekDay = 'Thursday';
+      //             break;
+      //           case 4:
+      //             weekDay = 'Friday';
+      //             break;
+      //           case 5:
+      //             weekDay = 'Saturday';
+      //             break;
+      //           case 6:
+      //             weekDay = 'Sunday';
+      //             break;
+      //           default:
+      //             throw Error();
+      //         }
+      //         return BarTooltipItem(
+      //           weekDay + '\n',
+      //           const TextStyle(
+      //             color: Colors.white,
+      //             fontWeight: FontWeight.bold,
+      //             fontSize: 18,
+      //           ),
+      //           children: <TextSpan>[
+      //             TextSpan(
+      //               text: (rod.toY - 1).toString(),
+      //               style: const TextStyle(
+      //                 color: Colors.yellow,
+      //                 fontSize: 16,
+      //                 fontWeight: FontWeight.w500,
+      //               ),
+      //             ),
+      //           ],
+      //         );
+      //       }),
+      //   touchCallback: (FlTouchEvent event, barTouchResponse) {
+      //     setState(() {
+      //       if (!event.isInterestedForInteractions ||
+      //           barTouchResponse == null ||
+      //           barTouchResponse.spot == null) {
+      //         touchedIndex = -1;
+      //         return;
+      //       }
+      //       touchedIndex = barTouchResponse.spot!.touchedBarGroupIndex;
+      //     });
+      //   },
+      // ),
       titlesData: FlTitlesData(
         show: true,
         rightTitles: AxisTitles(
@@ -220,77 +209,6 @@ class BarChartSample1State extends State<BarChartSample1> {
       axisSide: meta.axisSide,
       space: 16,
       child: text,
-    );
-  }
-
-  BarChartData randomData() {
-    return BarChartData(
-      barTouchData: BarTouchData(
-        enabled: false,
-      ),
-      titlesData: FlTitlesData(
-        show: true,
-        bottomTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            getTitlesWidget: getTitles,
-            reservedSize: 38,
-          ),
-        ),
-        leftTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: false,
-          ),
-        ),
-        topTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: false,
-          ),
-        ),
-        rightTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: false,
-          ),
-        ),
-      ),
-      borderData: FlBorderData(
-        show: false,
-      ),
-      barGroups: List.generate(7, (i) {
-        switch (i) {
-          case 0:
-            return makeGroupData(0, Random().nextInt(15).toDouble() + 6,
-                barColor: widget.availableColors[
-                    Random().nextInt(widget.availableColors.length)]);
-          case 1:
-            return makeGroupData(1, Random().nextInt(15).toDouble() + 6,
-                barColor: widget.availableColors[
-                    Random().nextInt(widget.availableColors.length)]);
-          case 2:
-            return makeGroupData(2, Random().nextInt(15).toDouble() + 6,
-                barColor: widget.availableColors[
-                    Random().nextInt(widget.availableColors.length)]);
-          case 3:
-            return makeGroupData(3, Random().nextInt(15).toDouble() + 6,
-                barColor: widget.availableColors[
-                    Random().nextInt(widget.availableColors.length)]);
-          case 4:
-            return makeGroupData(4, Random().nextInt(15).toDouble() + 6,
-                barColor: widget.availableColors[
-                    Random().nextInt(widget.availableColors.length)]);
-          case 5:
-            return makeGroupData(5, Random().nextInt(15).toDouble() + 6,
-                barColor: widget.availableColors[
-                    Random().nextInt(widget.availableColors.length)]);
-          case 6:
-            return makeGroupData(6, Random().nextInt(15).toDouble() + 6,
-                barColor: widget.availableColors[
-                    Random().nextInt(widget.availableColors.length)]);
-          default:
-            return throw Error();
-        }
-      }),
-      gridData: FlGridData(show: false),
     );
   }
 }
