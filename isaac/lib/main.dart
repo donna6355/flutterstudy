@@ -5,6 +5,16 @@ import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:provider/provider.dart';
 import './screens/kakao_map_screen.dart';
 import 'package:isaac/keys/auth_key.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+GoogleSignIn _googleSignIn = GoogleSignIn(
+  // Optional clientId
+  // clientId: '479882132969-9i9aqik3jfjd7qhci1nqf0bm2g71rm1u.apps.googleusercontent.com',
+  scopes: <String>[
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ],
+);
 
 void main() {
   KakaoSdk.init(nativeAppKey: Kakao.appKey);
@@ -132,7 +142,13 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('KAKAO LOGIN'),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                _googleSignIn.signIn().then(((value) async {
+                  print(value);
+                  final auth = await value?.authentication;
+                  print(auth);
+                }));
+              },
               child: Text('GOOGLE LOGIN'),
             ),
           ],
