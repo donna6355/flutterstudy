@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:isaac/providers/user_state.dart';
 import 'package:provider/provider.dart';
 import 'package:kakaomap_webview/kakaomap_webview.dart';
+import 'package:isaac/keys/auth_key.dart';
 
-const String kakaoMapKey = '${YOUR_JAVASCRIPT_KEY}';
+const String kakaoMapKey = Kakao.appKey;
 
 class KakaoMapScreen extends StatelessWidget {
   const KakaoMapScreen({Key? key}) : super(key: key);
