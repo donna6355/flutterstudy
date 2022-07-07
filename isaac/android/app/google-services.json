@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "150373876422",
+    "project_id": "isaac-355511",
+    "storage_bucket": "isaac-355511.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150373876422:android:4b89afc48f0214755a8dc7",
+        "android_client_info": {
+          "package_name": "com.donna6355.isaac"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "150373876422-one7f9f9oqn921i7q4lbc6kqe3g13egn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzZLDIvacC-BHXdU9ouUfTukCkAsWcd9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "150373876422-one7f9f9oqn921i7q4lbc6kqe3g13egn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "150373876422-k4sg4jb4tme456fvgp6uppv7rknh9dd8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.donna6355.isaac"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

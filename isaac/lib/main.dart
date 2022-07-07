@@ -6,6 +6,16 @@ import 'package:provider/provider.dart';
 import './screens/kakao_map_screen.dart';
 import 'package:isaac/keys/auth_key.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // If you're going to use other Firebase services in the background, such as Firestore,
+  // make sure you call `initializeApp` before using other Firebase services.
+  await Firebase.initializeApp();
+
+  print("Handling a background message: ${message.messageId}");
+}
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
   // Optional clientId
@@ -16,8 +26,12 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
   ],
 );
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Firebase 초기화부터 해야 FirebaseMessaging 를 사용할 수 있다.
+  await Firebase.initializeApp();
   KakaoSdk.init(nativeAppKey: Kakao.appKey);
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(
     ChangeNotifierProvider(
       create: (_) => UserState(),
@@ -119,6 +133,33 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  Future<void> initialize() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+    // Android 에서는 별도의 확인 없이 리턴되지만, requestPermission()을 호출하지 않으면 수신되지 않는다.
+
+    NotificationSettings settings =
+        await FirebaseMessaging.instance.requestPermission(
+      alert: true,
+      announcement: true,
+      badge: true,
+      carPlay: true,
+      criticalAlert: true,
+      provisional: true,
+      sound: true,
+    );
+
+    //foreground message
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print('Got a message whilst in the foreground!');
+      print('Message data: ${message.data}');
+
+      if (message.notification != null) {
+        print('Message also contained a notification: ${message.notification}');
+      }
+    });
+  }
+
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -146,7 +187,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 _googleSignIn.signIn().then(((value) async {
                   print(value);
                   final auth = await value?.authentication;
-                  print(auth);
+                  print(auth?.accessToken);
+                  print(auth?.idToken);
                 }));
               },
               child: Text('GOOGLE LOGIN'),
