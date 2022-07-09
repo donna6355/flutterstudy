@@ -8,7 +8,8 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp();
 
-  print("Handling a background message: ${message.messageId}");
+  print(
+      "Handling a background message: ${message.messageId}"); // it takes long time but background feature works!
 }
 
 void main() async {
@@ -37,6 +38,8 @@ void main() async {
 
     if (message.notification != null) {
       print('Message also contained a notification: ${message.notification}');
+      print(message.notification?.body);
+      //want to use similar notification? use local notification! or show dialog or move screen etc.
     }
   });
 
