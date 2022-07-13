@@ -89,16 +89,17 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    _initializeFCM();
   }
 
   Future<void> _initiateKakaoLogin() async {
+    Provider.of<UserState>(context, listen: false).updateName('kakao');
     final bool isInstalled = await isKakaoTalkInstalled();
     print(isInstalled);
     if (isInstalled) {
       try {
         await UserApi.instance.loginWithKakaoTalk();
         print('카카오톡으로 로그인 성공');
-        Provider.of<UserState>(context, listen: false).updateName('kakao');
       } catch (error) {
         print('카카오톡으로 로그인 실패 $error');
 
@@ -133,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  Future<void> initialize() async {
+  Future<void> _initializeFCM() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
     // Android 에서는 별도의 확인 없이 리턴되지만, requestPermission()을 호출하지 않으면 수신되지 않는다.
@@ -178,6 +179,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Consumer<UserState>(builder: (ctx, state, child) {
+              return Container(
+                width: double.infinity,
+                child: Text(
+                  state.userName,
+                ),
+                color: Colors.amber,
+              );
+            }),
             ElevatedButton(
               onPressed: _initiateKakaoLogin,
               child: Text('KAKAO LOGIN'),
