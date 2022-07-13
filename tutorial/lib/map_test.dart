@@ -10,6 +10,8 @@ class MapTest extends StatefulWidget {
 }
 
 class _MapTestState extends State<MapTest> {
+  List<Widget> returnVal = [];
+  Map<String, List> computedVal = {};
   final List<Map<String, dynamic>> rawData = [
     {
       'machineId': 'alksdjflkajd',
@@ -55,19 +57,17 @@ class _MapTestState extends State<MapTest> {
   List<Widget> _computedList = [];
 
   void _computed() {
-    List<Widget> returnVal = [];
-    Map<String, List> computed = {};
     const String keyword = 'machineId';
     for (var data in rawData) {
-      if (computed[data[keyword]] != null) {
-        computed[data[keyword]]!.add(data);
+      if (computedVal[data[keyword]] != null) {
+        computedVal[data[keyword]]!.add(data);
       } else {
-        computed[data[keyword]] = [data];
+        computedVal[data[keyword]] = [data];
       }
     }
-    print(computed);
+    print(computedVal);
 
-    final List<String> label = computed.keys.toList()
+    final List<String> label = computedVal.keys.toList()
       ..sort((a, b) {
         print(a);
         print(b);
@@ -76,7 +76,7 @@ class _MapTestState extends State<MapTest> {
 
     for (var data in label) {
       returnVal.add(Text(data));
-      for (var data in computed[data]!) {
+      for (var data in computedVal[data]!) {
         returnVal.add(_sessionCard(data));
       }
     }
