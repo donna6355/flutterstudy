@@ -23,6 +23,7 @@ import 'pages/customAppBar.dart';
 import 'pages/heroTrial.dart';
 import 'pages/subList.dart';
 import 'pages/customSwitch.dart';
+import 'pages/map_test.dart';
 import './controller/myRouteObserver.dart';
 
 void main() async {
@@ -137,6 +138,12 @@ class Home extends StatelessWidget {
                 children: [
                   ListTile(
                     title: CustomSwitch(),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      Get.to(MapTest());
+                    },
+                    title: Text('Map Trial!'),
                   ),
                   ListTile(
                     onTap: () {
