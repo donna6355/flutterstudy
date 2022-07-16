@@ -11,22 +11,30 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:test_test/main.dart';
 
 void main() {
-  // testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-  //   // Build our app and trigger a frame.
-  //   await tester.pumpWidget(const MyApp());
+  //this is for Widget Test.
+  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MyApp());
 
-  //   // Verify that our counter starts at 0.
-  //   expect(find.text('0'), findsOneWidget);
-  //   expect(find.text('1'), findsNothing);
+    // Verify that our counter starts at 0.
+    expect(find.text('0'), findsOneWidget);
+    expect(find.text('1'), findsNothing);
 
-  //   // Tap the '+' icon and trigger a frame.
-  //   await tester.tap(find.byIcon(Icons.add));
-  //   await tester.pump();
+    // Tap the '+' icon and trigger a frame.
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pump();
 
-  //   // Verify that our counter has incremented.
-  //   expect(find.text('0'), findsNothing);
-  //   expect(find.text('1'), findsOneWidget);
-  // });
+    // Verify that our counter has incremented.
+    expect(find.text('0'), findsNothing);
+    expect(find.text('1'), findsOneWidget);
+// ADDITIONAL MATCHERS
+// findsNothing // Verifies that no widgets are found.
+// findsWidgets // Verifies that one or more widgets are found.
+// findsNWidgets // Verifies that a specific number of widgets are found.
+// matchesGoldenFile // Verifies that a widget’s rendering matches a particular bitmap image (“golden file” testing).
+  });
+
+  //this is for unit test! unit is another name of class, function, and method!
   group('Counter', () {
     test('value should start at 0', () {
       expect(Counter().value, 0);
