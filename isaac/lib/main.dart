@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:developer' as developer;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:isaac/providers/user_state.dart';
@@ -13,8 +16,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
   // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp();
-
-  print("Handling a background message: ${message.messageId}");
 }
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    stderr.writeln('============================print me');
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -93,15 +95,20 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> _initiateKakaoLogin() async {
+    developer.log('log me', name: 'my.app.category');
+
+    developer.log('log me 1', name: 'my.other.category');
+    developer.log('log me 2', name: 'my.other.category');
+
     Provider.of<UserState>(context, listen: false).updateName('kakao');
     final bool isInstalled = await isKakaoTalkInstalled();
-    print(isInstalled);
+
     if (isInstalled) {
       try {
         await UserApi.instance.loginWithKakaoTalk();
-        print('카카오톡으로 로그인 성공');
+        // print('카카오톡으로 로그인 성공');
       } catch (error) {
-        print('카카오톡으로 로그인 실패 $error');
+        // print('카카오톡으로 로그인 실패 $error');
 
         // 사용자가 카카오톡 설치 후 디바이스 권한 요청 화면에서 로그인을 취소한 경우,
         // 의도적인 로그인 취소로 보고 카카오계정으로 로그인 시도 없이 로그인 취소로 처리 (예: 뒤로 가기)
@@ -111,25 +118,25 @@ class _MyHomePageState extends State<MyHomePage> {
         // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인
         try {
           await UserApi.instance.loginWithKakaoAccount();
-          print('카카오계정으로 로그인 성공');
+          // print('카카오계정으로 로그인 성공');
         } catch (error) {
-          print('카카오계정으로 로그인 실패 $error');
+          // print('카카오계정으로 로그인 실패 $error');
         }
       }
     } else {
       try {
         OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
-        print('카카오계정으로 로그인 성공');
+        // print('카카오계정으로 로그인 성공');
 
-        print('로그인 성공 ${token.accessToken}');
+        // print('로그인 성공 ${token.accessToken}');
 
         User user = await UserApi.instance.me();
-        print('사용자 정보 요청 성공'
-            '\n회원번호: ${user.id}'
-            '\n닉네임: ${user.kakaoAccount?.profile?.nickname}'
-            '\n이메일: ${user.kakaoAccount?.email}');
+        // print('사용자 정보 요청 성공'
+        //     '\n회원번호: ${user.id}'
+        //     '\n닉네임: ${user.kakaoAccount?.profile?.nickname}'
+        //     '\n이메일: ${user.kakaoAccount?.email}');
       } catch (error) {
-        print('카카오계정으로 로그인 실패 $error');
+        // print('카카오계정으로 로그인 실패 $error');
       }
     }
   }
@@ -152,11 +159,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
     //foreground message
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('Got a message whilst in the foreground!');
-      print('Message data: ${message.data}');
+      // print('Got a message whilst in the foreground!');
+      // print('Message data: ${message.data}');
 
       if (message.notification != null) {
-        print('Message also contained a notification: ${message.notification}');
+        // print('Message also contained a notification: ${message.notification}');
       }
     });
   }
@@ -195,10 +202,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () {
                 _googleSignIn.signIn().then(((value) async {
-                  print(value);
+                  // print(value);
                   final auth = await value?.authentication;
-                  print(auth?.accessToken);
-                  print(auth?.idToken);
+                  // print(auth?.accessToken);
+                  // print(auth?.idToken);
                 }));
               },
               child: Text('GOOGLE LOGIN'),
