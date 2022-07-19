@@ -95,6 +95,11 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            LinearProgressIndicator(
+              backgroundColor: Colors.orange,
+              // color: Colors.red,
+              valueColor: AlwaysStoppedAnimation(Colors.red),
+            ),
             const Text(
               'You have pushed the button this many times:',
             ),
