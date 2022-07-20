@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage>
     // TODO: implement initState
     super.initState();
     aniCtrl =
-        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+        AnimationController(duration: const Duration(seconds: 3), vsync: this);
     animation =
         ColorTween(begin: Colors.amber, end: Colors.red).animate(aniCtrl)
           ..addListener(() {
@@ -66,7 +66,8 @@ class _MyHomePageState extends State<MyHomePage>
               _counter++;
             });
           });
-    aniCtrl.forward();
+    // aniCtrl.forward();
+    aniCtrl.repeat();
   }
 
   void _incrementCounter() {
