@@ -47,8 +47,27 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   int _counter = 0;
+  late Animation<Color?> animation;
+  late AnimationController aniCtrl;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    aniCtrl =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+    animation =
+        ColorTween(begin: Colors.amber, end: Colors.red).animate(aniCtrl)
+          ..addListener(() {
+            setState(() {
+              _counter++;
+            });
+          });
+    aniCtrl.forward();
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -98,7 +117,8 @@ class _MyHomePageState extends State<MyHomePage> {
             LinearProgressIndicator(
               backgroundColor: Colors.orange,
               // color: Colors.red,
-              valueColor: AlwaysStoppedAnimation(Colors.red),
+              // valueColor: AlwaysStoppedAnimation(Colors.red),
+              valueColor: animation,
             ),
             const Text(
               'You have pushed the button this many times:',
