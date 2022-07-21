@@ -58,14 +58,14 @@ class _MyHomePageState extends State<MyHomePage>
     // TODO: implement initState
     super.initState();
     aniCtrl =
-        AnimationController(duration: const Duration(seconds: 3), vsync: this);
+        AnimationController(duration: const Duration(seconds: 1), vsync: this);
     animation =
-        ColorTween(begin: Colors.amber, end: Colors.red).animate(aniCtrl)
-          ..addListener(() {
-            setState(() {
-              _counter++;
-            });
-          });
+        ColorTween(begin: Colors.amber, end: Colors.red).animate(aniCtrl);
+    // ..addListener(() {
+    //   setState(() {
+    //     // _counter++;
+    //   });
+    // });
     // aniCtrl.forward();
     aniCtrl.repeat();
   }
@@ -128,6 +128,7 @@ class _MyHomePageState extends State<MyHomePage>
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            _counter % 2 == 0 ? const SizedBox.shrink() : const Text('ODD NUM'),
           ],
         ),
       ),
