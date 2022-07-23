@@ -117,6 +117,7 @@ class _MyHomePageState extends State<MyHomePage>
           children: <Widget>[
             Text('flutter create --org com.donna6355 app_name'),
             Text('flutter config --enable-macos-desktop'),
+            Text('flutter config --no-enable-macos-desktop'),
             Text('flutter create --platforms=web'),
             Text('flutter run -d chrome'),
             LinearProgressIndicator(
