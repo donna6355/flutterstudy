@@ -115,6 +115,10 @@ class _MyHomePageState extends State<MyHomePage>
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text('flutter create --org com.donna6355 app_name'),
+            Text('flutter config --enable-macos-desktop'),
+            Text('flutter create --platforms=web'),
+            Text('flutter run -d chrome'),
             LinearProgressIndicator(
               backgroundColor: Colors.orange,
               // color: Colors.red,
