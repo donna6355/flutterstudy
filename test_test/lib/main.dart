@@ -120,6 +120,8 @@ class _MyHomePageState extends State<MyHomePage>
             Text('flutter config --no-enable-macos-desktop'),
             Text('flutter create --platforms=web'),
             Text('flutter run -d chrome'),
+            Text(
+                'rm -r ios, rm -r web, rm -r android'), //to remove unneccessary directory
             LinearProgressIndicator(
               backgroundColor: Colors.orange,
               // color: Colors.red,
