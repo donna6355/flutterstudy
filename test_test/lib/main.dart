@@ -87,9 +87,16 @@ class _MyHomePageState extends State<MyHomePage>
     //     ),
     //     autoStart: true);
 
+// useful collection!
+// https://pub.dev/documentation/collection/latest/collection/collection-library.html
     var newMap = groupBy(data, (Map obj) => obj['release_date']);
-
     print(newMap);
+
+    var queue = PriorityQueue<Map>(
+      (a, b) => a['title'].compareTo(b['title']),
+    );
+    queue.addAll(data);
+    print(queue);
   }
 
   void _incrementCounter() {
