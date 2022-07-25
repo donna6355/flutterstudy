@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "package:collection/collection.dart";
 // import 'package:dart_vlc/dart_vlc.dart';
 
 void main() async {
@@ -55,6 +56,11 @@ class _MyHomePageState extends State<MyHomePage>
   late Animation<Color?> animation;
   late AnimationController aniCtrl;
   // final player = Player(id: 69420);
+  var data = [
+    {"title": 'Avengers', "release_date": '10/01/2019'},
+    {"title": 'Creed', "release_date": '10/01/2019'},
+    {"title": 'Jumanji', "release_date": '30/10/2019'},
+  ];
 
   @override
   void initState() {
@@ -71,6 +77,7 @@ class _MyHomePageState extends State<MyHomePage>
     // });
     // aniCtrl.forward();
     aniCtrl.repeat();
+
     // player.open(
     //     Playlist(
     //       medias: [
@@ -79,6 +86,10 @@ class _MyHomePageState extends State<MyHomePage>
     //       playlistMode: PlaylistMode.loop,
     //     ),
     //     autoStart: true);
+
+    var newMap = groupBy(data, (Map obj) => obj['release_date']);
+
+    print(newMap);
   }
 
   void _incrementCounter() {
