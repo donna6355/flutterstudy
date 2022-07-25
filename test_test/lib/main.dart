@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:dart_vlc/dart_vlc.dart';
 
-void main() {
+void main() async {
+  await DartVLC.initialize();
   runApp(const MyApp());
 }
 
@@ -52,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage>
   int _counter = 0;
   late Animation<Color?> animation;
   late AnimationController aniCtrl;
+  final player = Player(id: 69420);
 
   @override
   void initState() {
@@ -68,6 +71,14 @@ class _MyHomePageState extends State<MyHomePage>
     // });
     // aniCtrl.forward();
     aniCtrl.repeat();
+    player.open(
+        Playlist(
+          medias: [
+            Media.asset('assets/smallest_cat.mp4'),
+          ],
+          playlistMode: PlaylistMode.loop,
+        ),
+        autoStart: true);
   }
 
   void _incrementCounter() {
@@ -115,6 +126,13 @@ class _MyHomePageState extends State<MyHomePage>
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Video(
+              player: player,
+              height: 500.0,
+              width: 500.0,
+              scale: 1.0, // default
+              showControls: false, // default
+            ),
             Text('flutter create --org com.donna6355 app_name'),
             Text('flutter config --enable-macos-desktop'),
             Text('flutter config --no-enable-macos-desktop'),
