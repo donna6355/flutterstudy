@@ -1,5 +1,9 @@
 PODS:
+  - flutter_libserialport (0.0.1):
+    - FlutterMacOS
+    - libserialport
   - FlutterMacOS (1.0.0)
+  - libserialport (0.1.1)
   - path_provider_macos (0.0.1):
     - FlutterMacOS
   - screen_retriever (0.0.1):
@@ -8,12 +12,19 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
+  - flutter_libserialport (from `Flutter/ephemeral/.symlinks/plugins/flutter_libserialport/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - path_provider_macos (from `Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos`)
   - screen_retriever (from `Flutter/ephemeral/.symlinks/plugins/screen_retriever/macos`)
   - window_manager (from `Flutter/ephemeral/.symlinks/plugins/window_manager/macos`)
 
+SPEC REPOS:
+  trunk:
+    - libserialport
+
 EXTERNAL SOURCES:
+  flutter_libserialport:
+    :path: Flutter/ephemeral/.symlinks/plugins/flutter_libserialport/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
   path_provider_macos:
@@ -24,7 +35,9 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/window_manager/macos
 
 SPEC CHECKSUMS:
+  flutter_libserialport: d1a505fd4b05785f7b50cc7c93b361937ea1c5bd
   FlutterMacOS: 57701585bf7de1b3fc2bb61f6378d73bbdea8424
+  libserialport: 1cb25e66ef3c92a8e59c2ea3820302c3fa2268cd
   path_provider_macos: 3c0c3b4b0d4a76d2bf989a913c2de869c5641a19
   screen_retriever: 59634572a57080243dd1bf715e55b6c54f241a38
   window_manager: 3a1844359a6295ab1e47659b1a777e36773cd6e8

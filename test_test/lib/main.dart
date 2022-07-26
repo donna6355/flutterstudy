@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:collection/collection.dart";
-// import 'package:dart_vlc/dart_vlc.dart';
+import 'package:flutter_libserialport/flutter_libserialport.dart';
 
 void main() async {
   // await DartVLC.initialize();
@@ -10,21 +10,11 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -35,19 +25,27 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
+}
+
+extension IntToString on int {
+  String toHex() => '0x${toRadixString(16)}';
+  String toPadded([int width = 3]) => toString().padLeft(width, '0');
+  String toTransport() {
+    switch (this) {
+      case SerialPortTransport.usb:
+        return 'USB';
+      case SerialPortTransport.bluetooth:
+        return 'Bluetooth';
+      case SerialPortTransport.native:
+        return 'Native';
+      default:
+        return 'Unknown';
+    }
+  }
 }
 
 class _MyHomePageState extends State<MyHomePage>
@@ -62,10 +60,17 @@ class _MyHomePageState extends State<MyHomePage>
     {"title": 'Jumanji', "release_date": '30/10/2019'},
   ];
 
+  var availablePorts = [];
+
+  void initPorts() {
+    setState(() => availablePorts = SerialPort.availablePorts);
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    initPorts();
     aniCtrl =
         AnimationController(duration: const Duration(seconds: 1), vsync: this);
     animation =
@@ -87,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage>
     //     ),
     //     autoStart: true);
 
-// useful collection!
+// useful collection package!
 // https://pub.dev/documentation/collection/latest/collection/collection-library.html
     var newMap = groupBy(data, (Map obj) => obj['release_date']);
     print(newMap);
@@ -101,85 +106,82 @@ class _MyHomePageState extends State<MyHomePage>
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // Video(
-            //   player: player,
-            //   height: 500.0,
-            //   width: 500.0,
-            //   scale: 1.0, // default
-            //   showControls: false, // default
-            // ),
-            Text('flutter create --org com.donna6355 app_name'),
-            Text('flutter config --enable-macos-desktop'),
-            Text('flutter config --no-enable-macos-desktop'),
-            Text('flutter create --platforms=web'),
-            Text('flutter run -d chrome'),
-            Text(
-                'rm -r ios, rm -r web, rm -r android'), //to remove unneccessary directory
-            LinearProgressIndicator(
-              backgroundColor: Colors.orange,
-              // color: Colors.red,
-              // valueColor: AlwaysStoppedAnimation(Colors.red),
-              valueColor: animation,
-            ),
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            _counter % 2 == 0 ? const SizedBox.shrink() : const Text('ODD NUM'),
+      body: Scrollbar(
+        child: ListView(
+          children: [
+            for (final address in availablePorts)
+              Builder(builder: (context) {
+                final port = SerialPort(address);
+                return ExpansionTile(
+                  title: Text(address),
+                  children: [
+                    CardListTile('Description', port.description),
+                    CardListTile('Transport', port.transport.toTransport()),
+                    CardListTile('USB Bus', port.busNumber?.toPadded()),
+                    CardListTile('USB Device', port.deviceNumber?.toPadded()),
+                    CardListTile('Vendor ID', port.vendorId?.toHex()),
+                    CardListTile('Product ID', port.productId?.toHex()),
+                    CardListTile('Manufacturer', port.manufacturer),
+                    CardListTile('Product Name', port.productName),
+                    CardListTile('Serial Number', port.serialNumber),
+                    CardListTile('MAC Address', port.macAddress),
+                  ],
+                );
+              }),
           ],
         ),
       ),
+      // body: Center(
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: <Widget>[
+
+      //       // Video(
+      //       //   player: player,
+      //       //   height: 500.0,
+      //       //   width: 500.0,
+      //       //   scale: 1.0, // default
+      //       //   showControls: false, // default
+      //       // ),
+      //       Text('flutter create --org com.donna6355 app_name'),
+      //       Text('flutter config --enable-macos-desktop'),
+      //       Text('flutter config --no-enable-macos-desktop'),
+      //       Text('flutter create --platforms=web'),
+      //       Text('flutter run -d chrome'),
+      //       Text(
+      //           'rm -r ios, rm -r web, rm -r android'), //to remove unneccessary directory
+      //       LinearProgressIndicator(
+      //         backgroundColor: Colors.orange,
+      //         // color: Colors.red,
+      //         // valueColor: AlwaysStoppedAnimation(Colors.red),
+      //         valueColor: animation,
+      //       ),
+      //       const Text(
+      //         'You have pushed the button this many times:',
+      //       ),
+      //       Text(
+      //         '$_counter',
+      //         style: Theme.of(context).textTheme.headline4,
+      //       ),
+      //       _counter % 2 == 0 ? const SizedBox.shrink() : const Text('ODD NUM'),
+      //     ],
+      //   ),
+      // ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
@@ -190,4 +192,21 @@ class Counter {
   void increment() => value++;
 
   void decrement() => value--;
+}
+
+class CardListTile extends StatelessWidget {
+  final String name;
+  final String? value;
+
+  CardListTile(this.name, this.value);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        title: Text(value ?? 'N/A'),
+        subtitle: Text(name),
+      ),
+    );
+  }
 }
