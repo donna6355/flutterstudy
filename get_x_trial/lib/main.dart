@@ -6,6 +6,7 @@ import './controller/getxControl.dart';
 import './pages/first.dart';
 import './pages/second.dart';
 import './pages/third.dart';
+import './pages/video_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      home: const Home(),
+      home: const VideoPage(),
     );
   }
 }
