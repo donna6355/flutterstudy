@@ -34,4 +34,15 @@ class ReactiveCont extends GetxController {
       val?.id = id;
     });
   }
+
+// make stream
+  Stream<String> get age async* {
+    var i = 0;
+    while (i < 85) {
+      await Future.delayed(Duration(seconds: 1), () {
+        i++;
+      });
+      yield i.toString();
+    }
+  }
 }
