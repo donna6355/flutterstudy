@@ -47,6 +47,13 @@ class Home extends StatelessWidget {
         child: ListView(
           children: [
             ListTile(
+              title: Baseline(
+                  //gotta study more about baseline!
+                  baseline: 0,
+                  baselineType: TextBaseline.ideographic,
+                  child: Text('asdEDdsㅁㄴㅇㄹ')),
+            ),
+            ListTile(
               title: Text(Get.statusBarHeight.toString()),
             ),
             ListTile(
