@@ -47,6 +47,9 @@ class Home extends StatelessWidget {
         child: ListView(
           children: [
             ListTile(
+              title: Text(Get.statusBarHeight.toString()),
+            ),
+            ListTile(
               onTap: () {
                 // Navigator.of(context).push
                 // Get.to(First());
