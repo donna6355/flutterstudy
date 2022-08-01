@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +11,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    //check system mode!
+    var brightness = SchedulerBinding.instance.window.platformBrightness;
+    bool isDarkMode = brightness == Brightness.dark;
+
+// with context. if you check the system mode before material app, it doesn't work as context is not completed
+//      var brightness = MediaQuery.of(context).platformBrightness;
+//  bool isDarkMode = brightness == Brightness.dark;
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
