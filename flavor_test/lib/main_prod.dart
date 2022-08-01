@@ -211,6 +211,7 @@ class _MyHomePageState extends State<MyHomePage> {
       TargetFocus(
         identify: "keyButton",
         keyTarget: keyButton3,
+        shape: ShapeLightFocus.RRect,
         alignSkip: Alignment.topRight,
         contents: [
           TargetContent(
