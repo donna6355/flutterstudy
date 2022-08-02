@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:collection/collection.dart";
+import 'package:flutter/services.dart';
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 
 void main() async {
@@ -16,6 +17,20 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        //do this globally
+        appBarTheme: const AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle(
+              systemNavigationBarColor:
+                  Colors.white, // android bottom system nav bar
+              systemNavigationBarIconBrightness: Brightness
+                  .dark, // android bottom system nav bar icon color either light or dark
+              statusBarColor: Colors.white, // android top status bar
+              statusBarIconBrightness:
+                  Brightness.dark, // android top status bar icon color
+              statusBarBrightness: Brightness.light // ios top status bar
+
+              ),
+        ),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -112,6 +127,17 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   Widget build(BuildContext context) {
+    //or one by one upon pages
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    //     systemNavigationBarColor: Colors.white, // android bottom system nav bar
+    //     systemNavigationBarIconBrightness: Brightness
+    //         .dark, // android bottom system nav bar icon color either light or dark
+    //     statusBarColor: Colors.white, // android top status bar
+    //     statusBarIconBrightness:
+    //         Brightness.dark, // android top status bar icon color
+    //     statusBarBrightness: Brightness.light // ios top status bar
+
+    //     ));
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
