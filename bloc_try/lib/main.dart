@@ -44,8 +44,14 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: ListView(
-        children: const [
+        children: [
           Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗'),
+          Row(
+            children: [
+              Flexible(child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
+              Flexible(child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
+            ],
+          ),
           Baseline(
             baseline: 10,
             baselineType: TextBaseline.ideographic,
