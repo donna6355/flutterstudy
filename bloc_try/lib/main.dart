@@ -41,47 +41,139 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+// class MyHomePage extends StatelessWidget {
+//   const MyHomePage({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Material(
+//       child: OrientationBuilder(
+//         builder: (context, orientation) {
+//           return ListView(
+//             children: [
+//               Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗'),
+//               orientation == Orientation.portrait
+//                   ? Column(
+//                       children: [
+//                         Flexible(
+//                             child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
+//                         Flexible(
+//                             child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
+//                       ],
+//                     )
+//                   : Row(
+//                       children: [
+//                         Flexible(
+//                             child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
+//                         Flexible(
+//                             child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
+//                       ],
+//                     ),
+//               ShaderMask(
+//                 blendMode: BlendMode.srcATop,
+//                 shaderCallback: (bounds) {
+//                   return _shimmerGradient.createShader(bounds);
+//                 },
+//                 child: Container(
+//                   width: 54,
+//                   height: 54,
+//                   decoration: const BoxDecoration(
+//                     color: Colors.black,
+//                     shape: BoxShape.circle,
+//                   ),
+//                   child: ClipOval(
+//                     child: Image.network(
+//                       'https://flutter'
+//                       '.dev/docs/cookbook/img-files/effects/split-check/Avatar1.jpg',
+//                       fit: BoxFit.cover,
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//             ],
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }
+
+class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final _shimmerGradient = LinearGradient(
+    colors: [
+      Color(0xFFEBEBF4),
+      Color(0xFFF4F4F4),
+      Color(0xFFEBEBF4),
+    ],
+    stops: [
+      0.1,
+      0.3,
+      0.4,
+    ],
+    begin: Alignment(-1.0, -0.3),
+    end: Alignment(1.0, 0.3),
+    tileMode: TileMode.clamp,
+  );
+
+  @override
   Widget build(BuildContext context) {
-    return Material(
-      child: OrientationBuilder(
-        builder: (context, orientation) {
-          return ListView(
-            children: [
-              Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗'),
-              orientation == Orientation.portrait
-                  ? Column(
-                      children: [
-                        Flexible(
-                            child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
-                        Flexible(
-                            child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
-                      ],
-                    )
-                  : Row(
-                      children: [
-                        Flexible(
-                            child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
-                        Flexible(
-                            child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
-                      ],
-                    ),
-              Baseline(
-                baseline: 10,
-                baselineType: TextBaseline.ideographic,
-                child: Text('Isaac은 사랑스러운 1년 10개월 고양이∗∗'),
+    return Scaffold(
+      appBar: AppBar(title: Text('Shimmer Trial')),
+      body: ShaderMask(
+        blendMode: BlendMode.srcATop,
+        shaderCallback: (bounds) {
+          return _shimmerGradient.createShader(bounds);
+        },
+        child: Column(children: [
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(16),
               ),
-              Baseline(
-                baseline: 100,
-                baselineType: TextBaseline.ideographic,
-                child: Text('Isaac은 사랑스러운 1년 10개월 고양이'),
+              // child: ClipRRect(
+              //   borderRadius: BorderRadius.circular(16),
+              //   child: Image.network(
+              //     'https://flutter'
+              //     '.dev/docs/cookbook/img-files/effects/split-check/Food1.jpg',
+              //     fit: BoxFit.cover,
+              //   ),
+              // ),
+            ),
+          ),
+          const SizedBox(height: 15),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: double.infinity,
+                height: 24,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Container(
+                width: 250,
+                height: 24,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(16),
+                ),
               ),
             ],
-          );
-        },
+          )
+        ]),
       ),
     );
   }
