@@ -47,26 +47,41 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: ListView(
-        children: [
-          Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗'),
-          Row(
+      child: OrientationBuilder(
+        builder: (context, orientation) {
+          return ListView(
             children: [
-              Flexible(child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
-              Flexible(child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
+              Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗'),
+              orientation == Orientation.portrait
+                  ? Column(
+                      children: [
+                        Flexible(
+                            child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
+                        Flexible(
+                            child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
+                      ],
+                    )
+                  : Row(
+                      children: [
+                        Flexible(
+                            child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
+                        Flexible(
+                            child: Text('Isaac은 사랑스러운 1년 10∗∗-∗∗개월 고양이∗∗')),
+                      ],
+                    ),
+              Baseline(
+                baseline: 10,
+                baselineType: TextBaseline.ideographic,
+                child: Text('Isaac은 사랑스러운 1년 10개월 고양이∗∗'),
+              ),
+              Baseline(
+                baseline: 100,
+                baselineType: TextBaseline.ideographic,
+                child: Text('Isaac은 사랑스러운 1년 10개월 고양이'),
+              ),
             ],
-          ),
-          Baseline(
-            baseline: 10,
-            baselineType: TextBaseline.ideographic,
-            child: Text('Isaac은 사랑스러운 1년 10개월 고양이∗∗'),
-          ),
-          Baseline(
-            baseline: 100,
-            baselineType: TextBaseline.ideographic,
-            child: Text('Isaac은 사랑스러운 1년 10개월 고양이'),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
