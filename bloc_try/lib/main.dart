@@ -123,6 +123,15 @@ class _MyHomePageState extends State<MyHomePage>
     super.dispose();
   }
 
+// LinearGradient get gradient => LinearGradient(
+//       colors: widget.linearGradient.colors,
+//       stops: widget.linearGradient.stops,
+//       begin: widget.linearGradient.begin,
+//       end: widget.linearGradient.end,
+//       transform:
+//           _SlidingGradientTransform(slidePercent: _shimmerController.value),
+//     );
+
   @override
   Widget build(BuildContext context) {
     var _shimmerGradient = LinearGradient(
