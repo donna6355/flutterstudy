@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
             systemOverlayStyle:
-                SystemUiOverlayStyle(statusBarColor: Colors.white)),
+                const SystemUiOverlayStyle(statusBarColor: Colors.white)),
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -105,27 +105,46 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  final _shimmerGradient = LinearGradient(
-    colors: [
-      Color(0xFFEBEBF4),
-      Color(0xFFF4F4F4),
-      Color(0xFFEBEBF4),
-    ],
-    stops: [
-      0.1,
-      0.3,
-      0.4,
-    ],
-    begin: Alignment(-1.0, -0.3),
-    end: Alignment(1.0, 0.3),
-    tileMode: TileMode.clamp,
-  );
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _shimmerController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _shimmerController = AnimationController.unbounded(vsync: this)
+      ..repeat(min: -0.5, max: 1.5, period: const Duration(milliseconds: 1000));
+  }
+
+  @override
+  void dispose() {
+    _shimmerController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    var _shimmerGradient = LinearGradient(
+      colors: const [
+        Color(0xFFEBEBF4),
+        Color(0xFFF4F4F4),
+        Color(0xFFEBEBF4),
+      ],
+      stops: const [
+        0.1,
+        0.3,
+        0.4,
+      ],
+      begin: const Alignment(-1.0, -0.3),
+      end: const Alignment(1.0, 0.3),
+      tileMode: TileMode.clamp,
+      transform:
+          _SlidingGradientTransform(slidePercent: _shimmerController.value),
+    );
+
     return Scaffold(
-      appBar: AppBar(title: Text('Shimmer Trial')),
+      appBar: AppBar(title: const Text('Shimmer Trial')),
       body: ShaderMask(
         blendMode: BlendMode.srcATop,
         shaderCallback: (bounds) {
@@ -176,5 +195,18 @@ class _MyHomePageState extends State<MyHomePage> {
         ]),
       ),
     );
+  }
+}
+
+class _SlidingGradientTransform extends GradientTransform {
+  const _SlidingGradientTransform({
+    required this.slidePercent,
+  });
+
+  final double slidePercent;
+
+  @override
+  Matrix4? transform(Rect bounds, {TextDirection? textDirection}) {
+    return Matrix4.translationValues(bounds.width * slidePercent, 0.0, 0.0);
   }
 }
