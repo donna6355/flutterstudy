@@ -179,27 +179,32 @@ class _MyHomePageState extends State<MyHomePage>
             ),
           ),
           const SizedBox(height: 15),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: double.infinity,
-                height: 24,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(16),
+          Scrollbar(
+            trackVisibility: true,
+            thumbVisibility: true,
+            thickness: 2.5,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              Container(
-                width: 250,
-                height: 24,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(16),
+                const SizedBox(height: 16),
+                Container(
+                  width: 250,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )
         ]),
       ),
