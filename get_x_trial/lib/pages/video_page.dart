@@ -14,7 +14,8 @@ class _VideoPageState extends State<VideoPage> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset('assets/smallest_cat.mp4')
+    _controller = VideoPlayerController.network(
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
       ..setLooping(true)
       ..initialize().then((_) => setState(() {}))
       ..play();
