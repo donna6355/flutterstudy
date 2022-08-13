@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class VideoPage extends StatefulWidget {
   const VideoPage({Key? key}) : super(key: key);
@@ -49,7 +50,9 @@ class _VideoPageState extends State<VideoPage> {
             });
           },
           child: Icon(
-            _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+            _controller.value.isPlaying
+                ? FaIcon(FontAwesomeIcons.airbnb)
+                : FaIcon(FontAwesomeIcons.arrowRotateLeft),
           ),
         ),
       ),

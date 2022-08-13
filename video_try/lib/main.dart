@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -57,18 +58,20 @@ class _VideoState extends State<Video> {
                 )
               : Container(),
         ),
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: () {
-        //     setState(() {
-        //       _controller.value.isPlaying
-        //           ? _controller.pause()
-        //           : _controller.play();
-        //     });
-        //   },
-        //   child: Icon(
-        //     _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-        //   ),
-        // ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              _controller.value.isPlaying
+                  ? _controller.pause()
+                  : _controller.play();
+            });
+          },
+          child: Icon(
+            _controller.value.isPlaying
+                ? FaIcon(FontAwesomeIcons.airbnb)
+                : FaIcon(FontAwesomeIcons.arrowRotateLeft),
+          ),
+        ),
       ),
     );
   }
