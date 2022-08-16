@@ -66,11 +66,9 @@ class _VideoState extends State<Video> {
                   : _controller.play();
             });
           },
-          child: Icon(
-            _controller.value.isPlaying
-                ? const FaIcon(FontAwesomeIcons.airbnb)
-                : const FaIcon(FontAwesomeIcons.arrowRotateLeft),
-          ),
+          child: _controller.value.isPlaying
+              ? FaIcon(FontAwesomeIcons.a)
+              : FaIcon(FontAwesomeIcons.accusoft),
         ),
       ),
     );
