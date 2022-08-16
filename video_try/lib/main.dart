@@ -68,8 +68,8 @@ class _VideoState extends State<Video> {
           },
           child: Icon(
             _controller.value.isPlaying
-                ? FaIcon(FontAwesomeIcons.airbnb)
-                : FaIcon(FontAwesomeIcons.arrowRotateLeft),
+                ? const FaIcon(FontAwesomeIcons.airbnb)
+                : const FaIcon(FontAwesomeIcons.arrowRotateLeft),
           ),
         ),
       ),
