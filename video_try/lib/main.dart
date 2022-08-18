@@ -67,8 +67,8 @@ class _VideoState extends State<Video> {
             });
           },
           child: _controller.value.isPlaying
-              ? FaIcon(FontAwesomeIcons.a)
-              : FaIcon(FontAwesomeIcons.accusoft),
+              ? const FaIcon(FontAwesomeIcons.a)
+              : const FaIcon(FontAwesomeIcons.accusoft),
         ),
       ),
     );
