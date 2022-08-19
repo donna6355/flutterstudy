@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 void main() {
   runApp(const MyApp());
@@ -50,13 +51,35 @@ class _VideoState extends State<Video> {
     return MaterialApp(
       title: 'Video Demo',
       home: Scaffold(
-        body: Center(
-          child: _controller.value.isInitialized
-              ? AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
-                )
-              : Container(),
+        body: Column(
+          children: [
+            Center(
+              child: _controller.value.isInitialized
+                  ? AspectRatio(
+                      aspectRatio: _controller.value.aspectRatio,
+                      child: VideoPlayer(_controller),
+                    )
+                  : Container(),
+            ),
+            SizedBox(
+              width: 200,
+              height: 140,
+              child: Text(
+                'This string will be automatically resized to fit in two lines.',
+                style: TextStyle(fontSize: 30),
+                maxLines: 2,
+              ),
+            ),
+            SizedBox(
+              width: 200,
+              height: 140,
+              child: AutoSizeText(
+                'This string will be automatically resized to fit in two lines.',
+                style: TextStyle(fontSize: 30),
+                maxLines: 2,
+              ),
+            ),
+          ],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
