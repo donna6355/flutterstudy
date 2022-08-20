@@ -61,7 +61,7 @@ class _VideoState extends State<Video> {
                     )
                   : Container(),
             ),
-            SizedBox(
+            const SizedBox(
               width: 200,
               height: 140,
               child: Text(
@@ -70,7 +70,7 @@ class _VideoState extends State<Video> {
                 maxLines: 2,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 200,
               height: 140,
               child: AutoSizeText(
