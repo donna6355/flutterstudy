@@ -51,35 +51,40 @@ class _VideoState extends State<Video> {
     return MaterialApp(
       title: 'Video Demo',
       home: Scaffold(
-        body: Column(
-          children: [
-            Center(
-              child: _controller.value.isInitialized
-                  ? AspectRatio(
-                      aspectRatio: _controller.value.aspectRatio,
-                      child: VideoPlayer(_controller),
-                    )
-                  : Container(),
-            ),
-            const SizedBox(
-              width: 200,
-              height: 140,
-              child: Text(
-                'This string will be automatically resized to fit in two lines.',
-                style: TextStyle(fontSize: 30),
-                maxLines: 2,
+        body: RefreshIndicator(
+          onRefresh: () async {
+            _controller.pause();
+          },
+          child: ListView(
+            children: [
+              Center(
+                child: _controller.value.isInitialized
+                    ? AspectRatio(
+                        aspectRatio: _controller.value.aspectRatio,
+                        child: VideoPlayer(_controller),
+                      )
+                    : Container(),
               ),
-            ),
-            const SizedBox(
-              width: 200,
-              height: 140,
-              child: AutoSizeText(
-                'This string will be automatically resized to fit in two lines.',
-                style: TextStyle(fontSize: 30),
-                maxLines: 2,
+              const SizedBox(
+                width: 200,
+                height: 140,
+                child: Text(
+                  'This string will be automatically resized to fit in two lines.',
+                  style: TextStyle(fontSize: 30),
+                  maxLines: 2,
+                ),
               ),
-            ),
-          ],
+              const SizedBox(
+                width: 200,
+                height: 140,
+                child: AutoSizeText(
+                  'This string will be automatically resized to fit in two lines.',
+                  style: TextStyle(fontSize: 30),
+                  maxLines: 2,
+                ),
+              ),
+            ],
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
