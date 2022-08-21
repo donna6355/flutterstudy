@@ -77,6 +77,17 @@ class _VideoState extends State<Video> {
               const SizedBox(
                 width: 200,
                 height: 140,
+                child: FittedBox(
+                  child: Text(
+                    'This string will be automatically resized to fit in two lines.',
+                    style: TextStyle(fontSize: 30),
+                    maxLines: 2,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 200,
+                height: 140,
                 child: AutoSizeText(
                   'This string will be automatically resized to fit in two lines.',
                   style: TextStyle(fontSize: 30),
