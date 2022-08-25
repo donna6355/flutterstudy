@@ -224,3 +224,5 @@ class _SlidingGradientTransform extends GradientTransform {
     return Matrix4.translationValues(bounds.width * slidePercent, 0.0, 0.0);
   }
 }
+
+//https://docs.flutter.dev/cookbook/effects/shimmer-loading
