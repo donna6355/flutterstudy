@@ -1,3 +1,4 @@
+import 'package:flavor_test/screens/webview_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Flutter Flavor Tutorial'),
+      home: WebviewPage(),
+      // home: const MyHomePage(title: 'Flutter Flavor Tutorial'),
     );
   }
 }

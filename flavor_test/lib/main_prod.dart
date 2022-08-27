@@ -42,7 +42,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: BarChartSample1(),
+      home: WebviewPage(),
+      // home: const MyHomePage(title: 'Flutter Flavor Tutorial'),
     );
   }
 }

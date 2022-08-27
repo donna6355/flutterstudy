@@ -14,11 +14,12 @@ class _WebviewPageState extends State<WebviewPage> with WidgetsBindingObserver {
   InAppWebViewController? _webViewController;
   InAppWebViewController? _webViewPopupController;
   late PullToRefreshController _pullToRefreshController;
+  double _progress = 0;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
 
     _pullToRefreshController = PullToRefreshController(
       options: PullToRefreshOptions(
@@ -59,57 +60,86 @@ class _WebviewPageState extends State<WebviewPage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: InAppWebView(
-          pullToRefreshController: _pullToRefreshController,
-          onLoadStop: (controller, url) async {
-            _pullToRefreshController.endRefreshing();
-          },
-          onLoadError: (controller, url, code, message) {
-            _pullToRefreshController.endRefreshing();
-          },
-          onProgressChanged: (controller, progress) {
-            if (progress == 100) {
-              _pullToRefreshController.endRefreshing();
-            }
-          },
-          initialUrlRequest:
-              URLRequest(url: Uri.parse("https://inappwebview.dev/")),
-          initialOptions: InAppWebViewGroupOptions(
-              crossPlatform: InAppWebViewOptions(
-                javaScriptCanOpenWindowsAutomatically: true,
-                javaScriptEnabled: true,
-              ),
-              android: AndroidInAppWebViewOptions(
-                supportMultipleWindows: true,
-                useHybridComposition: true,
-              ),
-              ios: IOSInAppWebViewOptions(
-                allowsBackForwardNavigationGestures: true,
-              )),
-          onWebViewCreated: (controller) {
-            _webViewController = controller;
-          },
-          onCreateWindow: (controller, createWindowReq) async {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  content: InAppWebView(
-                    windowId: createWindowReq.windowId,
-                    initialOptions: InAppWebViewGroupOptions(
-                      crossPlatform: InAppWebViewOptions(
-                        userAgent: 'Chrome/81.0.0.0 Mobile',
-                      ),
-                    ),
-                    onWebViewCreated: (InAppWebViewController controller) {
-                      _webViewPopupController = controller;
-                    },
-                  ),
-                );
+        child: Stack(
+          children: [
+            InAppWebView(
+              pullToRefreshController: _pullToRefreshController,
+              onLoadStop: (controller, url) async {
+                _pullToRefreshController.endRefreshing();
               },
-            );
-            return true;
-          },
+              onLoadError: (controller, url, code, message) {
+                _pullToRefreshController.endRefreshing();
+              },
+              onProgressChanged: (controller, progress) {
+                if (progress == 100) {
+                  _pullToRefreshController.endRefreshing();
+                }
+                setState(() {
+                  _progress = progress / 100;
+                });
+              },
+              initialUrlRequest:
+                  URLRequest(url: Uri.parse("https://inappwebview.dev/")),
+              initialOptions: InAppWebViewGroupOptions(
+                  crossPlatform: InAppWebViewOptions(
+                    javaScriptCanOpenWindowsAutomatically: true,
+                    javaScriptEnabled: true,
+                  ),
+                  android: AndroidInAppWebViewOptions(
+                    supportMultipleWindows: true,
+                    useHybridComposition: true,
+                  ),
+                  ios: IOSInAppWebViewOptions(
+                    allowsBackForwardNavigationGestures: true,
+                  )),
+              onWebViewCreated: (controller) {
+                _webViewController = controller;
+              },
+              onCreateWindow: (controller, createWindowReq) async {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: InAppWebView(
+                        windowId: createWindowReq.windowId,
+                        initialOptions: InAppWebViewGroupOptions(
+                          crossPlatform: InAppWebViewOptions(
+                            userAgent: 'Chrome/81.0.0.0 Mobile',
+                          ),
+                        ),
+                        onWebViewCreated: (InAppWebViewController controller) {
+                          _webViewPopupController = controller;
+                        },
+                      ),
+                    );
+                  },
+                );
+                return true;
+              },
+            ),
+            _progress < 1.0
+                ? Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    color: Colors.black45,
+                    child: Center(
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          SizedBox(
+                              width: 100,
+                              height: 100,
+                              child:
+                                  CircularProgressIndicator(value: _progress)),
+                          Text(
+                            '${_progress * 100.round()}%',
+                            style: TextStyle(fontSize: 30, color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ))
+                : const SizedBox.shrink(),
+          ],
         ),
       ),
     );
