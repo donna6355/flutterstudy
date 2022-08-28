@@ -9,6 +9,7 @@ import './screens/chart_page.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:flavor_test/screens/webview_page.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 void main() {
   Config.appFlavor = Flavor.prod;
@@ -42,8 +43,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: WebviewPage(),
-      // home: const MyHomePage(title: 'Flutter Flavor Tutorial'),
+      // home: WebviewPage(),
+      home: const MyHomePage(title: 'Flutter Flavor Tutorial'),
     );
   }
 }
@@ -94,6 +95,32 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Center(
           child: Column(
             children: [
+              AnimatedTextKit(
+                animatedTexts: [
+                  TypewriterAnimatedText(
+                    'Hello world!',
+                    textStyle: const TextStyle(
+                      fontSize: 32.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    speed: const Duration(milliseconds: 400),
+                  ),
+                  FadeAnimatedText(
+                    'Fade First',
+                    textStyle:
+                        TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
+                  ),
+                  ScaleAnimatedText(
+                    'Then Scale',
+                    textStyle:
+                        TextStyle(fontSize: 70.0, fontFamily: 'Canterbury'),
+                  ),
+                ],
+                // totalRepeatCount: 4,
+                // pause: const Duration(milliseconds: 1000),
+                // displayFullTextOnTap: true,
+                // stopPauseOnTap: true,
+              ),
               Text(
                 'This is ${Config.title}',
                 style: const TextStyle(

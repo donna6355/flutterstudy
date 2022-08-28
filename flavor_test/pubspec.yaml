@@ -38,6 +38,7 @@ dependencies:
   flutter_inappwebview: ^5.4.0
   tutorial_coach_mark: ^1.2.2
   fl_chart: ^0.55.0
+  animated_text_kit: ^4.2.2
 
 dev_dependencies:
   flutter_test:
