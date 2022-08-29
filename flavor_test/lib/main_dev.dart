@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: WebviewPage(),
+      home: const WebviewPage(),
       // home: const MyHomePage(title: 'Flutter Flavor Tutorial'),
     );
   }
@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               TextButton(
                   onPressed: () {
-                    Get.to(WebviewPage());
+                    Get.to(const WebviewPage());
                   },
                   child: const Text('to InappView')),
             ],
