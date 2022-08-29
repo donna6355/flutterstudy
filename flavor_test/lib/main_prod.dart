@@ -10,6 +10,7 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:flavor_test/screens/webview_page.dart';
 // import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 
 void main() {
   Config.appFlavor = Flavor.prod;
@@ -69,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    deviceCheck();
 
     // Future.delayed(Duration.zero, showTutorial);
 
@@ -83,6 +85,18 @@ class _MyHomePageState extends State<MyHomePage> {
         .then((accepted) {
       // print("Accepted permission: $accepted");
     });
+  }
+
+  Future<void> deviceCheck() async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    // AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    // print('Running on ${androidInfo.model}'); // e.g. "Moto G (4)"
+
+    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+    print('Running on ${iosInfo.utsname.machine}'); // e.g. "iPod7,1"
+
+    // WebBrowserInfo webBrowserInfo = await deviceInfo.webBrowserInfo;
+    // print('Running on ${webBrowserInfo.userAgent}');
   }
 
   @override
