@@ -119,6 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'Error:': 'Failed to get platform version.'
       };
     }
+    print(deviceData);
   }
 
   Map<String, dynamic> _readAndroidBuildData(AndroidDeviceInfo build) {
