@@ -254,7 +254,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 key: keyButton1,
               ),
-              Text('GREETING'.tr),
+              Semantics(
+                child: Text('GREETING'.tr),
+                label: 'Greeting text',
+                enabled: false,
+                readOnly: true,
+              ),
               TextButton(
                 onPressed: () {
                   Get.locale == const Locale('en')
