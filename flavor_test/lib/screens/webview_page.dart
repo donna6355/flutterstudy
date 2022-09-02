@@ -48,6 +48,7 @@ class _WebviewPageState extends State<WebviewPage> {
   //   super.didChangeAppLifecycleState(state);
   //   if (state == AppLifecycleState.resumed) {
   //     print('app resumed');
+  // once app is resumed.. call the webview url again?
   //   } else if (state == AppLifecycleState.inactive) {
   //     print('app inactive');
   //   } else if (state == AppLifecycleState.paused) {
