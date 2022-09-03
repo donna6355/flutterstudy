@@ -47,7 +47,7 @@ class _WebviewPageState extends State<WebviewPage> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) async {
     super.didChangeAppLifecycleState(state);
     if (state == AppLifecycleState.resumed) {
-      print('app resumed');
+      print('==================app resumed');
       // once app is resumed.. call the webview url again?
       if (Platform.isAndroid) {
         _webViewController?.reload();
@@ -56,11 +56,11 @@ class _WebviewPageState extends State<WebviewPage> with WidgetsBindingObserver {
             urlRequest: URLRequest(url: await _webViewController?.getUrl()));
       }
     } else if (state == AppLifecycleState.inactive) {
-      print('app inactive');
+      print('=============app inactive');
     } else if (state == AppLifecycleState.paused) {
-      print('app paused');
+      print('===============app paused');
     } else if (state == AppLifecycleState.detached) {
-      print('app detached');
+      print('==============app detached');
     }
   }
 
