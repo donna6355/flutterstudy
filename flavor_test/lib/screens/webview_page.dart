@@ -20,7 +20,7 @@ class _WebviewPageState extends State<WebviewPage> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    // WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
 
     _pullToRefreshController = PullToRefreshController(
       options: PullToRefreshOptions(
@@ -39,7 +39,7 @@ class _WebviewPageState extends State<WebviewPage> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    // WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -125,7 +125,7 @@ class _WebviewPageState extends State<WebviewPage> with WidgetsBindingObserver {
                 return true;
               },
             ),
-            _progress < 1.0
+            _progress < 0.7
                 ? Container(
                     width: double.infinity,
                     height: double.infinity,
