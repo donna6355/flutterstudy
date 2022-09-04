@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 
-class Server {
-  static final Server _instance = Server._();
+class BackServer {
+  static final BackServer _instance = BackServer._();
   static late Dio _dio;
-  Server._() {
+  BackServer._() {
     var options = BaseOptions(
       baseUrl: 'https://www.xx.com/api',
       // connectTimeout: 5000,
@@ -34,7 +34,10 @@ class Server {
       // },
     ));
   }
-  factory Server() {
+  factory BackServer() {
     return _instance;
+  }
+  static Future<Response<dynamic>> get(String endPoint) {
+    return _dio.get(endPoint);
   }
 }
