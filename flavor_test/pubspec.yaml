@@ -40,6 +40,7 @@ dependencies:
   fl_chart: ^0.55.0
   animated_text_kit: ^4.2.2
   device_info_plus: ^4.1.2
+  dio: ^4.0.6
 
 dev_dependencies:
   flutter_test:
