@@ -7,6 +7,8 @@ class Port {
 
   // async cannot be applied to construcor...
   // in case async initializer required... how should I handle?
+  //reference
+  //https://medium.com/flutter-seoul/dart%EC%97%90%EC%84%9C-singleton-pattern%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-2312616bbb7e
   Port._() {
     _barcodePort = SerialPort(SerialPort.availablePorts.last);
 
