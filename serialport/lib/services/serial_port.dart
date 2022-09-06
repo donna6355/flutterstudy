@@ -5,6 +5,8 @@ class Port {
   static late SerialPort _barcodePort;
   static late SerialPortReader _barcodeReader;
 
+  // async cannot be applied to construcor...
+  // in case async initializer required... how should I handle?
   Port._() {
     _barcodePort = SerialPort(SerialPort.availablePorts.last);
 
