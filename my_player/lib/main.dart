@@ -58,17 +58,18 @@ class _MyPlayerState extends State<MyPlayer> {
       await _setPlay();
 
       player.onPlayerStateChanged.listen((event) async {
-        if (event == PlayerState.completed) {
-          print('playing is done!');
-          setState(() {
-            if (_playlist.length < _idx - 1) {
-              _idx += 1;
-            } else {
-              _idx = 0;
-            }
-          });
-          _setPlay();
-        }
+        print(event);
+        // if (event == PlayerState.completed) {
+        //   print('playing is done!');
+        //   setState(() {
+        //     if (_playlist.length < _idx - 1) {
+        //       _idx += 1;
+        //     } else {
+        //       _idx = 0;
+        //     }
+        //   });
+        //   _setPlay();
+        // }
       });
     }
   }
