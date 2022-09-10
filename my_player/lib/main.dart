@@ -33,6 +33,7 @@ class _MyPlayerState extends State<MyPlayer> {
   List<String> _playlist = [];
   int _idx = 0;
   bool _isPlaying = false;
+  Duration? _currentDur;
 
   final AudioPlayer player = AudioPlayer();
 
@@ -57,6 +58,24 @@ class _MyPlayerState extends State<MyPlayer> {
       }
       await _setPlay();
 
+      // player.onDurationChanged.listen((event) {
+      //   print('this is duration change stream : $event');
+      // });
+      player.onPositionChanged.listen((event) {
+        if (event == _currentDur) {
+          print('playing is done!');
+          setState(() {
+            if (_playlist.length < _idx - 1) {
+              _idx += 1;
+            } else {
+              _idx = 0;
+            }
+          });
+          _setPlay();
+        }
+        print('this is position change stream : $event');
+      });
+
       player.onPlayerStateChanged.listen((event) async {
         print('player is ${event.name}'); // paused 2, playing 1,
         if (event == PlayerState.stopped) {
@@ -77,8 +96,11 @@ class _MyPlayerState extends State<MyPlayer> {
   Future<void> _setPlay() async {
     try {
       await player.play(DeviceFileSource(_playlist[_idx]));
-      setState(() {
+      var dur = await player.getDuration();
+      print('current duration : $dur');
+      setState(() async {
         _isPlaying = true;
+        _currentDur = dur;
       });
     } catch (e) {
       print('something wrong :$e');
