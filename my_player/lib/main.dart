@@ -61,34 +61,46 @@ class _MyPlayerState extends State<MyPlayer> {
       // player.onDurationChanged.listen((event) {
       //   print('this is duration change stream : $event');
       // });
-      player.onPositionChanged.listen((event) {
-        if (event == _currentDur) {
-          print('playing is done!');
-          setState(() {
-            if (_playlist.length < _idx - 1) {
-              _idx += 1;
-            } else {
-              _idx = 0;
-            }
-          });
-          _setPlay();
-        }
-        print('this is position change stream : $event');
-      });
+      // player.onPositionChanged.listen((event) {
+      //   if (event == _currentDur) {
+      //     print('playing is done!');
+      //     setState(() {
+      //       if (_playlist.length < _idx - 1) {
+      //         _idx += 1;
+      //       } else {
+      //         _idx = 0;
+      //       }
+      //     });
+      //     _setPlay();
+      //   }
+      //   print('this is position change stream : $event');
+      // });
 
-      player.onPlayerStateChanged.listen((event) async {
-        print('player is ${event.name}'); // paused 2, playing 1,
-        if (event == PlayerState.stopped) {
-          print('playing is done!');
-          setState(() {
-            if (_playlist.length < _idx - 1) {
-              _idx += 1;
-            } else {
-              _idx = 0;
-            }
-          });
-          _setPlay();
-        }
+      // player.onPlayerStateChanged.listen((event) async {
+      //   print('player is ${event.name}'); // paused 2, playing 1,
+      //   if (event == PlayerState.stopped) {
+      //     print('playing is done!');
+      //     setState(() {
+      //       if (_playlist.length < _idx - 1) {
+      //         _idx += 1;
+      //       } else {
+      //         _idx = 0;
+      //       }
+      //     });
+      //     _setPlay();
+      //   }
+      // });
+
+      player.onPlayerComplete.listen((event) {
+        print('!!!!!!!!!!!over!!!!!!!!!!!');
+        setState(() {
+          if (_playlist.length < _idx - 1) {
+            _idx += 1;
+          } else {
+            _idx = 0;
+          }
+        });
+        _setPlay();
       });
     }
   }
@@ -98,7 +110,7 @@ class _MyPlayerState extends State<MyPlayer> {
       await player.play(DeviceFileSource(_playlist[_idx]));
       var dur = await player.getDuration();
       print('current duration : $dur');
-      setState(() async {
+      setState(() {
         _isPlaying = true;
         _currentDur = dur;
       });
