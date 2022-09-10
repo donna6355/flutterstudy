@@ -94,7 +94,7 @@ class _MyPlayerState extends State<MyPlayer> {
       player.onPlayerComplete.listen((event) {
         print('!!!!!!!!!!!over!!!!!!!!!!!');
         setState(() {
-          if (_playlist.length < _idx - 1) {
+          if (_playlist.length - 1 > _idx) {
             _idx += 1;
           } else {
             _idx = 0;
