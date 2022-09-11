@@ -35,6 +35,9 @@ class _MyPlayerState extends State<MyPlayer> {
   bool _isPlaying = false;
   Duration? _currentDur;
 
+  int maxduration = 100;
+  int currentpos = 0;
+
   final AudioPlayer player = AudioPlayer();
 
   @override
@@ -58,23 +61,29 @@ class _MyPlayerState extends State<MyPlayer> {
       }
       await _setPlay();
 
-      // player.onDurationChanged.listen((event) {
-      //   print('this is duration change stream : $event');
-      // });
-      // player.onPositionChanged.listen((event) {
-      //   if (event == _currentDur) {
-      //     print('playing is done!');
-      //     setState(() {
-      //       if (_playlist.length < _idx - 1) {
-      //         _idx += 1;
-      //       } else {
-      //         _idx = 0;
-      //       }
-      //     });
-      //     _setPlay();
-      //   }
-      //   print('this is position change stream : $event');
-      // });
+      player.onDurationChanged.listen((Duration d) {
+        //get the duration of audio
+        maxduration = d.inMilliseconds;
+        setState(() {});
+      });
+
+      player.onPositionChanged.listen((Duration p) {
+        currentpos =
+            p.inMilliseconds; //get the current position of playing audio
+
+        //generating the duration label
+        int shours = Duration(milliseconds: currentpos).inHours;
+        int sminutes = Duration(milliseconds: currentpos).inMinutes;
+        int sseconds = Duration(milliseconds: currentpos).inSeconds;
+
+        int rhours = shours;
+        int rminutes = sminutes - (shours * 60);
+        int rseconds = sseconds - (sminutes * 60 + shours * 60 * 60);
+
+        setState(() {
+          //refresh the UI
+        });
+      });
 
       // player.onPlayerStateChanged.listen((event) async {
       //   print('player is ${event.name}'); // paused 2, playing 1,
@@ -132,6 +141,13 @@ class _MyPlayerState extends State<MyPlayer> {
       body: Column(
         children: [
           // Image.asset('Isaac.png'),
+          Slider(
+            value: double.parse(currentpos.toString()),
+            min: 0,
+            max: double.parse(maxduration.toString()),
+            divisions: maxduration,
+            onChanged: _seekPos,
+          ),
           IconButton(
             onPressed: () {
               if (_isPlaying) {
@@ -147,9 +163,16 @@ class _MyPlayerState extends State<MyPlayer> {
                 ? const Icon(Icons.pause)
                 : const Icon(Icons.play_arrow),
           ),
-          Text('here for player'),
         ],
       ),
     );
+  }
+
+  Future<void> _seekPos(double value) async {
+    int seekval = value.round();
+    await player.seek(Duration(milliseconds: seekval));
+    setState(() {
+      currentpos = seekval;
+    });
   }
 }
