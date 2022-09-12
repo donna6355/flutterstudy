@@ -6,6 +6,16 @@ void main() {
   runApp(const MyApp());
 }
 
+class Music {
+  final String url;
+  final String title;
+
+  Music({
+    required this.url,
+    required this.title,
+  });
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -30,10 +40,9 @@ class MyPlayer extends StatefulWidget {
 }
 
 class _MyPlayerState extends State<MyPlayer> {
-  List<String> _playlist = [];
+  final List<Music> _playlist = [];
   int _idx = 0;
   bool _isPlaying = false;
-  Duration? _currentDur;
 
   int maxduration = 100;
   int currentpos = 0;
@@ -52,12 +61,8 @@ class _MyPlayerState extends State<MyPlayer> {
     );
 
     if (result != null) {
-      for (var path in result.paths) {
-        if (path != null) {
-          setState(() {
-            _playlist.add(path);
-          });
-        }
+      for (var file in result.files) {
+        _playlist.add(Music(title: file.name, url: file.path ?? ''));
       }
       await _setPlay();
 
@@ -116,12 +121,10 @@ class _MyPlayerState extends State<MyPlayer> {
 
   Future<void> _setPlay() async {
     try {
-      await player.play(DeviceFileSource(_playlist[_idx]));
-      var dur = await player.getDuration();
-      print('current duration : $dur');
+      await player.play(DeviceFileSource(_playlist[_idx].url));
+
       setState(() {
         _isPlaying = true;
-        _currentDur = dur;
       });
     } catch (e) {
       print('something wrong :$e');
@@ -147,6 +150,11 @@ class _MyPlayerState extends State<MyPlayer> {
             max: double.parse(maxduration.toString()),
             divisions: maxduration,
             onChanged: _seekPos,
+          ),
+          Padding(
+            child:
+                Text(_playlist.isEmpty ? 'Loading...' : _playlist[_idx].title),
+            padding: const EdgeInsets.symmetric(vertical: 10),
           ),
           IconButton(
             onPressed: () {
