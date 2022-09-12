@@ -76,37 +76,12 @@ class _MyPlayerState extends State<MyPlayer> {
         currentpos =
             p.inMilliseconds; //get the current position of playing audio
 
-        //generating the duration label
-        int shours = Duration(milliseconds: currentpos).inHours;
-        int sminutes = Duration(milliseconds: currentpos).inMinutes;
-        int sseconds = Duration(milliseconds: currentpos).inSeconds;
-
-        int rhours = shours;
-        int rminutes = sminutes - (shours * 60);
-        int rseconds = sseconds - (sminutes * 60 + shours * 60 * 60);
-
         setState(() {
           //refresh the UI
         });
       });
 
-      // player.onPlayerStateChanged.listen((event) async {
-      //   print('player is ${event.name}'); // paused 2, playing 1,
-      //   if (event == PlayerState.stopped) {
-      //     print('playing is done!');
-      //     setState(() {
-      //       if (_playlist.length < _idx - 1) {
-      //         _idx += 1;
-      //       } else {
-      //         _idx = 0;
-      //       }
-      //     });
-      //     _setPlay();
-      //   }
-      // });
-
       player.onPlayerComplete.listen((event) {
-        print('!!!!!!!!!!!over!!!!!!!!!!!');
         setState(() {
           if (_playlist.length - 1 > _idx) {
             _idx += 1;
@@ -138,12 +113,12 @@ class _MyPlayerState extends State<MyPlayer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Audio Player Test'),
+        title: const Text('Audio Player Test'),
         centerTitle: true,
       ),
       body: Column(
         children: [
-          // Image.asset('Isaac.png'),
+          //FIX once the song turn to next, maxduration is smaller than currentpos
           Slider(
             value: double.parse(currentpos.toString()),
             min: 0,
@@ -152,9 +127,9 @@ class _MyPlayerState extends State<MyPlayer> {
             onChanged: _seekPos,
           ),
           Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
             child:
                 Text(_playlist.isEmpty ? 'Loading...' : _playlist[_idx].title),
-            padding: const EdgeInsets.symmetric(vertical: 10),
           ),
           IconButton(
             onPressed: () {
