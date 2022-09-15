@@ -8,9 +8,15 @@ class TCP {
     const int port = 8080;
 
     _socket = await Socket.connect(ip, port);
-    _socket.listen((event) {
-      print(utf8.decode(event));
-    });
+    _socket.listen(
+      (event) {
+        print(utf8.decode(event));
+      },
+      onError: (err) {
+        print('error occurs in TCP :${err.toString()}');
+      },
+      onDone: closeSocket,
+    );
   }
 
   static sendData(String data) {
