@@ -2,13 +2,18 @@ import 'dart:convert';
 import 'dart:io';
 
 class TCP {
-  static late Socket _socket;
+  static late Socket? _socket;
   static Future<void> initiate() async {
     const String ip = '111.111.1.111';
     const int port = 8080;
+    try {
+      _socket = await Socket.connect(ip, port);
+    } catch (e) {
+      print('error occurs : $e');
+      return;
+    }
 
-    _socket = await Socket.connect(ip, port);
-    _socket.listen(
+    _socket?.listen(
       (event) {
         print(utf8.decode(event));
       },
@@ -20,10 +25,10 @@ class TCP {
   }
 
   static sendData(String data) {
-    _socket.add(utf8.encode(data));
+    _socket?.add(utf8.encode(data));
   }
 
   static closeSocket() {
-    _socket.close();
+    _socket?.close();
   }
 }
