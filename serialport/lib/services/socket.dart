@@ -8,7 +8,8 @@ class TCP {
     const int port = 8080;
     try {
       _socket = await Socket.connect(ip, port);
-    } catch (e) {
+    } on Exception catch (e) {
+      // needs more study..
       print('error occurs : $e');
       return;
     }
