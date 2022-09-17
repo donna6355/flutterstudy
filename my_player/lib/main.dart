@@ -117,6 +117,7 @@ class _MyPlayerState extends State<MyPlayer> {
         centerTitle: true,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           //FIX once the song turn to next, maxduration is smaller than currentpos
           Slider(
