@@ -147,6 +147,19 @@ class _MyPlayerState extends State<MyPlayer> {
                 ? const Icon(Icons.pause)
                 : const Icon(Icons.play_arrow),
           ),
+          const Divider(),
+          const Text('Playlist'),
+          Expanded(
+              child: ListView(
+            children: _playlist
+                .map(
+                  (song) => ListTile(
+                    leading: const Icon(Icons.music_note),
+                    title: Text(song.title),
+                  ),
+                )
+                .toList(),
+          )),
         ],
       ),
     );
