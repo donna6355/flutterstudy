@@ -82,16 +82,30 @@ class _MyPlayerState extends State<MyPlayer> {
       });
 
       player.onPlayerComplete.listen((event) {
-        setState(() {
-          if (_playlist.length - 1 > _idx) {
-            _idx += 1;
-          } else {
-            _idx = 0;
-          }
-        });
-        _setPlay();
+        _playNext(true);
       });
     }
+  }
+
+  void _playNext(bool forward) {
+    if (forward) {
+      setState(() {
+        if (_playlist.length - 1 > _idx) {
+          _idx += 1;
+        } else {
+          _idx = 0;
+        }
+      });
+    } else {
+      setState(() {
+        if (_idx == 0) {
+          _idx = _playlist.length - 1;
+        } else {
+          _idx -= 1;
+        }
+      });
+    }
+    _setPlay();
   }
 
   Future<void> _setPlay() async {
@@ -132,20 +146,39 @@ class _MyPlayerState extends State<MyPlayer> {
             child:
                 Text(_playlist.isEmpty ? 'Loading...' : _playlist[_idx].title),
           ),
-          IconButton(
-            onPressed: () {
-              if (_isPlaying) {
-                player.pause();
-              } else {
-                player.resume();
-              }
-              setState(() {
-                _isPlaying = !_isPlaying;
-              });
-            },
-            icon: _isPlaying
-                ? const Icon(Icons.pause)
-                : const Icon(Icons.play_arrow),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _playNext(false);
+                    });
+                  },
+                  icon: const Icon(Icons.skip_previous)),
+              IconButton(
+                onPressed: () {
+                  if (_isPlaying) {
+                    player.pause();
+                  } else {
+                    player.resume();
+                  }
+                  setState(() {
+                    _isPlaying = !_isPlaying;
+                  });
+                },
+                icon: _isPlaying
+                    ? const Icon(Icons.pause)
+                    : const Icon(Icons.play_arrow),
+              ),
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _playNext(true);
+                    });
+                  },
+                  icon: const Icon(Icons.skip_next)),
+            ],
           ),
           const Divider(),
           const Text('Playlist'),
