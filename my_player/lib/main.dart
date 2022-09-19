@@ -152,41 +152,6 @@ class _MyPlayerState extends State<MyPlayer> {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                IconButton(
-                    onPressed: () {
-                      showModalBottomSheet(
-                          context: context,
-                          builder: (_) {
-                            return Container(
-                              height: 300,
-                              width: double.infinity,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(height: 30),
-                                      const Text('Playlist'),
-                                      Flexible(
-                                          child: ListView(
-                                        children: _playlist
-                                            .map(
-                                              (song) => ListTile(
-                                                leading: const Icon(
-                                                    Icons.music_note),
-                                                title: Text(song.title),
-                                              ),
-                                            )
-                                            .toList(),
-                                      )),
-                                    ]),
-                              ),
-                            );
-                          });
-                    },
-                    icon: const Icon(Icons.list))
               ],
             ),
           ),
@@ -224,6 +189,29 @@ class _MyPlayerState extends State<MyPlayer> {
                   icon: const Icon(Icons.skip_next)),
             ],
           ),
+          const Divider(),
+          const ListTile(
+            title: Text(
+              'Playlist',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(
+              height: 350,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Flexible(
+                    child: ListView(children: [
+                  ..._playlist
+                      .map(
+                        (song) => ListTile(
+                          leading: const Icon(Icons.music_note),
+                          title: Text(song.title),
+                        ),
+                      )
+                      .toList(),
+                ])),
+              ))
         ],
       ),
     );
