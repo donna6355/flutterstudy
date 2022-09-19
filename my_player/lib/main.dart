@@ -142,9 +142,53 @@ class _MyPlayerState extends State<MyPlayer> {
             onChanged: _seekPos,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child:
-                Text(_playlist.isEmpty ? 'Loading...' : _playlist[_idx].title),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  _playlist.isEmpty ? 'Loading...' : _playlist[_idx].title,
+                  style: const TextStyle(fontSize: 20),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                IconButton(
+                    onPressed: () {
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (_) {
+                            return Container(
+                              height: 300,
+                              width: double.infinity,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(height: 30),
+                                      const Text('Playlist'),
+                                      Flexible(
+                                          child: ListView(
+                                        children: _playlist
+                                            .map(
+                                              (song) => ListTile(
+                                                leading: const Icon(
+                                                    Icons.music_note),
+                                                title: Text(song.title),
+                                              ),
+                                            )
+                                            .toList(),
+                                      )),
+                                    ]),
+                              ),
+                            );
+                          });
+                    },
+                    icon: const Icon(Icons.list))
+              ],
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -180,19 +224,6 @@ class _MyPlayerState extends State<MyPlayer> {
                   icon: const Icon(Icons.skip_next)),
             ],
           ),
-          const Divider(),
-          const Text('Playlist'),
-          Expanded(
-              child: ListView(
-            children: _playlist
-                .map(
-                  (song) => ListTile(
-                    leading: const Icon(Icons.music_note),
-                    title: Text(song.title),
-                  ),
-                )
-                .toList(),
-          )),
         ],
       ),
     );
