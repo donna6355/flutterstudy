@@ -201,16 +201,22 @@ class _MyPlayerState extends State<MyPlayer> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Flexible(
-                    child: ListView(children: [
-                  ..._playlist
-                      .map(
-                        (song) => ListTile(
-                          leading: const Icon(Icons.music_note),
-                          title: Text(song.title),
-                        ),
-                      )
-                      .toList(),
-                ])),
+                  child: ListView.builder(
+                    itemCount: _playlist.length,
+                    itemBuilder: (_, idx) {
+                      return ListTile(
+                        leading: const Icon(Icons.music_note),
+                        title: Text(_playlist[idx].title),
+                        onTap: () {
+                          setState(() {
+                            _idx = idx;
+                          });
+                          _setPlay();
+                        },
+                      );
+                    },
+                  ),
+                ),
               ))
         ],
       ),
