@@ -216,6 +216,7 @@ class _MyPlayerState extends State<MyPlayer> {
                     controller:
                         _scrollCtrl, // set controller for both scrollbar and object itself!
                     child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
                       controller: _scrollCtrl,
                       itemCount: _playlist.length,
                       itemBuilder: (_, idx) {
