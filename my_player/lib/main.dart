@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Audio Player Demo',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
@@ -68,15 +68,16 @@ class _MyPlayerState extends State<MyPlayer> {
 
       player.onDurationChanged.listen((Duration d) {
         //get the duration of audio
-        maxduration = d.inMilliseconds;
-        setState(() {});
+        setState(() {
+          currentpos = 0;
+          maxduration = d.inMilliseconds;
+        });
       });
 
       player.onPositionChanged.listen((Duration p) {
-        currentpos =
-            p.inMilliseconds; //get the current position of playing audio
-
         setState(() {
+          currentpos =
+              p.inMilliseconds; //get the current position of playing audio
           //refresh the UI
         });
       });
@@ -133,7 +134,6 @@ class _MyPlayerState extends State<MyPlayer> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          //FIX once the song turn to next, maxduration is smaller than currentpos
           Slider(
             value: double.parse(currentpos.toString()),
             min: 0,
