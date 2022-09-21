@@ -48,6 +48,7 @@ class _MyPlayerState extends State<MyPlayer> {
   int currentpos = 0;
 
   final AudioPlayer player = AudioPlayer();
+  final _scrollCtrl = ScrollController();
 
   @override
   void initState() {
@@ -122,6 +123,14 @@ class _MyPlayerState extends State<MyPlayer> {
         _isPlaying = false;
       });
     }
+  }
+
+  Future<void> _seekPos(double value) async {
+    int seekval = value.round();
+    await player.seek(Duration(milliseconds: seekval));
+    setState(() {
+      currentpos = seekval;
+    });
   }
 
   @override
@@ -201,33 +210,32 @@ class _MyPlayerState extends State<MyPlayer> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Flexible(
-                  child: ListView.builder(
-                    itemCount: _playlist.length,
-                    itemBuilder: (_, idx) {
-                      return ListTile(
-                        leading: const Icon(Icons.music_note),
-                        title: Text(_playlist[idx].title),
-                        onTap: () {
-                          setState(() {
-                            _idx = idx;
-                          });
-                          _setPlay();
-                        },
-                      );
-                    },
+                  child: Scrollbar(
+                    thumbVisibility: true,
+                    trackVisibility: true,
+                    controller:
+                        _scrollCtrl, // set controller for both scrollbar and object itself!
+                    child: ListView.builder(
+                      controller: _scrollCtrl,
+                      itemCount: _playlist.length,
+                      itemBuilder: (_, idx) {
+                        return ListTile(
+                          leading: const Icon(Icons.music_note),
+                          title: Text(_playlist[idx].title),
+                          onTap: () {
+                            setState(() {
+                              _idx = idx;
+                            });
+                            _setPlay();
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ),
               ))
         ],
       ),
     );
-  }
-
-  Future<void> _seekPos(double value) async {
-    int seekval = value.round();
-    await player.seek(Duration(milliseconds: seekval));
-    setState(() {
-      currentpos = seekval;
-    });
   }
 }
