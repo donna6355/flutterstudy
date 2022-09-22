@@ -215,22 +215,26 @@ class _MyPlayerState extends State<MyPlayer> {
                     trackVisibility: true,
                     controller:
                         _scrollCtrl, // set controller for both scrollbar and object itself!
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      controller: _scrollCtrl,
-                      itemCount: _playlist.length,
-                      itemBuilder: (_, idx) {
-                        return ListTile(
-                          leading: const Icon(Icons.music_note),
-                          title: Text(_playlist[idx].title),
-                          onTap: () {
-                            setState(() {
-                              _idx = idx;
-                            });
-                            _setPlay();
-                          },
-                        );
-                      },
+                    child: ScrollConfiguration(
+                      behavior: ScrollConfiguration.of(context).copyWith(
+                          scrollbars: false), // hide scrollbar of listView
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        controller: _scrollCtrl,
+                        itemCount: _playlist.length,
+                        itemBuilder: (_, idx) {
+                          return ListTile(
+                            leading: const Icon(Icons.music_note),
+                            title: Text(_playlist[idx].title),
+                            onTap: () {
+                              setState(() {
+                                _idx = idx;
+                              });
+                              _setPlay();
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),
