@@ -4,7 +4,11 @@ import '../lib/counter.dart';
 import '../lib/test_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-class MockClient extends Mock implements Counter {}
+class MockClient extends Mock implements Counter {
+  int val = 0;
+
+  void increment() => val++;
+}
 
 void main() {
 // UNIT TEST
@@ -23,7 +27,7 @@ void main() {
 //Mockito tutorial
   test('increment counter test', () {
     final counter = MockClient(); // test class, method,... unit!
-    when(counter.increment()).thenReturn(1);
+    when(counter.increment());
     expect(counter.val, 1);
   });
 
