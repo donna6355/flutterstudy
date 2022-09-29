@@ -1,15 +1,13 @@
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../lib/counter.dart';
 import '../lib/test_widget.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-class MockClient extends Mock implements Counter {
-  int val = 0;
+import 'counter_test.mocks.dart';
 
-  void increment() => val++;
-}
-
+@GenerateMocks([Counter])
 void main() {
 // UNIT TEST
 // 1. Add the flutter_test dependency
@@ -26,7 +24,7 @@ void main() {
 
 //Mockito tutorial
   test('increment counter test', () {
-    final counter = MockClient(); // test class, method,... unit!
+    final counter = MockCounter(); // test class, method,... unit!
     when(counter.increment());
     expect(counter.val, 1);
   });
