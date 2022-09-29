@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,6 +50,9 @@ class _MyPlayerState extends State<MyPlayer> {
 
   final AudioPlayer player = AudioPlayer();
   final _scrollCtrl = ScrollController();
+  final _storage = FlutterSecureStorage(
+    aOptions: AndroidOptions(encryptedSharedPreferences: true),
+  );
 
   @override
   void initState() {
@@ -57,6 +61,7 @@ class _MyPlayerState extends State<MyPlayer> {
   }
 
   Future<void> _initialize() async {
+    await _storage.write(key: 'test', value: 'this is for test');
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       allowMultiple: true,
     );
