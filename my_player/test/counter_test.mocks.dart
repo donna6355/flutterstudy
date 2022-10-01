@@ -26,32 +26,19 @@ class MockCounter extends _i1.Mock implements _i2.Counter {
   }
 
   @override
-  int get val => (super.noSuchMethod(
-        Invocation.getter(#val),
+  int increment(dynamic val) => (super.noSuchMethod(
+        Invocation.method(
+          #increment,
+          [val],
+        ),
         returnValue: 0,
       ) as int);
   @override
-  set val(int? _val) => super.noSuchMethod(
-        Invocation.setter(
-          #val,
-          _val,
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void increment() => super.noSuchMethod(
-        Invocation.method(
-          #increment,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void decrement() => super.noSuchMethod(
+  int decrement(dynamic val) => (super.noSuchMethod(
         Invocation.method(
           #decrement,
-          [],
+          [val],
         ),
-        returnValueForMissingStub: null,
-      );
+        returnValue: 0,
+      ) as int);
 }

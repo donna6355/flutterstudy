@@ -16,33 +16,32 @@ void main() {
 // 4. Write a test for our class(test/counter_test.dart)
 // 5. Combine multiple tests in a group
 
-  test('increment counter test', () {
-    final counter = Counter(); // test class, method,... unit!
-    counter.increment();
-    expect(counter.val, 1);
-  });
+  // test('increment counter test', () {
+  //   final counter = Counter(); // test class, method,... unit!
+  //   counter.increment(1);
+  //   expect(counter.val, 1);
+  // });
 
 //Mockito tutorial
   test('increment counter test', () {
     final counter = MockCounter(); // test class, method,... unit!
-    when(counter.increment());
-    expect(counter.val, 1);
+    when(counter.increment(1)).thenReturn(2);
   });
 
-  group('inc and dec test', () {
-    final counter = Counter();
-    test('check default', () {
-      expect(counter.val, 0);
-    });
-    test('increment counter test', () {
-      counter.increment();
-      expect(counter.val, 1);
-    });
-    test('decrement counter test', () {
-      counter.decrement();
-      expect(counter.val, 0);
-    });
-  });
+  // group('inc and dec test', () {
+  //   final counter = Counter();
+  //   test('check default', () {
+  //     expect(counter.val, 0);
+  //   });
+  //   test('increment counter test', () {
+  //     counter.increment();
+  //     expect(counter.val, 1);
+  //   });
+  //   test('decrement counter test', () {
+  //     counter.decrement();
+  //     expect(counter.val, 0);
+  //   });
+  // });
 
 // ===================================================================
 //WIDGET TEST
