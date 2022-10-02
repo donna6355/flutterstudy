@@ -27,6 +27,8 @@ void main() {
   test('increment counter test', () {
     final counter = MockCounter(); // test class, method,... unit!
     expect(counter.val, 0);
+    // when(counter.increment()).thenReturn(1);
+    // expect(counter.val, 1);
   });
 
   // group('inc and dec test', () {
