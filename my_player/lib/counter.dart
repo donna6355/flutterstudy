@@ -1,4 +1,5 @@
 class Counter {
-  int increment(val) => val++;
-  int decrement(val) => val--;
+  int val = 0;
+  int increment() => val++;
+  int decrement() => val--;
 }

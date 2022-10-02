@@ -7,7 +7,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'counter_test.mocks.dart';
 
-@GenerateMocks([Counter])
+// @GenerateMocks([Counter]);
+@GenerateNiceMocks([MockSpec<Counter>()])
 void main() {
 // UNIT TEST
 // 1. Add the flutter_test dependency
@@ -25,7 +26,7 @@ void main() {
 //Mockito tutorial
   test('increment counter test', () {
     final counter = MockCounter(); // test class, method,... unit!
-    when(counter.increment(1)).thenReturn(2);
+    expect(counter.val, 0);
   });
 
   // group('inc and dec test', () {

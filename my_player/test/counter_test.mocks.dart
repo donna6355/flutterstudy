@@ -21,24 +21,36 @@ import 'package:my_player/counter.dart' as _i2;
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCounter extends _i1.Mock implements _i2.Counter {
-  MockCounter() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
-  int increment(dynamic val) => (super.noSuchMethod(
-        Invocation.method(
-          #increment,
-          [val],
-        ),
+  int get val => (super.noSuchMethod(
+        Invocation.getter(#val),
         returnValue: 0,
+        returnValueForMissingStub: 0,
       ) as int);
   @override
-  int decrement(dynamic val) => (super.noSuchMethod(
+  set val(int? _val) => super.noSuchMethod(
+        Invocation.setter(
+          #val,
+          _val,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  int increment() => (super.noSuchMethod(
         Invocation.method(
-          #decrement,
-          [val],
+          #increment,
+          [],
         ),
         returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+  @override
+  int decrement() => (super.noSuchMethod(
+        Invocation.method(
+          #decrement,
+          [],
+        ),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
       ) as int);
 }
