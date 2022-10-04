@@ -1,5 +1,6 @@
 class Counter {
   int val = 0;
+  Test test = Test.complete;
   int increment() => val++;
   int decrement() => val--;
 }
@@ -18,4 +19,8 @@ enum Test {
   final String description;
   const Test(this.description);
   bool isFinished() => this == failed || this == complete;
+
+//get String from the enum
+  @override
+  String toString() => "The Loading is $name and $description";
 }
