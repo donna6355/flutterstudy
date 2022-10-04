@@ -1,5 +1,6 @@
 class Counter {
   int val = 0;
+  String str() => val.intoTwoDigit();
   Test test = Test.complete;
   int increment() => val++;
   int decrement() => val--;
@@ -23,4 +24,8 @@ enum Test {
 //get String from the enum
   @override
   String toString() => "The Loading is $name and $description";
+}
+
+extension Digit on int {
+  String intoTwoDigit() => toString().padLeft(2, '0');
 }
