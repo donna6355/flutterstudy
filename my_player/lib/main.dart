@@ -179,7 +179,27 @@ class _MyPlayerState extends State<MyPlayer> {
                     });
                   },
                   icon: const Icon(Icons.skip_previous)),
-              IconButton(
+              ElevatedButton.icon(
+                style: ButtonStyle(
+                  overlayColor: MaterialStateProperty.resolveWith(
+                    (states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.black87;
+                      } else {
+                        return Colors.white;
+                      }
+                    },
+                  ),
+                  // backgroundColor: MaterialStateProperty.resolveWith(
+                  //   (states) {
+                  //     if (states.contains(MaterialState.pressed)) {
+                  //       // return Colors.white;
+                  //     } else {
+                  //       // return Colors.black87;
+                  //     }
+                  //   },
+                  // ),
+                ),
                 onPressed: () {
                   if (_isPlaying) {
                     player.pause();
@@ -193,6 +213,7 @@ class _MyPlayerState extends State<MyPlayer> {
                 icon: _isPlaying
                     ? const Icon(Icons.pause)
                     : const Icon(Icons.play_arrow),
+                label: Text(_isPlaying ? 'pause' : 'play'),
               ),
               IconButton(
                   onPressed: () {
