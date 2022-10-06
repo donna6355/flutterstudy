@@ -36,6 +36,29 @@ class MockCounter extends _i1.Mock implements _i2.Counter {
         returnValueForMissingStub: null,
       );
   @override
+  _i2.Test get test => (super.noSuchMethod(
+        Invocation.getter(#test),
+        returnValue: _i2.Test.stopped,
+        returnValueForMissingStub: _i2.Test.stopped,
+      ) as _i2.Test);
+  @override
+  set test(_i2.Test? _test) => super.noSuchMethod(
+        Invocation.setter(
+          #test,
+          _test,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  String str() => (super.noSuchMethod(
+        Invocation.method(
+          #str,
+          [],
+        ),
+        returnValue: '',
+        returnValueForMissingStub: '',
+      ) as String);
+  @override
   int increment() => (super.noSuchMethod(
         Invocation.method(
           #increment,
