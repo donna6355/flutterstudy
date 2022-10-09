@@ -8,8 +8,9 @@ import 'package:http/http.dart' as http;
 
 import 'counter_test.mocks.dart';
 
-// class MockClient extends Mock implements http.Client {}
-@GenerateMocks([http.Client])
+// class MockClient extends Mock implements http.Client {}//it no longer works i guess??
+
+// @GenerateMocks([http.Client])
 void main() {
   group('fetchTest with manual mockito', () {
     test('http send 200', () async {
