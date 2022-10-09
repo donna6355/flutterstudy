@@ -1,21 +1,32 @@
 import 'dart:io';
 
 class TCP {
-  Socket? clientSocket;
+  Socket? clientSocekt;
+  String globalTest = 'asdf';
 
-  Future<void> init() async {
+  Future<bool> init(Socket clientSocekt) async {
     try {
-      await Socket.connect('1234', 5252)
-          .then((socket) => clientSocket = socket);
-      clientSocket?.listen((event) {
-        print(event);
+      clientSocekt.listen((evt) {
+        print(evt);
       });
+      return true;
     } catch (e) {
-      print(e);
+      return false;
     }
   }
 
-  void sendMsg(String msg) {
-    clientSocket?.write('hello');
+  String handleRes(String res) {
+    if (res != 'OK') return '';
+    String test = '';
+
+    switch (globalTest) {
+      case 'asdf':
+        test = 'this is asdf';
+        globalTest = 'diff';
+        break;
+      default:
+        break;
+    }
+    return test;
   }
 }
