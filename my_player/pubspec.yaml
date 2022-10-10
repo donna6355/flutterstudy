@@ -37,6 +37,7 @@ dependencies:
   audioplayers: ^1.0.1
   flutter_secure_storage: ^6.0.0
   http: ^0.13.5
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   # test: ^1.21.6
