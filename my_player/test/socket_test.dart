@@ -17,17 +17,17 @@ import 'package:my_player/socket.dart';
 // }
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Preferences.init();
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Preferences.init();
   group('handle response unit test', () {
-    test('OK get the global test string', () {
+    test('OK get the _seq number', () {
       // await Preferences.init();
-      expect(TCP().handleRes('OK'), '0');
+      expect(TCP().handleRes('OK'), 'asdf');
       // print(TCP()
       //     .globalTest); // this is inital value... doesnt match the new one..
     });
     test('no ok return empty string', () {
-      expect(TCP().handleRes('test'), '');
+      expect(TCP().handleRes('test'), '0001');
       // when(socket.connect()).thenReturn(Future<Socket>);
     });
   });

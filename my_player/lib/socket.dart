@@ -1,11 +1,11 @@
 import 'dart:io';
-import './shared_preferences.dart';
+// import './shared_preferences.dart';
 
 class TCP {
   Socket? clientSocekt;
   String globalTest = 'asdf';
-  static String _seqNo = Preferences.tcpSequence.intoFourDigit();
-  static String _machineId = Preferences.machineId;
+  static String _seqNo = '0001'; //put mockup val
+  static String _machineId = '0000';
 
   Future<bool> init(Socket clientSocekt) async {
     try {
@@ -23,8 +23,7 @@ class TCP {
 
     switch (globalTest) {
       case 'asdf':
-        globalTest = 'diff';
-        break;
+        return 'asdf';
       default:
         break;
     }
