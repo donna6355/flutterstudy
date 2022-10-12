@@ -15,6 +15,9 @@ class Music {
     required this.url,
     required this.title,
   });
+  factory Music.fromJson(Map<String, dynamic> json) {
+    return Music(url: json['url'], title: json['title']);
+  }
 }
 
 class MyApp extends StatelessWidget {
