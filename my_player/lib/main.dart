@@ -17,6 +17,7 @@ class Music {
   });
   factory Music.fromJson(Map<String, dynamic> json) {
     return Music(url: json['url'], title: json['title']);
+    //Music.fromJson(Map);
   }
 }
 
