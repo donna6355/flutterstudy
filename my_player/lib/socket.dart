@@ -11,6 +11,7 @@ class TCP {
     try {
       clientSocekt.listen((evt) {
         print(evt);
+        print(evt.single);
       });
       return true;
     } catch (e) {
