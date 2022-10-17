@@ -4,6 +4,7 @@ import 'package:path_provider/path_provider.dart';
 
 class FileController {
   FileController._();
+  static List files = [];
   static late Directory _appDocumentsDirectory;
   Future<void> init() async {
     _appDocumentsDirectory = await getApplicationDocumentsDirectory();
@@ -15,7 +16,7 @@ class FileController {
         '${_appDocumentsDirectory.path}/${DateTime.now().toString().substring(0, 10)}.txt');
     if (await file.exists()) {
       String prevData = await file.readAsString();
-      String newData = '${DateTime.now().intoStr()} this is new data\n';
+      String newData = '${DateTime.now().intoStr()} this is new data.\n';
       file.writeAsString('$prevData$newData');
     } else {
       file.writeAsString('this is new data\n');
@@ -23,12 +24,17 @@ class FileController {
   }
 
   Future<void> deleteStale() async {
-    final toDelete = File('${_appDocumentsDirectory}/stalefile.txt');
-    try {
-      await toDelete.delete();
-    } catch (e) {
-      print(e);
-    }
+    //list all files in the directory;
+    //https://tpoint.hashnode.dev/flutter-list-all-files-in-directory
+    files = _appDocumentsDirectory.listSync();
+    files[1].delete();
+
+    // final toDelete = File('$_appDocumentsDirectory/stalefile.txt');
+    // try {
+    //   await toDelete.delete();
+    // } catch (e) {
+    //   print(e);
+    // }
   }
 }
 
@@ -42,7 +48,7 @@ extension SetDigit on int {
   }
 }
 
-extension format on DateTime {
+extension Format on DateTime {
   String intoStr() {
     return '0$year-${month.intoTwoDigit()}-${day.intoTwoDigit()} ${hour.intoTwoDigit()}:${minute.intoTwoDigit()}:${second.intoTwoDigit()}';
   }
