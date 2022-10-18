@@ -4,16 +4,21 @@ import 'package:path_provider/path_provider.dart';
 
 class FileController {
   FileController._();
-  static List files = [];
-  static late Directory _appDocumentsDirectory;
+  static List<FileSystemEntity> files = [];
+  static String _appDocumentsDirectory = '';
   Future<void> init() async {
-    _appDocumentsDirectory = await getApplicationDocumentsDirectory();
-    _appDocumentsDirectory = Directory('/asjdlfkj/asdlfkjalsdjf');
+    var origDir = await getApplicationDocumentsDirectory();
+    _appDocumentsDirectory =
+        origDir.path.substring(0, origDir.path.indexOf('Documents'));
+    _appDocumentsDirectory = '${_appDocumentsDirectory}logs';
+    if (await Directory(_appDocumentsDirectory).exists() == false) {
+      Directory(_appDocumentsDirectory).createSync();
+    }
   }
 
   Future<void> writeFile() async {
     final file = File(
-        '${_appDocumentsDirectory.path}/${DateTime.now().toString().substring(0, 10)}.txt');
+        '$_appDocumentsDirectory/${DateTime.now().toString().substring(0, 10)}.txt');
     if (await file.exists()) {
       String prevData = await file.readAsString();
       String newData = '${DateTime.now().intoStr()} this is new data.\n';
@@ -26,8 +31,13 @@ class FileController {
   Future<void> deleteStale() async {
     //list all files in the directory;
     //https://tpoint.hashnode.dev/flutter-list-all-files-in-directory
-    files = _appDocumentsDirectory.listSync();
-    files[1].delete();
+    files = Directory(_appDocumentsDirectory).listSync();
+    if (files.length > 30) {
+      final int idx = files.length - 30;
+      for (var i = 0; i < idx; i++) {
+        files[i].delete();
+      }
+    }
 
     // final toDelete = File('$_appDocumentsDirectory/stalefile.txt');
     // try {
