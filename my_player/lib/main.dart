@@ -54,7 +54,7 @@ class _MyPlayerState extends State<MyPlayer> {
 
   final AudioPlayer player = AudioPlayer();
   final _scrollCtrl = ScrollController();
-  final _storage = FlutterSecureStorage(
+  final _storage = const FlutterSecureStorage(
     aOptions: AndroidOptions(encryptedSharedPreferences: true),
   );
 
@@ -71,6 +71,7 @@ class _MyPlayerState extends State<MyPlayer> {
     );
 
     if (result != null) {
+      print(_storage.read(key: 'test'));
       for (var file in result.files) {
         _playlist.add(Music(title: file.name, url: file.path ?? ''));
       }
