@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:file_picker/file_picker.dart';
+// import 'package:file_picker/file_picker.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -65,38 +68,47 @@ class _MyPlayerState extends State<MyPlayer> {
   }
 
   Future<void> _initialize() async {
-    await _storage.write(key: 'test', value: 'this is for test');
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      allowMultiple: true,
-    );
+    var origDir = await getApplicationDocumentsDirectory();
+    String _appDocumentsDirectory =
+        origDir.path.substring(0, origDir.path.indexOf('Documents'));
+    _appDocumentsDirectory = '${_appDocumentsDirectory}logs';
 
-    if (result != null) {
-      print(_storage.read(key: 'test'));
-      for (var file in result.files) {
-        _playlist.add(Music(title: file.name, url: file.path ?? ''));
-      }
-      await _setPlay();
-
-      player.onDurationChanged.listen((Duration d) {
-        //get the duration of audio
-        setState(() {
-          currentpos = 0;
-          maxduration = d.inMilliseconds;
-        });
-      });
-
-      player.onPositionChanged.listen((Duration p) {
-        setState(() {
-          currentpos =
-              p.inMilliseconds; //get the current position of playing audio
-          //refresh the UI
-        });
-      });
-
-      player.onPlayerComplete.listen((event) {
-        _playNext(true);
-      });
+    List<FileSystemEntity> files = Directory(_appDocumentsDirectory).listSync();
+    for (var file in files) {
+      _playlist.add(Music(url: file.path, title: file.toString()));
     }
+    // await _storage.write(key: 'test', value: 'this is for test');
+    // FilePickerResult? result = await FilePicker.platform.pickFiles(
+    //   allowMultiple: true,
+    // );
+
+    // if (result != null) {
+    //   print(_storage.read(key: 'test'));
+    //   for (var file in result.files) {
+    //     _playlist.add(Music(title: file.name, url: file.path ?? ''));
+    //   }
+    //   await _setPlay();
+
+    //   player.onDurationChanged.listen((Duration d) {
+    //     //get the duration of audio
+    //     setState(() {
+    //       currentpos = 0;
+    //       maxduration = d.inMilliseconds;
+    //     });
+    //   });
+
+    //   player.onPositionChanged.listen((Duration p) {
+    //     setState(() {
+    //       currentpos =
+    //           p.inMilliseconds; //get the current position of playing audio
+    //       //refresh the UI
+    //     });
+    //   });
+
+    //   player.onPlayerComplete.listen((event) {
+    //     _playNext(true);
+    //   });
+    // }
   }
 
   void _playNext(bool forward) {
