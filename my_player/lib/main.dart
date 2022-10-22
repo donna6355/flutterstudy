@@ -69,6 +69,7 @@ class _MyPlayerState extends State<MyPlayer> {
 
   Future<void> _initialize() async {
     var origDir = await getApplicationDocumentsDirectory();
+    //TODO get the directory of recently.. android permission check
     String _appDocumentsDirectory =
         origDir.path.substring(0, origDir.path.indexOf('Documents'));
     _appDocumentsDirectory = '${_appDocumentsDirectory}logs';
