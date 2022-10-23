@@ -116,6 +116,14 @@ class _MyPlayerState extends State<MyPlayer> {
   }
 
   void _playNext(bool forward) {
+    ScaffoldMessenger.of(context).showMaterialBanner(
+        MaterialBanner(content: const Text('test material banner'), actions: [
+      TextButton(
+        onPressed: () =>
+            ScaffoldMessenger.of(context).hideCurrentMaterialBanner(),
+        child: const Text('Dismiss'),
+      )
+    ]));
     if (forward) {
       setState(() {
         if (_playlist.length - 1 > _idx) {
