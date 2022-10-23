@@ -5,8 +5,10 @@ import 'package:audioplayers/audioplayers.dart';
 // import 'package:file_picker/file_picker.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:path_provider/path_provider.dart';
+import './serial_barcode.dart';
 
 void main() {
+  SerialBarcode();
   runApp(const MyApp());
 }
 
@@ -68,6 +70,7 @@ class _MyPlayerState extends State<MyPlayer> {
   }
 
   Future<void> _initialize() async {
+    print(SerialBarcode.readBarcodeStream(context, 0));
     var origDir = await getApplicationDocumentsDirectory();
     //TODO get the directory of recently.. android permission check
     String _appDocumentsDirectory =

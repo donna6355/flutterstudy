@@ -218,6 +218,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.4"
+  dylib:
+    dependency: transitive
+    description:
+      name: dylib
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.2+1"
   fake_async:
     dependency: transitive
     description:
@@ -263,6 +270,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_libserialport:
+    dependency: "direct main"
+    description:
+      name: flutter_libserialport
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -402,6 +416,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.7.0"
+  libserialport:
+    dependency: transitive
+    description:
+      name: libserialport
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0+1"
   lints:
     dependency: transitive
     description:
