@@ -1,6 +1,10 @@
 import 'dart:ffi';
 //open library => look up function => call function
 //as type systems are different, explicitly specify both Foreign type (C# in this case) and Dart type!!!!!
+//[Void] is not constructible in the Dart code and serves purely as marker in type signatures.
+//**BOOL returns int.... but not sure how to handle this... BOOL is undefined TT
+//https://temphi20.tistory.com/14
+//Failed to load dynamic library (error code 193): 64bit 환경인데 32bit로 dll을 컴파일해서 생긴 오류였다. 몇 비트인지 확인 제대로 할 것.
 
 class SerialMainBoard {
   SerialMainBoard._();
