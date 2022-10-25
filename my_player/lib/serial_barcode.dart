@@ -5,7 +5,7 @@ class SerialBarcode {
   static final SerialBarcode _instance = SerialBarcode._();
   static late SerialPort? _barcodePort;
   static late SerialPortReader _barcodeReader;
-  static String _combine = '';
+  static List<int> _combine = [];
   SerialBarcode._() {
     try {
       ///dev/cu.usbmodemG21L081421 // digimarc for mac
@@ -31,6 +31,15 @@ class SerialBarcode {
     } else {
       _barcodeReader.stream.listen((data) {
         print(data);
+
+        /// [Uint8] is not constructible in the Dart code and serves purely as marker in
+        /// type signatures.
+        /// Uint8 10 is etx!
+        _combine.addAll(data);
+        if (_combine.last == 10) {
+          print(_combine);
+          _combine = [];
+        }
       });
       return true;
     }
