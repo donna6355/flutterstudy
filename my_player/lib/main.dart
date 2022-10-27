@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/services.dart';
 // import 'package:file_picker/file_picker.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:path_provider/path_provider.dart';
@@ -174,127 +175,139 @@ class _MyPlayerState extends State<MyPlayer> {
         title: const Text('Audio Player Test'),
         centerTitle: true,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Slider(
-            value: double.parse(currentpos.toString()),
-            min: 0,
-            max: double.parse(maxduration.toString()),
-            divisions: maxduration,
-            onChanged: _seekPos,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-            child: Row(
+      body: RawKeyboardListener(
+        autofocus: true,
+        focusNode: FocusNode(),
+        onKey: (event) {
+          if (event.isKeyPressed(LogicalKeyboardKey.escape)) {
+            print('terminate dialog');
+          }
+          if (event.isKeyPressed(LogicalKeyboardKey.numpad1)) {
+            print('terminate dialog');
+          }
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Slider(
+              value: double.parse(currentpos.toString()),
+              min: 0,
+              max: double.parse(maxduration.toString()),
+              divisions: maxduration,
+              onChanged: _seekPos,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    _playlist.isEmpty ? 'Loading...' : _playlist[_idx].title,
+                    style: const TextStyle(fontSize: 20),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  _playlist.isEmpty ? 'Loading...' : _playlist[_idx].title,
-                  style: const TextStyle(fontSize: 20),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _playNext(false);
+                      });
+                    },
+                    icon: const Icon(Icons.skip_previous)),
+                ElevatedButton.icon(
+                  style: ButtonStyle(
+                    overlayColor: MaterialStateProperty.resolveWith(
+                      (states) {
+                        if (states.contains(MaterialState.pressed)) {
+                          return Colors.black87;
+                        } else {
+                          return Colors.white;
+                        }
+                      },
+                    ),
+                    // backgroundColor: MaterialStateProperty.resolveWith(
+                    //   (states) {
+                    //     if (states.contains(MaterialState.pressed)) {
+                    //       // return Colors.white;
+                    //     } else {
+                    //       // return Colors.black87;
+                    //     }
+                    //   },
+                    // ),
+                  ),
+                  onPressed: () {
+                    if (_isPlaying) {
+                      player.pause();
+                    } else {
+                      player.resume();
+                    }
+                    setState(() {
+                      _isPlaying = !_isPlaying;
+                    });
+                  },
+                  icon: _isPlaying
+                      ? const Icon(Icons.pause)
+                      : const Icon(Icons.play_arrow),
+                  label: Text(_isPlaying ? 'pause' : 'play'),
                 ),
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _playNext(true);
+                      });
+                    },
+                    icon: const Icon(Icons.skip_next)),
               ],
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _playNext(false);
-                    });
-                  },
-                  icon: const Icon(Icons.skip_previous)),
-              ElevatedButton.icon(
-                style: ButtonStyle(
-                  overlayColor: MaterialStateProperty.resolveWith(
-                    (states) {
-                      if (states.contains(MaterialState.pressed)) {
-                        return Colors.black87;
-                      } else {
-                        return Colors.white;
-                      }
-                    },
-                  ),
-                  // backgroundColor: MaterialStateProperty.resolveWith(
-                  //   (states) {
-                  //     if (states.contains(MaterialState.pressed)) {
-                  //       // return Colors.white;
-                  //     } else {
-                  //       // return Colors.black87;
-                  //     }
-                  //   },
-                  // ),
-                ),
-                onPressed: () {
-                  if (_isPlaying) {
-                    player.pause();
-                  } else {
-                    player.resume();
-                  }
-                  setState(() {
-                    _isPlaying = !_isPlaying;
-                  });
-                },
-                icon: _isPlaying
-                    ? const Icon(Icons.pause)
-                    : const Icon(Icons.play_arrow),
-                label: Text(_isPlaying ? 'pause' : 'play'),
+            const Divider(),
+            const ListTile(
+              title: Text(
+                'Playlist',
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      _playNext(true);
-                    });
-                  },
-                  icon: const Icon(Icons.skip_next)),
-            ],
-          ),
-          const Divider(),
-          const ListTile(
-            title: Text(
-              'Playlist',
-              style: TextStyle(fontWeight: FontWeight.bold),
             ),
-          ),
-          SizedBox(
-              height: 350,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Flexible(
-                  child: Scrollbar(
-                    thumbVisibility: true,
-                    trackVisibility: true,
-                    controller:
-                        _scrollCtrl, // set controller for both scrollbar and object itself!
-                    child: ScrollConfiguration(
-                      behavior: ScrollConfiguration.of(context).copyWith(
-                          scrollbars: false), // hide scrollbar of listView
-                      child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        controller: _scrollCtrl,
-                        itemCount: _playlist.length,
-                        itemBuilder: (_, idx) {
-                          return ListTile(
-                            leading: const Icon(Icons.music_note),
-                            title: Text(_playlist[idx].title),
-                            onTap: () {
-                              setState(() {
-                                _idx = idx;
-                              });
-                              _setPlay();
-                            },
-                          );
-                        },
+            SizedBox(
+                height: 350,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Flexible(
+                    child: Scrollbar(
+                      thumbVisibility: true,
+                      trackVisibility: true,
+                      controller:
+                          _scrollCtrl, // set controller for both scrollbar and object itself!
+                      child: ScrollConfiguration(
+                        behavior: ScrollConfiguration.of(context).copyWith(
+                            scrollbars: false), // hide scrollbar of listView
+                        child: ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          controller: _scrollCtrl,
+                          itemCount: _playlist.length,
+                          itemBuilder: (_, idx) {
+                            return ListTile(
+                              leading: const Icon(Icons.music_note),
+                              title: Text(_playlist[idx].title),
+                              onTap: () {
+                                setState(() {
+                                  _idx = idx;
+                                });
+                                _setPlay();
+                              },
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ))
-        ],
+                ))
+          ],
+        ),
       ),
     );
   }
