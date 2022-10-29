@@ -312,3 +312,33 @@ class _MyPlayerState extends State<MyPlayer> {
     );
   }
 }
+// https://github.com/flutter/flutter/issues/99252
+/*child: Focus(
+            autofocus: true,
+            onKeyEvent: (_, event) {
+              setState(() {
+                _text = '${event.runtimeType}';
+              });
+              return KeyEventResult.handled;
+            },
+            child: Text(_text, style: const TextStyle(fontSize: 40),
+            )
+          ),
+        ), */
+
+class FocusWidget extends StatelessWidget {
+  const FocusWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Focus(
+      autofocus: true,
+      onKeyEvent: (_, event) {
+        var key = event.character;
+        print(key);
+        return KeyEventResult.ignored;
+      },
+      child: Container(),
+    );
+  }
+}
