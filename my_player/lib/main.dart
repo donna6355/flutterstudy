@@ -338,7 +338,7 @@ class FocusWidget extends StatelessWidget {
         print(key);
         return KeyEventResult.ignored;
       },
-      child: Container(),
+      child: const Text('Detect KeyEvent'),
     );
   }
 }

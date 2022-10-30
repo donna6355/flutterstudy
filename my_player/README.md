@@ -1,8 +1,15 @@
 # my_player
 
-A new Flutter project.
+A new Flutter project for mp3 player tutorial... and others...
 
 ## Getting Started
+
+# Android>local.properties
+
+flutter.versionName=1.0.0
+flutter.versionCode=1
+flutter.minSdkVersion=21
+============================
 
 This project is a starting point for a Flutter application.
 
