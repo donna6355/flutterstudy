@@ -10,6 +10,13 @@ import './serial_barcode.dart';
 
 void main() {
   SerialBarcode();
+  //ErrorWidget
+  ErrorWidget.builder = (details) {
+    return Container(
+      color: Colors.orange,
+      child: Text(details.toString()),
+    );
+  };
   runApp(const MyApp());
 }
 
@@ -342,3 +349,5 @@ class FocusWidget extends StatelessWidget {
     );
   }
 }
+
+//https://www.youtube.com/watch?v=G1LGOH424lo&list=PLTyZe8x00Ml3uACRbaqqPIAo9pyYMtj8V&index=3
