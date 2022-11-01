@@ -279,8 +279,24 @@ class _MyPlayerState extends State<MyPlayer> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            //TODO
-            // DraggableScrollableSheet(builder: builder)
+            DraggableScrollableSheet(
+              initialChildSize: 0.4,
+              minChildSize: 0.2,
+              maxChildSize: 0.7,
+              builder:
+                  (BuildContext context, ScrollController scrollController) {
+                return Container(
+                  color: Colors.blue[100],
+                  child: ListView.builder(
+                    controller: scrollController,
+                    itemCount: 25,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(title: Text('Item $index'));
+                    },
+                  ),
+                );
+              },
+            ),
             SizedBox(
                 height: 350,
                 child: Padding(
