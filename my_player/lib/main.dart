@@ -79,10 +79,18 @@ class _MyPlayerState extends State<MyPlayer> {
 
   Future<void> _initialize() async {
     // print(SerialBarcode.readBarcodeStream(context, 0));
-    var origDir = await getApplicationDocumentsDirectory();
+    //https://github.com/flutter/flutter/issues/40504
+    List<Directory>? extDirectories = await getExternalStorageDirectories();
+
+    List<String> dirs = extDirectories![1].toString().split('/');
+    String rebuiltPath = '/' + dirs[1] + '/' + dirs[2] + '/';
+
+    print("rebuilt path: " + rebuiltPath);
+// return new Directory(rebuiltPath);
+    var origDir = await getExternalStorageDirectory();
     //TODO get the directory of recently.. android permission check
     String _appDocumentsDirectory =
-        origDir.path.substring(0, origDir.path.indexOf('Documents'));
+        origDir!.path.substring(0, origDir.path.indexOf('Documents'));
     _appDocumentsDirectory = '${_appDocumentsDirectory}logs';
 
     List<FileSystemEntity> files = Directory(_appDocumentsDirectory).listSync();
