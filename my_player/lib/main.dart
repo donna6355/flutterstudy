@@ -9,7 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import './serial_barcode.dart';
 
 void main() {
-  SerialBarcode();
+  // SerialBarcode();
   //ErrorWidget
   ErrorWidget.builder = (details) {
     return Container(
@@ -78,7 +78,7 @@ class _MyPlayerState extends State<MyPlayer> {
   }
 
   Future<void> _initialize() async {
-    print(SerialBarcode.readBarcodeStream(context, 0));
+    // print(SerialBarcode.readBarcodeStream(context, 0));
     var origDir = await getApplicationDocumentsDirectory();
     //TODO get the directory of recently.. android permission check
     String _appDocumentsDirectory =
@@ -279,24 +279,24 @@ class _MyPlayerState extends State<MyPlayer> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            DraggableScrollableSheet(
-              initialChildSize: 0.4,
-              minChildSize: 0.2,
-              maxChildSize: 0.7,
-              builder:
-                  (BuildContext context, ScrollController scrollController) {
-                return Container(
-                  color: Colors.blue[100],
-                  child: ListView.builder(
-                    controller: scrollController,
-                    itemCount: 25,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListTile(title: Text('Item $index'));
-                    },
-                  ),
-                );
-              },
-            ),
+            // DraggableScrollableSheet(
+            //   initialChildSize: 0.4,
+            //   minChildSize: 0.2,
+            //   maxChildSize: 0.7,
+            //   builder:
+            //       (BuildContext context, ScrollController scrollController) {
+            //     return Container(
+            //       color: Colors.blue[100],
+            //       child: ListView.builder(
+            //         controller: scrollController,
+            //         itemCount: 25,
+            //         itemBuilder: (BuildContext context, int index) {
+            //           return ListTile(title: Text('Item $index'));
+            //         },
+            //       ),
+            //     );
+            //   },
+            // ),
             SizedBox(
                 height: 350,
                 child: Padding(
