@@ -82,7 +82,9 @@ class _MyPlayerState extends State<MyPlayer> {
     //https://github.com/flutter/flutter/issues/40504
     List<Directory>? extDirectories = await getExternalStorageDirectories();
 
-    List<String> dirs = extDirectories![1].toString().split('/');
+    //TODO read ext derectories and find the correct idx
+    int idx = 0; // sdcard idx
+    List<String> dirs = extDirectories![idx].toString().split('/');
     String rebuiltPath = '/' + dirs[1] + '/' + dirs[2] + '/';
 
     print("rebuilt path: " + rebuiltPath);
