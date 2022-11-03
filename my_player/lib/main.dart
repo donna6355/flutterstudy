@@ -82,6 +82,7 @@ class _MyPlayerState extends State<MyPlayer> {
     //https://github.com/flutter/flutter/issues/40504
     List<Directory>? extDirectories = await getExternalStorageDirectories();
 
+    //test it with real device
     //TODO read ext derectories and find the correct idx
     int idx = 0; // sdcard idx
     List<String> dirs = extDirectories![idx].toString().split('/');
@@ -89,13 +90,13 @@ class _MyPlayerState extends State<MyPlayer> {
 
     print("rebuilt path: " + rebuiltPath);
 // return new Directory(rebuiltPath);
-    var origDir = await getExternalStorageDirectory();
-    //TODO get the directory of recently.. android permission check
-    String _appDocumentsDirectory =
-        origDir!.path.substring(0, origDir.path.indexOf('Documents'));
-    _appDocumentsDirectory = '${_appDocumentsDirectory}logs';
+    // var origDir = await getExternalStorageDirectory();
+    // //TODO get the directory of recently.. android permission check
+    // String _appDocumentsDirectory =
+    //     origDir!.path.substring(0, origDir.path.indexOf('Documents'));
+    // _appDocumentsDirectory = '${_appDocumentsDirectory}logs';
 
-    List<FileSystemEntity> files = Directory(_appDocumentsDirectory).listSync();
+    List<FileSystemEntity> files = Directory(rebuiltPath).listSync();
     for (var file in files) {
       _playlist.add(Music(url: file.path, title: file.toString()));
     }
