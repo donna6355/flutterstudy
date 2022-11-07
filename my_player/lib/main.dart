@@ -374,9 +374,11 @@ class FocusWidget extends StatelessWidget {
     return Focus(
       autofocus: true,
       onKeyEvent: (_, event) {
+        //ignore it character is not null which means this is key down event
+        if (event.character != null) return KeyEventResult.ignored;
         var key = event.character;
         print(key);
-        return KeyEventResult.ignored;
+        return KeyEventResult.handled;
       },
       child: const Text('Detect KeyEvent'),
     );
