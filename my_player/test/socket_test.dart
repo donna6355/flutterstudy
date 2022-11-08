@@ -20,13 +20,13 @@ void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Preferences.init();
   group('handle response unit test', () {
-    test('OK get the _seq number', () {
+    test('OK return asdk string', () {
       // await Preferences.init();
       expect(TCP().handleRes('OK'), 'asdf');
       // print(TCP()
       //     .globalTest); // this is inital value... doesnt match the new one..
     });
-    test('no ok return empty string', () {
+    test('no ok return _seq number', () {
       expect(TCP().handleRes('test'), '0001');
       // when(socket.connect()).thenReturn(Future<Socket>);
     });
