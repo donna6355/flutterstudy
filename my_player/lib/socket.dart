@@ -1,6 +1,11 @@
 import 'dart:io';
 // import './shared_preferences.dart';
 
+const Map<String, String> _testMap = {
+  'asdf': 'asdf',
+  'qwer': 'qwer',
+};
+
 class TCP {
   Socket? clientSocekt;
   String globalTest = 'asdf';
@@ -21,14 +26,15 @@ class TCP {
 
   String handleRes(String res) {
     if (res != 'OK') return _seqNo;
+    //switch to map
 
-    switch (globalTest) {
-      case 'asdf':
-        return 'asdf';
-      default:
-        break;
-    }
-    return _machineId;
+    // switch (globalTest) {
+    //   case 'asdf':
+    //     return 'asdf';
+    //   default:
+    //     break;
+    // }
+    return _testMap[globalTest] ?? _machineId;
   }
 }
 
