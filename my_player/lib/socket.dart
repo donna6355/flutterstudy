@@ -6,10 +6,24 @@ const Map<String, String> _testMap = {
   'qwer': 'qwer',
 };
 
+enum Constants {
+  asdf,
+  qwer,
+  test;
+}
+
+const Map<int, int> _id = {
+  1: 0x31,
+  2: 0x32,
+  3: 0x33,
+  4: 0x34,
+  5: 0x35,
+};
+
 class TCP {
   Socket? clientSocekt;
-  String globalTest = 'asdf';
-  static String _seqNo = '0001'; //put mockup val
+  String globalTest = Constants.asdf.name;
+  static String _seqNo = Constants.qwer.name; //put mockup val
   static String _machineId = '0000';
 
   Future<bool> init(Socket clientSocekt) async {
@@ -51,7 +65,8 @@ extension SetDigit on int {
 class MainBoard {
   MainBoard._();
   void calculateBCC() {
-    List<int> _cmd = [0x02, 0x00, 0x30, 0x31, 0x00, 0x03];
+    List<int> _cmd =
+        [0x02] + [_id[1] ?? 0x31] + [0x31, 0x30] + [0x31, 0x00, 0x03];
     // exclusive or!
     _cmd.add(_cmd[0] ^ _cmd[1] ^ _cmd[2] ^ _cmd[3] ^ _cmd[4] ^ _cmd[5]);
   }
