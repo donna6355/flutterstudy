@@ -5,6 +5,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/services.dart';
 // import 'package:file_picker/file_picker.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:my_player/call_dll.dart';
 import 'package:path_provider/path_provider.dart';
 import './serial_barcode.dart';
 
@@ -209,6 +210,12 @@ class _MyPlayerState extends State<MyPlayer> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              StreamBuilder(
+                builder: (_, snapshot) {
+                  return Text(snapshot.data.toString());
+                },
+                stream: SerialBarcode.test(),
+              ),
               Slider(
                 value: double.parse(currentpos.toString()),
                 min: 0,
