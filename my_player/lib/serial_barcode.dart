@@ -48,8 +48,11 @@ class SerialBarcode {
   }
 
   static Stream test() {
-    _barcodePort!.openRead();
-    return _barcodeReader.stream;
+    if (!_barcodePort!.openRead()) {
+      return Stream.error('failed to read...');
+    } else {
+      return _barcodeReader.stream;
+    }
   }
 
   static void closeBarcodePort() {
