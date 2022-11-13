@@ -68,6 +68,6 @@ class MainBoard {
     List<int> _cmd =
         [0x02] + [_id[1] ?? 0x31] + [0x31, 0x30] + [0x31, 0x00, 0x03];
     // exclusive or!
-    _cmd.add(_cmd[0] ^ _cmd[1] ^ _cmd[2] ^ _cmd[3] ^ _cmd[4] ^ _cmd[5]);
+    _cmd[6] = _cmd[0] ^ _cmd[1] ^ _cmd[2] ^ _cmd[3] ^ _cmd[4] ^ _cmd[5];
   }
 }
