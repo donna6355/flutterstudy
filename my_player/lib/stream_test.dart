@@ -9,15 +9,16 @@ class StreamTest extends StatefulWidget {
 }
 
 class _StreamTestState extends State<StreamTest> {
-  Stream? test;
+  late Stream test;
   String label = '';
+  String _currentCmd = '';
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     test = SerialBarcode.test();
-    test!.listen((event) {
+    test.listen((event) {
       setState(() {
         label = event.toString();
       });
@@ -31,6 +32,10 @@ class _StreamTestState extends State<StreamTest> {
         Text(label),
         StreamBuilder(
           builder: (_, snapshot) {
+            var data = snapshot.data.toString();
+            if (data.contains('49 50')) {
+              print(data);
+            }
             return Text(snapshot.data.toString());
           },
           stream: test,
