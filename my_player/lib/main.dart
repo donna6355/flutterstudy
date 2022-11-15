@@ -44,6 +44,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Audio Player Demo',
       theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+          mouseCursor: MaterialStateProperty.all(SystemMouseCursors.none),
+        )),
         primarySwatch: Colors.green,
       ),
       home: const MyPlayer(),
