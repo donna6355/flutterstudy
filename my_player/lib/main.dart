@@ -250,6 +250,8 @@ class _MyPlayerState extends State<MyPlayer> {
                       icon: const Icon(Icons.skip_previous)),
                   ElevatedButton.icon(
                     style: ButtonStyle(
+                      mouseCursor:
+                          MaterialStateProperty.all(SystemMouseCursors.none),
                       overlayColor: MaterialStateProperty.resolveWith(
                         (states) {
                           if (states.contains(MaterialState.pressed)) {
