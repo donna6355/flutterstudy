@@ -5,6 +5,7 @@ class SerialBarcode {
   static final SerialBarcode _instance = SerialBarcode._();
   static late SerialPort? _barcodePort;
   static late SerialPortReader _barcodeReader;
+  static late Stream _barcodeStream;
   static String _combine = '';
   SerialBarcode._() {
     try {
@@ -29,7 +30,8 @@ class SerialBarcode {
       _barcodePort?.close();
       return false;
     } else {
-      _barcodeReader.stream.listen((data) {
+      _barcodeStream = _barcodeReader.stream.asBroadcastStream();
+      _barcodeStream.listen((data) {
         print(data);
 
         /// [Uint8] is not constructible in the Dart code and serves purely as marker in
@@ -51,7 +53,7 @@ class SerialBarcode {
     if (!_barcodePort!.openRead()) {
       return Stream.error('failed to read...');
     } else {
-      return _barcodeReader.stream;
+      return _barcodeStream;
     }
   }
 
