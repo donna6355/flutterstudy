@@ -45,5 +45,17 @@ void main() async {
         ),
       );
     });
+
+    test('is this okay?', () {
+      BuildContext? ctx;
+      Builder(
+        builder: (BuildContext context) {
+          ctx = context;
+          return const SizedBox.shrink();
+        },
+      );
+      var actual = TCP().handleRes(' NMJSOK0000 ');
+      expect(actual, '0000');
+    });
   });
 }
