@@ -30,5 +30,20 @@ void main() async {
       expect(TCP().handleRes('test'), '0001');
       // when(socket.connect()).thenReturn(Future<Socket>);
     });
+
+    //using testWidget get buildContext
+    testWidgets('me testing', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Builder(
+          builder: (BuildContext ctx) {
+            var actual = TCP().handleRes(' NESSOK0000 ');
+            expect(actual, '');
+
+            // The builder function must return a widget.
+            return const SizedBox.shrink();
+          },
+        ),
+      );
+    });
   });
 }
