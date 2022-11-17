@@ -24,7 +24,8 @@ class FileController {
       String newData = '${DateTime.now().intoStr()} this is new data.\n';
       file.writeAsString('$prevData$newData');
     } else {
-      file.writeAsString('this is new data\n');
+      file.writeAsString('this is new data\r\n');
+      //'\r\n' for windows and '\n' for Unix like system
     }
   }
 
