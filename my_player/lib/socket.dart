@@ -1,4 +1,6 @@
 import 'dart:io';
+
+import 'package:flutter/material.dart';
 // import './shared_preferences.dart';
 
 const Map<String, String> _testMap = {
@@ -36,6 +38,10 @@ class TCP {
     } catch (e) {
       return false;
     }
+  }
+
+  String handleNmjs(String res, BuildContext ctx) {
+    return res;
   }
 
   String handleRes(String res) {
