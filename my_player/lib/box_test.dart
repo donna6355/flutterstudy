@@ -19,6 +19,22 @@ class Boxes extends StatelessWidget {
             color: Colors.red,
           ),
         ),
+        const Text('Fitted Box'),
+        const FittedBox(
+          child: Text(
+            "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            maxLines: 1,
+            style: TextStyle(fontSize: 23),
+          ),
+        ),
+        const Text('Fractionally Sized Box'),
+        FractionallySizedBox(
+          widthFactor: 0.5,
+          heightFactor: 0.1,
+          child: Container(
+            decoration: const BoxDecoration(color: Colors.greenAccent),
+          ),
+        ),
       ],
     );
   }
