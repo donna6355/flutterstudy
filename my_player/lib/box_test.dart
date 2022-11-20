@@ -30,11 +30,25 @@ class Boxes extends StatelessWidget {
         const Text('Fractionally Sized Box'),
         FractionallySizedBox(
           widthFactor: 0.5,
-          heightFactor: 0.1,
+          heightFactor: 0.1, //useful instead of sizedBox with percentage
           child: Container(
             decoration: const BoxDecoration(color: Colors.greenAccent),
           ),
         ),
+        const Text('Limited Box'),
+        ListView.builder(
+            padding: const EdgeInsets.all(8),
+            itemCount: 10,
+            itemBuilder: (BuildContext context, int index) {
+              return LimitedBox(
+                maxHeight: 50,
+                child: Container(
+                  color: Colors.greenAccent,
+                ),
+              );
+            }),
+        const Text('Sized Box'),
+        const SizedBox(height: 50),
       ],
     );
   }
