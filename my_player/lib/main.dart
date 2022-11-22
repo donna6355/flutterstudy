@@ -51,6 +51,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       home: const MyPlayer(),
+      onGenerateRoute: (settings) {
+        return PageRouteBuilder(
+            settings:
+                settings, // Pass this to make popUntil(), pushNamedAndRemoveUntil(), works
+            pageBuilder: (_, __, ___) => const MyApp(),
+            transitionsBuilder: (_, a, __, c) =>
+                FadeTransition(opacity: a, child: c));
+      },
     );
   }
 }
