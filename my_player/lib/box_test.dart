@@ -29,7 +29,8 @@ class Boxes extends StatelessWidget {
         ),
         const Text('Fractionally Sized Box'),
         FractionallySizedBox(
-          widthFactor: 0.5,
+          //Creates a widget that sizes its child to a fraction of the total available space.
+          widthFactor: 0.5, //must be non negative
           heightFactor: 0.1, //useful instead of sizedBox with percentage
           child: Container(
             decoration: const BoxDecoration(color: Colors.greenAccent),
@@ -41,6 +42,7 @@ class Boxes extends StatelessWidget {
             itemCount: 10,
             itemBuilder: (BuildContext context, int index) {
               return LimitedBox(
+                //Creates a box that limits its size only when it's unconstrained. useful with listview, column,row, etc.
                 maxHeight: 50,
                 child: Container(
                   color: Colors.greenAccent,
