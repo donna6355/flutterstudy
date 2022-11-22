@@ -45,3 +45,5 @@ dart_code_metrics:
     - prefer-trailing-comma
     - prefer-conditional-expressions
     - no-equal-then-else
+#gotta study more...
+#flutter pub run dart_code_metrics:metrics analyze lib
