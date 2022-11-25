@@ -417,3 +417,8 @@ class FocusWidget extends StatelessWidget {
 
 //what is BuildContext?
 //meta data of widget and position, which node on widgetTree. 
+
+// A Widget is an immutable description of part of user interface.
+// Widget describes the configuration for an element.
+// Element is an instantiation of a widget at a particular location in the tree. managing the life cycle of widgets.
+// RenderObject handles size, layout, and painting.
