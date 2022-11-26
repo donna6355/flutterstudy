@@ -3,7 +3,7 @@ import 'package:flutter_libserialport/flutter_libserialport.dart';
 
 class SerialBarcode {
   static final SerialBarcode _instance = SerialBarcode._();
-  static late SerialPort? _barcodePort;
+  static late SerialPort _barcodePort;
   static late SerialPortReader _barcodeReader;
   static late Stream _barcodeStream;
   static String _combine = '';
@@ -13,8 +13,8 @@ class SerialBarcode {
       _barcodePort = SerialPort(
           SerialPort.availablePorts.last); //for mac Port name keep changing
       // _barcodePort = SerialPort("COM3"); //for windows
-
-      _barcodeReader = SerialPortReader(_barcodePort!);
+      _barcodePort.flush();
+      _barcodeReader = SerialPortReader(_barcodePort);
     } catch (e) {
       print(e);
     }
@@ -27,7 +27,7 @@ class SerialBarcode {
   static bool readBarcodeStream(BuildContext context, int mode) {
     // MODE!! 0: admin, 1: user
     if (_barcodePort == null || !_barcodePort!.openRead()) {
-      _barcodePort?.close();
+      _barcodePort.close();
       return false;
     } else {
       _barcodeStream = _barcodeReader.stream.asBroadcastStream();
@@ -58,7 +58,8 @@ class SerialBarcode {
   }
 
   static void closeBarcodePort() {
+    _barcodePort.flush();
     _barcodeReader.close();
-    _barcodePort!.close();
+    _barcodePort.close();
   }
 }
