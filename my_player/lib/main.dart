@@ -345,22 +345,25 @@ class _MyPlayerState extends State<MyPlayer> {
                         child: ScrollConfiguration(
                           behavior: ScrollConfiguration.of(context).copyWith(
                               scrollbars: false), // hide scrollbar of listView
-                          child: ListView.builder(
-                            physics: const BouncingScrollPhysics(),
-                            controller: _scrollCtrl,
-                            itemCount: _playlist.length,
-                            itemBuilder: (_, idx) {
-                              return ListTile(
-                                leading: const Icon(Icons.music_note),
-                                title: Text(_playlist[idx].title),
-                                onTap: () {
-                                  setState(() {
-                                    _idx = idx;
-                                  });
-                                  _setPlay();
-                                },
-                              );
-                            },
+                          child: Semantics(
+                            label: 'Playlist',
+                            child: ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              controller: _scrollCtrl,
+                              itemCount: _playlist.length,
+                              itemBuilder: (_, idx) {
+                                return ListTile(
+                                  leading: const Icon(Icons.music_note),
+                                  title: Text(_playlist[idx].title),
+                                  onTap: () {
+                                    setState(() {
+                                      _idx = idx;
+                                    });
+                                    _setPlay();
+                                  },
+                                );
+                              },
+                            ),
                           ),
                         ),
                       ),
