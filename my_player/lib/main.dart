@@ -308,12 +308,19 @@ class _MyPlayerState extends State<MyPlayer> {
                 ],
               ),
               const Divider(),
-              const ListTile(
-                title: Text(
-                  'Playlist',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
+              // https://docs.flutter.dev/development/ui/advanced/actions_and_shortcuts
+              // const Shortcuts(
+              //   shortcuts: {
+              //     SingleActivator(LogicalKeyboardKey.keyC, control: true):
+              //         SelectAllTextIntent()
+              //   },
+              //   child: ListTile(
+              //     title: Text(
+              //       'Playlist',
+              //       style: TextStyle(fontWeight: FontWeight.bold),
+              //     ),
+              //   ),
+              // ),
               // DraggableScrollableSheet(
               //   initialChildSize: 0.4,
               //   minChildSize: 0.2,
@@ -416,7 +423,7 @@ class FocusWidget extends StatelessWidget {
 //https://velog.io/@broccolism/Flutter-%EC%9D%B4-%EC%BD%94%EB%93%9C..-%ED%99%94%EB%A9%B4%EC%97%90-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%A0%A4%EC%A7%88%EA%B9%8C-1.-%ED%8A%B8%EB%A6%AC#%EB%B0%9C%EB%8B%A8-%EB%AA%A8%EB%91%90%EA%B0%80-%EC%95%84%EB%8A%94-build-%ED%95%A8%EC%88%98
 //Widget_the order list of how to draw widget such as size, color, child, etc. THIS THE CODE I WRITE!!
 //Element_internally created by Widget to operate Widget's order and connect to RenderObject. compare changes and let RenderObject to change. which means it controlls lifecycle of widget
-//RenderObject_real UI on the device screen referring to element tree. go down to get constraint and back up with sizes.
+//RenderObject_real UI on the device screen referring to element tree. go down to get constraint and come back up with sizes.
 
 //what is BuildContext?
 //meta data of widget and position, which node on widgetTree. 
