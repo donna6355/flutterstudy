@@ -4,6 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:my_player/shared_preferences.dart';
 import 'dart:io';
+import 'package:mockito/mockito.dart';
 
 import 'package:my_player/socket.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,6 +19,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 // }
 
 class MockPreferences extends Mock implements SharedPreferences {}
+
+class MockBuildContext extends Mock implements BuildContext {}
 
 void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -51,6 +54,13 @@ void main() async {
       var actual = TCP().handleNmjs(' NESSOK0000 ', ctx);
       expect(actual, ' NESSOK0000 ');
       //this way you can set break point outside of pumpWidget!
+    });
+
+    test('try mockbuildcontext', () {
+      final BuildContext ctx = MockBuildContext();
+
+      var actual = TCP().handleNmjs(' NESSOK0000 ', ctx);
+      expect(actual, ' NESSOK0000 ');
     });
 //it doesnt work... ctx is always null.. and it doesnt drain error
     // test('is this okay?', () {
