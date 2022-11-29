@@ -6,6 +6,7 @@ import 'package:my_player/shared_preferences.dart';
 import 'dart:io';
 
 import 'package:my_player/socket.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // import 'socket_test.mocks.dart';
 
@@ -16,13 +17,17 @@ import 'package:my_player/socket.dart';
 //   }
 // }
 
+class MockPreferences extends Mock implements SharedPreferences {}
+
 void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Preferences.init();
   group('handle response unit test', () {
     test('OK return asdk string', () {
+      final preferences = MockPreferences();
       // await Preferences.init();
       expect(TCP().handleRes('OK'), 'asdf');
+      when(preferences.get('dkfj')).thenReturn('expected');
       // print(TCP()
       //     .globalTest); // this is inital value... doesnt match the new one..
     });
