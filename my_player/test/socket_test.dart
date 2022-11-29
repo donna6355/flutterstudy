@@ -45,7 +45,7 @@ void main() async {
         ),
       );
     });
-//it doesnt work...
+//it doesnt work... ctx is always null.. and it doesnt drain error
     // test('is this okay?', () {
     //   BuildContext? ctx;
     //   Builder(
