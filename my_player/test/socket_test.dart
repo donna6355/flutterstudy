@@ -38,17 +38,19 @@ void main() async {
 
     //using testWidget get buildContext
     testWidgets('me testing', (WidgetTester tester) async {
+      late BuildContext ctx;
       await tester.pumpWidget(
         Builder(
-          builder: (BuildContext ctx) {
-            var actual = TCP().handleNmjs(' NESSOK0000 ', ctx);
-            expect(actual, ' NESSOK0000 ');
-
+          builder: (BuildContext context) {
+            ctx = context;
             // The builder function must return a widget.
             return const SizedBox.shrink();
           },
         ),
       );
+      var actual = TCP().handleNmjs(' NESSOK0000 ', ctx);
+      expect(actual, ' NESSOK0000 ');
+      //this way you can set break point outside of pumpWidget!
     });
 //it doesnt work... ctx is always null.. and it doesnt drain error
     // test('is this okay?', () {
