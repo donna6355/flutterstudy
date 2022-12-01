@@ -432,3 +432,5 @@ class FocusWidget extends StatelessWidget {
 // Widget describes the configuration for an element.
 // Element is an instantiation of a widget at a particular location in the tree. managing the life cycle of widgets.
 // RenderObject handles size, layout, and painting.
+
+//“Constraints flow down. Sizes flow up. Parents set positions”
