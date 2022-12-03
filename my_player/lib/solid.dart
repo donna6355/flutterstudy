@@ -42,6 +42,7 @@ class AreaCalculator {
     //     area.add(pow(shape.radius, 2) * pi);
     //   }
     // }
+
     // return area.reduce((x, y) => x + y);
     num total = 0;
     for (var shape in shapes) {
