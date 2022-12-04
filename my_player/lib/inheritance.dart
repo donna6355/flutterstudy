@@ -20,6 +20,7 @@ class Hatch extends Car {
 }
 
 //U use implements when you want to inherit only part not all of them as interface.
+//U gotta override
 class Car2 implements Vehicle {
   Car2(this.carColor);
 
@@ -36,12 +37,23 @@ main() {
   final hatch = Hatch('red');
   print('Result: ${hatch is Vehicle}');
   // Output -> Result: true
+  print(hatch.definition);
+  // Output -> Car Vehicel
+  print('Result: ${hatch is Car}');
+  // Output -> Result: true
 
   final car = Car2('red');
   print('Result: definition: ${car.definition}');
   // Output -> Result: definition: red car
   print('Result: is Vehicle type: ${car is Vehicle}');
   // Output -> is Vehicle type: true
+  print('Result: is Vehicle type: ${car is Car}');
+
+  final bird = Bird();
+  bird.fly();
+  final duck = Duck();
+  duck.fly();
+  duck.swim();
 }
 
 // Mixin is a different type of structure, wich can only be used with the keyword with and is used to include common code snippets, I'd say, reuse the code.
