@@ -26,7 +26,7 @@ class SerialBarcode {
 
   static bool readBarcodeStream(BuildContext context, int mode) {
     // MODE!! 0: admin, 1: user
-    if (_barcodePort == null || !_barcodePort!.openRead()) {
+    if (!_barcodePort.openRead()) {
       _barcodePort.close();
       return false;
     } else {
@@ -50,7 +50,7 @@ class SerialBarcode {
   }
 
   static Stream test() {
-    if (!_barcodePort!.openRead()) {
+    if (!_barcodePort.openRead()) {
       return Stream.error('failed to read...');
     } else {
       return _barcodeStream;
@@ -58,7 +58,7 @@ class SerialBarcode {
   }
 
   static void closeBarcodePort() {
-    _barcodePort.flush();
+    _barcodePort.flush(); //doesnt work as expected
     _barcodeReader.close();
     _barcodePort.close();
   }
