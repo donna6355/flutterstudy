@@ -10,8 +10,8 @@ class Vehicle {
 class Car extends Vehicle {
   Car(String color) : super(color);
 
-  @override
-  String get definition => 'Car ${super.definition}';
+  // @override
+  // String get definition => 'Car ${super.definition}';
 }
 
 //  You use extends when you want to create a more specific version of a class.
@@ -19,7 +19,7 @@ class Hatch extends Car {
   Hatch(String color) : super(color);
 }
 
-//U use implements when you want to inherit only part not all of them as interface.
+//U use implements when you want to inherit only structure not all of their value as interface.
 //U gotta override
 class Car2 implements Vehicle {
   Car2(this.carColor);
@@ -42,6 +42,12 @@ main() {
   print('Result: ${hatch is Car}');
   // Output -> Result: true
 
+  final cars = Car('green');
+  print(cars.definition);
+  // Output -> Vehicle //possible to access parent class's value
+  print(cars.color);
+  // Output -> green
+
   final car = Car2('red');
   print('Result: definition: ${car.definition}');
   // Output -> Result: definition: red car
@@ -56,13 +62,14 @@ main() {
   duck.swim();
 }
 
-// Mixin is a different type of structure, wich can only be used with the keyword with and is used to include common code snippets, I'd say, reuse the code.
+// Mixin is a different type of structure, which can only be used with the keyword with and is used to include common code snippets, I'd say, reuse the code.
 
 class Animal {}
 
 // behaviors
 abstract class Flyer {
   void fly() => print('I can fly!');
+  void fall() => print('failed to fly and fall!!!');
 }
 
 abstract class Swimmer {
