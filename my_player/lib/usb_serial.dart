@@ -6,7 +6,7 @@ import 'package:usb_serial/usb_serial.dart';
 
 class SerialUsb {
   static UsbPort? port;
-  static late Transaction<String> transaction;
+  static late Transaction<Uint8List> transaction;
 
   static Future<void> init() async {
     port = await UsbSerial.create(1027, 24577);
@@ -17,7 +17,16 @@ class SerialUsb {
     await port!.setRTS(true);
     await port!.setPortParameters(
         115200, UsbPort.DATABITS_8, UsbPort.STOPBITS_1, UsbPort.PARITY_NONE);
-    transaction = Transaction.stringTerminated(
-        port!.inputStream as Stream<Uint8List>, Uint8List.fromList([13, 10]));
+    transaction = Transaction.terminated(
+        port!.inputStream as Stream<Uint8List>, Uint8List.fromList([3]));
+  }
+
+  static Stream<Uint8List> fetchMachineStream() {
+    return transaction.stream;
+  }
+
+  static void terminateMachinePort() {
+    transaction.dispose();
+    port!.close();
   }
 }
