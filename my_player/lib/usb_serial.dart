@@ -11,12 +11,12 @@ class SerialUsb {
   static Future<void> init() async {
     port = await UsbSerial.create(1027, 24577);
     if (port == null) return;
-    port!.open();
+    if (await (port!.open()) != true) return;
 
     await port!.setDTR(true);
     await port!.setRTS(true);
     await port!.setPortParameters(
-        115200, UsbPort.DATABITS_8, UsbPort.STOPBITS_1, UsbPort.PARITY_NONE);
+        9600, UsbPort.DATABITS_8, UsbPort.STOPBITS_1, UsbPort.PARITY_NONE);
     transaction = Transaction.terminated(
         port!.inputStream as Stream<Uint8List>, Uint8List.fromList([3]));
   }
