@@ -41,6 +41,7 @@ dependencies:
   path_provider: ^2.0.11
   flutter_libserialport: ^0.3.0
   usb_serial: ^0.4.0
+  flutter_bloc: ^8.1.1
 
 dev_dependencies:
   # test: ^1.21.6
