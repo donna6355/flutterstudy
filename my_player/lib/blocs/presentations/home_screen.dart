@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_player/blocs/logic/cubits/cubit/counter_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,7 +11,11 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(title: const Text('BLOC HOME')),
       body: Column(children: [
         const Text('COUNTER : '),
-        Text(''),
+        BlocBuilder<CounterCubit, CounterState>(
+          builder: (context, state) {
+            return Text('${state.counterValue}');
+          },
+        ),
         Row(
           children: [
             ElevatedButton(
