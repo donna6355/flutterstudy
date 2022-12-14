@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_player/blocs/presentations/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import './logic/cubits/cubit/counter_cubit.dart';
+import 'logic/cubit/counter_cubit.dart';
 
 void main() {
   runApp(const MyApp());
