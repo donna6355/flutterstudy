@@ -9,7 +9,11 @@ class CounterCubit extends Cubit<CounterState> {
   final InternetCubit internetCubit;
   late StreamSubscription internetStream;
   CounterCubit({required this.internetCubit}) : super(CounterState(0)) {
-    internetStream = internetCubit.stream.listen((InternetState event) {
+    internetStream = monitorInternet();
+  }
+
+  StreamSubscription<InternetState> monitorInternet() {
+    return internetCubit.stream.listen((InternetState event) {
       if (event is InternetStatus && event.status == InternetConnection.none) {
         decrement();
       } else if (event is InternetStatus) {
