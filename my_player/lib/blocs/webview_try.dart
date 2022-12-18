@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
                   // set the web message callback for the port1
                   await portToJs.setWebMessageCallback((message) async {
                     print("Message coming from the JavaScript side: $message");
-                    await portToJs!
+                    await portToJs
                         .postMessage(WebMessage(data: message! + " and back"));
                   });
 
