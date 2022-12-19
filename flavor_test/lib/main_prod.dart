@@ -14,6 +14,7 @@ import 'package:flavor_test/screens/webview_page.dart';
 // import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+// import 'package:android_device_info/android_device_info.dart' as andInfo; // does not support null safety..
 
 void main() {
   Config.appFlavor = Flavor.prod;
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const WebviewPage(),
+      home: MyHomePage(title: 'adsf'),
       // home: const MyHomePage(title: 'Flutter Flavor Tutorial'),
     );
   }
@@ -91,7 +92,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> deviceCheck() async {
+    // var test = await andInfo.AndroidDeviceInfo().getNetworkInfo();
+    // print(test);
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+
     // AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     // print('Running on ${androidInfo.model}'); // e.g. "Moto G (4)"
 
