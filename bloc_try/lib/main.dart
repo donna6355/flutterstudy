@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import './custom_navigator.dart';
 
 void main() {
-  runApp(const MyApp());
+  final key = GlobalKey<NavigatorState>();
+  CustomNavigator.setNavKey(key);
+  runApp(MyApp(navKey: key));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({required this.navKey, Key? key}) : super(key: key);
+  final GlobalKey<NavigatorState> navKey;
 
   // This widget is the root of your application.
   @override
@@ -20,6 +24,7 @@ class MyApp extends StatelessWidget {
 //      var brightness = MediaQuery.of(context).platformBrightness;
 //  bool isDarkMode = brightness == Brightness.dark;
     return MaterialApp(
+      navigatorKey: navKey,
       title: 'Flutter Demo',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
