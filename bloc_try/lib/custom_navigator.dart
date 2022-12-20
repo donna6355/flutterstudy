@@ -12,3 +12,8 @@ class CustomNavigator {
     _navKey.currentState?.pushNamed(route);
   }
 }
+
+//Navigator .of(context).push('')
+//Navigator == Material app instance
+// of(context) from this context which has parent's info bottom up to search navigator instance
+// assign global key to material app and access there by this key!
