@@ -4,3 +4,7 @@ part of 'timer_cubit.dart';
 abstract class TimerState {}
 
 class TimerInitial extends TimerState {}
+
+class TimerResume extends TimerState {}
+
+class TimerPause extends TimerState {}
