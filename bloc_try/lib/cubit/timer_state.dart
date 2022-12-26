@@ -1,10 +1,18 @@
 part of 'timer_cubit.dart';
 
-@immutable
-abstract class TimerState {}
+abstract class TimerState {
+  TimerState(this.duration);
+  int duration;
+}
 
-class TimerInitial extends TimerState {}
+class TimerInitial extends TimerState {
+  TimerInitial() : super(60);
+}
 
-class TimerResume extends TimerState {}
+class TimerResume extends TimerState {
+  TimerResume() : super(60);
+}
 
-class TimerPause extends TimerState {}
+class TimerPause extends TimerState {
+  TimerPause() : super(0);
+}
