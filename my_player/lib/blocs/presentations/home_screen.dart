@@ -16,6 +16,25 @@ class HomeScreen extends StatelessWidget {
             return Text('${state.counterValue}');
           },
         ),
+        Builder(builder: (context) {
+          final state = context.watch<CounterCubit>().state;
+          return Text(
+            'context.watch() test $state',
+          );
+        }),
+        //Buildwhen is more recommended then context.select
+        BlocBuilder<CounterCubit, CounterState>(
+          buildWhen: (previous, current) => previous == current,
+          builder: (context, state) {
+            return Text('$state remains same!!!');
+          },
+        ),
+        Builder(builder: (context) {
+          final state = context.select((CounterCubit cubit) => cubit.state);
+          return Text(
+            'for specific value subscribe... context.select test $state',
+          );
+        }),
         Row(
           children: [
             ElevatedButton(
