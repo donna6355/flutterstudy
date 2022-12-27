@@ -16,6 +16,7 @@ class HomeScreen extends StatelessWidget {
             return Text('${state.counterValue}');
           },
         ),
+        //subscribe to multi cubit/blocs, use watch!
         Builder(builder: (context) {
           final state = context.watch<CounterCubit>().state;
           return Text(
