@@ -6,5 +6,5 @@ class ModeCubit extends Cubit<ModeState> {
   ModeCubit() : super(InitialMode());
 
   void disableMode() => emit(UnavailableMode());
-  void enterAdminMode() => emit(AdminMode());
+  void enterAdminMode() => emit(AdminMode('ADMIN MAIN'));
 }

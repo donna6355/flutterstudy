@@ -6,4 +6,7 @@ class InitialMode extends ModeState {}
 
 class UnavailableMode extends ModeState {}
 
-class AdminMode extends ModeState {}
+class AdminMode extends ModeState {
+  final String label;
+  AdminMode(this.label);
+}
