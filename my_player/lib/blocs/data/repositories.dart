@@ -9,11 +9,7 @@ class SecureStorageRepo {
   Future<SecureValues> test() async {
     final Map<String, String> res = await _storage.allValues();
     print(res);
-    return SecureValues(
-      id: res['id'] ?? '',
-      port: res['port'] ?? '',
-      host: res['host'] ?? '',
-    );
+    return SecureValues.fromMap(res);
   }
 }
 
