@@ -20,12 +20,18 @@ class App extends StatelessWidget {
 
 class MyWidget extends StatelessWidget {
   final counterKey = GlobalKey<_CounterState>();
+  // final testKey = GlobalKey(); only for statefulWidget
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Counter(
-          key: counterKey,
+        child: Column(
+          children: [
+            Counter(
+              key: counterKey,
+            ),
+            // Testless(testKey)
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -57,5 +63,14 @@ class _CounterState extends State<Counter> {
     setState(() {
       count++;
     });
+  }
+}
+
+class Testless extends StatelessWidget {
+  const Testless({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
