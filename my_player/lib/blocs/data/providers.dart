@@ -16,8 +16,7 @@ class SharedPreferences {
 // final storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
 
   Future<String?> readValue(String key) async => await _storage.read(key: key);
-  Future<void> writeValue(
-          {required String key, required dynamic value}) async =>
+  Future<void> writeValue({required String key, required String value}) async =>
       await _storage.write(key: key, value: value);
 
   Future<Map<String, String>> allValues() async => await _storage.readAll();
