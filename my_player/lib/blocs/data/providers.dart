@@ -1,5 +1,11 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+enum secureKeys {
+  id,
+  host,
+  port;
+}
+
 class SharedPreferences {
   SharedPreferences(this._storage);
   final FlutterSecureStorage _storage;

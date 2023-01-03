@@ -1,6 +1,6 @@
 import './providers.dart';
 import './models.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorageRepo {
   SecureStorageRepo(this._storage);
@@ -10,6 +10,10 @@ class SecureStorageRepo {
     final Map<String, String> res = await _storage.allValues();
     print(res);
     return SecureValues.fromMap(res);
+  }
+
+  Future<void> update() async {
+    _storage.writeValue(key: 'id', value: 'MACHINE_ID');
   }
 }
 
