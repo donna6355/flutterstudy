@@ -49,11 +49,13 @@ class Counter extends StatefulWidget {
   const Counter({Key? key}) : super(key: key);
 
   @override
-  State<Counter> createState() => _CounterState();
+  State<Counter> createState() =>
+      _CounterState(); //if the child widget is in separate file, do need to change state name without underscore!
 }
 
 class _CounterState extends State<Counter> {
-  int count = 0;
+  int count =
+      0; // state also has to be non-local variable for access from outside
   @override
   Widget build(BuildContext context) {
     return Text('$count');
