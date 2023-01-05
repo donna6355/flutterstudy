@@ -3,6 +3,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
    <!--       android:requestLegacyExternalStorage="true" -->
+   <!-- Install/delete permissions, only granted to system apps -->
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.DELETE_PACKAGES" />
    <application
         android:label="my_player"
         android:name="${applicationName}"
