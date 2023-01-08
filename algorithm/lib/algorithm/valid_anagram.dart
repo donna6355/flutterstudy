@@ -19,5 +19,7 @@ class Solution {
       if (sList[i] != tList[i]) return false;
     }
     return true;
+
+    return sList.join('') == tList.join('');
   }
 }
