@@ -15,11 +15,12 @@ class Solution {
     List<String> sList = s.split('')..sort();
     List<String> tList = t.split('')..sort();
 
-    for (var i = 0; i < sList.length; i++) {
-      if (sList[i] != tList[i]) return false;
-    }
-    return true;
+    // for (var i = 0; i < sList.length; i++) {
+    //   if (sList[i] != tList[i]) return false;
+    // }
+    // return true;
 
-    return sList.join('') == tList.join('');
+    return sList.join('') ==
+        tList.join(''); // takes more time and memory... hmmm
   }
 }
