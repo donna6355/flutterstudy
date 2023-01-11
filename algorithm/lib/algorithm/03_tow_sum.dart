@@ -24,14 +24,14 @@ class Solution {
   }
 
   List<int> otherTwoSum(List<int> nums, int target) {
-    Map<int, dynamic> hashMap = {};
+    Map<int, dynamic> numMap = {};
     int i = 0;
     for (int n in nums) {
       int val = target - n;
-      if (hashMap.containsKey(n)) {
-        return [hashMap[n], i];
+      if (numMap.containsKey(n)) {
+        return [numMap[n], i];
       }
-      hashMap.addAll({val: i});
+      numMap.addAll({val: i});
       i++;
     }
     return [];
