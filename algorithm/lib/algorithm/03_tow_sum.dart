@@ -14,7 +14,6 @@ class Solution {
     final int len = nums.length;
     for (var i = 0; i < len; i++) {
       for (var j = i + 1; j < len; j++) {
-        print('i = $i, j = $j');
         if (nums[i] + nums[j] == target) {
           return [i, j];
         }
@@ -36,4 +35,34 @@ class Solution {
     }
     return [];
   }
+
+  // List<int> anotherTwoSum(List<int> nums, int target) {
+  //   List<int> result = [];
+
+  //   if (nums.reduce(max) < target && nums.length > 1000) {
+  //     for (int i = nums.length - 1; i < nums.length; i--) {
+  //       for (int j = nums.length - 1; j < nums.length; j--) {
+  //         int sum = nums[i] + nums[j];
+  //         print(sum);
+  //         if (sum == target && i != j) {
+  //           return result = [i, j];
+  //           break;
+  //         }
+  //       }
+  //     }
+  //   } else {
+  //     for (int i = 0; i < nums.length; i++) {
+  //       for (int j = 0; j < nums.length; j++) {
+  //         int sum = nums[i] + nums[j];
+  //         print(sum);
+  //         if (sum == target && i != j) {
+  //           return result = [i, j];
+  //           break;
+  //         }
+  //       }
+  //     }
+  //   }
+
+  //   return result;
+  // }
 }
