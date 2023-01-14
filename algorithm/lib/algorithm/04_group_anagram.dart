@@ -19,12 +19,30 @@ class Solution {
       final String sortedStr = strList.toString();
       if (index.containsKey(sortedStr)) {
         res[index[sortedStr]!].add(str);
-        break;
+        continue;
       }
       res.add([str]);
       index.addAll({sortedStr: index.length});
     }
 
     return res;
+  }
+
+  List<List<String>> groupAnagramsSecond(List<String> strs) {
+    Map<String, List<String>> index = {};
+
+    for (var str in strs) {
+      final List<String> strList = str.split("")..sort();
+      final String sortedStr = strList.toString();
+      if (index.containsKey(sortedStr)) {
+        index[sortedStr]!.add(str);
+        continue;
+      }
+      index.addAll({
+        sortedStr: [str]
+      });
+    }
+
+    return index.values.toList();
   }
 }
