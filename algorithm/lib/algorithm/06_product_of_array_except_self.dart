@@ -6,15 +6,26 @@
 
 class Solution {
   List<int> productExceptSelf(List<int> nums) {
-    //generate the list of res that has the same length of the nums with 1
-    //multiply element of nums if
+    // except self means multiply left * right
+    // O(n) means nested loop is not allowed then try several loops
+    // how to get left or right product in O(n)? put product in the new array and multiply next el of nums by prev product
 
-    List<int> res = List<int>.generate(nums.length, (index) => 1);
-    for (var i = 0; i < nums.length; i++) {
-      for (var j = 0; j < res.length; j++) {
-        if (j == i) continue;
-        res[j] *= nums[i];
-      }
+    final int numsLen = nums.length;
+    final List<int> lefts = List.generate(numsLen, (_) => 1);
+    final List<int> rights = List.generate(numsLen, (_) => 1);
+    final List<int> res = List.generate(numsLen, (_) => 1);
+
+    for (var i = 0; i < numsLen; i++) {
+      if (i != 0) lefts[i] = nums[i] * lefts[i - 1];
     }
+
+    for (var i = numsLen - 1; i >= 0; i--) {
+      if (i != numsLen - 1) rights[i] = nums[i] * rights[i + 1];
+    }
+
+    for (var i = 0; i < numsLen; i++) {
+      res[1] = lefts[i] * rights[i];
+    }
+    return res;
   }
 }
