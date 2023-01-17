@@ -33,19 +33,21 @@ class Solution {
 
   List<int> productExceptSelfOther(List<int> nums) {
     final result = List<int>.generate(nums.length, (_) => 1);
+    //List<int> example = [1,2,3,4];
 
     var prefix = 1;
     for (int i = 0; i < nums.length; i++) {
       result[i] *= prefix;
       prefix *= nums[i];
     }
+    //[1, 1, 2, 6];
 
     var postfix = 1;
     for (int i = nums.length - 1; i >= 0; i--) {
       result[i] *= postfix;
       postfix *= nums[i];
     }
-
+    //[24,12,8,6]
     return result;
   }
 }
