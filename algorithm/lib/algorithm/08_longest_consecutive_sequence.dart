@@ -5,8 +5,10 @@
 class Solution {
   int longestConsecutive(List<int> nums) {
     //sort list
-    //check n - n+1 == 1
-    //if if fails, return that index
+    //consecutive means diff is 1
+    //check n - n+1 == 1, if it is increment on currentMax
+    //if currentMax is bigger than res, update res
+    //if if fails, reset currentMax to 1
 
     if (nums.isEmpty) return 0;
     nums.sort();
