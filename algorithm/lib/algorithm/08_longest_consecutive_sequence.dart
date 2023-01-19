@@ -2,6 +2,8 @@
 
 // You must write an algorithm that runs in O(n) time.
 
+import 'dart:math';
+
 class Solution {
   int longestConsecutive(List<int> nums) {
     //sort list
@@ -19,7 +21,8 @@ class Solution {
     for (var i = 0; i < nums.length; i++) {
       if (nums[i] - compare == 1) {
         currentMax += 1;
-        if (currentMax > res) res = currentMax;
+        // if (currentMax > res) res = currentMax;
+        res = max(currentMax, res);
       } else if (compare != nums[i]) {
         currentMax = 1;
       }
