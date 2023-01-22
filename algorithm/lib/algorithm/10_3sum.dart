@@ -9,6 +9,7 @@ class Solution {
   List<List<int>> threeSum(List<int> nums) {
     final List<List<int>> res = [];
     int i = 0, j = i + 1, k = j + 1;
+    Set dupCheck = {};
     final int numsLen = nums.length;
     do {
       // print('do loop i=${i}, j=${j}, k=${k}');
@@ -18,7 +19,12 @@ class Solution {
         while (k < numsLen) {
           // print('second while loop i=${i}, j=${j}, k=${k}');
           if (nums[i] + nums[j] + nums[k] == 0) {
-            res.add([nums[i], nums[j], nums[k]]..sort());
+            final List<int> ans = [nums[i], nums[j], nums[k]]..sort();
+            final String ansStr = ans.join('');
+            if (!dupCheck.contains(ansStr)) {
+              res.add([nums[i], nums[j], nums[k]]..sort());
+              dupCheck.add(ansStr);
+            }
           }
           k++;
         }
