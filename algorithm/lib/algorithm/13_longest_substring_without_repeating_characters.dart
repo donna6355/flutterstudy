@@ -31,7 +31,7 @@ class Solution {
     //substring string one and check if next charater is contained
     //if it contains reset the starting point i
     //if it doesnt add it to substring ad increment max if the length is greater
-
+    
     int max = 0;
     String subStr = '';
     for (int i = 0; i < s.length; i++) {
