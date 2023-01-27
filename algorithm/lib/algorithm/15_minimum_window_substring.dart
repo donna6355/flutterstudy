@@ -14,23 +14,12 @@ class Solution {
     int winSize = tLen;
 
     if (s == t) return s;
-    if (tLen > sLen) return '';
-    if (!containLetter(s, t)) {
-      return '';
-    }
+    if (tLen > sLen || !containLetter(s, t)) return '';
     for (var i = 0; i <= sLen - winSize; i++) {
       final String sub = s.substring(i, i + winSize);
-      bool contained = true;
-      contained = containLetter(sub, t);
-      for (var j = 0; j < tLen; j++) {
-        if (!sub.contains(t[j])) {
-          contained = false;
-          break;
-        }
-      }
-      if (contained) return sub;
+      if (containLetter(sub, t)) return sub;
       if (i == (sLen - winSize)) {
-        i = 0;
+        i = -1;
         winSize += 1;
       }
     }
@@ -47,4 +36,6 @@ class Solution {
     }
     return true;
   }
+
+  //better to check if how many letters are missing... then add that amount to windowSize
 }
