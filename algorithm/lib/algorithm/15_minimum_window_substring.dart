@@ -15,6 +15,9 @@ class Solution {
 
     if (s == t) return s;
     if (tLen > sLen) return '';
+    if (!containLetter(s, t)) {
+      return '';
+    }
     for (var i = 0; i <= sLen - winSize; i++) {
       final String sub = s.substring(i, i + winSize);
       bool contained = true;
@@ -32,7 +35,7 @@ class Solution {
       }
     }
 
-    return containLetter(s, t) ? s : '';
+    return s;
   }
 
   bool containLetter(String str, String comp) {
