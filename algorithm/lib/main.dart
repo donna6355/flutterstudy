@@ -1,115 +1,306 @@
+// Copyright 2013 The Flutter Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+import 'dart:async';
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import 'package:palette_generator/palette_generator.dart';
 
+void main() => runApp(const MyApp());
+
+const Color _kBackgroundColor = Color(0xffffffff);
+const Color _kSelectionRectangleBackground = Color(0x15000000);
+const Color _kSelectionRectangleBorder = Color(0x80000000);
+const Color _kPlaceholderColor = Color(0x80404040);
+
+/// The main Application class.
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  /// Creates the main Application class.
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Image Colors',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const ImageColors(
+        title: 'Image Colors',
+        image: AssetImage('assets/yellow.jpg'),
+        imageSize: Size(256.0, 170.0),
+      ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+/// The home page for this example app.
+@immutable
+class ImageColors extends StatefulWidget {
+  /// Creates the home page.
+  const ImageColors({
+    Key? key,
+    this.title,
+    required this.image,
+    this.imageSize,
+  }) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+  /// The title that is shown at the top of the page.
+  final String? title;
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+  /// This is the image provider that is used to load the colors from.
+  final ImageProvider image;
 
-  final String title;
+  /// The dimensions of the image.
+  final Size? imageSize;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<ImageColors> createState() {
+    return _ImageColorsState();
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _ImageColorsState extends State<ImageColors> {
+  Rect? region;
+  Rect? dragRegion;
+  Offset? startDrag;
+  Offset? currentDrag;
+  PaletteGenerator? paletteGenerator;
 
-  void _incrementCounter() {
+  final GlobalKey imageKey = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.imageSize != null) {
+      region = Offset.zero & widget.imageSize!;
+    }
+    _updatePaletteGenerator(region);
+  }
+
+  Future<void> _updatePaletteGenerator(Rect? newRegion) async {
+    paletteGenerator = await PaletteGenerator.fromImageProvider(
+      widget.image,
+      size: widget.imageSize,
+      region: newRegion,
+      maximumColorCount: 5,
+    );
+    setState(() {});
+  }
+
+  // Called when the user starts to drag
+  void _onPanDown(DragDownDetails details) {
+    final RenderBox box =
+        imageKey.currentContext!.findRenderObject()! as RenderBox;
+    final Offset localPosition = box.globalToLocal(details.globalPosition);
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      startDrag = localPosition;
+      currentDrag = localPosition;
+      dragRegion = Rect.fromPoints(localPosition, localPosition);
+    });
+  }
+
+  // Called as the user drags: just updates the region, not the colors.
+  void _onPanUpdate(DragUpdateDetails details) {
+    setState(() {
+      currentDrag = currentDrag! + details.delta;
+      dragRegion = Rect.fromPoints(startDrag!, currentDrag!);
+    });
+  }
+
+  // Called if the drag is canceled (e.g. by rotating the device or switching
+  // apps)
+  void _onPanCancel() {
+    setState(() {
+      dragRegion = null;
+      startDrag = null;
+    });
+  }
+
+  // Called when the drag ends. Sets the region, and updates the colors.
+  Future<void> _onPanEnd(DragEndDetails details) async {
+    final Size? imageSize = imageKey.currentContext?.size;
+    Rect? newRegion;
+
+    if (imageSize != null) {
+      newRegion = (Offset.zero & imageSize).intersect(dragRegion!);
+      if (newRegion.size.width < 4 && newRegion.size.width < 4) {
+        newRegion = Offset.zero & imageSize;
+      }
+    }
+
+    await _updatePaletteGenerator(newRegion);
+    setState(() {
+      region = newRegion;
+      dragRegion = null;
+      startDrag = null;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
+      backgroundColor: _kBackgroundColor,
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(widget.title ?? ''),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            // GestureDetector is used to handle the selection rectangle.
+            child: GestureDetector(
+              onPanDown: _onPanDown,
+              onPanUpdate: _onPanUpdate,
+              onPanCancel: _onPanCancel,
+              onPanEnd: _onPanEnd,
+              child: Stack(children: <Widget>[
+                Image(
+                  key: imageKey,
+                  image: widget.image,
+                  width: widget.imageSize?.width,
+                  height: widget.imageSize?.height,
+                ),
+                // This is the selection rectangle.
+                Positioned.fromRect(
+                    rect: dragRegion ?? region ?? Rect.zero,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: _kSelectionRectangleBackground,
+                          border: Border.all(
+                            color: _kSelectionRectangleBorder,
+                          )),
+                    )),
+              ]),
+            ),
+          ),
+          // Use a FutureBuilder so that the palettes will be displayed when
+          // the palette generator is done generating its data.
+          PaletteSwatches(generator: paletteGenerator),
+        ],
+      ),
+    );
+  }
+}
+
+/// A widget that draws the swatches for the [PaletteGenerator] it is given,
+/// and shows the selected target colors.
+class PaletteSwatches extends StatelessWidget {
+  /// Create a Palette swatch.
+  ///
+  /// The [generator] is optional. If it is null, then the display will
+  /// just be an empty container.
+  const PaletteSwatches({Key? key, this.generator}) : super(key: key);
+
+  /// The [PaletteGenerator] that contains all of the swatches that we're going
+  /// to display.
+  final PaletteGenerator? generator;
+
+  @override
+  Widget build(BuildContext context) {
+    final List<Widget> swatches = <Widget>[];
+    final PaletteGenerator? paletteGen = generator;
+    if (paletteGen == null || paletteGen.colors.isEmpty) {
+      return Container();
+    }
+    for (final Color color in paletteGen.colors) {
+      swatches.add(PaletteSwatch(color: color));
+    }
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Wrap(
+          children: swatches,
+        ),
+        Container(height: 30.0),
+        PaletteSwatch(
+            label: 'Dominant', color: paletteGen.dominantColor?.color),
+        // PaletteSwatch(
+        //     label: 'Light Vibrant', color: paletteGen.lightVibrantColor?.color),
+        PaletteSwatch(label: 'Vibrant', color: paletteGen.vibrantColor?.color),
+        // PaletteSwatch(
+        //     label: 'Dark Vibrant', color: paletteGen.darkVibrantColor?.color),
+        PaletteSwatch(
+            label: 'Light Muted', color: paletteGen.lightMutedColor?.color),
+        PaletteSwatch(label: 'Muted', color: paletteGen.mutedColor?.color),
+        PaletteSwatch(
+            label: 'Dark Muted', color: paletteGen.darkMutedColor?.color),
+      ],
+    );
+  }
+}
+
+/// A small square of color with an optional label.
+@immutable
+class PaletteSwatch extends StatelessWidget {
+  /// Creates a PaletteSwatch.
+  ///
+  /// If the [paletteColor] has property `isTargetColorFound` as `false`,
+  /// then the swatch will show a placeholder instead, to indicate
+  /// that there is no color.
+  const PaletteSwatch({
+    Key? key,
+    this.color,
+    this.label,
+  }) : super(key: key);
+
+  /// The color of the swatch.
+  final Color? color;
+
+  /// The optional label to display next to the swatch.
+  final String? label;
+
+  @override
+  Widget build(BuildContext context) {
+    // Compute the "distance" of the color swatch and the background color
+    // so that we can put a border around those color swatches that are too
+    // close to the background's saturation and lightness. We ignore hue for
+    // the comparison.
+    final HSLColor hslColor = HSLColor.fromColor(color ?? Colors.transparent);
+    final HSLColor backgroundAsHsl = HSLColor.fromColor(_kBackgroundColor);
+    final double colorDistance = math.sqrt(
+        math.pow(hslColor.saturation - backgroundAsHsl.saturation, 2.0) +
+            math.pow(hslColor.lightness - backgroundAsHsl.lightness, 2.0));
+
+    Widget swatch = Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: color == null
+          ? const Placeholder(
+              fallbackWidth: 34.0,
+              fallbackHeight: 20.0,
+              color: Color(0xff404040),
+            )
+          : Container(
+              decoration: BoxDecoration(
+                  color: color,
+                  border: Border.all(
+                    color: _kPlaceholderColor,
+                    style: colorDistance < 0.2
+                        ? BorderStyle.solid
+                        : BorderStyle.none,
+                  )),
+              width: 34.0,
+              height: 20.0,
+            ),
+    );
+
+    if (label != null) {
+      swatch = ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 130.0, minWidth: 130.0),
+        child: Row(
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            swatch,
+            Container(width: 5.0),
+            Text(label!),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+      );
+    }
+    return swatch;
   }
 }
