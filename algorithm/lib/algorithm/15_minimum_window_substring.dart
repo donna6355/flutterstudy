@@ -37,5 +37,45 @@ class Solution {
     return true;
   }
 
-  //better to check if how many letters are missing... then add that amount to windowSize
+  String minWindowWorks(String s, String t) {
+    var map = <int, int>{};
+
+    for (var ch in t.codeUnits) {
+      map[ch] = (map[ch] ?? 0) + 1;
+    }
+
+    int n = s.length;
+    int minStart = 0;
+    int minLength = n + 1;
+    int charTLeft = t.length;
+
+    for (int i = 0, j = 0; i < n; i++) {
+      var ch = s.codeUnitAt(i);
+
+      if (map.containsKey(ch)) {
+        int count = map[ch]!;
+
+        if (count > 0) charTLeft--;
+        map[ch] = count - 1;
+      }
+      while (charTLeft == 0) {
+        int curWindowLength = i - j + 1;
+        if (minLength > curWindowLength) {
+          minLength = curWindowLength;
+          minStart = j;
+        }
+        var chh = s.codeUnitAt(j);
+        if (map.containsKey(chh)) {
+          int count = map[chh]!;
+          if (count == 0) charTLeft++;
+          map[chh] = count + 1;
+        }
+        j++;
+      }
+    }
+
+    return minLength == n + 1
+        ? ""
+        : s.substring(minStart, minLength + minStart);
+  }
 }
