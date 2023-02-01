@@ -21,8 +21,10 @@ class ListNode {
 
 class Solution {
   ListNode? mergeTwoLists(ListNode? list1, ListNode? list2) {
-    //loop compare and put smaller one in resList
-    //compare next one and
+    //check if list is null and if it is null the other list has to be returned
+    //compare val and start with smaller one
+    //compare smaller one's next val and other list' val and put smaller one in next
+    //keep doing this in recursive way and return;
     if (list1 == null) return list2;
     if (list2 == null) return list1;
     if (list1.val < list2.val) {
