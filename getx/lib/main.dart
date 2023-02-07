@@ -586,3 +586,12 @@ class Home extends StatelessWidget {
 
 // flutter code convention
 // https://medium.com/nonstopio/flutter-best-practices-c3db1c3cd694
+
+
+//connect old phone and do this. if it ask password, just enter as ther is no pw
+//backup data 
+//adb backup -apk com.donna6355.butler_diary -f butlerdiary.adb
+
+//connect new phone and do this. 
+//restore data
+// adb restore butlerdiary.adb
