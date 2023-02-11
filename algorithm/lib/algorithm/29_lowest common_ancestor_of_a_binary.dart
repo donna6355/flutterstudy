@@ -19,4 +19,20 @@ class TreeNode {
   TreeNode([this.val = 0, this.left, this.right]);
 }
 
-class Slution {}
+class Slution {
+  TreeNode? lowestCommonAncestor(TreeNode? root, TreeNode p, TreeNode q) {
+    //in binary search tree, left is smaller and right is greater
+    //if both p and q is greater, node has to go right
+    //if both p and q is smaller, node has to go left
+    while (root != null) {
+      if (root.val < p.val && root.val < q.val) {
+        root = root.right;
+      } else if (root.val > p.val && root.val > q.val) {
+        root = root.left;
+      } else {
+        break;
+      }
+    }
+    return root;
+  }
+}
