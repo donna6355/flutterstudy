@@ -9,13 +9,20 @@ class TreeNode {
 
 class Solution {
   List<List<int>> levelOrder(TreeNode? root) {
+    //declare empty list for result
+    //if root is null return empty list
+    //if not add the list of the value of node
+    //do it reculsively for right and left
+    //need to set level and pass it as args and increment one
+    //O(n) O(n)
+
     List<List<int>> res = [];
 
-    inOrderTraverse(res, 0, root);
+    traversalOrder(res, 0, root);
     return res;
   }
 
-  void inOrderTraverse(List<List<int>> result, int level, TreeNode? root) {
+  void traversalOrder(List<List<int>> result, int level, TreeNode? root) {
     if (root == null) return;
 
     if (result.length == level) {
@@ -23,7 +30,7 @@ class Solution {
     } else {
       result[level].add(root.val);
     }
-    inOrderTraverse(result, level + 1, root.left);
-    inOrderTraverse(result, level + 1, root.right);
+    traversalOrder(result, level + 1, root.left);
+    traversalOrder(result, level + 1, root.right);
   }
 }
