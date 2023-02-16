@@ -1,5 +1,5 @@
 // Given the root of a binary search tree, and an integer k, return the kth smallest value (1-indexed) of all the values of the nodes in the tree.
-
+//https://velog.io/@kjh107704/%EA%B7%B8%EB%9E%98%ED%94%84-BFS%EC%99%80-DFS
 class TreeNode {
   int val;
   TreeNode? left;
