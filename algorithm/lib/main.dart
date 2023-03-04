@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'dart:async';
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -80,6 +81,13 @@ class _ImageColorsState extends State<ImageColors> {
       region = Offset.zero & widget.imageSize!;
     }
     _updatePaletteGenerator(region);
+    processRun();
+  }
+
+  //this is how to run unix command
+  Future<void> processRun() async {
+    var result = await Process.run('ls', ['-l']);
+    print(result.stdout);
   }
 
   Future<void> _updatePaletteGenerator(Rect? newRegion) async {
