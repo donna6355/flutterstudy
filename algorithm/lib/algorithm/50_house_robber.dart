@@ -6,6 +6,10 @@ import 'dart:math';
 
 class Solution {
   int rob(List<int> nums) {
+    //this is not just even or odd
+    //you can skip two houses for bigger money!
+    //you need to check bigger money with currnet house or the other way
+
     //max money can get if rob current house
     int rob = 0;
     //max money can get if not rob current house
@@ -19,4 +23,17 @@ class Solution {
     }
     return max(rob, notRob);
   }
+
+  // int robOther(List<int> nums) {
+  //   int evenRob = 0;
+  //   int oddRob = 0;
+  //   for (var i = 0; i < nums.length; i++) {
+  //     if (i.isEven) {
+  //       evenRob += nums[i];
+  //     } else {
+  //       oddRob += nums[i];
+  //     }
+  //   }
+  //   return evenRob > oddRob ? evenRob : oddRob;
+  // }
 }
