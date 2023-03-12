@@ -1,27 +1,27 @@
 // Given a string s, return the longest palindromic substring in s.
-
 class Solution {
-  int lo = 0, maxLen = 0;
+  int start = 0, maxLen = 0;
   String longestPalindrome(String inputTest) {
-    if (inputTest.isEmpty) return "";
-
-    if (inputTest.length < 2) return inputTest;
-
-    List<String> items = inputTest.split('');
-    for (int i = 0; i < items.length - 1; i++) {
-      extendPalindrome(items, i, i);
-      extendPalindrome(items, i, i + 1);
+    if (inputTest.isEmpty) {
+      return "";
     }
-    return inputTest.substring(lo, lo + maxLen);
+    if (inputTest.length < 2) {
+      return inputTest;
+    }
+    for (int i = 0; i < inputTest.length - 1; i++) {
+      helper(inputTest, i, i);
+      helper(inputTest, i, i + 1);
+    }
+    return inputTest.substring(start, start + maxLen);
   }
 
-  void extendPalindrome(List<String> s, int j, int k) {
+  void helper(String s, int j, int k) {
     while (j >= 0 && k < s.length && s[j] == s[k]) {
-      j--;
-      k++;
+      j -= 1;
+      k += 1;
     }
     if (maxLen < k - j - 1) {
-      lo = j + 1;
+      start = j + 1;
       maxLen = k - j - 1;
     }
   }
