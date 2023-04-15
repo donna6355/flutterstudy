@@ -1,4 +1,9 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import './color_model.dart';
+import './pic_helper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,109 +12,127 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Picture Checker',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.yellow,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const Home(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<Home> createState() => _HomeState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class _HomeState extends State<Home> {
+  File? _file;
+  int _bagType = 1;
+  List<Widget> _similarity = [];
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: const Text('랄라 신나는 장바구니 색깔 체크'),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
+      body: ListView(
+        children: [
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Radio(
+                  value: 1,
+                  groupValue: _bagType,
+                  onChanged: (val) {
+                    setState(() {
+                      _bagType = val!;
+                    });
+                  }),
+              const Text('코끼리/반달곰'),
+              const SizedBox(width: 20),
+              Radio(
+                  value: 2,
+                  groupValue: _bagType,
+                  onChanged: (val) {
+                    setState(() {
+                      _bagType = val!;
+                    });
+                  }),
+              const Text('해달'),
+              const SizedBox(width: 20),
+              Radio(
+                  value: 4,
+                  groupValue: _bagType,
+                  onChanged: (val) {
+                    setState(() {
+                      _bagType = val!;
+                    });
+                  }),
+              const Text('랜더스'),
+            ],
+          ),
+          const SizedBox(height: 20),
+          _file == null
+              ? const Center(child: Text('사진을 선택해 주세요'))
+              : Column(
+                  children: [
+                    Image.file(
+                      _file!,
+                      width: 400,
+                    ),
+                    const SizedBox(height: 20),
+                    ..._similarity,
+                  ],
+                ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: IconButton(
+        icon: const Icon(Icons.catching_pokemon),
+        onPressed: () async {
+          _similarity = [];
+          FilePickerResult? result = await FilePicker.platform.pickFiles(
+            type: FileType.custom,
+            allowedExtensions: ['jpeg'],
+          );
+          if (result != null) {
+            _file = File(result.files.single.path.toString());
+            List<ColorModel> res =
+                await PictureHelper.pickAndCompareColor(_file!, _bagType);
+            setState(() {
+              for (var str in res) {
+                _similarity.add(ColorCard(col: str.color, res: str.res));
+              }
+            });
+          }
+        },
+      ),
+    );
+  }
+}
+
+class ColorCard extends StatelessWidget {
+  const ColorCard({required this.col, required this.res, super.key});
+  final Color col;
+  final String res;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Container(
+        width: 20,
+        height: 20,
+        color: col,
+      ),
+      title: Text(res),
     );
   }
 }
