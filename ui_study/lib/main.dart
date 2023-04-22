@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:media_kit/media_kit.dart';
+import './media_kit_sample.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  MediaKit.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -49,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
           color: Colors.amber,
           child: Column(
             children: [
+              MyScreen(),
               Container(
                 width: double.infinity,
                 height: 10,

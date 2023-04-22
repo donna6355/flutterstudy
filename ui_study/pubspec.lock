@@ -83,6 +83,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      sha256: "6aa2946395183537c8b880962d935877325d6a09a2867c3970c05c0fed6ac482"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.13.5"
+  http_parser:
+    dependency: transitive
+    description:
+      name: http_parser
+      sha256: "2aa08ce0341cc9b354a498388e30986515406668dbcc4f7c950c3e715496693b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.2"
   js:
     dependency: transitive
     description:
@@ -115,6 +131,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0"
+  media_kit:
+    dependency: "direct main"
+    description:
+      name: media_kit
+      sha256: "8bac35e276aef07ae116190ca09f086e535b5e7e701056a61608b2b46bfb7481"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5+2"
+  media_kit_libs_macos_video:
+    dependency: "direct main"
+    description:
+      name: media_kit_libs_macos_video
+      sha256: ab1cbdf51400e30a9087bd7d6e10c6130d17296e76313fedd0ef0c57dae8c0f4
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
+  media_kit_native_event_loop:
+    dependency: "direct main"
+    description:
+      name: media_kit_native_event_loop
+      sha256: ed87140ad4b64156b2b470c8105f48d8cad7923c952ca05d23e02d28978d2cb3
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
+  media_kit_video:
+    dependency: "direct main"
+    description:
+      name: media_kit_video
+      sha256: "8f8777f616726ce3cccb1a90a6daa8c9e7f685b69606d5ad70ab3d0335b94023"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.7"
   meta:
     dependency: transitive
     description:
@@ -131,6 +179,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.2"
+  plugin_platform_interface:
+    dependency: transitive
+    description:
+      name: plugin_platform_interface
+      sha256: "6a2128648c854906c53fa8e33986fc0247a1116122f9534dd20e3ab9e16a32bc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.4"
+  safe_local_storage:
+    dependency: transitive
+    description:
+      name: safe_local_storage
+      sha256: ede4eb6cb7d88a116b3d3bf1df70790b9e2038bc37cb19112e381217c74d9440
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   serial_port_win32:
     dependency: "direct main"
     description:
@@ -176,6 +240,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      sha256: "5fcbd27688af6082f5abd611af56ee575342c30e87541d0245f7ff99faa02c60"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   term_glyph:
     dependency: transitive
     description:
@@ -192,6 +264,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.16"
+  typed_data:
+    dependency: transitive
+    description:
+      name: typed_data
+      sha256: "26f87ade979c47a150c9eaab93ccd2bebe70a27dc0b4b29517f2904f04eb11a5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.1"
+  uri_parser:
+    dependency: transitive
+    description:
+      name: uri_parser
+      sha256: "6543c9fd86d2862fac55d800a43e67c0dcd1a41677cb69c2f8edfe73bbcf1835"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   vector_math:
     dependency: transitive
     description:
@@ -210,3 +298,4 @@ packages:
     version: "4.1.3"
 sdks:
   dart: ">=2.19.2 <3.0.0"
+  flutter: ">=3.7.0"
