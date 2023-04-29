@@ -39,7 +39,6 @@ dependencies:
   media_kit_video: ^0.0.7
   media_kit_native_event_loop: ^1.0.3
   media_kit_libs_macos_video: ^1.0.4
-  video_player_win: ^1.1.0
 
 dev_dependencies:
   flutter_test:
