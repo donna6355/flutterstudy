@@ -54,6 +54,23 @@ class _MyHomePageState extends State<MyHomePage> {
           color: Colors.amber,
           child: Column(
             children: [
+              Chip(
+                labelPadding: EdgeInsets.all(2.0),
+                avatar: CircleAvatar(
+                  backgroundColor: Colors.white70,
+                  child: Text('chip'),
+                ),
+                label: Text(
+                  'CHIP',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                backgroundColor: Colors.green,
+                elevation: 6.0,
+                shadowColor: Colors.grey[60],
+                padding: EdgeInsets.all(8.0),
+              ),
               MyScreen(),
               Container(
                 width: double.infinity,
