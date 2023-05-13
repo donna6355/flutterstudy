@@ -41,9 +41,10 @@ class ImgLabel extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
-        border: choiceVal == idx
-            ? Border.all(color: Color(0xff454442), width: 1)
-            : Border.all(color: Color(0xffE5E4DB), width: 1),
+        border: Border.all(
+          color: choiceVal == idx ? Color(0xff454442) : Color(0xffE5E4DB),
+          width: 1,
+        ),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -57,10 +58,6 @@ class ImgLabel extends StatelessWidget {
             height: 54,
             child: Image.asset(_findImgName()),
           ),
-          // Icon(
-          //   Icons.add,
-          //   color: choiceVal == 1 ? Color(0xff454442) : Color(0xffB7B6AF),
-          // ),
           Text(
             choice,
             style: TextStyle(

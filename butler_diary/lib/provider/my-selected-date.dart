@@ -6,17 +6,9 @@ class MySelectedDate extends ChangeNotifier {
   DateTime _focusedDate = DateTime.now();
   CalendarFormat _calendarFormat = CalendarFormat.week;
 
-  DateTime get getSelectedDate {
-    return _selectedDate;
-  }
-
-  DateTime get getFocusedDate {
-    return _focusedDate;
-  }
-
-  CalendarFormat get getFormat {
-    return _calendarFormat;
-  }
+  DateTime get getSelectedDate => _selectedDate;
+  DateTime get getFocusedDate => _focusedDate;
+  CalendarFormat get getFormat => _calendarFormat;
 
   void moveToPrevDate() {
     _selectedDate = _selectedDate.subtract(Duration(days: 1));

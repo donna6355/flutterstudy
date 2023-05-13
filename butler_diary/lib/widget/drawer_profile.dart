@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../model/profile.dart';
 import '../screen/living_room.dart';
@@ -135,10 +134,6 @@ class DrawerProfile extends StatelessWidget {
                   );
                 }),
           ),
-          // TextButton(
-          //   onPressed: () {},
-          //   child: Text('이용 안내'),
-          // ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pushNamed(
