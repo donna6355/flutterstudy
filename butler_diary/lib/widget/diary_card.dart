@@ -1,3 +1,4 @@
+import 'package:butler_diary/widget/diary_card_row_bool.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import '../model/diary.dart';
@@ -178,112 +179,54 @@ class DiaryCard extends StatelessWidget {
                     dailyData.diarrhea ||
                     dailyData.vomit ||
                     dailyData.destroy)
-                  Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              width: 0.1,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text('주의!!'),
-                          SizedBox(width: 6),
-                          if (dailyData.hairBall) BoolDiaryIcon('헤어볼'),
-                          if (dailyData.diarrhea) BoolDiaryIcon('설사'),
-                          if (dailyData.vomit) BoolDiaryIcon('토켁켁'),
-                          if (dailyData.destroy) BoolDiaryIcon('파괴왕'),
-                        ],
-                      ),
-                    ],
+                  DiaryCardBool(
+                    label: '주의!!',
+                    firstLabel: '헤어볼',
+                    firstVal: dailyData.hairBall,
+                    secondLabel: '설사',
+                    secondVal: dailyData.diarrhea,
+                    thirdLabel: '토켁켁',
+                    thirdVal: dailyData.vomit,
+                    fourthLabel: '파괴왕',
+                    fourthVal: dailyData.destroy,
                   ),
                 if (dailyData.vet ||
                     dailyData.vaccine ||
                     dailyData.pill ||
                     dailyData.eyeDrop)
-                  Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              width: 0.1,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text('아프냥'),
-                          SizedBox(width: 5),
-                          if (dailyData.vet) BoolDiaryIcon('동물병원'),
-                          if (dailyData.vaccine) BoolDiaryIcon('예방접종'),
-                          if (dailyData.pill) BoolDiaryIcon('약'),
-                          if (dailyData.eyeDrop) BoolDiaryIcon('안약'),
-                        ],
-                      ),
-                    ],
+                  DiaryCardBool(
+                    label: '아프냥',
+                    firstLabel: '동물병원',
+                    firstVal: dailyData.vet,
+                    secondLabel: '예방접종',
+                    secondVal: dailyData.vaccine,
+                    thirdLabel: '약',
+                    thirdVal: dailyData.pill,
+                    fourthLabel: '안약',
+                    fourthVal: dailyData.eyeDrop,
                   ),
                 if (dailyData.brushTeeth ||
                     dailyData.brushFur ||
                     dailyData.bath ||
                     dailyData.clawCut)
-                  Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              width: 0.1,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text('이쁘냥'),
-                          SizedBox(width: 5),
-                          if (dailyData.brushTeeth) BoolDiaryIcon('치카'),
-                          if (dailyData.brushFur) BoolDiaryIcon('빗질'),
-                          if (dailyData.bath) BoolDiaryIcon('목욕'),
-                          if (dailyData.clawCut) BoolDiaryIcon('발톱깎기'),
-                        ],
-                      ),
-                    ],
+                  DiaryCardBool(
+                    label: '이쁘냥',
+                    firstLabel: '치카',
+                    firstVal: dailyData.brushTeeth,
+                    secondLabel: '빗질',
+                    secondVal: dailyData.brushFur,
+                    thirdLabel: '목욕',
+                    thirdVal: dailyData.bath,
+                    fourthLabel: '발톱깎기',
+                    fourthVal: dailyData.clawCut,
                   ),
                 if (dailyData.hunting || dailyData.toilet)
-                  Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              width: 0.1,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text('건강냥'),
-                          SizedBox(width: 5),
-                          if (dailyData.hunting) BoolDiaryIcon('사냥놀이'),
-                          if (dailyData.toilet) BoolDiaryIcon('전체갈이'),
-                        ],
-                      ),
-                    ],
+                  DiaryCardBool(
+                    label: '건강냥',
+                    firstLabel: '사냥놀이',
+                    firstVal: dailyData.hunting,
+                    secondLabel: '전체갈이',
+                    secondVal: dailyData.toilet,
                   ),
               ],
             ),

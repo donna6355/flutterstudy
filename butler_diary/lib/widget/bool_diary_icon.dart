@@ -82,7 +82,6 @@ class BoolDiaryIcon extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // Icon(Icons.add),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
