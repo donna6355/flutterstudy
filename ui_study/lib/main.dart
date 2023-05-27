@@ -54,6 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
           color: Colors.amber,
           child: Column(
             children: [
+              const Text(String.fromEnvironment("access")),
+              //flutter run/build --dart-define-from-file=config.json
               Chip(
                 labelPadding: EdgeInsets.all(2.0),
                 avatar: CircleAvatar(
