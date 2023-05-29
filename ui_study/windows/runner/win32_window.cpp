@@ -120,9 +120,29 @@ Win32Window::~Win32Window() {
   Destroy();
 }
 
+bool CheckOneInstance()
+{
+    HANDLE  m_hStartEvent = CreateEventW( NULL, FALSE, FALSE, L"Global\\yourpackage" );
+
+    if(m_hStartEvent == NULL) {
+        CloseHandle( m_hStartEvent );
+        return false;
+    }
+
+    if (GetLastError() == ERROR_ALREADY_EXISTS) {
+        CloseHandle( m_hStartEvent );
+        m_hStartEvent = NULL;
+        return false;
+    }
+    return true;
+}
+
 bool Win32Window::Create(const std::wstring& title,
                          const Point& origin,
                          const Size& size) {
+  if( !CheckOneInstance()) {
+    return false;
+  }
   Destroy();
 
   const wchar_t* window_class =
