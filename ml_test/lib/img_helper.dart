@@ -23,5 +23,9 @@ Future<void> _cropImg(String filePath) async {
   final img.Image? image = img.decodeJpg(await File(filePath).readAsBytes());
   final img.Image cropped =
       img.copyCrop(image!, x: 807, y: 0, width: 833, height: 1070);
+
+//for production
+  // final img.Image cropped =
+  //     img.copyCrop(image!, x: 280, y: 0, width: 833, height: 1070);
   await File(filePath).writeAsBytes(img.encodeJpg(cropped));
 }
