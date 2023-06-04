@@ -27,11 +27,19 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: ElevatedButton(
-        child: const Text('crop Images'),
-        onPressed: () async => await pickFiles(),
-      )),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('send mail'),
+          ),
+          ElevatedButton(
+            child: const Text('crop Images'),
+            onPressed: () async => await pickFiles(),
+          ),
+        ],
+      ),
     );
   }
 }
