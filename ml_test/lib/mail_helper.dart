@@ -20,7 +20,9 @@ class MailHelper {
       ..recipients.add('donna.j@oysterable.com')
       ..subject = 'Test Dart Mailer library :: 😀 :: ${DateTime.now()}'
       ..text = 'This is the plain text.\nThis is line 2 of the text part.'
-      ..attachments = [FileAttachment(File('exploits_of_a_mom.png'))];
+      ..attachments = [
+        FileAttachment(File('~/Users/donna/Downloads/laundry.gif'))
+      ];
 
     try {
       final sendReport = await send(message, smtpServer);

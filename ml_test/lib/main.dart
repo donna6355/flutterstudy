@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './img_helper.dart';
+import './mail_helper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +32,9 @@ class MyHomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              MailHelper().sendEmail();
+            },
             child: const Text('send mail'),
           ),
           ElevatedButton(
